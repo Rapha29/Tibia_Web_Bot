@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yubra Web</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+
+        .character-log-link.status-offline {
+            text-decoration: underline;
+            text-decoration-color: #dc3545; /* Vermelho */
+            text-decoration-thickness: 2px;
+            text-underline-offset: 3px;
+        }
+        .admin-list.scrollable {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+<nav class="main-nav">
+    <button class="nav-link active" data-page="respawns">
+        <i class="fas fa-list-ul"></i> Respawns
+    </button>
+    <button class="nav-link" data-page="friends">
+        <i class="fas fa-users"></i> Friends/Enemies
+    </button>
+    <button class="nav-link" data-page="planilhado">
+        <i class="fas fa-calendar-alt"></i> Planilhado
+    </button>
+    
+    <div class="nav-dropdown-container">
+        <button class="nav-link" id="tools-dropdown-btn">
+            <i class="fas fa-tools"></i> Ferramentas <i class="fas fa-caret-down"></i>
+        </button>
+        <div class="nav-dropdown-menu" id="tools-dropdown-menu">
+            <a href="#" class="nav-dropdown-item" data-page="calc_exp">Calculadora de XP</a>
+            <a href="#" class="nav-dropdown-item" data-page="calc_loot">Split Loot</a>
+            <a href="#" class="nav-dropdown-item" data-page="calc_valor">Conversor de Valores</a>
+            <a href="#" class="nav-dropdown-item" data-page="quem_e_quem">Quem é Quem?</a>
+        </div>
+    </div>
+    
+    <div class="navbar-left" id="top-navbar">
+        <span>| Login efetuado como:</span> 
+        <span id="nav-user-account">Carregando...</span> 
+        <span>></span>
+        <span id="nav-user-char">Nenhum personagem</span> 
+    </div>
+    
+    <div class="navbar-right" style="margin-left: auto; display: flex; justify-content: flex-end;">
+        <button id="change-name-btn">Trocar Personagem</button> 
+        <span id="active-char-display">  </span> 
+        <button id="logout-btn" class="action-btn danger-btn">Sair</button> 
+    </div>
+</nav>
+
+    <div id="hunted-alert-container"></div>
+    
+    <div class="container">
+        <div id="main-content-panel" class="panel">
+        </div>
+
+        <div class="chat-section panel"> 
+            <div >
+
+            </div>
+            <h2>Chat com o Bot</h2> 
+            <div class="chat-options">
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" id="sound-enabled-checkbox">
+                    <label for="sound-enabled-checkbox">🔊 Som</label>
+                </div>
+                <div class="checkbox-wrapper">
+                   <input type="checkbox" id="alert-enabled-checkbox">
+                    <label for="alert-enabled-checkbox">🔔 Alerta</label>
+                </div>
+            </div>
+            <div id="chat-log"></div> 
+            <div id="quick-actions">
+                <button id="accept-respawn-btn" class="action-btn">✅ Aceitar</button> 
+                <button id="open-respawn-finder-btn" class="action-btn find-btn">🔍 Resp List</button> 
+                <button id="open-admin-modal-btn" class="action-btn admin-btn" style="display: none;">👑 Gerenciar</button> 
+            </div>
+            <form id="command-form">
+                <input type="text" id="command-input" placeholder="Ou digite um comando aqui..." autocomplete="off" required> 
+                 <button type="submit">Enviar</button> 
+            </form>
+        </div>
+    </div>
+
+    <div id="respawn-finder-modal" class="modal-overlay"> 
+        <div class="modal-content"> 
+            <button class="modal-close-btn">&times;</button> 
+            <h1>Códigos de Respawn</h1> 
+            <div class="filter-section"> 
+                 <div class="filter-group">
+                    <label for="city-filter">Filtrar por Cidade:</label> 
+                    <select id="city-filter"><option value="">Todas as Cidades</option></select> 
+                    <div id="city-respawns" class="respawn-list"></div> 
+                 </div>
+                <div class="filter-group">
+                    <label for="creature-search">Buscar por Respawn:</label> 
+                    <input type="text" id="creature-search" placeholder="Digite o nome do respawn..."> 
+                    <div id="search-results" class="respawn-list"></div> 
+                 </div>
+            </div>
+            <div class="full-list-section">
+                <h2>Todos os Códigos de Respawn</h2> 
+                <div id="all-respawns" class="respawn-list"></div> 
+            </div>
+         </div>
+    </div>
+
+    <div id="admin-modal" class="modal-overlay"> 
+        <div class="modal-content admin-modal-content"> 
+            <button class="modal-close-btn">&times;</button> 
+            <h1>Painel de Gerenciamento</h1> 
+            <div class="global-pause-section">
+               <h3>Controle Global de Respawns</h3> 
+               <div class="quick-actions">
+                   <button id="admin-pause-all-btn" class="action-btn danger-btn">🔴 Pausar Todos</button> 
+                   <button id="admin-unpause-all-btn" class="action-btn success-btn">▶️ Despausar Todos</button> 
+               </div>
+            </div>
+            <hr>
+          
+            <div class="admin-tabs">
+                 <button class="tab-btn active" data-tab="members">Membros</button> 
+                 <button class="tab-btn" data-tab="groups">Grupos</button>
+                 <button class="tab-btn" data-tab="respawns">Respawns</button> 
+                 <button class="tab-btn" data-tab="times">Tempos</button> 
+                 <button class="tab-btn" data-tab="usuarios">Todos os Usuários</button>
+                 <button class="tab-btn" data-tab="cooldowns">Cooldowns</button>
+            </div>
+            
+            <div id="tab-content-members" class="tab-content active"> 
+                <div class="admin-container"> 
+                    <div class="admin-panel">
+                        <h2>Usuários Registrados</h2> 
+                        <input type="text" id="admin-user-search" placeholder="Buscar usuário..."> 
+                        <div id="admin-user-list" class="admin-list"></div> 
+                    </div>
+                    <div class="admin-panel">
+                         <div id="admin-selected-user-panel" style="display:none;">
+                            <h2>Grupos para: <span id="selected-user-name"></span></h2> 
+                            <div id="user-groups-checklist" class="admin-list"></div> 
+                            <button id="save-user-groups-btn" class="action-btn success-btn">Salvar Grupos do Usuário</button> 
+                        </div>
+                    </div>
+                 </div>
+            </div>
+
+            <div id="tab-content-groups" class="tab-content">
+                <div class="admin-container">
+                    <div class="admin-panel">
+                        <h2>Selecionar Grupo</h2>
+                        <div id="admin-group-selection-list" class="admin-list"></div>
+                        <hr>
+                        <h2>Criar / Editar Grupos</h2>
+                        <div id="admin-group-list" class="admin-list"></div> 
+                        <form id="admin-group-form">
+                            <h3>Novo / Editar Grupo</h3>
+                            <input type="hidden" id="group-id-input"> 
+                            <input type="text" id="group-name-input" placeholder="Nome do Grupo (ex: VIP)" required> 
+                            <input type="number" id="group-time-input" placeholder="Tempo Extra (minutos)" required> 
+                            <button type="submit">Salvar Grupo</button> 
+                            <button type="button" id="clear-group-form-btn">Limpar</button> 
+                        </form>
+                    </div>
+                    <div class="admin-panel">
+                        <div id="admin-selected-group-panel" style="display:none;">
+                            <h2>Membros e Respawns de: <span id="selected-group-name-details"></span></h2>
+                            <hr>
+                            <h3><i class="fas fa-users"></i> Usuários neste Grupo</h3>
+                            <div id="admin-group-users-list" class="admin-list scrollable"></div>
+                            <hr>
+                            <h3><i class="fas fa-skull"></i> Respawns que Requerem este Grupo</h3>
+                            <div id="admin-group-respawns-list" class="admin-list scrollable"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-content-respawns" class="tab-content">
+                <div class="admin-container">
+                    <div class="admin-panel">
+                         <h2>Todos os Respawns</h2>
+                         <input type="text" id="admin-respawn-search" placeholder="Buscar por nome ou código...">
+                        <div id="admin-respawn-list" class="admin-list"></div>
+                    </div>
+                    <div class="admin-panel">
+                        <div id="admin-selected-respawn-panel" style="display:none;">
+                            <h2>Opções para: <span id="selected-respawn-name"></span></h2>
+                            <div class="group-checklist-item" style="background-color: transparent; padding: 10px 0;">
+                                <input type="checkbox" id="respawn-planilhado-chk">
+                                <label for="respawn-planilhado-chk">Disponível no Planilhado Normal</label>
+                            </div>
+                            <div class="group-checklist-item" style="background-color: transparent; padding: 10px 0;">
+                                <input type="checkbox" id="respawn-planilhado-double-chk">
+                                <label for="respawn-planilhado-double-chk">Disponível no Planilhado Double</label>
+                            </div>
+                            <hr>
+                            <h4>Grupos de Acesso</h4>
+                            <p>Selecione os grupos necessários para reservar este respawn. Se nenhum for selecionado, o respawn é público.</p>
+                            <div id="respawn-groups-checklist" class="admin-list"></div>
+                            <button id="save-respawn-options-btn" class="action-btn success-btn">Salvar Opções do Respawn</button>
+                        </div>
+                        <hr>
+                        <form id="admin-respawn-form">
+                            <h3>Criar / Editar Respawn</h3>
+                            <input type="text" id="respawn-code-input" placeholder="Código (ex: GSLOWER)" required>
+                            <input type="text" id="respawn-name-input" placeholder="Nome do Respawn (ex: Gazer Spectres)" required>
+                            <input type="text" id="respawn-region-input" placeholder="Cidade / Região (ex: Feyrist)" required>
+                            <div class="form-actions">
+                                 <button type="submit">Salvar Respawn</button>
+                                <button type="button" id="clear-respawn-form-btn">Limpar</button>
+                            </div>
+                        </form>
+                     </div>
+                </div>
+            </div>
+            
+            <div id="tab-content-times" class="tab-content"> 
+                <div class="admin-container solo-panel"> 
+                     <div class="admin-panel">
+                        <h2>Tempos de Reserva por Rank (em minutos)</h2>
+                        <form id="admin-add-rank-form" class="inline-form">
+                             <input type="text" id="new-rank-name-input" placeholder="Nome do Novo Rank" required>
+                            <input type="number" id="new-rank-time-input" placeholder="Tempo (min)" value="150" min="0" required>
+                            <button type="button" id="add-rank-btn">Adicionar Rank</button>
+                        </form>
+                         <hr>
+                        <input type="text" id="admin-times-search" placeholder="Buscar por rank...">
+                        <p>Defina o tempo máximo de reserva para cada rank da guilda. Ranks novos são adicionados aqui automaticamente com tempo padrão de 150 minutos.</p>
+                        <div id="admin-times-list" class="admin-list"></div>
+                        <br>
+                        <button id="save-times-btn" class="action-btn success-btn">Salvar Todos os Tempos</button> 
+                     </div>
+                </div>
+            </div>
+
+            <div id="tab-content-usuarios" class="tab-content">
+                <div class="admin-container solo-panel">
+                    <div class="admin-panel">
+                         <h2>Todos os Usuários e Personagens Registrados</h2>
+                        <input type="text" id="admin-all-users-search" placeholder="Buscar por nome, e-mail ou personagem...">
+                        <div id="admin-all-users-list" class="admin-list"></div>
+                     </div>
+                </div>
+            </div>
+
+            <div id="tab-content-cooldowns" class="tab-content">
+                <div class="admin-container solo-panel">
+                    <div class="admin-panel">
+                         <h2>Usuários em Cooldown</h2>
+                        <div id="admin-cooldowns-list" class="admin-list"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="log-modal" class="modal-overlay"> 
+        <div class="modal-content log-modal-content"> 
+            <button class="modal-close-btn">&times;</button> 
+            <h1 id="log-modal-title">Log de Atividades</h1> 
+            <div id="log-modal-body" class="log-modal-body"></div> 
+        </div>
+    </div>
+
+    <div id="time-breakdown-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <h1 id="time-breakdown-title">Detalhes do Tempo</h1>
+            <div id="time-breakdown-body"></div>
+        </div>
+    </div>
+
+    <div id="user-details-modal" class="modal-overlay">
+    <div class="modal-content">
+        <button class="modal-close-btn">&times;</button>
+        <h1 id="details-modal-title">Detalhes do Usuário</h1>
+        <div id="details-modal-body">
+            </div>
+    </div>
+</div>
+    <script src="/socket.io/socket.io.js"></script> 
+    <script src="client.js"></script> 
+</body>
+</html>

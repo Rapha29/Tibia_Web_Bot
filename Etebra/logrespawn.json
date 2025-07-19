@@ -1,0 +1,150 @@
+{
+  "D31": [
+    {
+      "timestamp": "2025-07-19T16:28:25.739Z",
+      "user": "Brunow Rullez",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "G11": [
+    {
+      "timestamp": "2025-07-19T16:48:26.280Z",
+      "user": "Santa Druida",
+      "action": "Não aceitou"
+    },
+    {
+      "timestamp": "2025-07-19T16:38:26.201Z",
+      "user": "Santa Druida",
+      "action": "Assumiu (fila)"
+    },
+    {
+      "timestamp": "2025-07-19T16:38:26.199Z",
+      "user": "Galenia",
+      "action": "Não aceitou"
+    },
+    {
+      "timestamp": "2025-07-19T16:28:25.744Z",
+      "user": "Galenia",
+      "action": "Assumiu (fila)"
+    },
+    {
+      "timestamp": "2025-07-19T16:28:25.742Z",
+      "user": "Jamantrinha",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "U19": [
+    {
+      "timestamp": "2025-07-19T16:28:25.747Z",
+      "user": "Migatsu Winterfelix",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "C6": [
+    {
+      "timestamp": "2025-07-19T16:28:25.749Z",
+      "user": "Ferwinter",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "E29": [
+    {
+      "timestamp": "2025-07-19T16:28:25.754Z",
+      "user": "Floresta Proibida",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "K15": [
+    {
+      "timestamp": "2025-07-19T16:28:25.757Z",
+      "user": "Sollare",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "Z20": [
+    {
+      "timestamp": "2025-07-19T16:28:25.760Z",
+      "user": "Ek Val",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "D37": [
+    {
+      "timestamp": "2025-07-19T16:48:26.283Z",
+      "user": "Raydelas",
+      "action": "Não aceitou"
+    },
+    {
+      "timestamp": "2025-07-19T16:38:26.206Z",
+      "user": "Raydelas",
+      "action": "Assumiu (fila)"
+    },
+    {
+      "timestamp": "2025-07-19T16:38:26.204Z",
+      "user": "Ychiro",
+      "action": "Não aceitou"
+    },
+    {
+      "timestamp": "2025-07-19T16:28:25.766Z",
+      "user": "Ychiro",
+      "action": "Assumiu (fila)"
+    },
+    {
+      "timestamp": "2025-07-19T16:28:25.763Z",
+      "user": "Pugnac on Yubra",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "T16": [
+    {
+      "timestamp": "2025-07-19T16:28:25.769Z",
+      "user": "Asow",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "D42": [
+    {
+      "timestamp": "2025-07-19T16:28:25.772Z",
+      "user": "Milady Mystik",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "D40": [
+    {
+      "timestamp": "2025-07-19T16:28:25.776Z",
+      "user": "Daemon Feanor",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "K14": [
+    {
+      "timestamp": "2025-07-19T16:28:25.779Z",
+      "user": "Nina Respekt",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "Z50": [
+    {
+      "timestamp": "2025-07-19T16:28:25.782Z",
+      "user": "Adron Elol",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "P17": [
+    {
+      "timestamp": "2025-07-19T16:38:26.208Z",
+      "user": "Rosinha Baguncinha",
+      "action": "Não aceitou"
+    },
+    {
+      "timestamp": "2025-07-19T16:28:25.789Z",
+      "user": "Rosinha Baguncinha",
+      "action": "Assumiu (fila)"
+    },
+    {
+      "timestamp": "2025-07-19T16:28:25.785Z",
+      "user": "Sankyz",
+      "action": "Tempo finalizado"
+    }
+  ]
+}

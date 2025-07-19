@@ -1,0 +1,32 @@
+[
+  {
+    "id": "vip",
+    "name": "Vip",
+    "extraTime": 30
+  },
+  {
+    "id": "roshamuul",
+    "name": "Roshamuul",
+    "extraTime": 0
+  },
+  {
+    "id": "hive",
+    "name": "Hive",
+    "extraTime": 0
+  },
+  {
+    "id": "planilhado",
+    "name": "Planilhado",
+    "extraTime": 60
+  },
+  {
+    "id": "resp",
+    "name": "Resp",
+    "extraTime": 210
+  },
+  {
+    "id": "resp-block",
+    "name": "Resp-Block",
+    "extraTime": 0
+  }
+]

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Valores Tibia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        /* * ===================================================================
+         * CSS APLICADO APENAS AO COMPONENTE COM ID "conversor-app"
+         * ===================================================================
+        */
+
+        /* As variáveis e estilos de corpo agora se aplicam ao nosso contêiner principal */
+        #conversor-app {
+            /* Variáveis de cor agora estão 'encapsuladas' aqui */
+            --bg-color: #1a1a1a;
+            --panel-bg-color: #2c2c2c;
+            --border-color: #444;
+            --text-color: #f0f0f0;
+            --text-muted-color: #888;
+            --gold-accent: #f1e05a;
+            --success-color: #28a745;
+            --info-color: #17a2b8;
+
+            /* Estilos que antes eram do 'body' */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 20px;
+            border-radius: 10px; /* Adicionado para um visual mais contido */
+        }
+        
+        #conversor-app .header-container {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--gold-accent);
+        }
+
+        #conversor-app .valor-container { 
+            max-width: 900px; 
+            margin: 0 auto; 
+        }
+
+        #conversor-app .valor-panel { 
+            background-color: var(--panel-bg-color); 
+            border-radius: 8px; 
+            border: 1px solid var(--border-color); 
+            overflow: hidden; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            display: flex;
+        }
+
+        #conversor-app .valor-section { 
+            padding: 25px;
+            flex: 1;
+        }
+
+        #conversor-app .valor-section.config { 
+            background-color: var(--bg-color); 
+            border-right: 1px solid var(--border-color); 
+        }
+
+        #conversor-app .valor-container h2 { 
+            color: var(--gold-accent); 
+            margin: 0 0 20px 0; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            font-weight: 600;
+        }
+
+        #conversor-app .input-group { 
+            margin-bottom: 15px; 
+        }
+
+        #conversor-app .valor-container label { 
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px; 
+            font-weight: 600; 
+        }
+
+        #conversor-app .input-wrapper { 
+            position: relative; 
+            display: flex; 
+            align-items: center; 
+        }
+
+        #conversor-app .input-icon { 
+            position: absolute; 
+            left: 12px; 
+            color: var(--text-muted-color); 
+            font-size: 0.9em;
+        }
+
+        #conversor-app .valor-container input {
+            width: 100%; 
+            padding: 12px 12px 12px 40px; 
+            border: 1px solid var(--border-color);
+            border-radius: 6px; 
+            box-sizing: border-box; 
+            font-size: 1.1em;
+            background-color: var(--bg-color); 
+            color: var(--text-color);
+            transition: border-color 0.2s;
+        }
+
+        #conversor-app .valor-container input:focus { 
+            outline: none; 
+            border-color: var(--gold-accent); 
+        }
+
+        #conversor-app .gold { color: #FFD700; } 
+        #conversor-app .tc { color: var(--success-color); } 
+        #conversor-app .money { color: var(--info-color); }
+
+        @media (max-width: 800px) {
+            #conversor-app .valor-panel {
+                flex-direction: column;
+            }
+            #conversor-app .valor-section.config {
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="conversor-app">
+    <div class="header-container">
+        <h1><i class="fas fa-coins"></i> Conversor de Valores</h1>
+    </div>
+
+    <div class="valor-container">
+        <div class="valor-panel">
+            <div class="valor-section config">
+                <h2><i class="fas fa-cog"></i> Configuração</h2>
+                <span>Primeiro preencha aqui!</span>
+                <p></p>
+                <div class="input-group">
+                    <label for="tcToGc">Valor de 1 Tibia Coin em Gold (Valor do Market):</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-exchange-alt input-icon"></i>
+                        <input type="text" id="tcToGc" placeholder="Ex: 25000" inputmode="numeric">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="tcReais">Valor de 250 Tibia Coins em Reais (R$):</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-dollar-sign input-icon money"></i>
+                        <input type="text" id="tcReais" placeholder="Ex: 60,00" inputmode="numeric">
+                    </div>
+                </div>
+            </div>
+            <div class="valor-section calc">
+                <h2><i class="fas fa-calculator"></i> Cálculo</h2>
+                <p style="font-size: 0.9em; color: var(--text-muted-color); margin-top: -15px; margin-bottom: 20px;">
+                    Digite em qualquer campo para converter.
+                </p>
+                <div class="input-group">
+                    <label for="valorTC"><i class="fas fa-coins tc"></i> Valor em Tibia Coin (TC)</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-coins input-icon tc"></i>
+                        <input type="text" id="valorTC" inputmode="numeric" placeholder="0,00">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="valorGC"><i class="fas fa-coins gold"></i> Valor em Gold Coin (GP)</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-coins input-icon gold"></i>
+                        <input type="text" id="valorGC" inputmode="numeric" placeholder="0">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="valorRS"><i class="fas fa-dollar-sign money"></i> Valor em Reais (R$)</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-dollar-sign input-icon money"></i>
+                        <input type="text" id="valorRS" inputmode="numeric" placeholder="0,00">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <script>
+(function() {
+    const appContainer = document.getElementById('conversor-app');
+    if (!appContainer) return; // Garante que o script só rode se o contêiner existir
+
+    const inputs = {
+        tcToGc: appContainer.querySelector('#tcToGc'),
+        tcReais: appContainer.querySelector('#tcReais'),
+        valorGC: appContainer.querySelector('#valorGC'),
+        valorTC: appContainer.querySelector('#valorTC'),
+        valorRS: appContainer.querySelector('#valorRS')
+    };
+
+    let isUpdating = false;
+
+    function formatCurrency(value, isInteger = false) {
+        if (!value) return '';
+        if (isInteger) {
+            const number = parseInt(value, 10);
+            return number.toLocaleString('pt-BR');
+        }
+        let intValue = value.slice(0, -2).padStart(1, '0');
+        let fracValue = value.slice(-2).padStart(2, '0');
+        const number = parseFloat(`${intValue}.${fracValue}`);
+        return number.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function handleInput(e) {
+        if (isUpdating) return;
+        const input = e.target;
+        let originalValue = input.value;
+        let cursorPos = input.selectionStart;
+        let numericValue = originalValue.replace(/\D/g, '');
+
+        if (numericValue === '') {
+            inputs.valorGC.value = '';
+            inputs.valorTC.value = '';
+            inputs.valorRS.value = '';
+            return;
+        }
+
+        const isIntegerField = input.id === 'valorGC' || input.id === 'tcToGc';
+        const formattedValue = formatCurrency(numericValue, isIntegerField);
+
+        isUpdating = true;
+        input.value = formattedValue;
+        isUpdating = false;
+
+        const newCursorPos = cursorPos + (formattedValue.length - originalValue.length);
+        input.setSelectionRange(newCursorPos, newCursorPos);
+
+        calculateValues(input.id);
+    }
+    
+    function calculateValues(sourceId) {
+        isUpdating = true;
+        const rates = getRates();
+        if (!rates) {
+            isUpdating = false;
+            return;
+        }
+
+        const { tcToGold, tcToReal } = rates;
+        const values = {
+            gc: parseFloat(inputs.valorGC.value.replace(/\./g, '').replace(',', '.')) || 0,
+            tc: parseFloat(inputs.valorTC.value.replace(/\./g, '').replace(',', '.')) || 0,
+            rs: parseFloat(inputs.valorRS.value.replace(/\./g, '').replace(',', '.') || 0)
+        };
+
+        const activeFieldHasValue = values[sourceId.replace('valor', '').toLowerCase()];
+
+        if (sourceId === 'valorGC' || (sourceId.startsWith('tc') && values.gc > 0 && !activeFieldHasValue)) {
+            const tc = values.gc / tcToGold;
+            if (sourceId !== 'valorTC') inputs.valorTC.value = formatCurrency((tc * 100).toFixed(0));
+            if (sourceId !== 'valorRS') inputs.valorRS.value = formatCurrency((tc * tcToReal * 100).toFixed(0));
+        } else if (sourceId === 'valorTC' || (sourceId.startsWith('tc') && values.tc > 0 && !activeFieldHasValue)) {
+            const tc = values.tc;
+            if (sourceId !== 'valorGC') inputs.valorGC.value = formatCurrency(Math.round(tc * tcToGold).toString(), true);
+            if (sourceId !== 'valorRS') inputs.valorRS.value = formatCurrency((tc * tcToReal * 100).toFixed(0));
+        } else if (sourceId === 'valorRS' || (sourceId.startsWith('tc') && values.rs > 0 && !activeFieldHasValue)) {
+            const tc = values.rs / tcToReal;
+            if (sourceId !== 'valorGC') inputs.valorGC.value = formatCurrency(Math.round(tc * tcToGold).toString(), true);
+            if (sourceId !== 'valorTC') inputs.valorTC.value = formatCurrency((tc * 100).toFixed(0));
+        }
+        
+        isUpdating = false;
+    }
+
+    function getRates() {
+        const tcToGold = parseFloat(inputs.tcToGc.value.replace(/\./g, '')) || 0;
+        const tcReaisVal = parseFloat(inputs.tcReais.value.replace(/\./g, '').replace(',', '.')) || 0;
+        if (!tcToGold || !tcReaisVal) return null;
+        return { tcToGold, tcToReal: tcReaisVal / 250 };
+    }
+
+    for (const key in inputs) {
+        if (inputs[key]) {
+            inputs[key].addEventListener('input', handleInput);
+        }
+    }
+})();
+</script>
+
+</body>
+</html>

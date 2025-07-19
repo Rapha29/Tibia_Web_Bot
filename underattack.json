@@ -1,0 +1,42 @@
+[
+  {
+    "timestamp": "2025-07-19T13:59:31.717Z",
+    "type": "Connection Flood",
+    "ip": "2804:14d:5c74:8415:7444:2ba:a1c5:bd19",
+    "reason": "Mais de 5 conexões em 1 minuto. Bloqueado por 10 minutos.",
+    "accountName": "N/A",
+    "email": "N/A",
+    "phone": "N/A",
+    "character": "N/A"
+  },
+  {
+    "timestamp": "2025-07-19T12:52:47.686Z",
+    "type": "Connection Flood",
+    "ip": "::1",
+    "reason": "Mais de 5 conexões em 1 minuto. Bloqueado por 10 minutos.",
+    "accountName": "N/A",
+    "email": "N/A",
+    "phone": "N/A",
+    "character": "N/A"
+  },
+  {
+    "timestamp": "2025-07-19T12:42:14.719Z",
+    "type": "Connection Flood",
+    "ip": "::1",
+    "reason": "Mais de 5 conexões em 1 minuto. Bloqueado por 10 minutos.",
+    "accountName": "N/A",
+    "email": "N/A",
+    "phone": "N/A",
+    "character": "N/A"
+  },
+  {
+    "timestamp": "2025-07-19T12:31:35.383Z",
+    "type": "Connection Flood",
+    "ip": "::1",
+    "reason": "Mais de 5 conexões em 1 minuto. Bloqueado por 10 minutos.",
+    "accountName": "N/A",
+    "email": "N/A",
+    "phone": "N/A",
+    "character": "N/A"
+  }
+]

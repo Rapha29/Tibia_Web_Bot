@@ -1,0 +1,224 @@
+<style>
+    .friends-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .list-panel { background-color: var(--panel-bg-color); border: 1px solid var(--border-color); border-radius: 8px; padding: 15px; }
+    .list-panel h4 { color: var(--gold-accent); border-bottom: 1px solid var(--border-color); padding-bottom: 8px; margin-top: 0; }
+    .online-count { font-size: 0.9em; color: var(--text-muted-color); }
+    .voc-section { margin-top: 15px; }
+    .voc-section strong { font-size: 1.1em; }
+    .list-unstyled { padding: 0; list-style: none; margin-top: 5px; }
+    .header-actions { display: flex; align-items: center; gap: 15px; }
+</style>
+
+<div class="header-container">
+    <h1><i class="fas fa-users"></i> Friends & Enemies</h1>
+    <div class="header-actions">
+        <span id="sync-status" style="font-size: 0.8em; color: var(--text-muted-color);"></span>
+        <button id="toggle-admin-panel-btn" class="action-btn" style="display: none; background-color: var(--gold-accent); color: #111;">Gerenciar</button>
+    </div>
+</div>
+
+<div id="admin-guild-management" class="list-panel" style="display: none; margin-bottom: 20px;">
+    <h4><i class="fas fa-edit"></i> Adicionar Relação</h4>
+    <div class="management-forms" style="display: flex; gap: 15px; flex-wrap: wrap;">
+        <form id="add-ally-form" class="guild-form" style="flex: 1; display: flex; gap: 10px;">
+            <input type="text" name="guild_name" placeholder="Nome da Guilda Aliada" required style="width:100%; padding: 8px; background-color: var(--bg-color); border: 1px solid var(--border-color); color: var(--text-color); border-radius: 4px;">
+            <button type="submit" class="action-btn" style="background-color: var(--success-color);">Adicionar</button>
+        </form>
+        <form id="add-enemy-form" class="guild-form" style="flex: 1; display: flex; gap: 10px;">
+            <input type="text" name="guild_name" placeholder="Nome da Guilda Inimiga" required style="width:100%; padding: 8px; background-color: var(--bg-color); border: 1px solid var(--border-color); color: var(--text-color); border-radius: 4px;">
+            <button type="submit" class="action-btn" style="background-color: var(--danger-color);">Adicionar</button>
+        </form>
+        <form id="add-hunted-form" class="guild-form" style="flex: 1; display: flex; gap: 10px;">
+            <input type="text" name="hunted_name" placeholder="Nome do Hunted" required style="flex-grow: 2; padding: 8px; background-color: var(--bg-color); border: 1px solid var(--border-color); color: var(--text-color); border-radius: 4px;">
+            <input type="text" name="hunted_reason" placeholder="Motivo" required style="flex-grow: 1; padding: 8px; background-color: var(--bg-color); border: 1px solid var(--border-color); color: var(--text-color); border-radius: 4px;">
+            <button type="submit" class="action-btn" style="background-color: var(--warning-color); color: #111;">Adicionar</button>
+        </form>
+    </div>
+    <hr style="border-color: var(--border-color); margin: 20px 0;">
+    <h4><i class="fas fa-trash-alt"></i> Remover Relações</h4>
+    <div class="source-lists" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+        <div class="source-list"><h5>Guildas Aliadas</h5><ul id="source-allies-list" class="list-unstyled"></ul></div>
+        <div class="source-list"><h5>Guildas Inimigas</h5><ul id="source-enemies-list" class="list-unstyled"></ul></div>
+        <div class="source-list"><h5>Hunteds</h5><ul id="source-hunteds-list" class="list-unstyled"></ul></div>
+    </div>
+    <hr style="border-color: var(--border-color); margin: 20px 0;">
+    <button id="manual-sync-btn" class="action-btn" style="width: 100%; background-color: var(--info-color);">Sincronizar Listas com API</button>
+</div>
+
+<div class="friends-container">
+    <div class="list-panel">
+        <h4>Aliados <span id="allies-online-count" class="online-count"></span></h4>
+        <div id="allies-list"></div>
+    </div>
+    <div class="list-panel">
+        <h4>Inimigos <span id="enemies-online-count" class="online-count"></span></h4>
+        <div id="enemies-list"></div>
+    </div>
+    <div class="list-panel">
+        <h4>Hunteds <span id="hunteds-online-count" class="online-count"></span></h4>
+        <div id="hunteds-list"></div>
+    </div>
+</div>
+
+<script>
+(function() {
+    function initializeFriendsPage(socket) {
+        const alliesListEl = document.getElementById('allies-list');
+        const enemiesListEl = document.getElementById('enemies-list');
+        const huntedsListEl = document.getElementById('hunteds-list');
+        const adminPanel = document.getElementById('admin-guild-management');
+        const toggleAdminBtn = document.getElementById('toggle-admin-panel-btn');
+        const syncStatusEl = document.getElementById('sync-status');
+
+        if (!toggleAdminBtn) {
+            console.error("Botão de gerenciar não encontrado!");
+            return;
+        }
+
+        if (window.isAdmin) {
+            toggleAdminBtn.style.display = 'inline-block';
+        }
+
+        toggleAdminBtn.addEventListener('click', () => {
+            if (adminPanel) {
+                const isHidden = adminPanel.style.display === 'none' || adminPanel.style.display === '';
+                adminPanel.style.display = isHidden ? 'block' : 'none';
+            }
+        });
+
+        const style = document.createElement('style');
+        style.textContent = `
+            .status-indicator { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 8px; }
+            .status-indicator.online { background-color: #28a745; }
+            .status-indicator.offline { background-color: #dc3545; }
+            .remove-relation-btn { background: none; border: none; color: var(--danger-color); cursor: pointer; font-size: 1.1em; }
+            #source-allies-list li, #source-enemies-list li, #source-hunteds-list li { display: flex; justify-content: space-between; align-items: center; padding: 5px; border-radius: 3px; }
+        `;
+        document.head.appendChild(style);
+
+        socket.on('friends:dataUpdated', (data) => {
+            renderGroupedList(alliesListEl, data.players_allies, 'allies-online-count');
+            renderGroupedList(enemiesListEl, data.players_enemies, 'enemies-online-count');
+            renderGroupedList(huntedsListEl, data.players_hunteds, 'hunteds-online-count');
+            if (syncStatusEl && data.last_sync) {
+                syncStatusEl.textContent = `Última sincronização: ${new Date(data.last_sync).toLocaleString('pt-BR')}`;
+            }
+            if (window.isAdmin) {
+                renderAdminSourceLists(data);
+            }
+        });
+
+        socket.emit('friends:getData');
+
+        if (window.friendsUpdateInterval) clearInterval(window.friendsUpdateInterval);
+        window.friendsUpdateInterval = setInterval(() => {
+            socket.emit('friends:getData');
+        }, 4 * 60 * 1000);
+
+        if (window.isAdmin && adminPanel) {
+            setupAdminControls(socket, adminPanel);
+        }
+    }
+
+    function renderGroupedList(container, players, countId) {
+        if (!container) return;
+        container.innerHTML = '';
+        if (!players) players = [];
+        
+        const online = players.filter(p => p.online);
+        const offline = players.filter(p => !p.online);
+
+        const vocOrder = ['Knight', 'Druid', 'Sorcerer', 'Paladin', 'Monk', 'Outros'];
+        const createVocationGroups = (playerList) => {
+            const groups = { Knight: [], Druid: [], Sorcerer: [], Paladin: [], Monk: [], Outros: [] };
+            playerList.forEach(p => {
+                let assigned = false;
+                for(const voc of vocOrder){
+                    if(p.vocation && p.vocation.includes(voc)){
+                        groups[voc].push(p);
+                        assigned = true;
+                        break;
+                    }
+                }
+                if(!assigned) groups.Outros.push(p);
+            });
+            return groups;
+        };
+        
+        const renderHtmlForStatus = (playerList) => {
+            let html = '';
+            const groupedByVoc = createVocationGroups(playerList);
+            vocOrder.forEach(voc => {
+                const list = groupedByVoc[voc];
+                if (list.length > 0) {
+                    list.sort((a, b) => b.level - a.level || a.name.localeCompare(b.name));
+                    html += `<div class="voc-section"><strong>${voc}s (${list.length})</strong><ul class="list-unstyled">`;
+                    list.forEach(p => {
+                        html += `<li><span class="status-indicator ${p.online ? 'online' : 'offline'}"></span>${p.name} (${p.level})</li>`;
+                    });
+                    html += `</ul></div>`;
+                }
+            });
+            return html;
+        };
+
+        container.innerHTML = renderHtmlForStatus(online) + renderHtmlForStatus(offline);
+
+        const countLabel = document.getElementById(countId);
+        if (countLabel) countLabel.textContent = `(Online: ${online.length} | Offline: ${offline.length})`;
+    }
+
+    function handleGuildSubmit(e, socket, type) { e.preventDefault(); const input = e.target.querySelector('input[name="guild_name"]'); const name = input.value.trim(); if (name) socket.emit('admin:addRelation', { type: `source_${type}`, name }); e.target.reset(); }
+    
+    function renderAdminSourceLists(relations) {
+        const lists = { source_allies: document.getElementById('source-allies-list'), source_enemies: document.getElementById('source-enemies-list'), source_hunteds: document.getElementById('source-hunteds-list') };
+        for (const key in lists) { if (lists[key]) lists[key].innerHTML = ''; }
+
+        if (lists.source_allies && relations.source_allies) { relations.source_allies.forEach(name => { const li = document.createElement('li'); li.innerHTML = `<span>${name}</span> <button class="remove-relation-btn" data-type="source_allies" data-name="${name}">🗑️</button>`; lists.source_allies.appendChild(li); }); }
+        if (lists.source_enemies && relations.source_enemies) { relations.source_enemies.forEach(name => { const li = document.createElement('li'); li.innerHTML = `<span>${name}</span> <button class="remove-relation-btn" data-type="source_enemies" data-name="${name}">🗑️</button>`; lists.source_enemies.appendChild(li); }); }
+        if (lists.source_hunteds && relations.source_hunteds) { relations.source_hunteds.forEach(hunted => { const li = document.createElement('li'); li.innerHTML = `<span>${hunted.name} (${hunted.reason})</span> <button class="remove-relation-btn" data-type="source_hunteds" data-name="${hunted.name}">🗑️</button>`; lists.source_hunteds.appendChild(li); }); }
+    }
+
+    function setupAdminControls(socket, adminPanel) {
+        const forms = { ally: document.getElementById('add-ally-form'), enemy: document.getElementById('add-enemy-form'), hunted: document.getElementById('add-hunted-form') };
+        if (forms.ally) forms.ally.addEventListener('submit', e => handleGuildSubmit(e, socket, 'allies'));
+        if (forms.enemy) forms.enemy.addEventListener('submit', e => handleGuildSubmit(e, socket, 'enemies'));
+        if (forms.hunted) {
+            forms.hunted.addEventListener('submit', e => {
+                e.preventDefault();
+                const name = e.target.hunted_name.value.trim();
+                const reason = e.target.hunted_reason.value.trim();
+                if (name && reason) socket.emit('admin:addRelation', { type: 'source_hunteds', name, reason });
+                e.target.reset();
+            });
+        }
+        const sourceListsContainer = adminPanel.querySelector('.source-lists');
+        if (sourceListsContainer) {
+            sourceListsContainer.addEventListener('click', (e) => {
+                const btn = e.target.closest('.remove-relation-btn');
+                if (btn) {
+                    const type = btn.dataset.type;
+                    const name = btn.dataset.name;
+                    if (type && name && confirm(`Tem certeza que deseja remover "${name}" da lista?`)) {
+                        socket.emit('admin:removeRelation', { type, name });
+                    }
+                }
+            });
+        }
+        const syncBtn = document.getElementById('manual-sync-btn');
+        if (syncBtn) {
+            syncBtn.addEventListener('click', () => {
+                const syncStatus = document.getElementById('sync-status');
+                if (syncStatus) syncStatus.innerHTML = '<span><i class="fas fa-sync-alt fa-spin"></i> Sincronizando...</span>';
+                socket.emit('admin:syncRelations');
+            });
+        }
+    }
+
+    if (typeof initializeFriendsPage === 'function' && window.appSocket) {
+        initializeFriendsPage(window.appSocket);
+    } else {
+        console.error("Falha ao inicializar a página Friends: a função ou o socket principal não foi encontrado.");
+    }
+})();
+</script>

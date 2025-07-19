@@ -1,0 +1,111 @@
+<style>
+    .valor-container { max-width: 600px; margin: 0 auto; }
+    .valor-panel { background-color: var(--panel-bg-color); border-radius: 8px; border: 1px solid var(--border-color); overflow: hidden; }
+    .valor-section { padding: 20px; }
+    .valor-section.config { background-color: var(--bg-color); border-bottom: 1px solid var(--border-color); }
+    .valor-container h2 { color: var(--gold-accent); margin: 0 0 15px 0; display: flex; align-items: center; gap: 10px; }
+    .input-group { margin-bottom: 15px; }
+    .valor-container label { display: block; margin-bottom: 5px; font-weight: 600; }
+    .input-wrapper { position: relative; display: flex; align-items: center; }
+    .input-icon { position: absolute; left: 10px; color: var(--text-muted-color); }
+    .valor-container input[type="number"] {
+        width: 100%; padding: 10px 10px 10px 35px; border: 1px solid var(--border-color);
+        border-radius: 6px; box-sizing: border-box; font-size: 1em;
+        background-color: var(--bg-color); color: var(--text-color);
+    }
+    .valor-container input[type="number"]:focus { outline: none; border-color: var(--gold-accent); }
+    .gold { color: #FFD700; } .tc { color: var(--success-color); } .money { color: var(--info-color); }
+</style>
+
+<div class="header-container">
+    <h1><i class="fas fa-coins"></i> Conversor de Valores</h1>
+</div>
+
+<div class="valor-container">
+    <div class="valor-panel">
+        <div class="valor-section config">
+            <h2><i class="fas fa-cog"></i> Configuração</h2>
+            <div class="input-group">
+                <label for="tcToGc">Valor de 1 Tibia Coin em Gold:</label>
+                <div class="input-wrapper"><i class="fas fa-exchange-alt input-icon"></i><input type="number" id="tcToGc" placeholder="Ex: 25000"></div>
+            </div>
+            <div class="input-group">
+                <label for="tcReais">Valor de 250 Tibia Coins em Reais (R$):</label>
+                <div class="input-wrapper"><i class="fas fa-dollar-sign input-icon money"></i><input type="number" id="tcReais" placeholder="Ex: 60.00" step="0.01"></div>
+            </div>
+        </div>
+        <div class="valor-section calc">
+            <h2><i class="fas fa-calculator"></i> Cálculo</h2>
+            <p style="font-size: 0.9em; color: var(--text-muted-color); margin-top: -10px; margin-bottom: 15px;">Digite em qualquer campo para converter nos outros.</p>
+            <div class="input-group">
+                <label for="valorTC"><i class="fas fa-coins tc"></i> Valor em Tibia Coin (TC)</label>
+                <div class="input-wrapper"><i class="fas fa-coins input-icon tc"></i><input type="number" id="valorTC"></div>
+            </div>
+            <div class="input-group">
+                <label for="valorGC"><i class="fas fa-coins gold"></i> Valor em Gold Coin (GP)</label>
+                <div class="input-wrapper"><i class="fas fa-coins input-icon gold"></i><input type="number" id="valorGC"></div>
+            </div>
+            <div class="input-group">
+                <label for="valorRS"><i class="fas fa-dollar-sign money"></i> Valor em Reais (R$)</label>
+                <div class="input-wrapper"><i class="fas fa-dollar-sign input-icon money"></i><input type="number" id="valorRS" step="0.01"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+(function() {
+    const tcToGc = document.getElementById('tcToGc');
+    const tcReais = document.getElementById('tcReais');
+    const valorGC = document.getElementById('valorGC');
+    const valorTC = document.getElementById('valorTC');
+    const valorRS = document.getElementById('valorRS');
+    let bloqueado = false;
+
+    function getRates() {
+        const tcToGold = parseFloat(tcToGc.value);
+        const valRS = parseFloat(tcReais.value);
+        if (!tcToGold || isNaN(tcToGold) || !valRS || isNaN(valRS)) return null;
+        return { tcToGold: tcToGold, tcToReal: valRS / 250 };
+    }
+
+    function atualizarValores(origem) {
+        if (bloqueado) return;
+        const taxas = getRates();
+        if (!taxas) return;
+
+        bloqueado = true;
+        const { tcToGold, tcToReal } = taxas;
+
+        if (origem === 'GC') {
+            const gc = parseFloat(valorGC.value) || 0;
+            const tc = gc / tcToGold;
+            valorTC.value = tc.toFixed(2);
+            valorRS.value = (tc * tcToReal).toFixed(2);
+        } else if (origem === 'TC') {
+            const tc = parseFloat(valorTC.value) || 0;
+            valorGC.value = Math.round(tc * tcToGold);
+            valorRS.value = (tc * tcToReal).toFixed(2);
+        } else if (origem === 'RS') {
+            const rs = parseFloat(valorRS.value) || 0;
+            const tc = rs / tcToReal;
+            valorTC.value = tc.toFixed(2);
+            valorGC.value = Math.round(tc * tcToGold);
+        }
+        
+        bloqueado = false;
+    }
+
+    [tcToGc, tcReais, valorGC, valorTC, valorRS].forEach(element => {
+        element.addEventListener('input', () => {
+            const activeId = document.activeElement.id;
+            if (activeId === 'valorGC') atualizarValores('GC');
+            else if (activeId === 'valorTC') atualizarValores('TC');
+            else if (activeId === 'valorRS') atualizarValores('RS');
+            else if (activeId === 'tcToGc' || activeId === 'tcReais') {
+                atualizarValores('TC'); // Recalcula com base no TC se um valor base mudar
+            }
+        });
+    });
+})();
+</script>

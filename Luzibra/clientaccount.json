@@ -1,0 +1,4991 @@
+{
+  "egmrosa@gmail.com": {
+    "name": "Eduardo Gabriel",
+    "phone": "11992004523",
+    "passwordHash": "5a6b17a9fcd5ae3d18176de0d4d4bc82:3a661fdb54a0f0cf9d6f9af4d7632f90d90335ab329b044b31c123c2c8d3210f15fb39ad37a900d045cc24d3cede07fdd3183b380998f17fe362633c8fb1d747",
+    "tibiaCharacters": [
+      {
+        "characterName": "Hit Censurado",
+        "registeredAt": "2025-07-14T22:33:01.327Z",
+        "level": 394,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Member",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "696a18e3d70eba5c2323c13e65bde9bf67c88381d680bd21cc292d3b642c4031"
+    ],
+    "email": "egmrosa@gmail.com"
+  },
+  "lucasv.gomes98@outlook.com": {
+    "name": "Lucas Viana",
+    "phone": "41999028499",
+    "passwordHash": "e47df0e9b6a22693d268c6957eb03a2c:788ddf2d237e23fa0311d8a430c6129c9d1602c200a036f122650c7eadb1ebf082a6e96d6ba77d91541a47baa0ea09535619d487d6af489d17df3a0d70c55a56",
+    "tibiaCharacters": [
+      {
+        "characterName": "Edzin Boibandido",
+        "registeredAt": "2025-07-14T22:38:41.996Z",
+        "level": 241,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "df3e7f5516cd720c1aa6d1351082fdaa8e9f441d62f3b8804535b0925d14e826",
+      "e2384347b6f28f337a437e8c218190cff2a2cb4049f930ebc9786896b1dd036d",
+      "9dd099919c11c6a88cf9667117e894c0858c759fac727dd08dfff275bda944a1"
+    ],
+    "email": "lucasv.gomes98@outlook.com"
+  },
+  "je-an2012@hotmail.com": {
+    "name": "jean nunes henrique",
+    "phone": "17991854623",
+    "passwordHash": "f54a09584fa58fabe210fe0cd7490040:97d29cbeab8576c5047aac457f20ae7684435003fc2b97dffe0f92a803046e94c67111df1fdd0c953ee8c6868e16bc9cc56290709051ea0d3774d0da65c67cdc",
+    "tibiaCharacters": [
+      {
+        "characterName": "Fake Mago",
+        "registeredAt": "2025-07-14T22:48:23.492Z",
+        "level": 235,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "a01bff70a96e0ba50567112a4bea56a142d6c6a30ffeb196bc88289b7878338b"
+    ],
+    "email": "je-an2012@hotmail.com"
+  },
+  "rhmello1910b@gmail.com": {
+    "name": "Roger Henriques de Mello",
+    "phone": "51993538034",
+    "passwordHash": "663d339d68dbf8b727759440f00e2fdd:45c72c7372efbc5c033cae95f03eb5703ee3f312a0a5faa7f149e4321260960f927d6043876d3f607c1cd708aea4f1f00886ee3c061849a27af85560b5d5401b",
+    "tibiaCharacters": [
+      {
+        "characterName": "Magic Shi",
+        "registeredAt": "2025-07-14T22:47:56.592Z",
+        "level": 290,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "f085a59913390d6771ef939a7288a0b8eb062b06742ee6fa785c9a4633a8c4f1"
+    ],
+    "email": "rhmello1910b@gmail.com"
+  },
+  "dtdantas@hotmail.com": {
+    "name": "Daniel Dantas",
+    "phone": "11 95050 8632",
+    "passwordHash": "af310b427817f88cce3603102a202684:b7528d9bd113cfa5d375c460d5a54cc5315f253b6423a8b432f3f8bc5111635ea15750dfb0d01383f9a68be4d867909412bcfb803f732a72e534b17840b5cf1c",
+    "tibiaCharacters": [
+      {
+        "characterName": "Cesar Knock",
+        "registeredAt": "2025-07-14T22:42:43.106Z",
+        "level": 238,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "035017424412361d93272a333f46d424b4bff9f0c389653f3ae8cedb2b9fdfb2"
+    ],
+    "email": "dtdantas@hotmail.com"
+  },
+  "saulodiasrodrigues@hotmail.com": {
+    "name": "Saulo Emanuel Dias rodrigues",
+    "phone": "84999814240",
+    "passwordHash": "99d75e64a5fc48b498f6f4f35ece7dcb:973d2946473b6a378960fbfff66d0cd1d3fdf38909721384b645ffedfee9919df02a1764d2ce0bec3bc6dbb9d9b5dc615794225d64aaa2f4b19d90851c580176",
+    "tibiaCharacters": [
+      {
+        "characterName": "Mesa Tenista",
+        "registeredAt": "2025-07-16T00:50:33.470Z",
+        "level": 244,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "1bf7b4c58a340d775041ed29c876cfa22f42c7de50c2028f7aade52509dd2205",
+      "53b2326f489a5e7019fa7a3e8ecfa26eea5e689fda757b278a2197f49ae7cad9"
+    ],
+    "email": "saulodiasrodrigues@hotmail.com"
+  },
+  "khanximi@gmail.com": {
+    "name": "Kauê Lohmeyer",
+    "phone": "47988899405",
+    "passwordHash": "ecbe37e3f26be79c9b135462f43c05de:86304e78c4e50ac1aeb273df51dbb082e45161de62a01265d78ca5307b7c1e95200184fa2f52de5ba015a69eb7beeceb15754195d3fc6851541723b7fc21ce44",
+    "tibiaCharacters": [
+      {
+        "characterName": "Violent Crow",
+        "registeredAt": "2025-07-14T22:55:13.670Z",
+        "level": 329,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "dfeb2b74c3402940ee385b3880b9ad3b7dc3adebc277f09d96dad9005d125397"
+    ],
+    "email": "khanximi@gmail.com"
+  },
+  "juniorgouvea5@gmail.com": {
+    "name": "Julio Cesar de Souza Gouvea Junior",
+    "phone": "35991974077",
+    "passwordHash": "983d414ca9da3ac34c198b61115f1df8:8f5dd6ecb686b8a8494716f7825bad9f6f568394b3a9a4caf84f1576ec13613097cba25dac3d7b66eb5c55b125aebed3fd1880d8d1b0943b0325e91045e95489",
+    "tibiaCharacters": [
+      {
+        "characterName": "Juniior Goouvea",
+        "registeredAt": "2025-07-14T22:55:48.184Z",
+        "level": 190,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "404cd95a5e4d9fbe5ff0c0b7be6edb3e5f40e19ce5519f9f5104564bd2c051a0"
+    ],
+    "email": "juniorgouvea5@gmail.com"
+  },
+  "ominipratas@gmail.com": {
+    "name": "Vinicius Fernandes da Silva",
+    "phone": "11955802604",
+    "passwordHash": "0ec3a49776afac97a0f3ed18fb31acf1:584363c07006f0751d8655970177fd6155975c013b2cf9dc1f26b35ba30a98ac4e666cab2f547749c3987966f82381c09b383b97541148dd3dd39b03c7bb5de3",
+    "tibiaCharacters": [
+      {
+        "characterName": "Thanatux",
+        "registeredAt": "2025-07-14T23:12:39.585Z",
+        "level": 294,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "271891c7af2e2e11248515356aa16c3737953b3e80cffa3d45229c80e0aae027"
+    ],
+    "email": "ominipratas@gmail.com"
+  },
+  "jose_hamiltonro@hotmail.com": {
+    "name": "José Hamilton",
+    "phone": "82996473186",
+    "passwordHash": "8e6cedfbe7c04efb2eef18f23c93210a:96ab2b392e5beeee67e9253806f7594a6872ef7236ce643c87f8c460508b34ec5638af5dba4ea73fead233731d263cd1e78accfe1eea23c81053fe79a5f34c21",
+    "tibiaCharacters": [
+      {
+        "characterName": "Junin Unstoppable",
+        "registeredAt": "2025-07-15T00:04:53.738Z",
+        "level": 231,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "f7176aef969755b8c3cb211c4b5156fcb30c573d87a851150f44f00b59248fb0",
+      "d405d2b8c4d794a4723735d63c8976163063386b1335c0f4119cbb5c578a9006",
+      "85190790ca4e488ab3d90ae1221957bef5feae8f97d3e7aeb7fdb5953555d842"
+    ],
+    "email": "jose_hamiltonro@hotmail.com"
+  },
+  "oushgames@gmail.com": {
+    "name": "Jailton SS",
+    "phone": "81984183355",
+    "passwordHash": "d7d4922c229f6348c34736caafff2a18:aa0ca7f99c0949c44a49975dab2946eb23deb1115b71a4f3561de34b75edbfbf8c3b4e0f90ac812436fb174d3ea2c9fa02a785e8c4767cdf09f0e0456f0406eb",
+    "tibiaCharacters": [
+      {
+        "characterName": "Lu Zi",
+        "registeredAt": "2025-07-14T23:20:51.534Z",
+        "level": 261,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      },
+      {
+        "characterName": "Lu Zi",
+        "registeredAt": "2025-07-14T23:49:23.488Z",
+        "level": 261,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "2191e9adebf98b7cbdade44d29cc674981292e9c014486de89315964e72675fe"
+    ],
+    "email": "oushgames@gmail.com"
+  },
+  "guilzinho1@gmail.com": {
+    "name": "Guilherme Jardim de Almeida",
+    "phone": "28981038090",
+    "passwordHash": "2436afdaaef158fb730dcecabbf7a926:2f07641f5edfd085fc42e221bb62b9d35a96c86d50524bb5894e1e32174684e8e991f74a9ea7d2ac06313d8d39d80678ed838d75ccdc5a1aaf6b5cb74e55ea92",
+    "tibiaCharacters": [
+      {
+        "characterName": "Indigestto de Mago",
+        "registeredAt": "2025-07-14T23:24:20.883Z",
+        "level": 240,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "4904979d408744d67be796cdd4a11c8175c1029d3011f288184bade1d51c3317",
+      "0f915b69c1dd707ec7f37fd4e8d88e08e83fcd5093db2dd7629fb2b3e263c7c2",
+      "0e3dd6fa5d7a9b8f780ab95ea0f412cbc2e1dff2fc1a19adb307888aa2ba9bd0",
+      "942d052933d82be524f30171ea8233cd642370ec3c9581a8d3881d721e709811",
+      "80bb26f96fd43e98ed0c137dc0334d3e9971980f722810a5e922787888851bf7",
+      "359841b81030df8c0a511a279ee03a32fa5d458b7780dfe3a74a2c7f0e152a1b",
+      "03a6fbbc62d346248bf5cb01f6a9e7b4a4164755955a3fb88159f49c01b65d4e",
+      "46d36d49b7f468714f5b8258abbcc65dca562a3d72b077b7d81fa5547177c70f",
+      "00e264fb6f430adda3a3299deaf4b82b36304be4458ac1bfff21af8f70401e97",
+      "5b4f531e7ed28e7a07b9f7fbdc90480e3e8bea9144dca80ca7c9bacdc9b1cab1"
+    ],
+    "email": "guilzinho1@gmail.com"
+  },
+  "igor.mesquita.im@gmail.com": {
+    "name": "Igor Mesquita",
+    "phone": "82988695100",
+    "passwordHash": "028774896eddc1386c347e12262a009c:2ddba7b6874740f7baaf4fb0c5e19e209d89654026acf2ab745762254c71cb35269a2e2f438418940a743e72e0132bacc856bdb5f389c9a733d95a16eb8713f0",
+    "tibiaCharacters": [
+      {
+        "characterName": "Mesquitex",
+        "registeredAt": "2025-07-15T18:36:46.402Z",
+        "level": 227,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "408dad02e7a712644cb6fe7e7d8b029ee745cd1a835251698521f97ec9f0f63c",
+      "54929972d748030750c1dd78a875d7facd22336f76506c5f2b195f035922289f",
+      "da9f5207aa3e32afe25f868a33ad9c1c3e099a1541ac330f83712ad781b48a8f",
+      "e14ffef3d2167ccd970ac15d82edf96f96a87c8d5b22585021417fe453f04089",
+      "b61129e4cc2287e72e8c0dcacf2a4cf024ef3450a6fe5add5115644984e75905",
+      "f6de395d63c227bbdb3410b6cdf75452286b31ba1bf6d5ef986136af42a24bde",
+      "1b0960d93c78aa58ed69b0b44116dee7ae0942117318dcb3a40003f89c86f781"
+    ],
+    "email": "igor.mesquita.im@gmail.com"
+  },
+  "aldrinsanttos@gmail.com": {
+    "name": "Aldrin Santos Simões",
+    "phone": "81997957400",
+    "passwordHash": "7618fb5dedeea59f9f233366863f5651:641ced0b377bdf831abc7244e362d593018c763f7e3a386403a309a5ae416976b820896ebf5cbac6e14a602979487634d7ac9c35dbce18af61ca1c853b10d889",
+    "tibiaCharacters": [
+      {
+        "characterName": "Primo Dinho",
+        "registeredAt": "2025-07-14T23:31:23.677Z",
+        "level": 294,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "2212038921e352a184db2727849a1b679738b9620d78cfc1e3b4f66357c8bc77",
+      "ad8548de7a9f2d2bd1a2fbeef66c727f499a71b830e78f71b1b7dfcf2dfec6fd"
+    ],
+    "email": "aldrinsanttos@gmail.com"
+  },
+  "rafaelverolez@gmail.com": {
+    "name": "Rafael Verolez",
+    "phone": "92992238007",
+    "passwordHash": "ef680a14cc4d1e3df8f6f6015ad4235d:ca2d6bf457ffc32bf320de6f973cdb3d288061437f81d4fc24d0c9a339af848861b3986e2b5fc970f6a0ee678bfd6d4265f394d6ebad787c96376add7e3278f9",
+    "tibiaCharacters": [
+      {
+        "characterName": "Raphazild",
+        "registeredAt": "2025-07-14T23:31:07.736Z",
+        "level": 155,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "5be6e96332e5d32707f89f2357f6671c1aebeba5e8f529d3fa9c2dc809132014"
+    ],
+    "email": "rafaelverolez@gmail.com"
+  },
+  "daniel.ds.adao@gmail.com": {
+    "name": "Daniel",
+    "phone": "47997316063",
+    "passwordHash": "ec6b28e460a0cea213c9e77881f2e8fd:62ba4d8b6776b92caade69ad81728ab939ff8789773d568c9be9d948c86146514f75c7fd9e51bf4a6e7efe87cc2d92314a1aa309f252a5ae1523bb03a2d76571",
+    "tibiaCharacters": [
+      {
+        "characterName": "Malecinado Kinado",
+        "registeredAt": "2025-07-16T11:09:17.518Z",
+        "level": 330,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Member",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "7710f9a7a6416b9810e4c684c4923ee8936391f3b6eddf315551fb7831cfb22f"
+    ],
+    "email": "daniel.ds.adao@gmail.com"
+  },
+  "gustavohenriqueh@hotmail.com": {
+    "name": "Gustavo Henrique Hilleshein",
+    "phone": "48998004703",
+    "passwordHash": "fea63f8a97113d91541954f64d49e5b3:000e38d854dac845cbabce8a514747e9fdc29c22a4911d911b04ad94b00e9ea48b25812ed49c519210bafacd21263192904f683307f025522c1f551cce71525e",
+    "tibiaCharacters": [
+      {
+        "characterName": "Gustavao Fullsio",
+        "registeredAt": "2025-07-14T23:50:20.238Z",
+        "level": 23,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "728bb187866859a58097ada2041eef3efad3bfd455dcb4a26580f53a16ff6251",
+      "8391c8c46b271d0bb6892a2602521785f676feb4de10ccf9ffdc7027e3e4c03d"
+    ],
+    "email": "gustavohenriqueh@hotmail.com"
+  },
+  "viictor.medina@yahoo.com.br": {
+    "name": "Victor Alves Medina",
+    "phone": "19993496316",
+    "passwordHash": "776664f9cd9fe92a9b5cacede85852ea:19202cbabf9578dc2a629395fa53b587c555336fa05ea23df636c3be75efdef983f7de6c4d7c1d0d245d7f06ee146ba88d2310b0fad2c08166c84143c4fad47b",
+    "tibiaCharacters": [
+      {
+        "characterName": "Victao Dropa Nada",
+        "registeredAt": "2025-07-14T23:55:26.916Z",
+        "level": 351,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "95c58196a822c261e3b158fded7b7b1e2dc42c40796792045e9abf4b49a572c0"
+    ],
+    "email": "viictor.medina@yahoo.com.br"
+  },
+  "nilson110915@gmail.com": {
+    "name": "nilson hercilio",
+    "phone": "47997261805",
+    "passwordHash": "81a28a99f1fca4ed6157445417a5cc14:4864b26065d25fa3db7564e9f0d6d0b1ee1eaf1da3d7c0931e2f893f57187481f4ce312104fa03c0d63b448e2fa6d5a20a284c329ad006ff9e32ccddb261b83c",
+    "tibiaCharacters": [
+      {
+        "characterName": "Newmiz",
+        "registeredAt": "2025-07-15T00:01:27.909Z",
+        "level": 183,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "9eb7bff103c49a508ced0988e20e25ede9120b57938ca2fb4353cfd59d549102"
+    ],
+    "email": "nilson110915@gmail.com"
+  },
+  "kaadins@outlook.com": {
+    "name": "Ricardo Machado",
+    "phone": "32999599909",
+    "passwordHash": "c7d2812e23c2f28e08e028e284858fda:b8dc37f4c5492c42b97e8fcd4052cc43c230f8ebf677a2cc0409fd5c2b0174c309992ddc5e422851755ea8865d0a6ede818a6de80d7485ba642d9b27742dcb07",
+    "tibiaCharacters": [
+      {
+        "characterName": "Kaadin Coorporative",
+        "registeredAt": "2025-07-15T01:00:37.661Z",
+        "level": 475,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Vice Leader",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "f3b7802f12ec0747f16dab9a09d626c08b9d867a4df5205a9046b8a70d7ad37e"
+    ],
+    "email": "kaadins@outlook.com"
+  },
+  "deoliveirayuri7@yahoo.com": {
+    "name": "Yuri de Paula Oliveira",
+    "phone": "35997602883",
+    "passwordHash": "af481d1077350740b9afec819509d3c3:c00de7fb2cf72dda38be50e7a9108c78226ec73ce1395861152f7e8b244dd40b50ca2855e4bf9faa243df92d5b6842b8268562e528fde6fb935f6a5147d28cb9",
+    "tibiaCharacters": [
+      {
+        "characterName": "Dynamodb",
+        "registeredAt": "2025-07-15T01:44:06.227Z",
+        "level": 126,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "f5262aab49e905c10269246d9148e73c45da745025e17ddf99fb13d6e7a6b902"
+    ],
+    "email": "deoliveirayuri7@yahoo.com"
+  },
+  "diegocostaedfisica@gmail.com": {
+    "name": "Diego Costa",
+    "phone": "21999000572",
+    "passwordHash": "d10ed9ee28d721ac6af0a621e42b8b0d:5675d9d4348b5669400e995b0f6dbee452dcfbbc8e9532c9e17c102dbafdc320d7affd2798fc1eedc7e316cca7f7331d76547d580cc76e3addf43a4e755fc3a3",
+    "tibiaCharacters": [
+      {
+        "characterName": "Sordonzito",
+        "registeredAt": "2025-07-15T01:42:51.321Z",
+        "level": 165,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "390af5cd5858b0c127a327775cb5844ee4b1d808d954207275dd467e9866b9e0",
+      "ec0c693554fa9d7f9020194b5f6782258793b10e0b9fb0b56bdea06eec70a084"
+    ],
+    "email": "diegocostaedfisica@gmail.com"
+  },
+  "foxriachuelo@hotmail.com": {
+    "name": "Junior Tavares",
+    "phone": "21997266376",
+    "passwordHash": "0224da8254378dc9a4d3c8adef20aece:289106fb995890354c19ffef4013cb6b8f8db3db71de26b55340941db3d70f56d87639af169be1d6c4d46e69acd9efda37c74c10429809e39d9fa0c6c9a8d38f",
+    "tibiaCharacters": [
+      {
+        "characterName": "Kael Tharaan",
+        "registeredAt": "2025-07-15T02:03:24.907Z",
+        "level": 183,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "99c897f944395637db3a60682d289b13ec96ed8287bf9378862562951dc2a651",
+      "d3d9b3366243d1746e327e6d75b6bba44291b4f6bb4503bf2320213382b5f1ab",
+      "3f0f7747c2b4cd3aadd9733ad0ab86691b094b4f407ce4fe1f4318b0b9216917",
+      "e68cd2f61db04207c7af814c5ae34a830dc8820c6c528223334715a34941fa8e"
+    ],
+    "email": "foxriachuelo@hotmail.com"
+  },
+  "hermesfernando27@gmail.com": {
+    "name": "Hermes Fernando Da Silva Marcelino",
+    "phone": "11953559780",
+    "passwordHash": "b0ffcfa80d5a813b1566a5e3e1aa0195:a7036b950a86e4080df7fd8a1b4945aaa83190b20e6979d481dcaf071d06ad6cb12bb28d96407fe9f31b6983dd5d14b5cced0d42e39f0303b78ecda22e465b33",
+    "tibiaCharacters": [
+      {
+        "characterName": "Siyeg",
+        "registeredAt": "2025-07-15T02:17:19.066Z",
+        "level": 248,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "7d15595ada1e4f7212cb3dd90a287d447dd7c6fa9a1f83faafd4ce6e5175bd85"
+    ],
+    "email": "hermesfernando27@gmail.com"
+  },
+  "live.ordna@gmail.com": {
+    "name": "Leandro gonçalves aguiar",
+    "phone": "19996281254",
+    "passwordHash": "b6fe4bd545ebeb5a5363d9ecf25af754:b5244948896bed3c6612f5d1833c30e6828cc38ba47ceb71fb68ba2c341200539b817103aa17d83829c5e8f0e9dc13904ed0e226796f3883faec6e6cb53a89aa",
+    "tibiaCharacters": [
+      {
+        "characterName": "Dobrazin",
+        "registeredAt": "2025-07-15T02:18:40.264Z",
+        "level": 126,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "021c7ebc7c554ce5767c42079d0980bf5d1b9040f49afd00bc6faf4caa005277"
+    ],
+    "email": "live.ordna@gmail.com"
+  },
+  "diegocostarn+1@gmail.com": {
+    "name": "diego araujo",
+    "phone": "84999161699",
+    "passwordHash": "07dc7fecedbd5faf251032d7e4f6b0ab:47796e75dc95641d9bd749628c2aa919992991273e4178524fdd76cd31711288fe5213849b1ca901481370c3160b4dda4459e5eb3a53757be17d2e6b24f2d48b",
+    "tibiaCharacters": [
+      {
+        "characterName": "The Digos",
+        "registeredAt": "2025-07-15T03:05:11.174Z",
+        "level": 227,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "617bfcc3f22b730a0677a086ac2cf765b12cf330e0877c5222ed1bf793c84a2a",
+      "0d3f2e13b45ab02f235393ff3a686f5171d8725a33ce73ce355ac6e7866dbf99"
+    ],
+    "email": "diegocostarn+1@gmail.com"
+  },
+  "lucasbona@live.com": {
+    "name": "Lucas Bona",
+    "phone": "015935001174",
+    "passwordHash": "2bbcfdce33f6983a0cf293c5b4c3c0fd:4d4fca8f621105343d5ce80dedc39273b0fa144ee9467fb28e40d6cd559e05eb1f89be6c1396e6f98ae1d6721a35c004ad337516e0b81696eaa2e72211794aee",
+    "tibiaCharacters": [
+      {
+        "characterName": "Fighter Bonaas",
+        "registeredAt": "2025-07-15T04:47:22.371Z",
+        "level": 150,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      },
+      {
+        "characterName": "Bonaas Druid",
+        "registeredAt": "2025-07-15T10:53:54.514Z",
+        "level": 91,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "4826ad6af79255917a597e3ed8925200d969ee377a0d11b2844ef0fdd6a883c2",
+      "e1928863e2099801d0cbdd5fd6eb02be5f6d3cfbbc2df6f3bdc33665489dad7d"
+    ],
+    "email": "lucasbona@live.com",
+    "activeCharacterName": "Fighter Bonaas"
+  },
+  "kayomandk@hotmail.com": {
+    "name": "kayo cesar barbosa taia ramos",
+    "phone": "62995786371",
+    "passwordHash": "c38c279a9ad3a24e232cbc5d7207be81:2efdeac70a1fd40c1948f943c33eb4cb46d661cdced13db12f02fc03ef386325032be65620292a4d2d871225d132b89e77c127099f3027f276e374ef7b4b532f",
+    "tibiaCharacters": [
+      {
+        "characterName": "Ar Tii",
+        "registeredAt": "2025-07-15T05:04:47.848Z",
+        "level": 306,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "8d8b7339942f68722f89e9508190b950ca674684d9cf9222242c5157fb5f08ee"
+    ],
+    "email": "kayomandk@hotmail.com"
+  },
+  "befuzy@gmail.com": {
+    "name": "Igor Santos Coelho de Vasconcelos",
+    "phone": "61981681318",
+    "passwordHash": "0951a416f00218a9b5422e7f21ba2b7e:b1f581b87c33a7413dd1105961ea643720c4e35b8d913d6d5f60617b3374d6ab2a9f057934fe33ec90044c2d18155af5aa54468a19a57f09e2dbff006f19afbc",
+    "tibiaCharacters": [
+      {
+        "characterName": "Zlaped",
+        "registeredAt": "2025-07-15T05:08:15.094Z",
+        "level": 201,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "26dc5a95650d5583b5abb6852b0d4c574e598c01355c9aba2cdf14e605d6ce5e"
+    ],
+    "email": "befuzy@gmail.com"
+  },
+  "fabio_tk_1@hotmail.com": {
+    "name": "fabio da silva mota",
+    "phone": "(067)9 96886238",
+    "passwordHash": "0f0e0fb4e88d411f421fbcab48cfbaa8:40a3ffca3fff02277b9884df243af0efcde0d51b9ce9730dc5c60481f0f5c7ef77576387adee418d682d015fdfc1d1874d965af6f409c951306107262bd6126b",
+    "tibiaCharacters": [
+      {
+        "characterName": "Void Dog",
+        "registeredAt": "2025-07-15T07:46:19.353Z",
+        "level": 196,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "0552f91326795fb48d957f6247882cae118c0a240bf6d3dbab3ebc4a17539b1f",
+      "b8dcd89c7158559b8be20928611e200dff1a27b121062e5ea572eb4fe00ba7d4",
+      "c179c02fe1f769166d5b1c09f8bbf925bd68abadaac6306fe04e7a1b3a5fa407",
+      "08e2b9caea53ef64d76429653c65b0baf8a5ef289ed50e3435880f5b3dd24927",
+      "c876329d13031519fed47145de30b26dc26a88cb018121e875f144a8ce2d4ce9",
+      "1ec9f12d3eb103591292632dc14d5920d801c8981bc9e04be45d8918b901bd4f",
+      "16bd2c6a77b5517c3a6660daf8b67b02af99a2ebd851ebf85df56d1e188bee95",
+      "ed2afa6564b25ab2ad2c38035f04b48290c59e110729179e699c87506d1700d4",
+      "34d842b911d0bad9965ef533b58351e7a4eb1be2ea40dcbde5f777c99f5fbc1f"
+    ],
+    "email": "fabio_tk_1@hotmail.com"
+  },
+  "yan.ribeiro@live.com": {
+    "name": "Yan",
+    "phone": "+351 938 609 336",
+    "passwordHash": "60aa3baf0a84db2451657dcebf170208:44889ec8a0e71b4247f1a8be89c82b4ed1f23017ed1093cb93516b092c5b93315f16ef83a6505d84be5141b8146bdef2a96eff79631b8b0cd59680c0dcb7a236",
+    "tibiaCharacters": [
+      {
+        "characterName": "Delirio San",
+        "registeredAt": "2025-07-15T09:11:03.168Z",
+        "level": 316,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "4b9901f763052e0a9b77f3c49af0b18a3c08383caf122a66d5e26437d0532c77"
+    ],
+    "email": "yan.ribeiro@live.com"
+  },
+  "leandro.cfis@gmail.com": {
+    "name": "Leandro Gomes de Azeredo",
+    "phone": "21 965022827",
+    "passwordHash": "cb1ffcdeffbe3008c41b2c9cfae05071:efa7e7d9ad261667dca02f3d806e1ca9ef9d1c29596f83611de5a3ef481d2ecfa78b995868be867f31691c9197728f37216c08b2d35943b6dc54ec954b674e4e",
+    "tibiaCharacters": [
+      {
+        "characterName": "Furyian",
+        "registeredAt": "2025-07-15T09:24:19.532Z",
+        "level": 291,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "23fa44378837682e41f061e9382b07cda74cc308c5c876fe44b94e4ec3fdb0ac"
+    ],
+    "email": "leandro.cfis@gmail.com"
+  },
+  "suozafer@gmail.com": {
+    "name": "Túlio de souza ferreira",
+    "phone": "(22)999769935",
+    "passwordHash": "755c86e299e7b41edb0f0736f18ab192:4eeba4c491337fd2673a74785eb3c1f19de96869f61f5223b8d17d630960934fdfcaffbf6e4108250b85528c907ddb942c5397fc42ae214e57cce3264dd8580c",
+    "tibiaCharacters": [
+      {
+        "characterName": "Vitin Contrador",
+        "registeredAt": "2025-07-15T10:17:45.848Z",
+        "level": 373,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "813bbd21fb8beaf1c8a3896a987a6783e0389837d93b521af22c7f14d7d10d9d"
+    ],
+    "email": "suozafer@gmail.com"
+  },
+  "marcos_viana11@hotmail.com": {
+    "name": "Marcos Viana",
+    "phone": "11995415113",
+    "passwordHash": "65424ba44e08ae3cd53a47e819e73605:bd846c38f776ead5f5f184aa38d1e2935d04b963fa1f838b7b80f1d26dc8c969499d4a76e4378cfaaccbc5b88e60e554f356ac8c97f5dae5d536b232c781debe",
+    "tibiaCharacters": [
+      {
+        "characterName": "Be May",
+        "registeredAt": "2025-07-15T10:19:06.916Z",
+        "level": 257,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "cd6d2913e4a8bc6862c2fd57ff106b9178443ba406503d21047a87679173457a",
+      "e7b02719175498ac8efb76c336f851c276811a24565182caaa323ce635e9f6b4",
+      "2ff2d39058f9d2032a614f54a7d691df40604d1eb076dce209aff947b663569a"
+    ],
+    "email": "marcos_viana11@hotmail.com"
+  },
+  "ekgladera@outlook.com": {
+    "name": "lucas oliveira",
+    "phone": "47999744469",
+    "passwordHash": "4ac9e95ba84468188d337c5eacd50636:6a07ac6ee3c942efd65ba21250dd3a792e31e835cb6a06116c45f8ab4b60711f546dc0d224e2d81a1d008c049ffd207a2dba9d59d825c7ae2d78a3360cf0c6eb",
+    "tibiaCharacters": [
+      {
+        "characterName": "Skuullzz",
+        "registeredAt": "2025-07-15T10:47:45.864Z",
+        "level": 164,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "4f0d48a0c3b206cced6c3f1d9bfde336423a843e651aaa97411737678abcf2d0",
+      "17092327b1cc613bd2f7e222b8c98620ec0affd100fab34fa689deef34fb7af7",
+      "f5fd6fba90eee4bbf75fa6f66b5304566c2d3752c997c1264814ce7f3ca41756",
+      "da383a3c7a06e054e92d75ed5c1a755494f752abe4345e7b6dc67dafcd0b4cc9",
+      "945092f3ea869834048114d95f5ad203a2f2b9c91e82a3756f38a6873f7db7a7",
+      "457f8aadf6f34eca0d5ab6c47ceea283b18c2862478ace1e4f9ec200472fd7d4",
+      "4f4e05f67c19d000f53ba4698ec202621eaab9f9a79b95c9a96a7f3bd42b0a93"
+    ],
+    "email": "ekgladera@outlook.com"
+  },
+  "matheussouza199@hotmail.com": {
+    "name": "matheus rodrigues de souza",
+    "phone": "22 99963-9736",
+    "passwordHash": "4426b5fe1a3af391199e5ff41cae717e:9158f886eb2acd372d07143a33a604b8e5a2f987a1bcea94349b31b659effff5e0bcff41ffeb38a321ea01c6573f3cb40dd897fd0a80ce8e7350d9b48564bb2b",
+    "tibiaCharacters": [
+      {
+        "characterName": "Shaco In Box",
+        "registeredAt": "2025-07-15T10:54:36.928Z",
+        "level": 335,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "d47e014f29ff2b48fc2a5199b4f9d4a42016bf35eefa88702e1a97d384d4a13e",
+      "e9d18a3395a33c3dc853c0825b49877ec029af1f37625e4dd568c49bc856d285",
+      "1f4740e6c1badabb4fdcc839e3525d4a921048f9e91657bce8608bbdf5b40f95",
+      "954b33b8e6256085f3ed5c43fe900fb48e3e83f2b06e76bc942e99c1afbd8ec2",
+      "7c2efd186e30635ee2fa879c2518f42384b75a51e79dbda21447632fd54319f1",
+      "83c59f67c67400fb2b5b649b9257a13ff678c4c1b5bc1a5cf9f14e4886e5ded8",
+      "2668eaf4bd8e28318af89451677ac7ba277becd17c9474fd07eaf7dd67200f0f"
+    ],
+    "email": "matheussouza199@hotmail.com"
+  },
+  "lucasempe@gmail.com": {
+    "name": "Luca Langn",
+    "phone": "48996132548",
+    "passwordHash": "1dc324c97b96649cc7f7c07f0915c4bf:3855e62aab0c79c2679603085e006f424ac9254bce124683e0055b661c3763d94225605f5eedd76ea4280f7f31b69788588159f913168326f2b1f2d35d5e78ba",
+    "tibiaCharacters": [
+      {
+        "characterName": "Caveira da Caatinga",
+        "registeredAt": "2025-07-15T11:21:30.085Z",
+        "level": 217,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "d4cb4b3161ca072a534aa25c47f2110140c3ac271c06a5336c3fb45d9f9091f3",
+      "986e626e33fc0cb4feb400dd19b08d1a64ae5af1da45a13463ddca155ec6e1f7",
+      "a725ebe9707b81a7f87a886aa53cf3fd48247abc59c37f5aa7e5656eabf2f5c0",
+      "533319f715219958b48b7d7b71a56f9e50f8582e1a99c42e9b5c46629060bc5c",
+      "3dd7a120b4341cadcef0d131ead1645f09b6fd8dada7663b2f5280788769f7ff",
+      "d19aa7e3d3e66c8db1098a35ff0155321fe9730a5ec9153386a0a751b3258ae3",
+      "c90442b81d34abc1f1cead9ad781d58f62ca8f1603688ad273906e4347658991"
+    ],
+    "email": "lucasempe@gmail.com"
+  },
+  "arthurfreire.pro@gmail.com": {
+    "name": "Rzor Hawthorne",
+    "phone": "84991919530",
+    "passwordHash": "8bbcd0c075abf7a3aa42f117e8dea1f4:b2fe6bab0ebdc478e62efdd4f8c193ff9e03526ea3c1a0fca9fd1c531c9c265891a132d3a3affc0fabf5b3775fae864f2c23b39cd6c03403b43e9092cc53cb03",
+    "tibiaCharacters": [
+      {
+        "characterName": "Rzor Hawthorne",
+        "registeredAt": "2025-07-15T11:46:53.760Z",
+        "level": 50,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "77b8be18c22493a0aad6560126177cd487bd022afb19dcafae52771537674fba"
+    ],
+    "email": "arthurfreire.pro@gmail.com"
+  },
+  "fe.mrcs@gmail.com": {
+    "name": "aaron ek",
+    "phone": "42988837255",
+    "passwordHash": "e4c8b1a222ef208863f22b428095856f:d77a793b18120c4c3676c846a3c637c49315437182d1f96f00be0fa146ed072b0acfbfc83662846915aaac1abcbca4e56f97697e9c3873ee61f20ff08cd446b8",
+    "tibiaCharacters": [
+      {
+        "characterName": "Aaron Ek",
+        "registeredAt": "2025-07-15T11:49:32.735Z",
+        "level": 114,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "88c12d2ec8358454a05b88abbd92ddf2985731146a74a73bbe5d7f3b384e48c3",
+      "8fb6a8840b4f57218f489156df7fbcb1252f523899d778a64af83a243ec6b3ad",
+      "84f93e73afdd7613ef2336d4224f0e72816694044d1f3980fee0c162d7180255"
+    ],
+    "email": "fe.mrcs@gmail.com"
+  },
+  "maxd3925@gmail.com": {
+    "name": "max douglas",
+    "phone": "41998460926",
+    "passwordHash": "ead83ef32917cef81e44f4638c2d13ba:a47988a62825c8e911458394e7b73c14e7d20cbb4388ed0ad343c5bf665fbee04199ebf5cd2ea16faa78c1e9b042207a4cebeca5e498bb42f27c2c68e82b0616",
+    "tibiaCharacters": [
+      {
+        "characterName": "Zoebeer",
+        "registeredAt": "2025-07-15T11:53:47.616Z",
+        "level": 287,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Member",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "6198f50e234b059ea992af5ae20464108f5ec41e75ca782f86c1c950e0e31118",
+      "12d0eb0ed78d3668f7e18799b6b4fdc7a0d5fa6b2051a1e4df8d5bc7b2846300"
+    ],
+    "email": "maxd3925@gmail.com"
+  },
+  "hiigor.liima@live.com": {
+    "name": "Higor de Lima Gonçalves",
+    "phone": "16993525937",
+    "passwordHash": "c44c0f308822a33ef045d1cc33e6f20c:c9983d28be3cd18ab8c1c00625cde6cbf3a0b3b8027260eaf8c28e4ac7c4a498952fa64ff7be02f5f61916822ba7c00d4faabdb3198cf8ed6c7c84d73f1ffb6f",
+    "tibiaCharacters": [
+      {
+        "characterName": "Zahduk",
+        "registeredAt": "2025-07-15T12:03:44.782Z",
+        "level": 364,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "f24cd724a9930c7fd7bd195d93fcb00e13132c3863f265c07f8208a389e6a1c6"
+    ],
+    "email": "hiigor.liima@live.com"
+  },
+  "andreydanilo@gmail.com": {
+    "name": "Andrey Danilo",
+    "phone": "12 98811-6335",
+    "passwordHash": "c6ac079991d821aeb60d2bbc73c45096:dd6e5afc6b69e6fc67693a8b900abd795ccb154940b2f02542dbf26c94f5ec22999ed9995d9e443fa6c52fdd74810e7f5184ca671b212cd3e14f5ad6574fa9e1",
+    "tibiaCharacters": [
+      {
+        "characterName": "Neonzz",
+        "registeredAt": "2025-07-15T12:03:29.811Z",
+        "level": 236,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "c0c6f9616be994e8f0591e23d03a98ad2bd462caea71d53064830d466648510b",
+      "e579418e64959a6d44cd270d9527670a1ac706d711696a2b89d0548d7b21f4d2",
+      "ed72b24df63e10c7a5b5283707c96a6e5c1316a2907d84f266a10e500f9a8933",
+      "c226934ed9e5e66474c80677b25525c7752548da9e3d8989046f5cb45b42338a",
+      "cbdd84d446d89e5489d4defae9b0f6a9c1f0a8f89853e0c9d5c7c1ecbef7a2c4",
+      "afb26d9936e608695423516fd0b147bb597df1ecd9c639dbe097e28bf312a660",
+      "7c8a774d482b3346a88775396698d0dddf458c45ec7bdeed8ffa98cf1f162ba3",
+      "001985943e6db4f249678f0a0029162ab5449c757fa3bac1712aec6a12b11f11",
+      "b5fd7f72bae5f49ea6d31a651a5a7973f80416eefffcd3aa7cfa230b5c69c587",
+      "566b918920391c354183a3e23f4c49cb6fdde82469beb4140632ae74109aef33",
+      "1696299dbaa186b5fd0f5b899726f261694f54f967005d2684b8f6a33ab5603b",
+      "5a208dcd94e2a0d9eac7249ebdc1a91b9bd1eacdfd5eb2be3c29930cfbc5760e"
+    ],
+    "email": "andreydanilo@gmail.com"
+  },
+  "aristarcomi@gmail.com": {
+    "name": "Aristarco Aragao",
+    "phone": "82991172883",
+    "passwordHash": "b6ac08af72e36a8aaf46316cdfb8c610:9e7c78282120259f520f295229be0aa6e8fbc78b831edf4091707c97999b0e56201a051a50bffc395e40a691596be6ed8435d49a7a547e4ceba60eb917182a45",
+    "tibiaCharacters": [
+      {
+        "characterName": "Slithzs",
+        "registeredAt": "2025-07-15T12:17:23.982Z",
+        "level": 261,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "d25cdb0c9531da6e2c60f5448415965b066d86b9b82c847bf58074479b0cac0b",
+      "ea126127d9a1f8ed2e86150464cacb32c6ff211feb3bc8f2715193505ca2f4b3",
+      "93c6898a16d24324e5ebf04a77a1a1433a5e0433cd6d54d0699891afa8e3e92d"
+    ],
+    "email": "aristarcomi@gmail.com"
+  },
+  "lapa_cp2@hotmail.com": {
+    "name": "rodrigo lapa",
+    "phone": "21976136036",
+    "passwordHash": "65aec63e9d01b0f06c3def47c7dea646:1ff16cbb5c69b8a9d3d34c0b55c14d2338f7e16ece455ffd5524c83de02dcd92ebe8b3ef1fa1feb04502e438945969f936ed7e12d532dface4152e28e68d3c18",
+    "tibiaCharacters": [
+      {
+        "characterName": "The Monkada",
+        "registeredAt": "2025-07-15T12:13:57.115Z",
+        "level": 352,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      },
+      {
+        "characterName": "Mida Uaga",
+        "registeredAt": "2025-07-15T17:48:19.927Z",
+        "level": 239,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "17823ff604de87336376e0c7deb05908ab71148ecc320800607dc2e26428b46e"
+    ],
+    "email": "lapa_cp2@hotmail.com"
+  },
+  "slashwylde@hotmail.com": {
+    "name": "Homero Lopes Gheorghe Junior",
+    "phone": "11995770858",
+    "passwordHash": "324224e0acfc609188d3787b65abfd8c:d27785afb5b3fe4b8c4f048c5eb42e9fbbd3c530b574116dd43c8ccd663049fbbaa9c84061bbd64271a81d2fa91a99f2e9f89e545b2ef562df8a0dfa4d36c8e5",
+    "tibiaCharacters": [
+      {
+        "characterName": "Lord Raivotar",
+        "registeredAt": "2025-07-15T12:14:58.368Z",
+        "level": 290,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "90bed6edb014ae65ab2c77c41278d92036095214b4032b1e566adc54a9d2ec10",
+      "cce5e9ab250e237c63a7bd6d44b2b62feee3716e676c1c589c25a58c4329b229",
+      "190ca36ec6e9e8134a915f93a0b047a0a2355ecba93370c5300fffe0ff0c259b",
+      "eed8611010d896926713c873ab8b90f87fee54b52ef136040d042035c7c6f7fc"
+    ],
+    "email": "slashwylde@hotmail.com"
+  },
+  "matheus_ab@live.com": {
+    "name": "Matheus Braga",
+    "phone": "11964265283",
+    "passwordHash": "9bcfe76f1fd85716d9b9c1ebb8eef4af:a04c34e1dc45887eab9fb5027dc6ddef6f511d9d8720189d65e465cf5736fcb038eeeaaa454d3098100072ec957189aecbaa6f65eac6c001360fafdf286cdc06",
+    "tibiaCharacters": [
+      {
+        "characterName": "Bragao So Ice",
+        "registeredAt": "2025-07-15T12:21:17.493Z",
+        "level": 302,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "4ce2e337c0c1a56b2896a0b48fbb4f65cd3751bfc3ca44416db4aca36c5b440d"
+    ],
+    "email": "matheus_ab@live.com"
+  },
+  "arthurcasteliano@gmail.com": {
+    "name": "Arthur Faria",
+    "phone": "11969182257",
+    "passwordHash": "4d6bd1b74be8cb0dc43634887a3bbdb2:2c3304da9980ad200112e30ddaf3c16a0e266b2375f8f6f8a5528ae6ebfcfed9d9d95703cc7d28a5519b575d27034ba97d80077f876f5c47d0d66b1f76ad9610",
+    "tibiaCharacters": [
+      {
+        "characterName": "Alex Unit",
+        "registeredAt": "2025-07-15T12:24:56.795Z",
+        "level": 251,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "90d1e3b086c6fad4f0178c13eca40f765d1e8dbe900c0cf539d340ac84117218"
+    ],
+    "email": "arthurcasteliano@gmail.com"
+  },
+  "lucasanhalt@gmail.com": {
+    "name": "Decay Shadowstep",
+    "phone": "51998070400",
+    "passwordHash": "e0e4874f9ef0bb34e529ac3f6fd883eb:a04d70d658be30291256c83e361285d4d78c260a01228d630641002ae7ab1d9715a837617be9fb224efd45a7efad2f403fde59517a4d0f1894426342c0355103",
+    "tibiaCharacters": [
+      {
+        "characterName": "Decay Shadowstep",
+        "registeredAt": "2025-07-15T12:35:01.231Z",
+        "level": 293,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "fe50ff260912b254ae78505036ce48507a8ac8ec66a94fbc4b33da7f7ead909b"
+    ],
+    "email": "lucasanhalt@gmail.com"
+  },
+  "deh_lord@hotmail.com": {
+    "name": "Exalted Striker",
+    "phone": "35997337641",
+    "passwordHash": "ddb69d4179c06b3fee18bf38a2e22f28:763dd0ce31a709c1a404a933813628a5491440022d2feddf48ac76ad0d126ca5d32feb162b1ab31684130c3c3aaec78cf6328b3487f234ecd15a3cbd57f12054",
+    "tibiaCharacters": [
+      {
+        "characterName": "Exalted Striker",
+        "registeredAt": "2025-07-15T12:45:38.029Z",
+        "level": 56,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "07dfa6b7c19b82f1425005a9a9a25d9083dfcf383f76e82fc195115a0a04f582"
+    ],
+    "email": "deh_lord@hotmail.com"
+  },
+  "matheus.oliveeira@gmail.com": {
+    "name": "Siteto",
+    "phone": "9023996315",
+    "passwordHash": "9a87f9aa31d14a1703f0079bead19695:0d65b6de402a2a6c1232e1e352223490f2355328ddcff9bd8ff82ce76a481cba9ebbdec39cba185131d85ffda2e9525d215f2a8b32d28008a15c474d01dc6d1c",
+    "tibiaCharacters": [
+      {
+        "characterName": "Siteto",
+        "registeredAt": "2025-07-15T12:48:46.191Z",
+        "level": 96,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "6346e66831f49879020892b141d954378e8fb9d65af38e5b88c67b44b7893725"
+    ],
+    "email": "matheus.oliveeira@gmail.com"
+  },
+  "ddbolado08@gmail.com": {
+    "name": "diego mandriola",
+    "phone": "21974648348",
+    "passwordHash": "9fd8b943880b5fa9f34d2c5da6c33a98:62639bf2e67ea3945b27ffd53066a554b2dba59b1b6af57396144b3c47c02323c261b619fe1bf2a0f3c7fc2e7829ea4a2c36abcf1fc8944db3b5a182931c1772",
+    "tibiaCharacters": [
+      {
+        "characterName": "Foguistop Uber",
+        "registeredAt": "2025-07-15T13:03:18.861Z",
+        "level": 231,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "92f237a5a83b0bbf253b345f34a20d6a65df060e8cb4ca501d89a29e369122a4"
+    ],
+    "email": "ddbolado08@gmail.com"
+  },
+  "esteban.wigor@gmail.com": {
+    "name": "esteban wigor",
+    "phone": "+5491165349374",
+    "passwordHash": "9de59f8092557e787f2fc775ff2910e0:6cdc2d7bafb9f6d66f15c5622ca8fe378b83747a944e74398b08bce0b8dac28bf92388d596a5808da223016b26c780b5bfa686db1ac6097f08f0bcc46d18707c",
+    "tibiaCharacters": [
+      {
+        "characterName": "Thedogreturn",
+        "registeredAt": "2025-07-15T13:08:51.093Z",
+        "level": 186,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "7abe52277f7aff0caf37077f90f7c17e50a8ad687510ae2e40530079b30600fb",
+      "99198de00a77dd35f7727cc5d344947b214edeea95535a2c0de4e8598efbd635",
+      "20e0a5672df313063b83401326f348bcef6e43acbebce4131ff0dca52d23dc8b"
+    ],
+    "email": "esteban.wigor@gmail.com"
+  },
+  "cavalari.flp@gmail.com": {
+    "name": "Carlos Rafael Cavalari",
+    "phone": "62991291291",
+    "passwordHash": "f4b3145c79390235e0af42fee577a1a7:38b5dea42ac905b5ac91b5f6c6f86289bc1c332ea808276abaa27542deea06c3f7462f26605ff08ceed1870dea502c06d6b4b6047e6123bbe53a381a41feaab2",
+    "tibiaCharacters": [
+      {
+        "characterName": "Uauu",
+        "registeredAt": "2025-07-15T13:09:48.253Z",
+        "level": 203,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "fda078adc312998f3a99ad4f59d7a62e7a3797d5e7828d0e24c96292989cbad9"
+    ],
+    "email": "cavalari.flp@gmail.com"
+  },
+  "errado": {
+    "name": "errado",
+    "phone": "errado",
+    "passwordHash": "0952cec613a2c0f92970909d2b287e3d:498eee7dbe90e02dc0ecd2f46b4e00eb9d6d0278933165afd4d8fb27113b7d867430f5dd57e9b7bfa5f8580eeb8b25a2fb7f1ac66296b1777faff11464af5355",
+    "tibiaCharacters": [],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "23456a4ea4f5a3873e1edc26cc0a9387af1b8a1aa3fc3602cb09ae17baf484cd"
+    ]
+  },
+  "cgmaugusto@gmail.com": {
+    "name": "Augusto Medeiros",
+    "phone": "81 997198932",
+    "passwordHash": "1f1456758433a9063f39147b8536b161:34a2be219b3460de1005ec55110553f6f15dd5011248da49f198024ac9166dcf4586dd9be17bac6dfbc3202197c3c81ec45cc250871170377de59a64342c7c3a",
+    "tibiaCharacters": [
+      {
+        "characterName": "Primo Guto",
+        "registeredAt": "2025-07-15T13:21:54.967Z",
+        "level": 173,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "1e1da5a17fe94d60c7c17759c89ab54ba3ee16066fad1bdd60dcd8155a1c6d7d",
+      "17c56fb7442b7d3daf96d349400273ae089be2da663256fc4d7a847558aede78",
+      "a2eb459abe5514f9d95700af8bca402e81cb7fcd3f2a9f62ae258ce9d0c1399d",
+      "0f2a9ec811c3b1d159e56cf855b3364988d688935d023bd309900fac3d160e8b",
+      "d8fd02ca1adb8527ca787e7562ff6afcb9f10cad1a74be5a64b34dcf9adb1d89",
+      "ebce0437f229721d5c57f724a786796b1c364b6d378cbca7990db4a57419cab1",
+      "72e8c331a22b2ed15f683bf9f67293942677f5b6b5879d8b72e100f48c88001a"
+    ],
+    "email": "cgmaugusto@gmail.com"
+  },
+  "posseidomlr@hotmail.com": {
+    "name": "laercio rodigheri",
+    "phone": "54996932049",
+    "passwordHash": "dfbb6dbe3a54fd886c2edcd0a9cd9708:dc281836dbfba4c15b705ef4fbb9718b51a0df8fa8b1da8a7d403e3efb399470aaaab582d4e305554a8d3a6f39537b3f42cfa47571e79ea67a9347e3b5554b4d",
+    "tibiaCharacters": [
+      {
+        "characterName": "Lazao Zao",
+        "registeredAt": "2025-07-15T13:29:28.676Z",
+        "level": 46,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "ea0fe9005b3bdd4b83d43f6385e57fad27a91c20debbfd09c873b9b64d3cf127",
+      "a5065f07a4921bc72b7d597a282906fc192eb3a65ead73857867b820cfde7d89",
+      "f625bb47e199e8380775a14f40a8de02ce51ff6169c6376c894fdf49c7ade49a",
+      "94c3608b97437be0904a2ec8e8fc3d340f464cbf1d789fe531724a7cc15b56b2",
+      "17fbdfe9ae48c8626759d1b8ad783c38d57560195601eaefb1e70696dc237f57"
+    ],
+    "email": "posseidomlr@hotmail.com"
+  },
+  "pedrohenriquecarreno@gmail.com": {
+    "name": "Pedro Carreno",
+    "phone": "31971484896",
+    "passwordHash": "25c776f00e8ab0076d1b0c235e81db7b:9ea94aee2d048c230d9eee9ed3bcaa3d89d186308f7502a332e8afd30c91c0e9f1f7407437a19712e10992f56d135f1caaac307db283d17c67a912d964a4a0ef",
+    "tibiaCharacters": [
+      {
+        "characterName": "Lufy Monk Chan",
+        "registeredAt": "2025-07-16T14:20:43.795Z",
+        "level": 278,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "a9aeca6d2474e2477dd104fc74929723f5ff4a6fbd35d65c9d7c21834c8ce6d6",
+      "39483942a55069ae64ef8ed0a07fc0ed2e7d8a897f6beb8d2ce7e417240b225d"
+    ],
+    "email": "pedrohenriquecarreno@gmail.com"
+  },
+  "pipocaalef@gmail.com": {
+    "name": "alef monteiro",
+    "phone": "041997820241",
+    "passwordHash": "73067fc8ebbc59cc9f9dd3b247c9f910:d1b6f46b4ba1eea78ab1cf3fb2a2183ce6b0f4927885756dc05a4f5a275fd079ae9e1563d53e6dd366ac2692d43fcc024e2a02b9f8e07df7807949a5a245856b",
+    "tibiaCharacters": [
+      {
+        "characterName": "Vaneliko",
+        "registeredAt": "2025-07-15T13:59:48.971Z",
+        "level": 213,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "28826e825db0e7095ab6455019df98cdfb507735d32eecc0196ad920568537bc",
+      "0b7bb1ac1b95183bf98098bb9c044117bdbff8beef88411c5cfc306610a9c9a3",
+      "a6f02a8098d285d2376a820a62d4cbc36d19dee7127791dc79e2370a8aa692ac",
+      "6572d14cb60cfb79bb7d7f1af5baea9767ea4991e2615c14ae488af7b876f899",
+      "6638e3624492647478a4575b05c56ed6a17ab978c7c60879357608dc13570ed7"
+    ],
+    "email": "pipocaalef@gmail.com"
+  },
+  "darquelhanter1@gmail.com": {
+    "name": "Leandro de Morais",
+    "phone": "41 998905602",
+    "passwordHash": "a7cd9529698aa0cd35bd50079df7720d:2c40e903fa13c08b1b122bae919febf6938a8cdcb3fe306f9b3f98ae74e4d508188c2a63d165bd26b3de40e7711588803281142c9983da843a7a9b0f0ac6328f",
+    "tibiaCharacters": [
+      {
+        "characterName": "Nyxtrik Samurai",
+        "registeredAt": "2025-07-15T13:38:46.808Z",
+        "level": 276,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "05c479ab86e67c4250ee047dc5d26b78ae864f604346967a2bc293846cd2f2e9"
+    ],
+    "email": "darquelhanter1@gmail.com"
+  },
+  "franco.mh@gmail.com": {
+    "name": "Franco Mazzarelli",
+    "phone": "+56983003710",
+    "passwordHash": "5659a819b1336f6e2d517506b6bfb8c7:a61b7ed27355b6ee254192fab6ae7514fdea1dc1d2fb3ceac579c2f9de9b940a9a8a4819c48859669d179473800ac8791bef0b0ea143fc6135d1cf62960d4a47",
+    "tibiaCharacters": [
+      {
+        "characterName": "Roz Zoldyck",
+        "registeredAt": "2025-07-15T13:44:30.177Z",
+        "level": 268,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "22dbd76f635e925c6574cd5e19a37942994e473bb4a5bafe7f5b3d21e36733c8",
+      "56d876d1d7d0f5210b2561e7dd9e68705412404d7d0a592dc051e0611f8f959d"
+    ],
+    "email": "franco.mh@gmail.com"
+  },
+  "yxpedro@gmail.com": {
+    "name": "Pedro Viana Araújo",
+    "phone": "22998253849",
+    "passwordHash": "d8a4c1a6f77fdf5fc75cf209216869c3:51a638b07406932b11f4a797dc45facfbf9a12ea4802eb6993aaeff81af2ebcb553978d4ccd6c6d9d7a440d0ec2f3f4507d11c817974c11640700cb4354b6d43",
+    "tibiaCharacters": [
+      {
+        "characterName": "Tankcheinho",
+        "registeredAt": "2025-07-15T14:10:35.965Z",
+        "level": 244,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "78dab8585a8391c3bdbcd45ec78d492957a639f93a4298372c212dda1a7d903a",
+      "b19abaab03bb65ea12ce6d0de87cfae2321b1265032f37fd619956056237f278",
+      "5b4690ed527dc286fcb61c61cdcffcc8a13e9b0e4bf2be508b6c0dce35363c61",
+      "b147bf7df6a2b1bb0bf387406c87a5eef37988e8ffb548e9543a027383e12393"
+    ],
+    "email": "yxpedro@gmail.com"
+  },
+  "matheusfellippy@gmail.com": {
+    "name": "Matheus Marques",
+    "phone": "31991251456",
+    "passwordHash": "551392c19dc7a09a9a6b686c20272bbe:b2dcb5c4e4bd07f541f9f1d1fe549104eee661eed9c1a0598103b9bf8702de9f7d1817d6c95f470335e16c4f6868e555b4bde45659a3d3d9e38acd136a400626",
+    "tibiaCharacters": [
+      {
+        "characterName": "Monkiando Monje",
+        "registeredAt": "2025-07-15T13:45:38.923Z",
+        "level": 248,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Hero",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "bad99e5f04588cd1359623b303ec3a7330f1e2b1b0fd04d934255e0a86008f51"
+    ],
+    "email": "matheusfellippy@gmail.com"
+  },
+  "dolglasz.tavares@gmail.com": {
+    "name": "dolglas",
+    "phone": "84998483240",
+    "passwordHash": "5b418ff9a59bd1b8ffd4ea232c12e8a5:129bb3085850e75d28e1fba05a571dc4523d079a3e91d9938faf66d929f679b11312808d7f30fc0d1f10c3af58f55c49d74e5f9913f90f595ccc762619a50db8",
+    "tibiaCharacters": [
+      {
+        "characterName": "Mossoro Nordeste",
+        "registeredAt": "2025-07-15T14:02:44.764Z",
+        "level": 233,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "2eb9a54a4bedaef9efecfa2e94f2cf6a5ca3cf1dcdc85437bf5854f323f7c8d4"
+    ],
+    "email": "dolglasz.tavares@gmail.com"
+  },
+  "pierrejau@hotmail.com": {
+    "name": "Pierre Ribeiro",
+    "phone": "14998348148",
+    "passwordHash": "261219078041404c319d836dc054765a:198c6c3f121fc2c3751d81cc627cd054485bc12aa175e8a4d3ec2ffb8fd1556bccd4c77348f03d21378de80348d8eb37dd9914119115a702ccc1d94cdac12038",
+    "tibiaCharacters": [
+      {
+        "characterName": "Eternal Pierre",
+        "registeredAt": "2025-07-15T13:53:48.129Z",
+        "level": 25,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [],
+    "email": "pierrejau@hotmail.com"
+  },
+  "samirgomes_@hotmail.com": {
+    "name": "Elvahar Grimfeather",
+    "phone": "82999210727",
+    "passwordHash": "89851dae53bda8649d150f77fb6b537e:92e37d227815d42c264142b73f9454bdd41f3a80ebacc178ecf4b4f6eda7be1f8c1d7a47e8f25ef32ca4847dc2706e51a7925b04770f6cf3f59aa4e8a8d45bc7",
+    "tibiaCharacters": [
+      {
+        "characterName": "Elvahar Grimfeather",
+        "registeredAt": "2025-07-15T13:57:45.997Z",
+        "level": 374,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Left Guild",
+        "groups": []
+      },
+      {
+        "characterName": "Doctor Coorporative",
+        "registeredAt": "2025-07-18T15:39:03.318Z",
+        "level": 489,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "3f2ab52474bb4c0e86d70e21ed106cbf1bc8a9dbf1992d59cc2c81ced3eddc44"
+    ],
+    "email": "samirgomes_@hotmail.com"
+  },
+  "ecobertanha@gmail.com": {
+    "name": "Samuel Bertanha",
+    "phone": "17981844451",
+    "passwordHash": "ee914e7a25bd4a587fde5a820223a4b8:b443433abe09bddd7521e5cf0eaa89176c2fd8d8f28ccba1a95bf557b15f57ed48e62d13a35a93b3e6da934e48df0f47e32597cb3d1e816732554a0450112f23",
+    "tibiaCharacters": [
+      {
+        "characterName": "Delwyn",
+        "registeredAt": "2025-07-15T14:06:39.558Z",
+        "level": 99,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "d37f00298b4011291e34e5747d6983ab9543b16e5ff48dabfc01269fc9c9865b",
+      "f60b2b2610b6a38c906659defab1d30fae69ecb76a1375ec66912abc677f4ec7",
+      "c7be180c804725d3c0515d462916abbacebf72c893955305e753205917232fde",
+      "79e3604c6a1756c769b4e367efe6a431bd7b385b67a9af4171a3a33bc51b3290"
+    ],
+    "email": "ecobertanha@gmail.com",
+    "activeCharacterName": "Delwyn"
+  },
+  "rbvicoso@gmail.com": {
+    "name": "Rodrigo Barbosa Viçoso",
+    "phone": "31984812019",
+    "passwordHash": "254e7c77ae926f282fe9ab5b21b4b266:fdafdf412d8b424a667577b3b41bc88b0d07c7369d50504ff1cc6a5b5cdc77ac7d3b52ec13561cf545b61ecf9cd91104d34b6fe53cba79c654955715ec429d84",
+    "tibiaCharacters": [
+      {
+        "characterName": "Kardel Again",
+        "registeredAt": "2025-07-15T14:07:37.122Z",
+        "level": 260,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "214538584a4f39eed68b58675d2ef96803352c85a2f3afce8b3d6a34c0208ef1",
+      "6e43fc0bf06855827479a08a0f9c5397c80408f59e93b137871e0692021931c9"
+    ],
+    "email": "rbvicoso@gmail.com"
+  },
+  "luzsannik@gmail.com": {
+    "name": "Luz Sannik",
+    "phone": "11951639478",
+    "passwordHash": "f0fcefd590e6cd79a8b0f418cba23073:04054e29db127d41fe625efb6d47deda858502e685db3c2e8645f87f0aef02aa9cd3feac9c9e24ad7d2c0f595d4b21f260ecbb9e73307d869812865a9c4dd9dc",
+    "tibiaCharacters": [
+      {
+        "characterName": "Luz Sannik",
+        "registeredAt": "2025-07-15T14:15:45.685Z",
+        "level": 241,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "0cbeef94d59a0208670dd22b554445b48b59668f55ee2c30a619bc8919e43968",
+      "d860f7cf9d24c70ee44f565eac365a9acd1a38462529026997be458784be289d",
+      "4744b30458d91dced70286f4e36b1920ef699e82c221a1707dd1d615b146bdb9",
+      "c50c35cf71d4722a43aac0140c1f9b71f064051c4b172fc7ee4e42d1214c99af",
+      "403677f952baa57376d695cb67201aa813f75a723b0904ac29a18ab798a5a6b0",
+      "9ee731b5e427e0d77564bad865ae3a00fbccc4e689baa2b2266a3c8bd6842fe4",
+      "637c7adcc1e25daed9d6e1f187b58945d7199a7bf1047ef5356727599fd0e0da",
+      "fb955736a66001f7c70da0bcdfd8d6b1847933779050f3257cf02f5dc97bd0ab",
+      "d52c6044fab3162b8ff0fa36985d09354f843489c512790a204263b32ce84292"
+    ],
+    "email": "luzsannik@gmail.com"
+  },
+  "joao23mellany21@gmail.com": {
+    "name": "João Henrique Santi Gonçalves",
+    "phone": "41984371963",
+    "passwordHash": "dd9281d208b9d26d9ba9b2aadc520427:4efb86e04d023ae83fec4ee0263030c38f8c2a25f3716c310c335edf6cf26a495b2e7c24fa34977a58e0b4d79b8d217d9bf98f1e94b214679b0404f4ba067c0d",
+    "tibiaCharacters": [
+      {
+        "characterName": "Doutora do Sus",
+        "registeredAt": "2025-07-15T14:19:41.655Z",
+        "level": 259,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "6ecb101473b1105df85d859cbcd0a02cc79ac18ff24e31fd1c0ab2fddb5cbb8f",
+      "0f23ce1c1cc90f637851ab96a49cdf6400b5a6c21114fa9c6b3a10636d1e780c",
+      "2191147483b1c8170ba95002aefe51597ef787a81020e324ca18aab195ae7683"
+    ],
+    "email": "joao23mellany21@gmail.com"
+  },
+  "reis.samuelima@gmail.com": {
+    "name": "Samuel Reis",
+    "phone": "11934009346",
+    "passwordHash": "403b140072e3b45e00b50003f205119f:f90c119f9a63f4a99c65e4d72ff4b1e68aa6cba03567e1ec6cab12d213461404240f1a2c46c2af2a8021363b767b2a66dca0d19bbe9a956541d3cc6892285992",
+    "tibiaCharacters": [
+      {
+        "characterName": "Dykator Shiimuzera",
+        "registeredAt": "2025-07-15T14:36:06.043Z",
+        "level": 230,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "689a190a76334192f6d168d1836d4fceab54846bd9a79327ef005e3e80767b21",
+      "5d200547fdf5f230b2baf11d94df6f7bd34aae2030e5fbeb4434df21d48aff9d",
+      "cd5cae7ae5a453150a34711ca7e0bff295c13b4ecfda32d1754d5fdd5a69154a",
+      "a8bd9590dcc4d1b80a6108d59a522e569a0f95ff7424b000a42ef87753eb5c66",
+      "db8e071f68e48306a7120a971ccde11762b936fb0168b624463f6fc59a230e14",
+      "f7e94c05f0c93b77e085b952b0d01c9b6f7c2ae7143dfdf609b6657419a8451d",
+      "5a4121c10f3ec82a170a5f1bfec7d11eeda7f3f2ccd401738c426d555b4dfb91",
+      "c39af44ae8eb29c20d18c0840a516e45ccff7ea6baac7c539aebc70222da3632"
+    ],
+    "email": "reis.samuelima@gmail.com",
+    "activeCharacterName": "Dykator Shiimuzera"
+  },
+  "jacksoncat15@gmail.com": {
+    "name": "Jackson Mie",
+    "phone": "66981016122",
+    "passwordHash": "0831aa0c8dd0bb6008e65e0a8ad4ae08:5513de23f0a41a2ed5da5aebbc64a90e94980167b44bdf74a78b5d41b66db399dc977a60918b7740c7058cec34fd326a3a60c5aebf03f1f8551e0f06b45d7995",
+    "tibiaCharacters": [
+      {
+        "characterName": "Jota Bow",
+        "registeredAt": "2025-07-15T14:16:46.859Z",
+        "level": 115,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "4477857db1661ed59c3710109e72229a23dce82ce3fb3408b2821ad2e13eb27a"
+    ],
+    "email": "jacksoncat15@gmail.com"
+  },
+  "alberto_zuchetti@hotmail.com": {
+    "name": "Alberto Zuchetti",
+    "phone": "11995539033",
+    "passwordHash": "12eb35368df3e21b7ab73786379ab409:f8fb6adf74aa63ba9460d818d7c0d6490236bacb4618c6750c3e8154a83a86d55b281a8caa27d019975c2326a72b8a7fc0318184c072c60f35dbccd326100eff",
+    "tibiaCharacters": [
+      {
+        "characterName": "Palaneira",
+        "registeredAt": "2025-07-15T14:29:22.678Z",
+        "level": 159,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "b976a99e3d06118de6d4bc451c2a37ae55b2eb46187870065ebdf62d47050dc2",
+      "4d64639d9e29447eaf5fe3e4973f1621528506cc402b8e8d6ed93e55d198f555"
+    ],
+    "email": "alberto_zuchetti@hotmail.com"
+  },
+  "abraaocaminha@gmail.com": {
+    "name": "Abraão",
+    "phone": "84999468753",
+    "passwordHash": "e35959a2dd6e0b2152185bea95a8f65c:3877225b2ca37f68177ddd28036c36e931e2e3aa8215552da245e970dacf076f5e409c2095646173b371acce50d5536bf0bbb91ed2796b2d871f1a5be265e2e7",
+    "tibiaCharacters": [
+      {
+        "characterName": "Alatsuvia da Silva",
+        "registeredAt": "2025-07-15T14:35:37.357Z",
+        "level": 173,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "d78b6ef846091f870b9cd9633af651ecf9252b2fe86f14bc5ff35b1238a0aa3f"
+    ],
+    "email": "abraaocaminha@gmail.com"
+  },
+  "rafael@rafael.com.br": {
+    "name": "Rafael",
+    "phone": "11999999999",
+    "passwordHash": "8716db8c6cb1309b69e02f93840b2d0d:45f5e8c1bb096349a47d157dda9508756c34b08bd46a8c72c2353420cae89e9aea37fd4492cd28e15995ed3e27e36fd623a0ac3ee2a453b3782abf1fd6980150",
+    "tibiaCharacters": [
+      {
+        "characterName": "Braziinha",
+        "registeredAt": "2025-07-15T14:39:31.363Z",
+        "level": 251,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "404b5c3e329996136e4bfb4ab93727eb142f08a4be29189b82b6713deb6587dd"
+    ],
+    "email": "rafael@rafael.com.br"
+  },
+  "jotatvoficial@hotmail.com": {
+    "name": "Jotta",
+    "phone": "66997145197",
+    "passwordHash": "a666dfeaafbd5ad3f6c29d25fd30f1bd:bd952a5327fb8c3ffa6320294060851d50c53e8e06d3ee482a9fbd75cc4bc82234d0bdd6574504270844481c7064a02d08762a57af63b561b42157def33274f8",
+    "tibiaCharacters": [
+      {
+        "characterName": "Jotta Coorporative",
+        "registeredAt": "2025-07-15T14:52:10.874Z",
+        "level": 202,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "f61788af866c5b8174fc4c4a19192ab5bc4657b8e362f87ccee87ad94eb88b56",
+      "f1d20f32754a2fc2b5e288e901b4949e44e5b110fbffb9df64b9ca4df99be1ab",
+      "dc575fa4795ece864e62f1e8a6d9e7ee95a9ef52ec3df13b93ef7e822d87d64f"
+    ],
+    "email": "jotatvoficial@hotmail.com"
+  },
+  "jon.spada@live.com": {
+    "name": "Jonathan Spada",
+    "phone": "67998940400",
+    "passwordHash": "17c32a9bfcabc830195d4c2a9f92f9cd:bd19eae80bf21629db56a58f9d4aed6a9107baa37d69420c15d9c83d4fadb898e03844a767f190e92b3c8853fa96599dd38aecc1736d7e28daefa3703a0a92da",
+    "tibiaCharacters": [
+      {
+        "characterName": "Moohn Walk",
+        "registeredAt": "2025-07-15T14:48:20.308Z",
+        "level": 355,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "8f3e8303ca7c5f7c1bba9e78ed47d5f15d28b7dadb7aa630d7730da4436c6180",
+      "351492e80f5a5f467f53376dada2ee9e7e99bc1095559f5bcefded772e123551"
+    ],
+    "email": "jon.spada@live.com"
+  },
+  "leo.tfonseca@gmail.com": {
+    "name": "Leonardo Teixeira Fonseca",
+    "phone": "24999393820",
+    "passwordHash": "57920b0b786be30519d3a0022b5a2e2b:0fbce3c5dfe17a087d9b677cf6b7f172235316ee178ee6d2d950437e1b8a639b13d0c15cc7516c2b199106e180e05966eb53aed409c5cb9ffbd301fb41984a37",
+    "tibiaCharacters": [
+      {
+        "characterName": "Kozlova",
+        "registeredAt": "2025-07-15T14:57:16.861Z",
+        "level": 250,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "f7c1dd4ee76f35e538c810880c01d3bec7895f7bb08c6b3c7db857fa2a9d1fde",
+      "87f311c6eb0d2b61ff2769f840803f802aaf590055863844c406389c1cb4eae3"
+    ],
+    "email": "leo.tfonseca@gmail.com"
+  },
+  "felipelala@me.com": {
+    "name": "Felipe Lala",
+    "phone": "14996321989",
+    "passwordHash": "197061bccdff038cc28bc32c85a30c9c:c794a1e03f914bf89ee33d11840014ddc642b8a31bbb2e2878044f9660dae031234f42e6424920f8189dea3692c069a235cb9a0b2c73c6ec0d5cdb1e5372e4b3",
+    "tibiaCharacters": [
+      {
+        "characterName": "Monk Degenerado",
+        "registeredAt": "2025-07-15T14:53:22.487Z",
+        "level": 302,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "eb3861ad893d0ed2c3d88707ad86537881e78a31d4c744e19ace5cea532d10ef",
+      "f4a0d1e4c9828a838260460be629da2eaae2d623dc344b6c3be3e4312d4ab493",
+      "02b277818a68f2682630e54b3e540c62b77229b0fb95fe55a14f870250ef5db6",
+      "2505686fa4de3ce75759630e8a07a9104b59f7f5e99bd217e07a17a7cf4d2e4f",
+      "ca6a4f5c3bd455224dcda5fa978ba63152e52e79f42af0b64a7e87ec2fde127e",
+      "893c110dbf796144d055688118fcc80ebdb39fa1053810ac4a8ba854432ff4a0"
+    ],
+    "email": "felipelala@me.com"
+  },
+  "ronie.mortatti@gmail.com": {
+    "name": "Ronie Correa Mortatti",
+    "phone": "16982395221",
+    "passwordHash": "6a222dced2410e97b6372b7b2f71282d:ff3cf3f3fb808733d850332e11af7210d223907ebcad15c0ba65d83230ea16bf9d3b60a7d1c1a7cd01839e8b604c5f08f891e79b23909a1151749116ab825017",
+    "tibiaCharacters": [
+      {
+        "characterName": "Ronilight",
+        "registeredAt": "2025-07-15T14:55:32.645Z",
+        "level": 278,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "858ccd2114b7f69354cd25de82599a94fc8d0b16211986e4c6bce1df7c5711c9",
+      "577c4db744e9d445c4ac235a0d9b6f9a4a57309e4beda889239a246b606a4a62",
+      "5a880f190a38617857cffa5df3131f0bb4f7a425e9f04c3d746bcb4548936faa"
+    ],
+    "email": "ronie.mortatti@gmail.com"
+  },
+  "mgmoraesr@gmail.com": {
+    "name": "Matheus Gabriel de Moraes Rosa",
+    "phone": "11946942728",
+    "passwordHash": "868ea770b3ab888c131f4c5a7dfd6e18:b71778ef12f00ceea91eebaeb0add1ece84042b3a41f16320dda2177c8316b314169aaaad29ded74a188c6412734cfc0aa33c372c58c9b74bfadb9d58fc9da66",
+    "tibiaCharacters": [
+      {
+        "characterName": "Nizw Dujob",
+        "registeredAt": "2025-07-15T15:09:13.397Z",
+        "level": 388,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Member",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [],
+    "email": "mgmoraesr@gmail.com"
+  },
+  "gustavoabdo3@live.com": {
+    "name": "gustavo salomão abdo",
+    "phone": "31986870239",
+    "passwordHash": "96e44778408e4409630a8b81cd5750f2:ba39519eb956172741f6267899d9ab1315ff607e3d3e95b55db02e314de3debef9806aa4dd56bbd765c5995a2259d30992bafbe88ae5f4dbb22a264f7af9472b",
+    "tibiaCharacters": [
+      {
+        "characterName": "Salame Shaolin",
+        "registeredAt": "2025-07-15T15:20:05.570Z",
+        "level": 135,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Reserva",
+        "groups": []
+      },
+      {
+        "characterName": "Punhodo Gato Manco",
+        "registeredAt": "2025-07-15T16:23:27.009Z",
+        "level": 257,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "b804815d3dbacc627a0df785b4002422b65e2ef870e1b5741c77e3b81b3a798e"
+    ],
+    "email": "gustavoabdo3@live.com",
+    "activeCharacterName": "Punhodo Gato Manco"
+  },
+  "saulosrg770@gmail.com": {
+    "name": "Elendra Vaelthorn",
+    "phone": "11984317699",
+    "passwordHash": "567f2209a206bf081405fad8764e0883:4a77517f55c88d4423ae288a9d3894d5f1df873e3c7a49d76a3c6e497232a30a354f71cc13f0e7f81570a0e99f234b3647560f173133a7559022194af26b4dc7",
+    "tibiaCharacters": [
+      {
+        "characterName": "Elendra Vaelthorn",
+        "registeredAt": "2025-07-15T15:39:46.140Z",
+        "level": 204,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "d53c76f8e9453c6150a047ffcef6e555a2760a6ba7e9d090cd80e71a62ba1511",
+      "484afc689817605a0b59ef9f51defba8f4963ea5e41a8de28ee8bfd198854fd3"
+    ],
+    "email": "saulosrg770@gmail.com"
+  },
+  "renatomeiercabral@hotmail.com": {
+    "name": "Renato Meier Cabral",
+    "phone": "11964781558",
+    "passwordHash": "5b64587e52084b95de48bafd681c6a12:0eecc4c47417c6e560ef811a69684a440b8c4dc4d3c46c76c64410988f23a5af23c5d86b95356636b6d9b6a8687170482f32339f05e6760c67640bd455424391",
+    "tibiaCharacters": [
+      {
+        "characterName": "Murdekai Dreadspire",
+        "registeredAt": "2025-07-15T15:37:17.905Z",
+        "level": 159,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "997327b964be2a0302c1a809ee595b31e338c20d6ada653645364d250a467cf9",
+      "e550452347faef00a96c18adf1761a0702c441473e11d6f9cbc5f111f64b2f45",
+      "9506804a199aadb5d63d2d19320bb3e0e3cc77cd28bd939b2649d4f489fe0160",
+      "74eec137dff85ed6814880e43d3f31dba3105ee3b3ce7e13974e94e660d39cea",
+      "2e0ae63e4ddcb2c7b32357eca59d1347c804e01f8606bd20badb3eec0e7a5c91",
+      "c9f3e6a392cf9353e402771e92c40b57d65284cbdf50f08e03b2347f994bce4a",
+      "e264f9280ab7d02cc17a1f9c9a8eebad6705dd3f7446e67122371b172f1fe80c",
+      "156c256cfaebb88d1dfec8fb7003df278e0c75ebea7ee12eb1b051d1863beae6",
+      "d5f16402f516c19f3cec0b5e379dabe7ba1f21c2096def426bdf88634fd0e1da",
+      "882df2e81638910df3ea7a9cea40c8743182d261b60cd0f5f43c6a57e62094c7",
+      "cb34b037ed30d8fc6719b338a79221803a54c172d4583d9be5f154a1fd625d56",
+      "4dfd56e9e6fd132e645f558a4728e6ca796596cf049924cf13fba8c89a0a6ab7",
+      "1e5509022b31175084b0dcf40891cd9ed77bdf1d04a32177e23af083560f4946",
+      "66c18ea800b77af3fb5e3e56012c16f0eb549f93335baaecc1de63dc1a2dc6cc",
+      "3408a15546c909ba118138e5089a8cf41f99c3b7d95cc42c2818bc7dcdb4e655",
+      "3419c39284ca1d31b10fc98df1041147b2610a561bc8d965da4825f343aef85d"
+    ],
+    "email": "renatomeiercabral@hotmail.com"
+  },
+  "victor.pereirazikas@gmail.com": {
+    "name": "Victor pereira",
+    "phone": "12981094465",
+    "passwordHash": "6a0572bcf0e6d596a99885ef2ad5b10c:0efa005bcacb435761c5245386c9a3cdb28dbea5b0d27ad41fe78aeae9120497a2e970231674ee510b42af3419b2d63f216e5502ef2b5edbe1293446b338c279",
+    "tibiaCharacters": [
+      {
+        "characterName": "Vitin Tankanada",
+        "registeredAt": "2025-07-15T15:42:42.016Z",
+        "level": 126,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "01c5b59dda5cb41de76c1beb3fa2526762550abfc01f8ec8c679cc267db50fd3",
+      "d0794c766d8c5ec6a39bf3360099c767de9509af3532e6451408d41e65820be4",
+      "8f86d7a73347880e5ee9c8baa9d7dce0042a4059c29d72a4d1c6e19e12413d21"
+    ],
+    "email": "victor.pereirazikas@gmail.com"
+  },
+  "mudancasvaldecir@gmail.com": {
+    "name": "Gustavo Costa",
+    "phone": "48984751717",
+    "passwordHash": "4bae2348f3b770784fa3dd10eca18271:bfc5abeec3d54ec26f3b391828b50f3a823863e66d7190c7113fcd18e57a9d666bda834854dbea0995c5fd94044c67a2dab3be88bf2fea54f3f1bb685639a1cc",
+    "tibiaCharacters": [
+      {
+        "characterName": "Elite Rullerzinn",
+        "registeredAt": "2025-07-15T21:45:29.409Z",
+        "level": 305,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "28d4dfc7a39e6dd75a44e342b017d3d1de5f662e78c48006bc72d314b9cd9b33",
+      "b7c7f8e0ff744f7e57296d394ee7f0ea45d9584bfbedfb2871c14ad6131d1b4d",
+      "0e34a821fab184778eeb56b381cdca724681d774cac718f53d18daa31d291f95"
+    ],
+    "email": "mudancasvaldecir@gmail.com"
+  },
+  "surfnandoo@hotmail.com": {
+    "name": "fernando de oliveira",
+    "phone": "48991273211",
+    "passwordHash": "344dca84300d1d184507b639aeb96f18:e3d8d9a8bd445e8e2cb6475135de0cd3caa80043f3f5cc18f64316119a48f730d89e111942b31bee891593a2cb0e6b0c2a1dcdd1f5e1b28fb603beed8c91c502",
+    "tibiaCharacters": [
+      {
+        "characterName": "Vagner Pally",
+        "registeredAt": "2025-07-15T15:42:30.850Z",
+        "level": 152,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "f668b2878a947ab12716bb3f835ae49497007f1d0a9b38de18a1d194048f5ab2",
+      "e12bbe32b728bf0ca7ce9e9d611784751221ae0f507fb37a4e362d51298abbd8",
+      "3d192864c47da551cf3be3c0dc9badfc713e6fc4030e182caee7972f8e8f899f",
+      "646e2e9a283b70ae7f1de92b49e8bf396bef7fdadb234d322ac8442c19e59d50"
+    ],
+    "email": "surfnandoo@hotmail.com"
+  },
+  "rodrigohenrique.ecv@gmail.com": {
+    "name": "Rodrigo Henrique",
+    "phone": "48996320806",
+    "passwordHash": "2858f3d171c62350a804def56044a42b:e5f93ae4c9286705bb6f1d22765686a1bd2cfb98f3a68c8b4ec7c0b8f911a759861e7258c6013d7411a31194239d6b363631f4a39f83e6e511cfe84f8524fd66",
+    "tibiaCharacters": [
+      {
+        "characterName": "Afls",
+        "registeredAt": "2025-07-15T15:42:12.147Z",
+        "level": 186,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "a8e445fd0e803067b1d4c53226b045e1c407f708488632d4ee6792ce53fedd1d",
+      "6cadb6f00e701f9875f33586240ee2d4c76c3ed2cf75a59f393a369b868f7090"
+    ],
+    "email": "rodrigohenrique.ecv@gmail.com"
+  },
+  "vaninho@gmail.com": {
+    "name": "luzinubi maneiro",
+    "phone": "48999999999",
+    "passwordHash": "26b16c5cc2a203bc556be9b895cb5f5b:0ae9424715fd29250d610a5819f56012372944d9d20527f5512d1f058880290b8b01de9e13442c424febb21d2588df6d8e5872908aa134825480a152d50a4d51",
+    "tibiaCharacters": [
+      {
+        "characterName": "Luzinubi",
+        "registeredAt": "2025-07-16T00:55:46.392Z",
+        "level": 132,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "7bea58fa08ab262b97867b5bbc34431d13d0c45161b821401e2a22dbe8abf13a"
+    ],
+    "email": "vaninho@gmail.com"
+  },
+  "gabriel.tanajura@gmail.com": {
+    "name": "gabriel",
+    "phone": "11 950596507",
+    "passwordHash": "90150820bf0455d98c9ba4c7e588775f:58edbc1c1512de3c731cf21ebb24ea4f81376132220028a4b5512282ac01ba278374ec055279ac05075f640bb30ac09a6af9b8d1ba64f8a692f035fd2ba677da",
+    "tibiaCharacters": [
+      {
+        "characterName": "Epistimi Dujob",
+        "registeredAt": "2025-07-15T15:56:09.980Z",
+        "level": 393,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Member",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "2119538d06e76b19390f29b91f7653ee187fe326a534bb41fb36d7333f317108"
+    ],
+    "email": "gabriel.tanajura@gmail.com"
+  },
+  "juliomatos.c11@gmail.com": {
+    "name": "Thesun",
+    "phone": "82996449689",
+    "passwordHash": "ce6d96ab3d332517f9f8f5ef8958e644:181dac59dd14355383c86bf0e4948e715eabd12064112e36c1ba05819a16783254c305e1e546a3743eae1306892d2e78ecff6af584caf32e9b642a81740d3bbb",
+    "tibiaCharacters": [
+      {
+        "characterName": "Thesun",
+        "registeredAt": "2025-07-15T16:22:19.930Z",
+        "level": 157,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "e0fab3bcca4c29fd7560c2c7d687bd1de7aa0963f96f376f21d88aee6d975f9b"
+    ],
+    "email": "juliomatos.c11@gmail.com"
+  },
+  "sebastian.zuniga@vendomatica.cl": {
+    "name": "Sebastian Zuniga",
+    "phone": "56975102532",
+    "passwordHash": "39e84aff6ef157c084654b60cfe2f6bd:d67b95539ff6deebfdec44bf11c89f1ae17ad8efc9a1522bf2862d31fd0f1c90c57ad10909f0099065d999b4255fc8123ae617f04f8a310c91cfb1f8ab96190e",
+    "tibiaCharacters": [
+      {
+        "characterName": "Sssesss",
+        "registeredAt": "2025-07-15T15:59:12.896Z",
+        "level": 186,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "9f8544a65ddaf7679b56acaed9f271424c93044cd6d261cca32bf2cfe88f6b4c",
+      "a70022a98b0ed9dd20ee5330c3ceb0e8706636c8c5dcaadcdeb63e29f39fd92c",
+      "a3301829c776ffb60a2ca1e561414e876ea966a4ac62548eeca5032f8a3dd6e6",
+      "ed868d4dfdb03379f83089a2d8c9a55014a93d9a15977963569da6a151c9383b"
+    ],
+    "email": "sebastian.zuniga@vendomatica.cl"
+  },
+  "rapha2929@gmail.com": {
+    "name": "Rapha",
+    "phone": "11946788933",
+    "passwordHash": "ec028d039d883bda533682a327f19be6:aeff44cbf2b67c53bc1372b6d8cbdee75cd2e1fb1bb19fe5ceb4839de52c66cd44d66cbe9a0a3157bf8ba9b192122dc8b34cdc367bb1f0bfc7c260d871c8109f",
+    "tibiaCharacters": [],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "fb17db6f365f2d5531b464ea26afdf0f0632a6d7430cdac10561f4fc866570a7"
+    ]
+  },
+  "ginaldoluiz64@gmail.com": {
+    "name": "Ginaldo luiz aires de farias filho",
+    "phone": "83988925917",
+    "passwordHash": "7e164c2bcc65814d5d438e2b594a2270:0c3a34d0d0dcc95cc662567a9b81e41c28a3940310fd350d93b7d2a69dde3eb9d50896d23075713ce3c8ab772ed1a416beeed2bd00677bfd9a90109ded974d19",
+    "tibiaCharacters": [
+      {
+        "characterName": "Avatar Ironfist",
+        "registeredAt": "2025-07-15T17:48:11.074Z",
+        "level": 208,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "4e6c265955352407157494ea15885049da7cc2955c4b2d04b79a7b9659a2eaf7",
+      "68170e37f826589dbbb86154a472cef5821ffe149b4273968df959fbc10512df"
+    ],
+    "email": "ginaldoluiz64@gmail.com"
+  },
+  "humbertosilveiracruz@gmail.com": {
+    "name": "Humberto Silveira Cruz",
+    "phone": "53984132261",
+    "passwordHash": "148a186ebb9e9d8672b36f06c42e1d50:3d54ad57d7883af0bb615b48c6f8a861533819971d51971da1c85f01f7fd207f0eb165f785699cca0a26bdeba394175a8d3133ccaff9dc3073c5e5963723576e",
+    "tibiaCharacters": [
+      {
+        "characterName": "Srel",
+        "registeredAt": "2025-07-15T17:54:02.657Z",
+        "level": 104,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "1dfc969a66131e58d63df91bdfeb228a65bde4f706a4ce2ae5a8de5a5b3d427f",
+      "cc2d8ad9894c9fa87f6d62c5e1824e93941af7599a62499bca8ea61442045f4d",
+      "8d3250d197d3bda1ed2233eca97e9ccab74767450e02c0dbd3031a94c10acc8e"
+    ],
+    "email": "humbertosilveiracruz@gmail.com"
+  },
+  "lucasrocha0903@gmail.com": {
+    "name": "piett",
+    "phone": "17996722737",
+    "passwordHash": "3b382487836695e1ce22f814a375404b:2ddcbb703bf6517106e3ac58d8cdcc50be6af8be5ac30c5711396c8e3996d0e1e62f9e77a7bed4f40971153214d42db93a1876d693bfbb4bb5c8262e30da033d",
+    "tibiaCharacters": [
+      {
+        "characterName": "Piett",
+        "registeredAt": "2025-07-15T18:33:46.856Z",
+        "level": 345,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Member",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "9ce115dc54830a92a7b345da189d48e23f37dccabbaee463d75561513119fc0f"
+    ],
+    "email": "lucasrocha0903@gmail.com"
+  },
+  "vkasdew@outlook.com": {
+    "name": "Kacaw",
+    "phone": "5561982562030",
+    "passwordHash": "81a6a5101287c48944b750121753800b:8e046302557ae6c63e4a1df578563ffe46e5de6256279141e5cace93877d2cbefe5dd5784ffbff8c5ae0b9bd8efdba2204d4551ffdb475beb58b746d43ef68e7",
+    "tibiaCharacters": [
+      {
+        "characterName": "Kacaw",
+        "registeredAt": "2025-07-15T18:03:29.474Z",
+        "level": 175,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "4118ecf5a8c53833d736f744a0d39e6934907aa98c011e638879b6ba8c69433c"
+    ],
+    "email": "vkasdew@outlook.com"
+  },
+  "matilisk.ttv@gmail.com": {
+    "name": "Nythera the Unfathomable",
+    "phone": "+569 85963020",
+    "passwordHash": "9cf9fbd2128f404f24ead2a1fc8d2057:ac46c1969a6656357ab689b5ce223328aa80be35ff5ebc7a59e0d4492a9fc33ecd9fc4a5107c2e396f52d3e204fd658d699cdc3df07d8a96cd7169335bb1f15b",
+    "tibiaCharacters": [
+      {
+        "characterName": "Nythera the Unfathomable",
+        "registeredAt": "2025-07-15T18:14:51.601Z",
+        "level": 153,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "39d4da3f117b8543892b06960f5c72ca0049c2f3ad7b7ba64f20ed3789e51fb9",
+      "16210d20966caaa002ffa9742970e1cbee053993e971b3198cd8866a8f6b63b6"
+    ],
+    "email": "matilisk.ttv@gmail.com"
+  },
+  "namelessone187@gmail.com": {
+    "name": "Daniel Pombeiro",
+    "phone": "83991274774",
+    "passwordHash": "2c8ba85135d69ade96e081ebab8dbeef:19856254ebbba4e3c17b2c1529432cacc71c2f0591c5252d91b6c7718b08019f5c4a2cec744aa9e8ede671d2ad65a0605ef9dbf9d6077028cf8ba58fc4e9f634",
+    "tibiaCharacters": [
+      {
+        "characterName": "Sem Nome Emingles",
+        "registeredAt": "2025-07-15T18:40:17.651Z",
+        "level": 139,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "1f4d15b37e188bd8161b29d0981b56a33b3d002680a570d5042741c99683b703"
+    ],
+    "email": "namelessone187@gmail.com"
+  },
+  "gamajunior521@gmail.com": {
+    "name": "Luis Humberto Gama Junior",
+    "phone": "64996003702",
+    "passwordHash": "b88ddb144fe1a6b4db396306a95003fa:9db9dc9580db0d2be05b1fe85072f23f76add1e8b68dffae44c8e9ed0bfeb0961bc133f94fe8264144e339036bf27016b8c7d8ecc94ebaa5ea26cf4c934c9299",
+    "tibiaCharacters": [
+      {
+        "characterName": "Ekcacheiro",
+        "registeredAt": "2025-07-15T18:32:13.302Z",
+        "level": 215,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "ad65e2fec26e6ce295d540b98fb13d9a6aa5809c1eaf19127cd9abba38dce847",
+      "082035806bc8d11a9548ca5bde340ec66c88749d0347080102afb8c9848f34d6",
+      "76a06abe5b8b9b97274599a7ae5fed1c1375d89e231b393e39c07ce6d8fa3286"
+    ],
+    "email": "gamajunior521@gmail.com"
+  },
+  "caiovfrota4@gmail.com": {
+    "name": "Astronautatcp",
+    "phone": "21967831215",
+    "passwordHash": "c2df753d10821d383829b7d6af32bb1c:e219b19c42df94c6fc10f75a32601907f474dbc761c7b6a48cffc3c727e6e6740a19f78253aede7d36125f27c2cf53529f1311da64a0505756897b780839df5e",
+    "tibiaCharacters": [
+      {
+        "characterName": "Astronautatcp",
+        "registeredAt": "2025-07-15T18:31:16.677Z",
+        "level": 252,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "f32e626f1117223707e24eccdf8790e9c1b5cf2795cae844d6e4ec9dc08e683c",
+      "ade9d259322617374f2a8ec58f7979863cbfe9e7aa5b2d35a9b6bea7828a9b1e",
+      "93e9bd6d44b6782733ac054b679d267f4809dcaa8e00bea93363c181e0ec51a8",
+      "71c2555c594f5efd529a30f6815b5750a31cffb21f4ea58cdd6009f7dc155018",
+      "f8b72c0377d5c42326161fc20f0b930d6b06aa8ec74eef463c56d3aa8d80e7d7",
+      "b04f3d217e24b529a88cb70ba6d5948e4825cbb7e3bd8ab717ba0d70b78d61a4",
+      "db9159ea11695f26549ca76238471300feb59b9f4f2a6b1ac7a98f74d9f216aa",
+      "31af31eaf2704d8954fffcae83d1858b884720c25f377a33ba44ad0c0f598593",
+      "20ba5e405d5e424601e84b2e382466131f866832940bc206ccab52aa9486a684",
+      "45eb6810f3ac78aa56825a37ec4a2509bb2beac9b31bd25f16c9fbac3316cc66",
+      "9219726933f5f90018e87fc19cfbdc229a5b29827d18b2153a04b6e0b0cfd6fd",
+      "640e179b068551f236f62c2fd20089e67e8b6e0b65e7f257ba72f51a19b54d71",
+      "7a60fd38b9c837ea099fba5152ce5054452a1d0fdcc9d9f5e70396cb111947a3",
+      "38089c6c0aa30cc267ec3265225a5dc06d8691b3d601c3a330b2f1fbc2b219f9",
+      "c9d368fb5a6fa4d577e33911641e5c4320676fb2c0be399cab761a5ee6cf1039",
+      "c5894701d92a9d47c65636a42f46e11c508aa13aba4c7766a74b798330d8eb01",
+      "b0d08e4ca24b9945499a1d8d7d12e7a1f1a894ca95cd0b1b9ecf5e0f9350cf32"
+    ],
+    "email": "caiovfrota4@gmail.com"
+  },
+  "gabrielneves@dr.com": {
+    "name": "Gabriel Neves",
+    "phone": "44997095559",
+    "passwordHash": "f3828d389f2805cd95495448fbd8fdeb:56ae9b0157ccd475e91be8feed2f1abc65ba2c431b52465b9053966d816651a7c8ab89af53005ee0fb9b0a9759e558bce7a232a9dec2a2075816765948e7dcc8",
+    "tibiaCharacters": [
+      {
+        "characterName": "Dnig",
+        "registeredAt": "2025-07-15T18:53:56.232Z",
+        "level": 147,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "fb29a134117703a191ec9c107283a0dd97767c906e14788c1e20f5b8366ee43c",
+      "c5065cd8bac5a66d9730b6cee09abadc4d2b793340ac195a5f477f3db380016d"
+    ],
+    "email": "gabrielneves@dr.com"
+  },
+  "almeidalucascoelho@gmail.com": {
+    "name": "Foka Axe",
+    "phone": "51994528909",
+    "passwordHash": "9309a15677fc39b461563719fc68f784:3ccd836ee254f77e094c4d503a458aa27dde83003febc814f0ab8700d9d9f8e01062bb33797309b1c8c97883d0e42c1062ee7de381a7bcb391d215e37774fffb",
+    "tibiaCharacters": [
+      {
+        "characterName": "Foka Axe",
+        "registeredAt": "2025-07-15T19:01:54.712Z",
+        "level": 147,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "32b4eec9b2dd5cc1fc6c1e2dd757e711d3bb27358e7429efa7a50df3ba689fef",
+      "b095a48de4621af582211e91fc4e84221ae9cffdf4b5dd05836ac2b044313980"
+    ],
+    "email": "almeidalucascoelho@gmail.com"
+  },
+  "bruna2020adao@gmail.com": {
+    "name": "victor resquin",
+    "phone": "18997039803",
+    "passwordHash": "4bcbd20255b059973f477aaf36f2b515:64e5dfa38c94ab9cd0e47bc7a4bdada55daf59d47fb0dee1bf61e420facbac472291d09c062fac44359067ee71c62c53ace47af4363973dac9d0730649dcf75a",
+    "tibiaCharacters": [
+      {
+        "characterName": "Matteozinho",
+        "registeredAt": "2025-07-15T19:21:36.925Z",
+        "level": 238,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "b1173395567d2ae1561e333f656feaa766bb398f97e385a39e33b6053035146b"
+    ],
+    "email": "bruna2020adao@gmail.com"
+  },
+  "eugenio_capatti@hotmail.com": {
+    "name": "Eugenio Sebastian Capatti",
+    "phone": "5517974003508",
+    "passwordHash": "96e8b15d36aafa0d71daea58024cfce3:6a51bdbef6ce1fec6d884e4b2f90c9a6b6233ffe0ff15b6d7849fe645100d2523db357d0b009a3b764754fa6a7d2f5d16b8bdfcfd46415959b725f0ed1154284",
+    "tibiaCharacters": [
+      {
+        "characterName": "Blezah Fiih",
+        "registeredAt": "2025-07-15T21:18:27.329Z",
+        "level": 183,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "440e9d7d1cb54297d918d444f046bc41ca97bcc73f6200fd5c05912ac4424418",
+      "bdb08b0eb78c504559912624c9492e3f109324ef56172b444a0b58cb6069cc72"
+    ],
+    "email": "eugenio_capatti@hotmail.com"
+  },
+  "realnissin@gmail.com": {
+    "name": "lucas k",
+    "phone": "53991828668",
+    "passwordHash": "8a29d1ff92b431cae7b34eea649c3a03:e7ef5fd03a3a25eb71d49272099b10866e825c570106e1c5267cbf5d3b2bdb2d81542a7e23592fb628477030ca44ab1e93c8462b08c6902dbbb89728eebb4086",
+    "tibiaCharacters": [
+      {
+        "characterName": "Rartuig Last Try",
+        "registeredAt": "2025-07-15T19:36:03.768Z",
+        "level": 136,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "fd49e0c50d6ee8522c231c0c6251af257e946944cea2fdcdb4d5f5f130e06a2e"
+    ],
+    "email": "realnissin@gmail.com"
+  },
+  "putaquepariunadadisponivel@gmail.com": {
+    "name": "Mateus dos Santos Carneiro",
+    "phone": "21982881170",
+    "passwordHash": "28aab82a887695990dac79d9ceec23ef:e9380084d65dace479139349f9f06818eed8d9398fdf1ff650f367e9a72391fbc1d435158441319498b69dcd56f42709cda7280f860beca86d40f29d5b86e44c",
+    "tibiaCharacters": [
+      {
+        "characterName": "Ravena Zor",
+        "registeredAt": "2025-07-15T20:18:19.589Z",
+        "level": 277,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "c280b67bcd0f7d174a0457af35b181b03c2326ef8114576afeaa9e0cdb2aa876"
+    ],
+    "email": "putaquepariunadadisponivel@gmail.com"
+  },
+  "jekp139@gmail.com": {
+    "name": "João Paulo",
+    "phone": "31 98959-2112",
+    "passwordHash": "3c9642dcc5b833c60ab65477ff57b734:18c5d31f80183c1419d824a1bc181edcba63f4e183c7c6b6f6dc7c8819706dfe082bb330eb6e6908eefe6bbf877eed1012155f5f99733b2c2c97576765deaeba",
+    "tibiaCharacters": [
+      {
+        "characterName": "Dapsun",
+        "registeredAt": "2025-07-15T19:54:55.497Z",
+        "level": 330,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "3713bbc9b5a408fe8f6d75761c5e1af2ce08d82465b0a533ef792da2abf90814"
+    ],
+    "email": "jekp139@gmail.com"
+  },
+  "playeryoshi@hotmail.com": {
+    "name": "Roger",
+    "phone": "31983999834",
+    "passwordHash": "c0569c00a25271de7aa8ea0e1f9f5e50:bae58f6b3199303166c92bb68b574e8b8aa877a27b4f1476dda75ab0c0f5201d7b36460cd85e6d4eb342bbae4efce7a11df1152cccfb2e23d39c6ecfbdaeb8b3",
+    "tibiaCharacters": [
+      {
+        "characterName": "Natureza Proibida",
+        "registeredAt": "2025-07-15T20:16:02.504Z",
+        "level": 290,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "3cf51e79be3cfeebbe9f330221a9bcb5cea18572acbaeb940e4dc65b11b5fb69"
+    ],
+    "email": "playeryoshi@hotmail.com",
+    "activeCharacterName": "Natureza Proibida"
+  },
+  "coberturademorango382@gmail.com": {
+    "name": "Sarradorpro",
+    "phone": "41996413189",
+    "passwordHash": "6a3ae35a20586fbe5e882841fd673a73:4c60068fb81865bb4cf8e04ad5065cc730fe44d21720d0127209339e7e59d2bccd647fd37b79c2334ab43e07d0ed792a68c6c8429889c241343a490a6572d3c6",
+    "tibiaCharacters": [
+      {
+        "characterName": "Sarradorpro",
+        "registeredAt": "2025-07-15T20:27:39.341Z",
+        "level": 247,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "871ca7cb325e1cf1ce269fbc2af2a85e09e3ceca860c1a2cb33a1ec8084098f8"
+    ],
+    "email": "coberturademorango382@gmail.com"
+  },
+  "luizfelipenobrega99@gmail.com": {
+    "name": "Luiz Felipe Nobrega Viana",
+    "phone": "32988787471",
+    "passwordHash": "287af371c0c2dedabc328076ea785824:b5ae60691ec31941de022e47bd4ca55d49bf1b2bc6c3c3742ab650e795658b7f728059c8712ba36d8bc13a9d99c1be70f53e8453b1a8832f0653c48fa2979c35",
+    "tibiaCharacters": [
+      {
+        "characterName": "Luizibra",
+        "registeredAt": "2025-07-15T20:26:26.131Z",
+        "level": 166,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "0cbd3029d359d7af05318a95f4b4a36b88f8de6e79163cfcf9783c80bae27a15"
+    ],
+    "email": "luizfelipenobrega99@gmail.com"
+  },
+  "menicucci.daniel@gmail.com": {
+    "name": "Daniel Menicucci Teixeira",
+    "phone": "31995413415",
+    "passwordHash": "a96e9144cced4da34736275e040e013f:71fe94080062963a870c145c6b39fd4a27d42cf41bbbfab738ffa383da9a50fc2ac08eb18957fc93d45e5d818dff681a03e3580a467a2d587410db42da2c450a",
+    "tibiaCharacters": [
+      {
+        "characterName": "Santo Amendoim",
+        "registeredAt": "2025-07-15T20:27:15.341Z",
+        "level": 226,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "b219d40666d8be604516d678663e6610fd19865e98e8214927ddfa28c8f9401f"
+    ],
+    "email": "menicucci.daniel@gmail.com"
+  },
+  "giuliano.inter@hotmail.com": {
+    "name": "Giuliano Ribeiro Dutra",
+    "phone": "(021)96579-4802",
+    "passwordHash": "2dde5db51e693ab9088e554927f6b828:cbf946e92f230151ca4b8e3a6140fd417f25ea0d2a91c29e76aa47db5ea1e7eaf7aa23f64ea8dc28f72812b07cc4859eba0ffc26f6ff413969bc72317d49177f",
+    "tibiaCharacters": [
+      {
+        "characterName": "Ser giu",
+        "registeredAt": "2025-07-15T20:28:12.588Z",
+        "level": 256,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "cd3dfd85de52df1c59c4a3a54398bf16023f6d1eab0450ffdcb3b55ffed151d1",
+      "ee37c368fd1d2036dc3c636b5e1ce0c0e235b6446de7966b64839aaad073c3e0"
+    ],
+    "email": "giuliano.inter@hotmail.com"
+  },
+  "maiayuu@Hotmail.com": {
+    "name": "Gustavo Maia",
+    "phone": "62983122913",
+    "passwordHash": "3ae1c327c490b9b92cbeff296d0bc20b:fe813938d785289c63fa0ffbc2118d6300501b2579ac3e3c4f0c57229bbbe27da2b7e1e9b7a5c2e7d2fd28d0dcf094fe501857064be7fe28c1e3367062cb361b",
+    "tibiaCharacters": [
+      {
+        "characterName": "Akali Fen",
+        "registeredAt": "2025-07-15T20:29:18.356Z",
+        "level": 182,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "a5814170599b0152bafcddaf24c77d9e9b302c7ee586525715fb89fb7fff8b52",
+      "c880e82c6458e3e05b2983ab8a035765255a7a598e4c0585acc36d013a87310c"
+    ],
+    "email": "maiayuu@Hotmail.com"
+  },
+  "baleiatibia@gmail.com": {
+    "name": "Daniel Leão",
+    "phone": "31996436829",
+    "passwordHash": "b62893483c51f7c10482b9a6756ed1b3:2d93538d16a03747475b23f20e44c420e49d890cca4d0ca2350b5feb963facffa1c49414570e93df5eda27fae15647a4357775c9faae08e4f1175777b176e172",
+    "tibiaCharacters": [
+      {
+        "characterName": "Baleia Obezza",
+        "registeredAt": "2025-07-15T20:33:31.868Z",
+        "level": 255,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "1e8406361d5df4982b4e40431ed412e32a741a89d4b4f19c869b618712780f97"
+    ],
+    "email": "baleiatibia@gmail.com"
+  },
+  "r2scontemplados@gmail.com": {
+    "name": "Rafael Hanter",
+    "phone": "48 991994433",
+    "passwordHash": "72966679a939907580d7a4ec05cd15d2:f2d28385315bffd8fb3398ffe9c5edb2520c46b00c49d8eed1991f9361b2fc247b3cd02ddd0553b8f07ea51eb133056b16f377646f65b847e054e1a63153711e",
+    "tibiaCharacters": [
+      {
+        "characterName": "Hanter tanks",
+        "registeredAt": "2025-07-15T21:01:05.552Z",
+        "level": 131,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "55d1c315e6c05aa2e4c3589c1ec47654f467e460840197dc155bd5dd70c426b0"
+    ],
+    "email": "r2scontemplados@gmail.com"
+  },
+  "lucaslock15@hotmail.com": {
+    "name": "Lucas Diego Moraes Sulenta",
+    "phone": "48996706422",
+    "passwordHash": "00d722a6cda07a31e410e9d48d4c8f2a:29dfc940bfd8aa63f24e10650f8b53f01851262e994fe1b7c6a01c08b6be22bd597256590451028f15ae3e23225b8af34c96aa10b05c6f8870b6816bf7dda7fb",
+    "tibiaCharacters": [
+      {
+        "characterName": "Rowena Darkness",
+        "registeredAt": "2025-07-15T21:01:54.009Z",
+        "level": 206,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "ec7b1f4ccf7c9f07395ed5ecd73b8983d228e234ef924ce7440284544e48d944",
+      "06563cdb96c5e12ba23d07eaa54d8de3ae34c073410bdd206fa0e5e1a363f267",
+      "c1d3f0551791d676a546ef0556286f5725eda56865c31cd339195074eead48c1"
+    ],
+    "email": "lucaslock15@hotmail.com"
+  },
+  "victornds94@gmail.com": {
+    "name": "Victor Hugo de m leite",
+    "phone": "21994542456",
+    "passwordHash": "a618f81c26560591cb17eafbf990cc85:2ebea696438a82cea9e816d6dd91f1659ce388d3c8900081370b76552edcc9114db7fd6867f47dcd020fe40267e13cf078304d126441d2a90a3867e7adcfb705",
+    "tibiaCharacters": [
+      {
+        "characterName": "Mandinha Mont",
+        "registeredAt": "2025-07-15T21:40:21.595Z",
+        "level": 156,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "391fdb7d400bd876e3600b9cf90cac3958a3a0c0d5c15d8123c96f7f5285766f",
+      "7838ee7bcceb37d22a292545361c4c6823525e5d6f525d247bf5aae7cc5acc40",
+      "701914165a4ecfd02d83a97ae252dce7f3e7cbcf4ceda0c4b6354d1430193828",
+      "a7fe5f62d7e910cc6b22be5fcaef6b22281b2f57a54743de13e237ebd51f097a",
+      "07eb5d7468b1f197d0664ffbea65c871a62859d1847cf912d868437e3c519ef3",
+      "cac65fbfd0b37477d043edd2ac3155bb2087f893a225e7a45dccee2e24eef40d"
+    ],
+    "email": "victornds94@gmail.com"
+  },
+  "l.evangelistasouza@outlook.com": {
+    "name": "Lucas Evangelista de Souza",
+    "phone": "47991198756",
+    "passwordHash": "db4143903ef5f31f606d6047ea279a00:8cc3588d1af7d2e0050985dcd67722d46bfc057562013c1f574cd983f8866aac7808fedda223b5edd8df8dfb91cca8563c0f9cb1ec8438f5efcb67320a1c82ef",
+    "tibiaCharacters": [
+      {
+        "characterName": "Mutley Mage",
+        "registeredAt": "2025-07-16T18:25:41.830Z",
+        "level": 284,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "fcd39d691fe958a9cfb3048db3806033914a2f9adbd887d4c1dd7a3b4f56a77c",
+      "a08d9ff4227d595e937cd3ac490620e358a08ced2e162ba86668ee06c2b90636",
+      "fa2416acaa82941f0132c97828db2f27366bce0d6ee7bd0588ca99b8fbf351bd",
+      "eb79bed9877c673f78c65343bbb373020bb577ecf1cb25cea6e562019581cb7c",
+      "9b81f3ddf78037ab2036f1c2a9e0416d54e85e511394433b01974123ea757236",
+      "1bc8df5676175251fac3ec02bb5e3d6599cd55f5029ef559a884c79642359624"
+    ],
+    "email": "l.evangelistasouza@outlook.com"
+  },
+  "nenidual@gmail.com": {
+    "name": "PAULO RICARDO WALTER",
+    "phone": "51992294369",
+    "passwordHash": "689f4e22407616cdf378da32c622f9a2:8cba98146de52b593ac874c5c66dae86049254e79d9f346c6b686b2f6063f79d1776f698ce74c41fd04a2bfe982248fcc284f077f3b745936b3559ecb7f67b08",
+    "tibiaCharacters": [
+      {
+        "characterName": "Fujaksx",
+        "registeredAt": "2025-07-15T21:33:29.136Z",
+        "level": 314,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Member",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "bc84669821abe8625951b0ea36a876cda6c96cc00d7d89cb53f80973a41f65ab",
+      "c00799770b6f1710c885f914fcf1502c0355e2dfbb7752bc49d5edb294253c8b",
+      "655784936699e05fad6be7a0e5bdceeffb6970dab82c7c0b6e649abd00232a1a",
+      "03709cd96597d9f70b3377de4e5790d500214fecc9bcf042c405bdb4d1f8a033",
+      "883463c43b39b92325a691bd76ab4e03d20aa2400e211516261a5992048b79ad",
+      "65055a457bb59b2d5da1035c2af01c0b364828b6eeb7593d3de5965302a9b62e"
+    ],
+    "email": "nenidual@gmail.com"
+  },
+  "guilhermecolzani@hotmail.com": {
+    "name": "guilherme colzani",
+    "phone": "047991991174",
+    "passwordHash": "e96e4f68ad8b51a2f066e85fda58178f:a28d65d081d9a7edbd9caf43b3dca03955ffc0ee857cd4c17544954e76c29c9b30e38267d5e0eedc3f7bd58e47e17d4a60670ccbc56b41a41e990e624234911e",
+    "tibiaCharacters": [
+      {
+        "characterName": "The Colzane",
+        "registeredAt": "2025-07-15T21:38:03.016Z",
+        "level": 297,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "75104dc8eb0ff1ff4da47d71bbe011a7bcd8f135c5ca059a2366048c7a3f3c04"
+    ],
+    "email": "guilhermecolzani@hotmail.com"
+  },
+  "gscheffer@hotmail.com": {
+    "name": "Gabriel Scheffer dos Santos",
+    "phone": "11981574530",
+    "passwordHash": "e48cdb6b1d16c8fb75ea64521b317fe8:cbb46d46acb87f8fae00c60286fa726bf92e6d312ab47c4a1062285d6460eccd8fc70825d10444be0028322e3d198f7894084f26aaa86736e46f57039732ac74",
+    "tibiaCharacters": [
+      {
+        "characterName": "Emizin",
+        "registeredAt": "2025-07-15T21:40:34.446Z",
+        "level": 129,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "fb4b497d38d1912a450290e87a6d512eb82b3d98be7a6d2c51452ea8fd45f78b",
+      "61263d34905b6b5d001c1e1273354cd5a04b7dedb985b8ca6455338c631249cb",
+      "768f1bbecb073c6ab612c1355641b7ae169c2a145ddadd191da04d41a96e3bec",
+      "175aa4da869726626a6b41646c5997e376478c17f7734f14295ba49408885866",
+      "8ae3c6ba8dcd7578d6a4dbd34d85063f0093b3318566c4c197a625f41c5292d6"
+    ],
+    "email": "gscheffer@hotmail.com"
+  },
+  "rubao_@hotmail.com": {
+    "name": "Rubens de Jesus Junior",
+    "phone": "11976252516",
+    "passwordHash": "d67a0f8613337ce654b719d04c03db7e:248ca8749a4e116758881fddf6233f976c1296b4001ccea7641c9fa05d493b6ae59e3168e7c8254df64f2c690de506d7553dc6ca3115977ca4b75a612d26fe9a",
+    "tibiaCharacters": [
+      {
+        "characterName": "Royal Kafeyna",
+        "registeredAt": "2025-07-15T21:35:08.508Z",
+        "level": 233,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "f1c8ff323d1ec9c24587c51588ac8e71ed79a2a27d99272e87583a9d5201f158",
+      "e93e550607e26f45ac850ffe1c323b36900fd1a09617376646455db9dc21ab5e",
+      "6f63901deef5380b0c90f4bb8dff38ecc40958cda6b61263cedcce5674cb5e8b",
+      "56ff4ccd805646a6caa0700c072f544d509cd9867b68dac8bbdd6d5278f9734f",
+      "22e25d650a569bfea4250d2baf520bd2ba5ed6f4ea6959c10c79ec0c8dc5f365"
+    ],
+    "email": "rubao_@hotmail.com"
+  },
+  "marcos.pjh99@gmail.com": {
+    "name": "marcos vitor de aquino",
+    "phone": "11997931708",
+    "passwordHash": "6a93473cee7852035bdcebc15e8eb0a7:31ed3af801eb58e2aa925391cfa1fc24e4c63538993aadd77fadcb0f81131e6276b5fa30b025db400c03ae2751c89bb91335c77dbdbcfcba3d88d542b0cb23d7",
+    "tibiaCharacters": [
+      {
+        "characterName": "Vitim Luzibriano",
+        "registeredAt": "2025-07-15T21:46:18.090Z",
+        "level": 310,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "6f078d028a9f6e7c5c35c564a689d234f0e81e39297114d64648f7f38344c304"
+    ],
+    "email": "marcos.pjh99@gmail.com"
+  },
+  "mantheus369@gmail.com": {
+    "name": "Matheus",
+    "phone": "11961963616",
+    "passwordHash": "52e85cc4ea6b616f863e98ec0fe69630:344ff95fdee0d2145ae07af64ec4c2bfeaac48e07c8536a9e78b03435f741dc7022af9577e0037c721a416ec856375690cd6eacf3dbd6e9a5869a9a19e96fa05",
+    "tibiaCharacters": [
+      {
+        "characterName": "Bolador de Gelo",
+        "registeredAt": "2025-07-15T21:55:37.093Z",
+        "level": 302,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "5900a42df3f504ca1bc212c5ff1a8ccda9a33445a57448585957d7b56b8a9f10"
+    ],
+    "email": "mantheus369@gmail.com"
+  },
+  "marcosholiveirabh@gmail.com": {
+    "name": "Marcos Moura",
+    "phone": "31998996166",
+    "passwordHash": "02ec01a5a4da47f807591fc292b81de3:69f563544a9ca24cf479888b503349819a2239d4b7954ec5f2a9fc8064545f025771faf0c26775fbbf069687f95d2e7e92063dca4105ba22d28e9f08b0038ffe",
+    "tibiaCharacters": [],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "1d9668cec9ef1d153d18052eacd66bf92c9c2a99545f437888e13e92cc429fc7"
+    ]
+  },
+  "gabrieljanir96@hotmail.com": {
+    "name": "Sir Bibito",
+    "phone": "11975016354",
+    "passwordHash": "a2d9b330b5f8253de2a01b3f067b5299:a64d79128717f68d9fc8b89e2e2f6d99f58eff6c2330cc24112afe7669f6505964072293e1fc2bb83004e2e00e671addeffb289c2ad5c7b23c0737d46be51eab",
+    "tibiaCharacters": [
+      {
+        "characterName": "Sir Bibito",
+        "registeredAt": "2025-07-15T22:06:56.043Z",
+        "level": 174,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "948a8a85286cf6cbfff0a9fa16ccc95e752b93c6f6a07052678ba789bd54e47f",
+      "559a05ef5da876226757580bac543b1222f5839100f160028181bc2970349558",
+      "f16740e28f83d248c7b264211fea26552a76a2347e44a537bd554c35e83194aa"
+    ],
+    "email": "gabrieljanir96@hotmail.com"
+  },
+  "klon.lima143@gmail.com": {
+    "name": "Leonardo Araujo",
+    "phone": "79999817298",
+    "passwordHash": "52e2ac660ba82a6aa74603ad2fdde550:7240e4b441fc13122196eb99700ab34fa2efefa7e23ca76c587d804101c5c726b738e10f79116fe35091383fd0ea9b4608113a2f3a3977fb1635a419e4036576",
+    "tibiaCharacters": [
+      {
+        "characterName": "Amanda Serena",
+        "registeredAt": "2025-07-15T22:11:44.689Z",
+        "level": 374,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Member",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "004482a72f3e479c969bd57b71cea20311242c2b64437d4709c22a99ba4d5d34",
+      "12379915bc86b9dc937d908e507339ba0a4b489d095f6dab8bc70c97742d70df",
+      "69ff7e6fadd57cabc9c582b5e7ac8871bd73dc671cb555360ecfa2bc4e9e67cd"
+    ],
+    "email": "klon.lima143@gmail.com"
+  },
+  "juanmichael.eng@gmail.com": {
+    "name": "Juan Michael",
+    "phone": "62982764704",
+    "passwordHash": "586db9a9ace173b79209a51a419c88b5:24b7af8d267a1fcad6d0c55d87ceb8de45abbc73b1bf1690d8ec194bcb442128d3b7398dd6d0a83620d3e477c18947293a6fcaa43c45af510322ab025ecf595a",
+    "tibiaCharacters": [
+      {
+        "characterName": "Itz Overmago",
+        "registeredAt": "2025-07-15T22:21:36.004Z",
+        "level": 253,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "d38570fc31530656d8068fe38664e4ba3132a892e0c54d3fb042b3567339cd83"
+    ],
+    "email": "juanmichael.eng@gmail.com"
+  },
+  "guikawa.tibia@gmail.com": {
+    "name": "Guilherme Kawashima",
+    "phone": "11970152885",
+    "passwordHash": "b8731600752acfe26b78a49e294d12ba:8a7b68df148e9905e52747871a6dc8f3cfa9a1151976719beb6b66853f1006e440bc650e4229886423a61f9e5c2c813a6ebdfbad8c27cbbe0f4bdffdd71ab68a",
+    "tibiaCharacters": [
+      {
+        "characterName": "Zarthos",
+        "registeredAt": "2025-07-15T23:04:22.744Z",
+        "level": 197,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "b65a7ff46dbe257b2240400fec8caeea26be06e00f6df554d6f7d29c9c2562e1",
+      "40b1d19bd9d6a998dcaf03bda80a3eb98e825eab59a149683b75df4b46cd17fc",
+      "8ba9de6b6c4cba5bc5622d1b8d875e74a56bf1033856292ca6b0b0994205a812",
+      "cccb1abe02d61e11e4d17d54764e0e9f933917515c432215a49e0a2940cbff47",
+      "f8b625aa5708e5e36ffd48623b5433dde47b32344c457fc037cd250dd781a058"
+    ],
+    "email": "guikawa.tibia@gmail.com"
+  },
+  "rafaelmadden18@gmail.com": {
+    "name": "Rafael da Silveira Soares",
+    "phone": "51982710806",
+    "passwordHash": "ad23987c13be1b7084b6d77cb00163fd:e43e54f3673819fd706674a384ea8bd361eb1505f1c3efb02e136bfea05e42e9b66c442d43b65388a57e1a7b2f6449c2f7ea67b46c3e90af9b26d8ea5ca314af",
+    "tibiaCharacters": [
+      {
+        "characterName": "Rafs Luzibristado",
+        "registeredAt": "2025-07-15T23:12:21.556Z",
+        "level": 131,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "eb703a0f4e9873e21ca1bbf790f8924fdccb33a3e725c147e771ab457dd4fd99",
+      "b4b769202fdcab69b5f187e8f630f01982ac62b782f8cc793adc8996ee8e4916"
+    ],
+    "email": "rafaelmadden18@gmail.com"
+  },
+  "skullmago.uba@gmail.com": {
+    "name": "Ageu Couto Portela",
+    "phone": "12992035683",
+    "passwordHash": "8b24ef8b109236fb6f9111232785ae95:8d2867f3e6b0a1363a82744cdf6ce48a25d23bc56487efc5b226d47fbce96880869820e5e1fc1ed2d7a2948e693f66e8efa034c9347fc9e7173462d447559b6b",
+    "tibiaCharacters": [
+      {
+        "characterName": "Skullzada",
+        "registeredAt": "2025-07-15T23:25:30.971Z",
+        "level": 185,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "cd687da0bdc1c1e7457c071ff7956c3df5016ddaf9c983aeab51c4351335c3d2",
+      "704e5e15ac6b81cdaffb0f1360d478b38098acc16d02cda77fb9c2ca96b11b33"
+    ],
+    "email": "skullmago.uba@gmail.com"
+  },
+  "gabriel159garcia@hotmail.com": {
+    "name": "Gabriel vinicius Garcia",
+    "phone": "(18) 99760-7018",
+    "passwordHash": "1f02dba5c94f7ec0eacc278918b78e7e:ebdf1e87bf823d561e70ce3f385d3b0f5666f0480b2fa3163faabd2c5d910b9f0a5b727dee5b14fafcc9a3dbfe9e3e51dc629cf78efe174b53b49eb2fb5e95f0",
+    "tibiaCharacters": [
+      {
+        "characterName": "Hallgrimm",
+        "registeredAt": "2025-07-15T23:10:50.769Z",
+        "level": 174,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "ff9affc3826cb50f359b352b8e640ae92680fd7a0abd858e4e3d44bf749fad36"
+    ],
+    "email": "gabriel159garcia@hotmail.com"
+  },
+  "marciodiassantana@gmail.com.br": {
+    "name": "New Croonos",
+    "phone": "71982085820",
+    "passwordHash": "545f61d34c01e8ada64c3e4fb75d764e:f774c078f199eac7153e7918cea91171c542b81adcb1fcf2f9bfaa64b396351e7a16240c656a7c9df5261ef250211574de476e9164bb91820be313d78f8a22b0",
+    "tibiaCharacters": [
+      {
+        "characterName": "New Croonos",
+        "registeredAt": "2025-07-15T23:09:59.013Z",
+        "level": 254,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "71b814c3b112959fade4a921a8325e95fc632104af7ad25cfe46f1561af03395"
+    ],
+    "email": "marciodiassantana@gmail.com.br"
+  },
+  "marceloavv2024@gmail.com": {
+    "name": "Marcelo Villar",
+    "phone": "16993132019",
+    "passwordHash": "44170c7877d934da6f141ee7a26ffbbd:a4ffa925a2271a95c171cd21592740d2ba580c6fa0ac441d83c397782401f53d00dba523a8ede11f8fb36a0b1980ff610b47ce850e9833202461637852f05db5",
+    "tibiaCharacters": [
+      {
+        "characterName": "Ekzin Boibandido",
+        "registeredAt": "2025-07-16T17:46:41.213Z",
+        "level": 241,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "774ee2239a31560fb556288b44778206a2b83fc684e6f8c88d08578218888bfb",
+      "5ac00fee3671dc6bd1a8acd4cbd0098757218c626ef531daac2fb211e8b1e8c3"
+    ],
+    "email": "marceloavv2024@gmail.com"
+  },
+  "alyssandro_galego@hotmail.com": {
+    "name": "alyssandro amorim de melo gouveia",
+    "phone": "82993094481",
+    "passwordHash": "15407b5b5a1bd4b4ef709cb33758f654:fcf4dc209e9514d4dc7120f996e9e16f0142c421b8fed4783076d34ee8ee25754de886166079508dfd909b47d38a7b597f9656d4a9cc9c6395750450a0ae5b79",
+    "tibiaCharacters": [
+      {
+        "characterName": "Mage Ryzzee",
+        "registeredAt": "2025-07-15T23:25:42.427Z",
+        "level": 288,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "5e1cdcc1a0d6d527a967789bb017f4ca3550608e33fe9b2e1fd4309576aa8bad"
+    ],
+    "email": "alyssandro_galego@hotmail.com"
+  },
+  "joaopaulopel@gmail.com": {
+    "name": "João paulo",
+    "phone": "51994133955",
+    "passwordHash": "5ef7119e0242f6e6369edce9273266c4:94eecbf9a02f27255614a0fad14d8e5cac6c1370bbce1e4799840b992b5c5fa43356709218922d1b5346d0d5b526d974b2300943e021d18440a314019b37f5e2",
+    "tibiaCharacters": [
+      {
+        "characterName": "Sorcereraa",
+        "registeredAt": "2025-07-15T23:19:08.908Z",
+        "level": 483,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "de0ad2c788d7b9d9ac3010824d564c68bde08056837dc20080c2a9bb570326f3"
+    ],
+    "email": "joaopaulopel@gmail.com"
+  },
+  "kallil.agronomia@gmail.com": {
+    "name": "Kallil Vieira",
+    "phone": "66981002908",
+    "passwordHash": "1964c3d6618dc712e784aa8441eb5945:fb01edbdb44560f9613892ade6253201aa1a399957fa6ca308e4a73b51cd6a2989d33403001c6ee6d826c8fa7f265f42726cda9d6ce8df3fe5bfcc82ecfec42d",
+    "tibiaCharacters": [
+      {
+        "characterName": "Old Kav",
+        "registeredAt": "2025-07-15T23:28:14.474Z",
+        "level": 174,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Prodigy",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "82c0295fc5b0d9855343603578a82a38a6a0bd650761c0f62651ffac465df85f"
+    ],
+    "email": "kallil.agronomia@gmail.com"
+  },
+  "certamortebr@gmail.com": {
+    "name": "Hollifer da Silveira",
+    "phone": "47988208687",
+    "passwordHash": "337c912ce3e4cf0eec6fe763719879d6:322970ec81af386832c0adc6bb58b6e7c9028a6ba2e5b8eca212c8b475ba1b6dba9ba3e68addebab34b1bd52073e2b1b35df74a907a96e033a8376f1a4ad5948",
+    "tibiaCharacters": [
+      {
+        "characterName": "Paladino Minas",
+        "registeredAt": "2025-07-15T23:22:08.960Z",
+        "level": 157,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "7867ff0f102550d43f36957d01d93fae8800e765368edb5504567e71659555da"
+    ],
+    "email": "certamortebr@gmail.com"
+  },
+  "renan.174@hotmail.com": {
+    "name": "Renan Conde",
+    "phone": "35998608841",
+    "passwordHash": "00b2563bc308942392f5dc09083b7767:aeb41ce6bfb1f9d40a7788f04e4ee46a6af718288d24473dfaa98a28b8e3d6c0636d036812bda079e77d997b578c7581e44eeaa1c5ac84fdaa25e568779a5ace",
+    "tibiaCharacters": [
+      {
+        "characterName": "Old Coy",
+        "registeredAt": "2025-07-15T23:28:46.698Z",
+        "level": 149,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Prodigy",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "76b918d7adfa8286fa2106ad0c09f10c1216c3fe949d10a09186c9eaee092fec"
+    ],
+    "email": "renan.174@hotmail.com"
+  },
+  "lcostaamaral@gmail.com": {
+    "name": "Lucas Costa Amaral",
+    "phone": "21998411690",
+    "passwordHash": "668c8bba35651c4db2d0f016b81d46b3:c7b0758f4c3fafb7243f3594fbbc8ab7ebbc3f6f4bab7dd686cc552b4486eb43f93d84c5ef6040a6f8ae097105865da962080df981ea9053a91fe1aa1cf84d9c",
+    "tibiaCharacters": [
+      {
+        "characterName": "Mirtzek",
+        "registeredAt": "2025-07-16T08:13:40.654Z",
+        "level": 402,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Major",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "9afbe750bd7e56d084b833ad99bda5e0933037aab85186d27c20beef94de8c62",
+      "3762c729c87de0e32473c808f77519acead86ce1e098ca288543f4896bf53108",
+      "b63d1f3f247c446ba0fa6cf16bafda38c3e4f2c0fded8ba416b5977e20a1d16b",
+      "3db517b13f7fd54cddce04229f57e8ac61a07dfcf69b42bdfb2b0810d15cc24b",
+      "60077532aa641d8e9d2822ca3f89cbad34b66b127f11375a734396e79cd02334"
+    ],
+    "email": "lcostaamaral@gmail.com"
+  },
+  "amarovmf@gmail.com": {
+    "name": "Amaro Medeiros",
+    "phone": "64984595160",
+    "passwordHash": "a75130677c4fd97dd231800ac146b4d0:ac50cb0c992e5a73bb7af03b3bb08cf2f2d134b93941fc8431af909c4b882d901819b2321e2b2e27e386394af0bbc80320efd6f0a8659725a81989854147bf6f",
+    "tibiaCharacters": [
+      {
+        "characterName": "Khazardy",
+        "registeredAt": "2025-07-16T00:08:43.530Z",
+        "level": 204,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Prodigy",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "e95c45fa16164c6fadffee858a0cb57869c74e270e87278c1858df05fe96b9b9"
+    ],
+    "email": "amarovmf@gmail.com"
+  },
+  "terereco@outlook.com": {
+    "name": "Jarede Adriel Wavgenhak",
+    "phone": "41920014841",
+    "passwordHash": "ded92b3eab249be57db27ed54b8bcb79:387ab9430a43e6b3ede0b61ad909328f591ba49646cb4c594652411db25df6b8e3ef4fe6cf9a282be4e34a4467917105ec04d54e112b354efc85a01138ba2f0e",
+    "tibiaCharacters": [
+      {
+        "characterName": "Terereco Darkhand",
+        "registeredAt": "2025-07-16T00:19:52.105Z",
+        "level": 167,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "c17b912eef2c46f409ad33b6e4c7a7d8b9a7d757d13ac76d4e87b5a908bb74e7"
+    ],
+    "email": "terereco@outlook.com"
+  },
+  "andrearaujo133@gmail.com": {
+    "name": "André Calheiros",
+    "phone": "82988005439",
+    "passwordHash": "8cb6dd444cf69370af01a4f905cc4ba8:fb6f6be00cc23435ab5fcdbc7ff8545d186d17d9e031cbae9eb557fe918bc349364538ac64f459a8bb6677da33331603bef33a7eb7212c69eabd37cff1695e70",
+    "tibiaCharacters": [
+      {
+        "characterName": "Anihilation Monk",
+        "registeredAt": "2025-07-16T00:32:35.100Z",
+        "level": 264,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "9e7bfa42ee9b7ccb128e55a69eb508f3c51ef81169a93dac71921fd71ff4987f"
+    ],
+    "email": "andrearaujo133@gmail.com"
+  },
+  "luzibra@tibia.com.br": {
+    "name": "Ruivo",
+    "phone": "11975262091",
+    "passwordHash": "4fef58dd06280a1809c07600dc7226dc:ba6ba18af98ec98d48a4e216a699b047c85edf59ca9d66cc4de51e3907be9472521da333b6af76e3cf9d23425375b168e36df345d3e6d88994f0e83f654442ce",
+    "tibiaCharacters": [
+      {
+        "characterName": "Ruivo Coorporative",
+        "registeredAt": "2025-07-16T11:56:06.781Z",
+        "level": 465,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Leader",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "2b104dd84933dcc476abf753a4f52e7299bc8936cd473bb8b6f454e8615360f9",
+      "caff3847f3e83c84e4eeef47b03f4033ae94418c3e16b90ce0b953a06b9fd290",
+      "7555b4be74698dfd294c4801a9094b87c748ecbf38b66f9cda3658d83e20550b"
+    ],
+    "email": "luzibra@tibia.com.br"
+  },
+  "gilmar201277@gmail.com": {
+    "name": "Gilmar Andrade",
+    "phone": "33999593937",
+    "passwordHash": "bcea23999b55da42f38fb6bf1d336b2e:d987b2e0dac4585ec62b9a4792d8a6dd23680823d618d4a0b8ac2fcf608f3acaf02cc5d1916c73e875674a262617a9aae6ae1986609b904bc86506aff40a615c",
+    "tibiaCharacters": [
+      {
+        "characterName": "Cabuloso Royal",
+        "registeredAt": "2025-07-16T00:57:38.018Z",
+        "level": 126,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "298b885b91316438fb20a53797dd41e973786914437287e1699635327c0d66b1"
+    ],
+    "email": "gilmar201277@gmail.com"
+  },
+  "lukkashoffmann@gmail.com": {
+    "name": "Lucas Hoffmann",
+    "phone": "41988280593",
+    "passwordHash": "b1933ca0d8fbded2b2d1750b16b9e117:dee36e92cf210d9df2a593759cdc4783af5aaaf659e3461287366d3225e590749352c817826078e60114507a60281b4a27d23a92342aa8df962414476921149f",
+    "tibiaCharacters": [
+      {
+        "characterName": "Tismurra",
+        "registeredAt": "2025-07-16T01:05:16.943Z",
+        "level": 203,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "0c3bd2833e5c07015b494e5dffb72836ce4e59e1ec7becf19ed3e62208f6bd35"
+    ],
+    "email": "lukkashoffmann@gmail.com"
+  },
+  "mgmsouza11@hotmail.com": {
+    "name": "Magnum Souza",
+    "phone": "47997100309",
+    "passwordHash": "181d9ab971e0277ffc779ce0351b6f31:866a0f27b5497fdad0ba45832d7c265f82dd72a816a1d5eb49883ff51376973ed058f8f98e1a742e8e407837e3a604bb4e0f3a93745391a0758f13f74b59f65d",
+    "tibiaCharacters": [
+      {
+        "characterName": "Helkorn",
+        "registeredAt": "2025-07-16T01:12:08.569Z",
+        "level": 115,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "a782e8e10b5bb34ea28b0f31650181479567d59c007408762e1129bba0315a8e",
+      "5826fbf17982075447511ed0265b295a795c5d845edf590cc777bc28d48c48d6"
+    ],
+    "email": "mgmsouza11@hotmail.com"
+  },
+  "lisvassoler@gmail.com": {
+    "name": "Elisa",
+    "phone": "83993324190",
+    "passwordHash": "646475aac990d30e545db5a0e8de2310:17dfd6cd4ab6e7223b4300d0a416c18896f25569ed70f6204ef4214496693bf3d78b06be2e5396eaecd83faf341017ef0ad203b62830884ef2d6f99c33734d64",
+    "tibiaCharacters": [
+      {
+        "characterName": "Myze",
+        "registeredAt": "2025-07-16T01:32:13.641Z",
+        "level": 349,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Member",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "5271d9a5df93fcea5f735b47091fd243ac06366c421b76ef19f0f0e93a522cef",
+      "a70286073301d3c8563684cd7b64edcc3ab9af6d77f173b238bd32cbf62179f4"
+    ],
+    "email": "lisvassoler@gmail.com"
+  },
+  "marciodasilvadantas@outlook.com": {
+    "name": "Marcio da Silva Dantas",
+    "phone": "84997033084",
+    "passwordHash": "414ffe1ce4aadc08facfa7a99c1a90ef:14ad86aae85f5f6747efb267d3944199e69c47e45675ef44c4ba5dd3167d2c544a76a81b495092d82e7be1a4ebe67eea2af147df33fe6523aab6339ae04b881e",
+    "tibiaCharacters": [
+      {
+        "characterName": "Dodge Brabo",
+        "registeredAt": "2025-07-16T01:44:50.772Z",
+        "level": 89,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "d9786005d9da1433c240cef0c92100fd7ed15c11de0a9fb375f0c93766b6adb5",
+      "1708629563bb4713369949764bb9fd8c44f1343eb3e9b232ecdd209ae079bf49"
+    ],
+    "email": "marciodasilvadantas@outlook.com"
+  },
+  "renan_alves05@hotmail.com": {
+    "name": "Renan Ferreira",
+    "phone": "11952861152",
+    "passwordHash": "f1a7c19f661c88182b9b352c3363a799:a8e454a75fda435ca28baef2c5706fd163648238e1eeb95d913e2179d144ecfd92e45781c7102673c7b700ea344442f797f8de84a36811a15f9bea2fa8607985",
+    "tibiaCharacters": [],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "67fc5d8c25a54ce9fdeb23780a606e714db0ac3dffe5326ab4f1022504ddc5bc",
+      "e7b4b04018fd6fb391ff013d83d239e820e1f72a8fea0cd1fc02917472708b27"
+    ]
+  },
+  "pablocarloscardoso@gmail.com": {
+    "name": "pablo",
+    "phone": "44 9 98857368",
+    "passwordHash": "816278c9c8a8d598c918d3f320091275:99f9b5ca59efc91d655d8483750674c44f713973b80895b3f1c112f933afabbb3ef1603da16ef45a8fe274db14d08f21a85f1a885eb48160e3ec2a8bf12e039f",
+    "tibiaCharacters": [
+      {
+        "characterName": "Bomber Lunatic",
+        "registeredAt": "2025-07-16T01:36:15.076Z",
+        "level": 270,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "4d46bfbd000ca0f50f3d164fe5c31a1c7da34765086b9b151f49aa387631e4eb",
+      "a7e41412ee83e4cb2aef4c62f3b469bbdd351b33c772c6d66b2c03f0af6f2917",
+      "bbee9db028d0c9dc468230de85d7cd48ec027854e5686e134e0955bb04e30564"
+    ],
+    "email": "pablocarloscardoso@gmail.com"
+  },
+  "nocyamhelio@gmail.com": {
+    "name": "Maycon Hélio da Silva Ferreira",
+    "phone": "82988013572",
+    "passwordHash": "692609302cb08dc778ddd8b19ae433e7:11bd5f6f5c7c004992c321e258c61b6fc3d2c28755d868a7810fd800b4231c8527905cb547bea2ebc08f4221aadd2d89883ef60dec1cc9e948cb2a4ea5d322a6",
+    "tibiaCharacters": [
+      {
+        "characterName": "Lady Huhu",
+        "registeredAt": "2025-07-16T01:52:55.146Z",
+        "level": 208,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "64d29c2dd6fb5a7d57930dee43598ed548c628414aec09dd58f147d834c7f163",
+      "a42ac42ccabf20926fced883b6f6447608c6768cf724cb0e0dd65fc1903a718e"
+    ],
+    "email": "nocyamhelio@gmail.com"
+  },
+  "guilherme.amengual@gmail.com": {
+    "name": "Guilherme Amengual Dias",
+    "phone": "51999394208",
+    "passwordHash": "4b711fdc7e2bd27bc634827aa00f9ecc:e51234e07082842bba14d6c5d97c67d334950c992ecf9aa20906a99a04dddabc36d9d79b7f7e3711cd2da2ccec5350e122881e829126192b7b65429fd4f35c04",
+    "tibiaCharacters": [
+      {
+        "characterName": "Guizao The Best",
+        "registeredAt": "2025-07-16T21:12:53.937Z",
+        "level": 267,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "2d0611055a813e9f15c4987eca2ddaf2a110380614d706389794b51d68e305f0",
+      "bafefcba46d709b52af9179ad1ef9892a8bd74a0cfe9b5de0f8c6fc69be417e1"
+    ],
+    "email": "guilherme.amengual@gmail.com"
+  },
+  "julianousoneferraz@hotmail.com": {
+    "name": "juliano usone ferraz",
+    "phone": "16982142327",
+    "passwordHash": "eb6afb64d292f6e086e167c41ac976e9:05bce92328c932b31384a7d20838d54b16e3f05eb675b4f528e82f6f56c5e26e5f1fe951c3ab26f5ae074dae2641ec197055cd4cb8008d40f6c2739c9ffe9580",
+    "tibiaCharacters": [
+      {
+        "characterName": "Sir Puncher",
+        "registeredAt": "2025-07-16T02:00:59.195Z",
+        "level": 179,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "df50501e32b965e2ba450ab4830d5f318fe3ee6f4dc772a8103054ae2962bbe8",
+      "f72c6397804027c29efec22d4cd00da95950aa985282d923fd0ef34e5b25e1b9",
+      "7827fc594b6690273052d86fc2dccc5307b804c87136b56bf42e555a0dba47b7",
+      "bb39993a70675e113ce8ac722645b858cb11cbfc26ba1c167a8c1afb1e2a2333",
+      "fb878c7f770b107a370e20a14d1d3a4c3e6acb81c1064deeb398092ec722ddcd"
+    ],
+    "email": "julianousoneferraz@hotmail.com"
+  },
+  "Tibia.ts.ek@hotmail.com": {
+    "name": "Dan Oliveira",
+    "phone": "15991260522",
+    "passwordHash": "a33df36a3428ce43b5acd8062dd8c04f:122697546237d71aae85ee902717391ff289e2f8ff8e61cda43867b181cb8288d6a63ad401d821eb33968df9ed1033b7d0f0bd3b03cf34714b092ca7873eea6a",
+    "tibiaCharacters": [
+      {
+        "characterName": "Varrack Reaper",
+        "registeredAt": "2025-07-16T01:56:13.888Z",
+        "level": 52,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [],
+    "email": "Tibia.ts.ek@hotmail.com"
+  },
+  "gui.mazocante@gmail.com": {
+    "name": "Guilherme M Oliveira",
+    "phone": "61982854774",
+    "passwordHash": "547c77c93f64bab72fe3b192d5b5992c:de63f3c4bd9306767dbdff3bd80ac7515a8fb86ebc628ef3c62a4547115afcffdad192d3ab72eb635d0ef75b41a93dc9c2059246313a6ef7ec2927d5478613a5",
+    "tibiaCharacters": [
+      {
+        "characterName": "Zion Ras",
+        "registeredAt": "2025-07-16T02:12:16.580Z",
+        "level": 280,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "f39046941729044215c8af5301ed40618ce85649e13776634a23252dcc2f5362",
+      "7c1705949698856c63f69f2a7e4307b1d9db61bb1cb03087be647040dd6b0ab2",
+      "d6ee0f6cec5d8e65aa3685421f9aa2ff204422d265234f0e5304735c58443d5b"
+    ],
+    "email": "gui.mazocante@gmail.com"
+  },
+  "castilho1994.lu@gmail.com": {
+    "name": "Luan",
+    "phone": "22999564866",
+    "passwordHash": "9ef9473e15fc264ef3da77c736474360:2aa8427281a538790abcf09ed85754eea112af37b03d3f63121bb0b097ba8454dada8da4c13e3edb3eeb419ab9c1ae50df3a3049d688aa35e1caf0fe5af5c45e",
+    "tibiaCharacters": [
+      {
+        "characterName": "Astromonk",
+        "registeredAt": "2025-07-16T02:10:01.911Z",
+        "level": 299,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "236e9876e85af839e343882b8607418cfe1096fe31a7b9eefde70a5d5e483f95",
+      "d2bf5487bdc88fa619cda41648e15e1a66a9db313e83505b2adbfa87f927ad50",
+      "8372fa5b225e9103f125ba64b02e05bdbd3134cdf91673eeb9192626800ae252",
+      "dff537727035d97853df06a5498c243cb8fc67de98c9d0c7e61650c17bfaff91",
+      "083965d37a35306a9d27d7fc940aecc731c2038e142fcbb61b4877da271608e0",
+      "e0b0979bd907c0396a6a5d2ee60bdb8b5230176931a191f5dbfefdd92492c6f7",
+      "60b75fb5241d3529248609a0007e72306c083bf013e08aab9c1297cee3f93535"
+    ],
+    "email": "castilho1994.lu@gmail.com"
+  },
+  "lourencoalvesnet@gmail.com": {
+    "name": "Lourenço Alves",
+    "phone": "82996848667",
+    "passwordHash": "47ce479991bbd56f32b097cf5e77290f:ea65850c34f41e58540ceca7c632aa735fdaa2e36bd8b403a979d837e5d83b20c8e665062aef7655c7841bb3b2ec278f0f2c55dcf6d117f4e5e1f4412b80ba83",
+    "tibiaCharacters": [
+      {
+        "characterName": "Kaiser Branco",
+        "registeredAt": "2025-07-16T02:33:48.904Z",
+        "level": 231,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "a816e92df1743b372f9a80ab37bd7cc1cec12b4488f7cbb00f4b6a5b6ab78237",
+      "b9febdd743216cabdfb059d70c2ee61781437c2b272331efb264101e61077162"
+    ],
+    "email": "lourencoalvesnet@gmail.com"
+  },
+  "thiagocaetanosenacosta@gmail.com": {
+    "name": "thiago caetano sena costa",
+    "phone": "31998509096",
+    "passwordHash": "2d9a9e8632140143a1b38dc1fdd9ee4a:af49acd2895753a70b075a6341021ecc2f794b3e9f35ee362538ff96504a0f69360bb597c23b311bbbb975df268a953c4ee6601c4b2fe0e2fd90b67824e1bd25",
+    "tibiaCharacters": [
+      {
+        "characterName": "Mineirinho Monk",
+        "registeredAt": "2025-07-16T02:53:38.043Z",
+        "level": 167,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "2aea2ebbeeee154e8f5edb185e55e34742ce1c5fe3291407ac8a0c925dffa1ef"
+    ],
+    "email": "thiagocaetanosenacosta@gmail.com"
+  },
+  "jvbrunaa@gmail.com": {
+    "name": "javier morales",
+    "phone": "963148365",
+    "passwordHash": "b8db73d8f1bc0725f11e83011ac49091:7a1870d535f1da87ddf3122bad324d027fb6f7427b24dfef808c21cab03041642638afe57a3bb0c404b76d66d3fef7d5391c0c46691691a65a00dfd02a2985a3",
+    "tibiaCharacters": [
+      {
+        "characterName": "Maga Reprimida",
+        "registeredAt": "2025-07-16T02:50:45.066Z",
+        "level": 175,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "fd11274acb518ea2e7d1182fb874e4e0067e967110bc6b9238d115eb58542a1f",
+      "a0d9bc37f598fad8b245c1a722517a51f3f9ca1468aac815084674702b80d9e3",
+      "3b2268f27c74d0c60768ccf238e34acde927a2e40cb3f55238866ea0c9b8cb9c"
+    ],
+    "email": "jvbrunaa@gmail.com"
+  },
+  "laurofernandes09@hotmail.com": {
+    "name": "lauro fernandes peixoto",
+    "phone": "82981135107",
+    "passwordHash": "c612dc33fc3bdbf5358f91a0041232c9:af1f79cb73c243b8d2471c337865848209a637ce7ccacad250a1533433550012053bc8d09af428fa4cfdfb0658d3269f9328079d491db2cc48152517ecf67f21",
+    "tibiaCharacters": [
+      {
+        "characterName": "Monkkey Draggon",
+        "registeredAt": "2025-07-16T03:01:48.031Z",
+        "level": 203,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "0eadaa734046c1b84146e3fab7aa50c64023eb6ce60453c4f25472e5b3f875ff"
+    ],
+    "email": "laurofernandes09@hotmail.com"
+  },
+  "giglioliraul@gmail.com": {
+    "name": "Napalm Sky",
+    "phone": "014998196265",
+    "passwordHash": "09347e6a6bf874e931c16da561c43a8b:db185d429900c4d8e25c691f31c66f9d7f7d383e5cb3e668a2a10ffd47e5dd167cbcc309bb76a941aea5c87c0079900fa0fa723e35aa8a9714e69dbe58efa08e",
+    "tibiaCharacters": [
+      {
+        "characterName": "Napalm Sky",
+        "registeredAt": "2025-07-16T03:15:45.338Z",
+        "level": 136,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "3455d421ca20e89e5da03d7cd5d2492b7b796b12038983449bad76fa22150a65",
+      "8b261b9f0fbe477b34eeec12dcfafb0f6560a445587369117189f4e9e10cbce7"
+    ],
+    "email": "giglioliraul@gmail.com"
+  },
+  "filipevalentimzion@gmail.com": {
+    "name": "Filipe Valentim",
+    "phone": "21992362624",
+    "passwordHash": "8850698c4bb761e00455ddfe3367dc51:784fbf4238ed7f64a0fafb45a4e5e93c478490be67ee9a98a29d1e585d4758e9aab1bb8c377654efbd73bf727104b482fbcac6eef627e84c2a1e956d9ea9c55f",
+    "tibiaCharacters": [
+      {
+        "characterName": "Nymeriaaa",
+        "registeredAt": "2025-07-16T03:52:48.320Z",
+        "level": 98,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "e8e55504164cf30830f89026e00b1b9c8e3dadf041b1229aaf2c76233f03cb0a"
+    ],
+    "email": "filipevalentimzion@gmail.com"
+  },
+  "devviniciusdiniz@gmail.com": {
+    "name": "Vinícius Diniz",
+    "phone": "71981811504",
+    "passwordHash": "84120cfe387f21a2c0af5d02c61401af:937e9a7ae5245a8b15c83d52ef19d783f3058c7e89717f0113d6a86e4a78cbdb4fc4ea8a4f12aa341b0e433256a41564604be0feaa7ff376e96443df60d167a8",
+    "tibiaCharacters": [
+      {
+        "characterName": "Diniz The Great",
+        "registeredAt": "2025-07-16T04:02:31.465Z",
+        "level": 59,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "bf3478ab22f1893a64c8737954ff1f848b67361ddc90832397455242939f2c5c"
+    ],
+    "email": "devviniciusdiniz@gmail.com"
+  },
+  "mikewm_@hotmail.com": {
+    "name": "Patricio W",
+    "phone": "+56942086311",
+    "passwordHash": "5f5c9dd7ae920e94bb6d15056a81ccd4:12c716716890cec5f31a565b0c3ca20b99330f8b53dbb9fe4327bf79bf8530c7fed7d811ccd0ce2ea02d561cf836687d7d125bc32887e3841fc958259dcbabbc",
+    "tibiaCharacters": [
+      {
+        "characterName": "Lukz Menino Trembolona",
+        "registeredAt": "2025-07-16T04:19:02.944Z",
+        "level": 169,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "1f262e012bed57307a4c18f250cf5dc361b534b61d77551a4984767a5b24c8d6",
+      "6eb72729e08268629cd3c295428771de35800c6feade56d9efd7d8af01071aeb"
+    ],
+    "email": "mikewm_@hotmail.com"
+  },
+  "diegodesouzatanajura@gmail.com": {
+    "name": "Diego de Souza",
+    "phone": "11988993159",
+    "passwordHash": "77725c16588beb813eff339894323722:f5c80c7a9aba42a5b27f61cd0799f445de5f7635b8d1b1fa424fd72b8c4f37fc1b972be2b419729c9c25d7e72feaf087ec35ac1a95131c7ee4f9f6d1f66de0d9",
+    "tibiaCharacters": [
+      {
+        "characterName": "Kord Dujob",
+        "registeredAt": "2025-07-16T08:41:17.435Z",
+        "level": 377,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Member",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "102c705e89065666f14d36c014e632bd6b079f02f4d7a2549478c38f0e313b63",
+      "e883be03680f2b6dd8d7227da3bcdc5d963104adc6798d9b5e948180ca59812b"
+    ],
+    "email": "diegodesouzatanajura@gmail.com"
+  },
+  "contato.lucasmachado@gmail.com": {
+    "name": "lucas souza",
+    "phone": "21965480052",
+    "passwordHash": "fb2a4af5bd7543c46192aca8c2d043ae:8a10b98af67ce6f048e3654c381ec2b1151bf414ee68da9a545ae4aedfedb260aa70daddf629f31f0e8b0eec49fc53e2ed11235503050296c9d9d2ba8eba01fa",
+    "tibiaCharacters": [
+      {
+        "characterName": "Relldiver",
+        "registeredAt": "2025-07-16T09:35:52.483Z",
+        "level": 259,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "e2bfab5bc0f754c72afdebecafbe4e32a5a12a323a9e73a732333a65608c48f1",
+      "3b98038a4ff9e175bf1a45c070ba4f2b4dff0d27954d191ad7f91eedd42e32de"
+    ],
+    "email": "contato.lucasmachado@gmail.com"
+  },
+  "ra.fa.com@hotmail.com": {
+    "name": "Douglas",
+    "phone": "81998316991",
+    "passwordHash": "c521883557b5d9cb6cac4e64b1545a80:55aed0dd3afa03776e37a0e05da572e7c1cd6df00942e5d8a71b1738c75cc012700f1dca4a4949d1350a11b3c23f1f15b6bba8b1b42bd66861c6e4a73883a7bd",
+    "tibiaCharacters": [
+      {
+        "characterName": "Socoforte Socofraco",
+        "registeredAt": "2025-07-16T10:09:46.493Z",
+        "level": 260,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "bcebc5d09cf4ca91c20e13c120e3a455bd51888bffff83b4e459d2c792553615",
+      "d7e68d70b625b168abd8e04dec0f8419491d3d70aa1c5622e2cfae11ef877239",
+      "88f7c82e689869f93ab6549b96b142cb04b594381a7d92488a548a75e38f160b",
+      "620678d2e008f650de5695e6d4b04c7c18810b7ced95f0bc94514bedf229b778",
+      "8c483a1277bb9342a01440cbcf3735c9eddd34bd169568dbf20080584c5a1512"
+    ],
+    "email": "ra.fa.com@hotmail.com"
+  },
+  "gurox14@gmail.com": {
+    "name": "Gustavo Silva",
+    "phone": "47992200162",
+    "passwordHash": "34679ed6e1fab3231c82ca1badc6b52b:9c322bb19356418edeaf77cb224280527b63fe127362cb080b37e7815f95dd541dbae584f55f7c364a6e768e891ab5eaad66714be605b1f60acfb443a39f1e3a",
+    "tibiaCharacters": [
+      {
+        "characterName": "Monkapaz",
+        "registeredAt": "2025-07-16T10:41:56.124Z",
+        "level": 207,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "0fe607b35462880fec657e7a0ad5b1d6c8f2890e0590c5727d222199c35474cd",
+      "6ec21d9e46e968c82ed0115221b1ef0043d7c66f4542f99af5f08b87d36e16da"
+    ],
+    "email": "gurox14@gmail.com"
+  },
+  "familianovo10@gmail.com": {
+    "name": "Igor abrahao novo",
+    "phone": "22991057965",
+    "passwordHash": "a4103571301bc58b7f3c491fde47229c:08433610e40c06c90f2e0f1a6da96cfbc10eccf67e1d8cca948db1e4b20becda1b73229f8406bf87e77e7d3917efcf81b9c625637adefd7a1999b6f0cc39d13a",
+    "tibiaCharacters": [
+      {
+        "characterName": "Loord igoor",
+        "registeredAt": "2025-07-16T11:41:54.395Z",
+        "level": 198,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "9717ba5538ce981c8f5832c7ba73c86e00aacfb0c5518961a96a6916cdb2876d",
+      "0353786a16381eb9eadd2f003b8622a3701738a419cea47605cd12fc45504fe8",
+      "9665d08f54d6c4c153d80d8748d5b6b2fca5c1a48e567e94c2f7b2a08f760130",
+      "f9d6bf3455b9bd1294a8f88b6d36ddc24053b750fe831edd32c701feb8cea7d9"
+    ],
+    "email": "familianovo10@gmail.com"
+  },
+  "thu15@hotmail.com": {
+    "name": "Mario Arthur Franco Garcia",
+    "phone": "24999402525",
+    "passwordHash": "51d1761030a3cfea089d8aa69f2fd346:f66d8d4a891a260d009fa4a8e252557e1f9f67e9fc44f1250ae41fab1be501e7dd68effcd3a71a2979f6e66c8079daa3c540dad41654abb59d5a8c4e735b1129",
+    "tibiaCharacters": [
+      {
+        "characterName": "Thu Bullsey",
+        "registeredAt": "2025-07-16T13:01:12.685Z",
+        "level": 279,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "371e21fa05dec48d1dbfa22a06fcef1acf49528a2de2450bf44179d05f84444b"
+    ],
+    "email": "thu15@hotmail.com"
+  },
+  "danielramoslilo@gmail.com": {
+    "name": "Daniel Ramos Lilo",
+    "phone": "35997006194",
+    "passwordHash": "33959ac0120d982889fdf142b892d05a:d9330a5062de53ff501250ad16df10ca3dd353e3cd9f22bfaebbd4cebf8f6a69a74ea63ea608562af50a5e96da27998ecb0411f152c6cad134bc3b0b46fc4798",
+    "tibiaCharacters": [
+      {
+        "characterName": "Dnayy",
+        "registeredAt": "2025-07-16T13:34:07.215Z",
+        "level": 208,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "a6147fca11703feaffa9df91c6370bfb8c5863f5e94580c9618d08d105f3b7a4",
+      "19239884d06f96f6657d6930b269dae1a9e0e40f9a55fa4c49bf943f64f7ca60",
+      "1b823d37bfe3e2503c1b272adef945cbebc6051f51fa26e2e8d3607dfc0a1ccd",
+      "d295c161dbfd6244927dadd6a086cf2ba40658098bfc15ea96ac664eb45cc802"
+    ],
+    "email": "danielramoslilo@gmail.com"
+  },
+  "victorsukuzi@gmail.com": {
+    "name": "Gigat Victor",
+    "phone": "21964726299",
+    "passwordHash": "7ce8dcafa8e6d5706ffc1bd431a25364:b431dbdbb7ddc78f306057627d580582ed60ad4a9cc6762da3d3f56c13f9537b1b53f32bdd9aad5e118bea645c18bf0117b200a096f67cff98576645094de672",
+    "tibiaCharacters": [
+      {
+        "characterName": "Gigat",
+        "registeredAt": "2025-07-16T13:36:20.566Z",
+        "level": 262,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "b0d2d675e6eb197c522f4aaeb14f075c708696412d87726e341d38e9a503cb83",
+      "3bf2935c14f798b6d4ce263de60d0c0b53f0d29ee17fbbcb57ee5bf61efe23c4",
+      "47309975af618d3539feafe62ce66bcb218cc99d8ec2c730ce227f0223bac4a0",
+      "2429b74626379113b05a7c88c573f31ef140ddbd4bdb4510d411e304ceeb892e"
+    ],
+    "email": "victorsukuzi@gmail.com"
+  },
+  "Kjk34*1456": {
+    "name": "iigorswboy@gmail.com",
+    "phone": "34991478376",
+    "passwordHash": "4bf3404f79e539e4d53f5f60c60a42a9:23d7d6a6c34299d68a215e5d125094d84d9c20bf6007a3bb37e54aa88c3b701f0aacd555f0be5aec7bbb5ed68899daadbc8b8f7b72626d93499a55be65219b75",
+    "tibiaCharacters": [],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null
+  },
+  "iigorswboy@gmail.com": {
+    "name": "igor luiz dos santos",
+    "phone": "34991478376",
+    "passwordHash": "e12002fbbc8eb38b0d3e642524ad9b25:ac1a4d112d47e8fbcf7a1c308e6978245755669c7f5cccad987b2dd1f957bc3ab682496cda653bb66f20b252ac6d0da650603cf3f9fe0ba32e1d254b92421fcd",
+    "tibiaCharacters": [
+      {
+        "characterName": "Soberano Caramello",
+        "registeredAt": "2025-07-16T13:48:29.073Z",
+        "level": 201,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "c19e315bec2fb902fa5848db09f7d6647f85d734f2549312968422d0dc3d6cd4",
+      "17d1d26020b57c2acefb1bd5612fda030445642f15094ec1e3b89a0853e427ea"
+    ],
+    "email": "iigorswboy@gmail.com"
+  },
+  "vitorino.durval@hotmail.com": {
+    "name": "Durval leite",
+    "phone": "+55 71 9258-0250",
+    "passwordHash": "8d1b3335fc472fcb7e9983fef8469ccb:5a9743d9fca78775da580c32c8bb63bbd674f574e596054e837e25e0be4e79d008faeaed48c79608872540e8c0a0c3c8f304a90191d465ced63d817b3c2fd71f",
+    "tibiaCharacters": [
+      {
+        "characterName": "Rpde Fachada",
+        "registeredAt": "2025-07-16T15:14:12.330Z",
+        "level": 113,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "7407cb3113d86ecd87ea21ff6744b95e96861dd73f7970638abb988945a4eac8",
+      "b0bb6abd79e75b78d84035f46b2b66b4bac77111d8f900f9024f7044431bd59f"
+    ],
+    "email": "vitorino.durval@hotmail.com"
+  },
+  "engdefende@hotmail.com": {
+    "name": "felipe defende",
+    "phone": "67 996008308",
+    "passwordHash": "ab7f1d8dc476b34c84e7093001a158b1:e4636c76b132d5a3afaeff3020cb18ac26ddbda4d20a4268a947da62ff3862bf1d0dca072303a0fc3854c28a1f8337753e4d9bdcf6b32b0fd170efa7a9df1a54",
+    "tibiaCharacters": [
+      {
+        "characterName": "Valmir Opressor",
+        "registeredAt": "2025-07-16T16:11:01.252Z",
+        "level": 258,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "2915251e2056b205ed292b2971df3f5345a1069365200654b6cace16f410d11a"
+    ],
+    "email": "engdefende@hotmail.com"
+  },
+  "isaacadriano017@gmail.com": {
+    "name": "Adriano Cunha",
+    "phone": "51995332515",
+    "passwordHash": "0f59d1bf7065f89ecd024e211599313c:6dd267a605534952db7578c1d0645c28a5b1d2a4235d1870f39a8545bf6a838dd80f5a1228e97a43616394b18cc134c0f90b60b7bafce3fa8d5b53c0a2eabcec",
+    "tibiaCharacters": [
+      {
+        "characterName": "Adriano Lovexp",
+        "registeredAt": "2025-07-16T17:27:15.684Z",
+        "level": 219,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "38fc5d6b4346a8f9bf78e225580b1a86aeb21a4264b2dc590a1c28bfbd5df4a7",
+      "480e6368f545bdecd7dccb7e58d8ecb752a17ed64c0324609de91a58d5cc13b7"
+    ],
+    "email": "isaacadriano017@gmail.com"
+  },
+  "nardex10@yahoo.com": {
+    "name": "shows ek",
+    "phone": "99991921379",
+    "passwordHash": "7e41f2425560de4d970a870b13a5bdbb:5fd180d33db924cc41616b82d142ec0e0e3f59a4695939f973d464f6c990e62e145d0632dd85ae6216e42b777952aeabc3b1cf22c46d978bd749136c0790274d",
+    "tibiaCharacters": [
+      {
+        "characterName": "Shows ek",
+        "registeredAt": "2025-07-16T17:41:01.782Z",
+        "level": 208,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "747594faa924b9543c5a2b919ca10e7b7898ca14dca2d33b8620cfb31d15f882",
+      "dc77d1b6fef6b1669618b382eb693acf276f6c0e21e423b4e3c38c26d6a196c8"
+    ],
+    "email": "nardex10@yahoo.com"
+  },
+  "lhpratto@gmail.com": {
+    "name": "Luiz Henrique Pratto",
+    "phone": "47 99766-2223",
+    "passwordHash": "a38b45071e802b8a8118dc8e38970a60:298ac22e29b6686ceb822510055c53aee48a5e659be240022d6c5b8f80740dc62ec4133a5fecd9d83086986049605e861497b6b60178358c929abd94252661d6",
+    "tibiaCharacters": [
+      {
+        "characterName": "Luke Lovexp",
+        "registeredAt": "2025-07-16T17:37:40.236Z",
+        "level": 260,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "c226944571384d0636e211302ddc3176a6ed238768fa5b94be685fd1361d57e9"
+    ],
+    "email": "lhpratto@gmail.com"
+  },
+  "alyssonamorim44@gmail.com": {
+    "name": "alysson amorim",
+    "phone": "82999094570",
+    "passwordHash": "6a5b21421d8c344197ae5168b098938e:42803c91b880601f8612624dead1b948836748add3d15a077454b712041435afdce587abce060af44d1d5ace74091a1e2d5b01c0c3c0670f82c240115448326c",
+    "tibiaCharacters": [
+      {
+        "characterName": "Sosa on Luzibra",
+        "registeredAt": "2025-07-16T18:00:50.405Z",
+        "level": 203,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "98b016f674593ed03f59abcfbc97f3b771fd824972fd4aaaaa15f57a89175b4b"
+    ],
+    "email": "alyssonamorim44@gmail.com"
+  },
+  "pedro_dias_cf@hotmail.com": {
+    "name": "Pedro Dias",
+    "phone": "21999888526",
+    "passwordHash": "2451d42d8c26cbfb14d241a0f7c0d11f:d9855acbb208c95334abe5660b2a6559272241549f0af80e2474b001a83bff9c2934724421996970c102dbf93a3f8f8974764ac08e61ce9fc2b40ea937a24b66",
+    "tibiaCharacters": [
+      {
+        "characterName": "Baiduzin do Tete",
+        "registeredAt": "2025-07-16T18:15:14.333Z",
+        "level": 145,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "7f31f8a0016dda5a8aedca397eccafe84d4f35f0b7796f2686ac0b08c7c4c237"
+    ],
+    "email": "pedro_dias_cf@hotmail.com"
+  },
+  "popolislv@gmail.com": {
+    "name": "Gamershape",
+    "phone": "83999912112",
+    "passwordHash": "7e2fd7b09a4c5ac65ab79e56acbf37d1:286590a29078c60ff661920908466150b8a438d535c622c3d3acd24ad584cd0392acfe656703a5d37d30c6ce31b8127e8b7c478b325efd2d15674ab826456b27",
+    "tibiaCharacters": [
+      {
+        "characterName": "Gamershape",
+        "registeredAt": "2025-07-16T18:41:46.037Z",
+        "level": 150,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "7b0858ac88e8c51a5564275130eb453884cae673f227055f66c361a0f619373f",
+      "295a99f13b9da58a96f648dea7b32ea7bb34bb518dc1a2504601bedae5139163",
+      "6011aab6c6f25703ab0b0c65c4df939f648ea396fa6133ed8ad95e3ce4453e38",
+      "f527645cde9a85475af3c6743416ad21d6e062a89b6c3e341a639765581e8583"
+    ],
+    "email": "popolislv@gmail.com"
+  },
+  "ronaldodalla@Outlook.com": {
+    "name": "Ronaldo Dalla Marta Junior",
+    "phone": "13996550701",
+    "passwordHash": "add43e144c3ad39906a6a6f8bac1e757:3df5a90fdcd411d2a64fefde47be54df7338fdb084c43ddad5eb27bf6236b2afd5bc1d5caeb92fe1cce2af650e8f62a1bc53856596a5976bbc518dd5875f6b26",
+    "tibiaCharacters": [
+      {
+        "characterName": "Ashborn Fear",
+        "registeredAt": "2025-07-16T20:28:47.794Z",
+        "level": 264,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "365a4ea6103748c852ee2275ea4579caa2326880bd2a308c098666682781c11a",
+      "82b4d52a3a9b03de4a76e867781af09fd0e44c050a9579bf8d40adf559f2ebbc"
+    ],
+    "email": "ronaldodalla@Outlook.com"
+  },
+  "lcortescaqueo@gmail.com": {
+    "name": "Flaco Blanco",
+    "phone": "+569 89835518",
+    "passwordHash": "30d24f67365eee8f8c02b195c626cdb9:9f00ce5c58665f20dc40de490e3b1d7d1199bfb7fb60b49fa916f5e5b5450fbb63f33cfd270f9c6134e9e1a3e955e3d4e796c451f2efcba05c1e893a955c20fb",
+    "tibiaCharacters": [],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null
+  },
+  "guilhermeengpro@hotmail.com": {
+    "name": "Guilherme Lucas Silva",
+    "phone": "35991530200",
+    "passwordHash": "9fe4d2166c57dc1ca6be4d97d89f6ce9:619f1cf90c48f8a77e45491fea3514aafdd15dafa946b31cfe5ebd4225a64cb599235bd3d194c7b2eca8d9ac5056225959ea1970ddd09832d2e22818c004000e",
+    "tibiaCharacters": [
+      {
+        "characterName": "Ten Guistrong",
+        "registeredAt": "2025-07-16T23:22:07.935Z",
+        "level": 244,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Hero",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "585212040216e7a133d21d4c9cfaa8aab46f2dd5d36eb7bee1da85cf14938041"
+    ],
+    "email": "guilhermeengpro@hotmail.com"
+  },
+  "hugofpeixoto@gmail.com": {
+    "name": "Hugo Fernandes",
+    "phone": "82996076446",
+    "passwordHash": "bf7d1b2a22f4293475079015dc727414:e3d9fa6acd2462729a8911292c9b17724b7941fb8c005815d273dd50c2a4dcdc936e9590b403d64f0c1de7085255041a59ff990218078e377899019661b26fef",
+    "tibiaCharacters": [
+      {
+        "characterName": "Hugo em Luzibra",
+        "registeredAt": "2025-07-17T23:58:59.510Z",
+        "level": 258,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "91d14d5302aaa9e93f792fabc1966fb9114be211a1b1a529eeceef2bc0bda0f4"
+    ],
+    "email": "hugofpeixoto@gmail.com"
+  },
+  "xolari_93@hotmail.com": {
+    "name": "Suampalec",
+    "phone": "56994897108",
+    "passwordHash": "fc995bf490a6f4183eb5bfb995b972d9:e4bae4506ebc670a46ab37cb87f33ca682550ecf1b4addffaa166a90e2aefe7e043b474114d680f94b6c85ddd0ff45c6c47783c9f6fdf637e42b9208c25468e6",
+    "tibiaCharacters": [
+      {
+        "characterName": "Suampalec",
+        "registeredAt": "2025-07-16T22:31:13.922Z",
+        "level": 172,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "6542ffc67886972802a9388295bc6e844859fbfea7f453993c360f64db13f867"
+    ],
+    "email": "xolari_93@hotmail.com"
+  },
+  "bergamo_matheus_95@hotmail.com": {
+    "name": "matheus bergamo",
+    "phone": "95992920243",
+    "passwordHash": "c080b475e07cef6e3fe88b0655176176:2df0da30dc95038a7a1e852daacdd5be968396548f4f357b5c9051846278595b5c808c5c9043457a508805a6e3fc98674e5cc5bf6af4d391d585cc14be34b9e7",
+    "tibiaCharacters": [
+      {
+        "characterName": "Boladonk",
+        "registeredAt": "2025-07-16T22:39:15.535Z",
+        "level": 298,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "c9644bafe597a6f2f740956d899f9b24a7c366688a6d0ac8a4bb44be0052ffa5",
+      "15b89773a37a34fad3898ffffa64a5016c2852126eb2dcf0b4319d14b2014379"
+    ],
+    "email": "bergamo_matheus_95@hotmail.com"
+  },
+  "pms.philippe@gmail.com": {
+    "name": "Philippe Miranda e Souza",
+    "phone": "21972488105",
+    "passwordHash": "ba829e3311ac7c926fef2a765ebf53b9:3ff4854df6f196c15456d0108ad92bc78faeb4a399fc9b23a864606ab9f943ed15d9125ba5da3e0a8145020e7373d8e982ed65ccb9968ad403ef80e903125920",
+    "tibiaCharacters": [
+      {
+        "characterName": "Nargulz",
+        "registeredAt": "2025-07-16T22:54:34.486Z",
+        "level": 292,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "d2643be90f4b0a5a119ed2d71487880e5678cdddf906600c2d82759e80c01432"
+    ],
+    "email": "pms.philippe@gmail.com"
+  },
+  "renandaj8@gmail.com": {
+    "name": "Renan de Araújo",
+    "phone": "22992638633",
+    "passwordHash": "3df83016df03028a2d38fd2181b0b9fc:0909be2df9bfcd591ab8dc2e500b64ed46b606651159cd93078f75fea0297eb4a1111e661afa1cccb8dbc44d1ac442875f7b5699974ece6f1a01b6b3cbf58603",
+    "tibiaCharacters": [
+      {
+        "characterName": "Aikari Agiota",
+        "registeredAt": "2025-07-16T22:55:18.797Z",
+        "level": 362,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "b52df7e05b39dd4f5b0a19085653b38678330f92492cf0e393e2ecc9a06ead21",
+      "093cfd9a927923086d679d6cd25c4783df08d1e19f94d5cfadc26a897c4d0ef1"
+    ],
+    "email": "renandaj8@gmail.com"
+  },
+  "denison_uneal@hotmail.com": {
+    "name": "Denison Rafael",
+    "phone": "31971715666",
+    "passwordHash": "7268249a185e00ee9def41179e9a540e:4f4879be6e74ff5eb380a9af5d87bcc54793f3eff3479cc8b88ef7eae3c4db684e09804fde4fb9b968eba4717ccef5fadefcf7584aea03e597604100a721c69a",
+    "tibiaCharacters": [
+      {
+        "characterName": "Polola dela isla",
+        "registeredAt": "2025-07-17T11:05:05.407Z",
+        "level": 311,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Left Guild",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "bacc8b4038463f1c4483f10f0937d974944fa1dc487ac0dca9537f5fe3b3eaa6",
+      "1478b3dff202c2ac3f77fc6a203d0c41ccd9f596e3bcd96c2bdaaef16c33a922"
+    ],
+    "email": "denison_uneal@hotmail.com"
+  },
+  "heliocoelhojr@hotmail.com.br": {
+    "name": "Helio Coelho",
+    "phone": "2174101552",
+    "passwordHash": "1b83b31ddeb29a0d3e1ad2476e539317:9b18fa6b8573aad5cbbc27df680ccf6b8f27f594285ef000b870017f0aecdd4d49b99db45b6df898ad70d35df693f239f6614065684e611444e845c136fe2b9c",
+    "tibiaCharacters": [],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "d08fa4cbeb895382014b87041183838613aef8907a49efbcddffb89ea60745de"
+    ]
+  },
+  "danieu1993@gmail.com": {
+    "name": "Daniel Silva",
+    "phone": "51 997014555",
+    "passwordHash": "9a2098805b0c8a80620c6de9faa6be5a:b8846f0c37dbeff300d68e4b1cf90df7863b254080a97603a72db65e9efd64a92f7bb46879b2c02ae3bb712e33241ddd3d9e18de47cc398a5eebc2a9467d09a4",
+    "tibiaCharacters": [
+      {
+        "characterName": "The Saddest",
+        "registeredAt": "2025-07-16T23:28:33.189Z",
+        "level": 150,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "359a768a435dd10696045d9e4b7738137a8ba849a4c380d3bf61568996aaca69",
+      "a258689aa4c8444546c4bfede284ae23759ff349b6ecb96699cc4a001455b7c6"
+    ],
+    "email": "danieu1993@gmail.com"
+  },
+  "bryan.alarconpm@gmail.com": {
+    "name": "bryan alarcon",
+    "phone": "+56989594624",
+    "passwordHash": "51fc815807f10ea3ec747c15bd96573e:cad8229909756c77edd9607a0e3a7540d48188c241ef1703150d8c8b92bf9dcc73c3b248183ece6f14973432b2167b50f32407d4fc31311d6ee404c37ac14291",
+    "tibiaCharacters": [
+      {
+        "characterName": "Galac Tiko",
+        "registeredAt": "2025-07-17T00:43:21.261Z",
+        "level": 214,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "e1242272e44140c0670967fc34e2041ed56d3e93bbf11b42771482475d6481cb",
+      "ee455b1c31e66089506d2701a991d6bf3352db547e84bc0f2c319ddee522858a",
+      "c9b0ab7d5e6363e50f5d8be12c0498769d701f92d1007b0387d2a976c20c4626"
+    ],
+    "email": "bryan.alarconpm@gmail.com"
+  },
+  "gui.rodrigues.92@gmail.com": {
+    "name": "Guilherme Rodrigues",
+    "phone": "11-52207118",
+    "passwordHash": "e5c23fbf0abeb48fa98d474dba285013:a00f34f2443ba545c32e58b9e848946447df067565698ec64f521c663f7b2008c103df7d145e197a67e66f05fd9fc771b7c611d9a18459d9fb391237c7a6e3a4",
+    "tibiaCharacters": [
+      {
+        "characterName": "Garbodor",
+        "registeredAt": "2025-07-17T00:55:22.737Z",
+        "level": 264,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "c0125998cd0a75db07125b3261eac25e677ae339884dddcf3ee57d3c0f2ec512"
+    ],
+    "email": "gui.rodrigues.92@gmail.com"
+  },
+  "werlleynegocios@gmail.com": {
+    "name": "Werlley Duarte",
+    "phone": "84994139607",
+    "passwordHash": "f53f1168fd347f11fc0eb5bd03c96078:a2542488e1853dd49b42be47ff166668f17dc0b9c81bb75aa157fa07c221a58f63cf382317b7ad92c327e7df970a8dc0f5047a31be51f0a39293b427fb406434",
+    "tibiaCharacters": [
+      {
+        "characterName": "Real Black Rat",
+        "registeredAt": "2025-07-17T01:04:29.820Z",
+        "level": 247,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "598c96af4118919fa8f798d326690c965626766f29bde3dcb6d965032fc83d17",
+      "d9e80acee118d9120c8e9bfe26596a200818959b7001d5300348012fce17bd87",
+      "c6ffbcbd420cdda42ad646853690012b960f9e2ed1fe404fcf36eb4d08bbae97"
+    ],
+    "email": "werlleynegocios@gmail.com"
+  },
+  "abernardes2788@gmail.com": {
+    "name": "Alex Bernardes",
+    "phone": "19983034473",
+    "passwordHash": "e377397ece1baaa91e32e18bd441423f:73e9b9d1e3ccdf1a6eaccc01ab9c9a389759c1647a390fff2f519149ec930fd63af63e29db74bc0cdd345ba5ee605c6f0f2062cba90deb6b3a52a4ba1982df3e",
+    "tibiaCharacters": [
+      {
+        "characterName": "Blaskii",
+        "registeredAt": "2025-07-17T01:37:29.642Z",
+        "level": 181,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "053e5f8a0b00b484281aa84c42c6735480ccfb75d5f62d9682eaa8d5ec89aec9",
+      "6438424e8d59ee47278757fd06f3d10547a8565085ec67002c3bf94cd50980b8",
+      "ea5006fe352ac6b17441ac0cf64c77c96d6fa04aff73f55ce078b5ca8f0d001c"
+    ],
+    "email": "abernardes2788@gmail.com"
+  },
+  "glaucoclaus0209@gmail.com": {
+    "name": "Glauco Claus Rezende",
+    "phone": "43999547656",
+    "passwordHash": "0ad148975c74807a9b2428820f0c43d0:003f0100161753d01642a991f9d745660fe883fef673aed11d6d639107aae864fe7a98f3677c168c51ca35e835da697e4da2670a565be2fb0ef90ca034f831af",
+    "tibiaCharacters": [
+      {
+        "characterName": "Jadson Motoboy",
+        "registeredAt": "2025-07-17T02:08:52.528Z",
+        "level": 119,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "3cb9ebfedffa98b510051da9ebf9270d0188e47889d535237504cf7a363180cc"
+    ],
+    "email": "glaucoclaus0209@gmail.com"
+  },
+  "eliseufnascimento@gmail.com": {
+    "name": "Brodarg",
+    "phone": "47996673576",
+    "passwordHash": "193649c1a736b13b1a153cc260ed6af6:1d7049c5c43c2bbcac18e828b3371bdbaae87c1fe26dc5fe2c96b327807dc0a3b3b667618008203d035b070c7f2649fb81e5e27d358eaad6cf1af0e41985be45",
+    "tibiaCharacters": [
+      {
+        "characterName": "Brordag",
+        "registeredAt": "2025-07-17T03:06:59.595Z",
+        "level": 93,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "df385c177a2077475c87f2477be4878184e78078f998550f840b76cdc72dc646"
+    ],
+    "email": "eliseufnascimento@gmail.com"
+  },
+  "felipe.campante@gmail.com": {
+    "name": "Felipe",
+    "phone": "11987362710",
+    "passwordHash": "ba27d7b19ac05ea1b8e8540a37798e4d:c94430a5b613431ffb5cc321d17b6b2e67e0ca46b3ba7ead79690b2a2798d66da004e88c77505b5fe6b38d116b7d5ddbfac79cd5c1468f488caeea1363236ea7",
+    "tibiaCharacters": [
+      {
+        "characterName": "Fezao Relax",
+        "registeredAt": "2025-07-17T12:29:50.538Z",
+        "level": 269,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "57f2e08ef08a3205602abe31b89525b39f26f6dab63da5720c89cfd1cd4b356e"
+    ],
+    "email": "felipe.campante@gmail.com"
+  },
+  "aggusdev@outlook.com": {
+    "name": "Tiago Gomes Da Silva",
+    "phone": "31975913291",
+    "passwordHash": "391103e1709ffb5bc0146c7fd262eabe:818354f875e104b72c11e78c64bb3764af1312008aa5637ae695c4d289f37c48c46c8a4b5e295630abf1ccb083cb0ced683d97e6d967c43e67f1db1bf6b11a41",
+    "tibiaCharacters": [
+      {
+        "characterName": "Punchhest",
+        "registeredAt": "2025-07-17T14:07:48.748Z",
+        "level": 228,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "c9a4548697fbb21721c89ae202515955e8aa7145b253faa03a5db0ff3f9d3bcb"
+    ],
+    "email": "aggusdev@outlook.com"
+  },
+  "w.tosso@gmail.com": {
+    "name": "William Cabreira Tosso",
+    "phone": "53984433787",
+    "passwordHash": "a1b42153e8982b307c01d0d48d9366ea:67523c9fb4351230b4877a1c3081e24cd7f37f4e07dfcce34590ea7c7783ae78383464cffc3f798e1df7fb7ab636e9b0b8ab4f60d318c4df2761c387bfbec3f9",
+    "tibiaCharacters": [
+      {
+        "characterName": "Look Mage",
+        "registeredAt": "2025-07-17T21:15:49.386Z",
+        "level": 128,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "9300b28c9d14d96da88057a6021272145b32d112d089a671c73c9227d7498cbb",
+      "a2bacb7414aa820bdb6c5e316f60450edd8b7ab8af2cffa0f40387861e9ddb1f"
+    ],
+    "email": "w.tosso@gmail.com"
+  },
+  "jgusantana@gmail.com": {
+    "name": "joao gustavo santana",
+    "phone": "38999895669",
+    "passwordHash": "60cc2f542480717fc89b610132ce93c8:5cd7cd0814128084a4f6b52ec3b19f3beeaf69a5f32aff7a2eb05d94119de95e062a4be078310a91fd30bcb1447eb6527a1eda1ec85034e2f6d54ce2aedd7122",
+    "tibiaCharacters": [
+      {
+        "characterName": "Goodiesz",
+        "registeredAt": "2025-07-17T21:11:43.776Z",
+        "level": 136,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "98efcb024360a0c68a62578ae05c0c703daec9f96139fae57a2d6202d2375921"
+    ],
+    "email": "jgusantana@gmail.com"
+  },
+  "sfranco.gustavo@gmail.com": {
+    "name": "Gustavo de Melo Souza Franco",
+    "phone": "41 997910120",
+    "passwordHash": "91aa049bcda71f2ca97ec9bc93ceb70a:5165d5d74ff4fe769f7360519aafdac29d83f5ee32375a85524203c50ef05b90d6a5df49bb73a9f8569a9dba93e348b581b29f745b1cc877f4b84e05a2412e68",
+    "tibiaCharacters": [],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "3308c7e2fb5ff8c0650f4f696a0131e7c90298ab05b5f64283230f50f088464e"
+    ]
+  },
+  "ledueloh@gmail.com": {
+    "name": "leandro de souza",
+    "phone": "13981122986",
+    "passwordHash": "2f474cd5b9a0475ad6deec9228cba5a4:1d15e5d48aa99806f712fd5213434eab88af2c21284c840f6fc92b5648c3085adb8dc57b10d82708a7e0d202977c41f9bccd5539e28a403caf0e12e9fd02aaff",
+    "tibiaCharacters": [
+      {
+        "characterName": "Virou vral",
+        "registeredAt": "2025-07-17T22:16:46.078Z",
+        "level": 134,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      },
+      {
+        "characterName": "Cambucy",
+        "registeredAt": "2025-07-17T22:23:07.558Z",
+        "level": 151,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "6aaa2671480f9aee6d21e4e62015ce822a6aa968af61c78ec56493b1013deb23"
+    ],
+    "email": "ledueloh@gmail.com",
+    "activeCharacterName": "Cambucy"
+  },
+  "rodrigosali@outlook.com": {
+    "name": "Rodrigo Lima",
+    "phone": "41996522726",
+    "passwordHash": "4f8e6daace43bc6e9497c568f66506ca:39f91dce91ba526f669a393fecd638d1af0810d5203e87f03fb3d72a8dbc40e3be717309c24733034c6c81ae6dc3a71e16b6d5eba3ff4aeeefa3e343df60beab",
+    "tibiaCharacters": [
+      {
+        "characterName": "Gurizinho Kamikaze",
+        "registeredAt": "2025-07-17T22:48:56.135Z",
+        "level": 325,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "ee1e65ac5d6da8e0a40426b7ed16c230ebfe0cb7f2aae7794688b43fd64fc709",
+      "ff5445bdc132455522d0d6b02c85b18ba4a5a089bbb5239d0ff65c68a806d9b4",
+      "4ec164260670953668d6e911b58470bf2dad315fb1be8f563ca871f32b2be58b"
+    ],
+    "email": "rodrigosali@outlook.com"
+  },
+  "diego.alessander@gmail.com": {
+    "name": "Alessander santos",
+    "phone": "67999788901",
+    "passwordHash": "f7b7d1a9ad431eff1d82c689e252aa2f:23bae20c651874aaa1d3c64ceee98d63363b6da38c0e8c23d21bfdeed3829c3e338eeb605df9d6dc6bd0b5e543a4cc61820f995c9e8b16f4b6e69bc37872a44c",
+    "tibiaCharacters": [
+      {
+        "characterName": "Tiborpressor",
+        "registeredAt": "2025-07-18T00:18:13.236Z",
+        "level": 105,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "212d0a54341f903866d70fab042c44c4b1c6765335330623d4ceec32bd23ce72"
+    ],
+    "email": "diego.alessander@gmail.com"
+  },
+  "caiokazumi106@gmail.com": {
+    "name": "Caio Henrique da Silva Antunes",
+    "phone": "11 989427525",
+    "passwordHash": "eb7cf92111abc9189c257c855823e034:ab92b6334b25d5a7cd28766d22073d74eeeaba13ac3e2644d340079e67355483a27a343760febc47ea29cceb6f62b6afb09bd1d8c363741cb317cab9ac444f8f",
+    "tibiaCharacters": [
+      {
+        "characterName": "Nightgazing",
+        "registeredAt": "2025-07-17T22:46:46.028Z",
+        "level": 307,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Member",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "a6fc1f986c0e23e3528260ccc57a5f621d0826a30f8ea412b68b7ed8686f23a9"
+    ],
+    "email": "caiokazumi106@gmail.com"
+  },
+  "rafa.f.costa39@gmail.com": {
+    "name": "Rafael da Costa",
+    "phone": "51992147697",
+    "passwordHash": "a579ea6f844ca71f3624851c3a63de2d:8009a7b35a12c533dc7d9946e9f93157af40f7204745712badffaf73f917827f92b989b4ed944ff37456cff8b6cd54a37194ac1ab0baf78c7c6040850364717f",
+    "tibiaCharacters": [],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "089f53e59212b5754166478d88af3dcc622014c87fd6aa37b20d91b5dc12b55d",
+      "e0ebc05b217feaf127fcc7a681939129a69bcba194fe0296aface536e12837b2",
+      "14deeffdbe093e0998c96e263eaff1d65a63efe6d8f5d5e40a1d292fdf3beb87",
+      "c248fe51dd68a907b5115ed7fc3338ebeb80ce135400c6d21827b45be04b36c7"
+    ]
+  },
+  "leandrorramos@gmail.com": {
+    "name": "Leandro Bittencourt",
+    "phone": "21988729688",
+    "passwordHash": "3fbc0b85942801888fe4fdbd9b1b8878:283201057811b3d0c661e222bd999a6a40c3ab2cdc3883c6b1a709bfa62a5c1ff497c09b8458a4843bf60dc42d4fb12212f38de3d86074059db80dde3b9ecf48",
+    "tibiaCharacters": [
+      {
+        "characterName": "Jolteon Eletrocutado",
+        "registeredAt": "2025-07-18T00:43:03.865Z",
+        "level": 72,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "317fa7645dd7f1a7aa17c8cd0b961cd9607fffa4a96d93b7db2fd6f813a27deb"
+    ],
+    "email": "leandrorramos@gmail.com"
+  },
+  "atilapaladino@gmail.com": {
+    "name": "tiago souza lopes",
+    "phone": "77991588462",
+    "passwordHash": "ee6c269f5712a8ecec0082b23672b32e:b0f916901ba191cc2ead3678b61796a21868777defb6ae43c737c717140bade71057cd09f387e8519fbb1fb2bf72b6c1c898cfb8fd2de00112c38e54c036721d",
+    "tibiaCharacters": [
+      {
+        "characterName": "Oliver Monk",
+        "registeredAt": "2025-07-18T01:52:55.053Z",
+        "level": 128,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Reserva",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "169e7392384f362e71e978f6cc7c8dd655b0e88cd764d0421b44ac76901199f9"
+    ],
+    "email": "atilapaladino@gmail.com"
+  },
+  "gustavo.d.r@hotmail.com": {
+    "name": "Gustavo Dias Ribeiro",
+    "phone": "41997978181",
+    "passwordHash": "8a6c6233283addcec52082c8404309f7:9aa071d05347be579ecebc7670611e262aa152118422bff4c026bebabed7053daad4e96d83a0bb680d7e563a1f348e256797fc3a39a7259fcba01b5c91853376",
+    "tibiaCharacters": [
+      {
+        "characterName": "Bloody Warlord",
+        "registeredAt": "2025-07-18T10:14:32.065Z",
+        "level": 178,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "166126d6852badcd0005ed9de9f5c51d8ae69e87e65fc408874b5bb891b6325f"
+    ],
+    "email": "gustavo.d.r@hotmail.com"
+  },
+  "skydavidr@gmail.com": {
+    "name": "David Menegasso",
+    "phone": "11941486445",
+    "passwordHash": "6528c60283898481bc96b9648fb03fa0:14369e4962f60e27302db0ac5601d7a826ee249b66d99be836b2fc55093af42871313bc64df026217b8da57e63070e699ecc4ce99896df129d7bd69ee0a1bcdc",
+    "tibiaCharacters": [
+      {
+        "characterName": "Black Sobanha",
+        "registeredAt": "2025-07-18T10:11:40.938Z",
+        "level": 44,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      },
+      {
+        "characterName": "Claire Obscur",
+        "registeredAt": "2025-07-18T10:24:28.309Z",
+        "level": 225,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "9880ac9bd14ae190bcfc001f856feb8ca1e06418e0163532ce05eb84c43fc4cf"
+    ],
+    "email": "skydavidr@gmail.com"
+  },
+  "Operaoldgame@gmail.com": {
+    "name": "Fabricio Moura",
+    "phone": "019971468693",
+    "passwordHash": "0f8ac5d2a57a1960378309627a028d61:cdcb889cdb20253b472bff777ed2bff936a2b37011997835b8c73adb21f4d92d0e10aec2448e043bb0139b480c57034dbef449593a6c080630d57c6dbd61ed8a",
+    "tibiaCharacters": [
+      {
+        "characterName": "Opera Soul",
+        "registeredAt": "2025-07-18T13:53:50.537Z",
+        "level": 183,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "aa500758d053c0b40e6c9ea75e73d837e8d4d6688a0328611a2f00b3da5767db"
+    ],
+    "email": "Operaoldgame@gmail.com"
+  },
+  "tgomes27@hotmail.com": {
+    "name": "Mith Arquerou",
+    "phone": "11 958404509",
+    "passwordHash": "81e50e5ab905dfb903820c92e8912082:e8c60efebc1473d46f3fd80df4b3f3fc2f48fcedf529ab6f10de90bb623f69a9dfa4ca90a895cdbb70a0e4da0fbfb0917cf3c30a1c86488e2091e87bbac6056f",
+    "tibiaCharacters": [],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "6b344dcec01e9b2ff82fe94c0699a427517200ec94b6039e0c6496c924a4466f"
+    ]
+  }
+}

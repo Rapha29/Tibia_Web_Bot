@@ -1,0 +1,84 @@
+{
+  "E29": {
+    "current": {
+      "clientNickname": "Nahno",
+      "clientUniqueIdentifier": "jaqueline.nidia@gmail.com",
+      "allocatedTime": 150
+    },
+    "queue": [],
+    "time": 150,
+    "waitingForAccept": false,
+    "acceptanceTime": 10,
+    "startTime": "2025-07-14T21:13:16.062Z",
+    "lastReminderSentAtMinute": 8,
+    "endTime": "2025-07-14T23:43:16.062Z"
+  },
+  "D31": {
+    "current": {
+      "clientNickname": "Gwaihir Windlord",
+      "clientUniqueIdentifier": "carlosalberto.jr90@outlook.com.br",
+      "allocatedTime": 150
+    },
+    "queue": [
+      {
+        "clientNickname": "Plutoszo",
+        "clientUniqueIdentifier": "smorfz12@gmail.com",
+        "allocatedTime": 150
+      },
+      {
+        "clientNickname": "Syntzs",
+        "clientUniqueIdentifier": "camposdavid930@gmail.com",
+        "allocatedTime": 150
+      }
+    ],
+    "time": 150,
+    "waitingForAccept": false,
+    "acceptanceTime": 10,
+    "startTime": "2025-07-14T21:27:23.818Z",
+    "lastReminderSentAtMinute": 7,
+    "endTime": "2025-07-14T23:57:23.818Z"
+  },
+  "Q4": {
+    "current": {
+      "clientNickname": "Neres Flecha Torta",
+      "clientUniqueIdentifier": "tibiarp1000@gmail.com",
+      "allocatedTime": 150
+    },
+    "queue": [],
+    "time": 150,
+    "waitingForAccept": true,
+    "acceptanceTime": 10,
+    "startTime": "2025-07-14T23:19:26.699Z",
+    "endTime": null,
+    "lastReminderSentAtMinute": 8
+  },
+  "T12": {
+    "current": {
+      "clientNickname": "Reality Hegemon",
+      "clientUniqueIdentifier": "fernandomah@gmail.com",
+      "allocatedTime": 150
+    },
+    "queue": [],
+    "time": 150,
+    "waitingForAccept": false,
+    "acceptanceTime": 10,
+    "startTime": "2025-07-14T21:16:13.579Z",
+    "endTime": "2025-07-14T23:46:13.579Z"
+  },
+  "K4": {
+    "current": {
+      "clientNickname": "Ra nyx",
+      "clientUniqueIdentifier": "rapha2929@gmail.com",
+      "allocatedTime": 210,
+      "isMakerHunt": true,
+      "makerName": "Hello World",
+      "offlineSince": 1752534786946
+    },
+    "queue": [],
+    "time": 210,
+    "waitingForAccept": false,
+    "acceptanceTime": 10,
+    "startTime": "2025-07-14T22:18:36.433Z",
+    "endTime": "2025-07-15T01:48:36.433Z"
+  }
+}

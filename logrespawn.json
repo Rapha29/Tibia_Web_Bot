@@ -1,0 +1,653 @@
+{
+  "52": [
+    {
+      "timestamp": "2025-07-18T20:55:24.662Z",
+      "user": "Yankee Snow",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "U18": [
+    {
+      "timestamp": "2025-07-17T18:49:48.894Z",
+      "user": "Kommerell",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "W3": [
+    {
+      "timestamp": "2025-07-19T15:02:35.145Z",
+      "user": "Elite Pasteleiro",
+      "action": "Tempo finalizado"
+    },
+    {
+      "timestamp": "2025-07-18T21:05:24.874Z",
+      "user": "Zero Dedicacao",
+      "action": "Não aceitou"
+    },
+    {
+      "timestamp": "2025-07-18T20:55:24.692Z",
+      "user": "Zero Dedicacao",
+      "action": "Assumiu (fila)"
+    },
+    {
+      "timestamp": "2025-07-18T20:55:24.687Z",
+      "user": "Kaover",
+      "action": "Tempo finalizado"
+    },
+    {
+      "timestamp": "2025-07-17T18:49:48.907Z",
+      "user": "Elite Pasteleiro",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "D24": [
+    {
+      "timestamp": "2025-07-17T18:49:48.915Z",
+      "user": "Deadly Shadoww",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "Q4": [
+    {
+      "timestamp": "2025-07-19T14:57:15.188Z",
+      "user": "Lukz Shot",
+      "action": "Assumiu (fila)"
+    },
+    {
+      "timestamp": "2025-07-19T14:57:15.182Z",
+      "user": "De Lariva Godlike",
+      "action": "Tempo finalizado"
+    },
+    {
+      "timestamp": "2025-07-17T18:49:48.925Z",
+      "user": "Pedro Apocalipse",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "W1": [
+    {
+      "timestamp": "2025-07-18T20:55:24.702Z",
+      "user": "Aborath Unknown",
+      "action": "Tempo finalizado"
+    },
+    {
+      "timestamp": "2025-07-17T18:49:48.934Z",
+      "user": "Psiconauta Corporation",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "62A": [
+    {
+      "timestamp": "2025-07-18T00:10:15.518Z",
+      "user": "Ra nyx",
+      "action": "Não aceitou"
+    },
+    {
+      "timestamp": "2025-07-18T00:00:04.041Z",
+      "user": "Ra nyx",
+      "action": "Pegou o respawn"
+    },
+    {
+      "timestamp": "2025-07-17T23:59:21.563Z",
+      "user": "Ra nyx",
+      "action": "Removido por Ra nyx"
+    },
+    {
+      "timestamp": "2025-07-17T23:58:50.553Z",
+      "user": "Ra nyx",
+      "action": "Aceitou o respawn"
+    },
+    {
+      "timestamp": "2025-07-17T23:58:48.177Z",
+      "user": "Ra nyx",
+      "action": "Pegou o respawn"
+    },
+    {
+      "timestamp": "2025-07-17T23:58:48.171Z",
+      "user": "Ra nyx",
+      "action": "Abandonou (nova reserva)"
+    },
+    {
+      "timestamp": "2025-07-17T23:57:09.131Z",
+      "user": "Ra nyx",
+      "action": "Pegou o respawn"
+    },
+    {
+      "timestamp": "2025-07-17T23:56:34.962Z",
+      "user": "Ra nyx",
+      "action": "Removido por inatividade"
+    },
+    {
+      "timestamp": "2025-07-17T23:41:32.956Z",
+      "user": "Ra nyx",
+      "action": "Aceitou o respawn"
+    },
+    {
+      "timestamp": "2025-07-17T23:41:31.716Z",
+      "user": "Ra nyx",
+      "action": "Pegou o respawn"
+    },
+    {
+      "timestamp": "2025-07-17T23:32:51.125Z",
+      "user": "Ra nyx",
+      "action": "Saiu do respawn"
+    },
+    {
+      "timestamp": "2025-07-17T23:32:34.342Z",
+      "user": "Ra nyx",
+      "action": "Aceitou o respawn"
+    },
+    {
+      "timestamp": "2025-07-17T23:32:33.078Z",
+      "user": "Ra nyx",
+      "action": "Pegou o respawn"
+    },
+    {
+      "timestamp": "2025-07-17T23:20:39.079Z",
+      "user": "Ra nyx",
+      "action": "Saiu do respawn"
+    },
+    {
+      "timestamp": "2025-07-17T23:06:18.982Z",
+      "user": "Ra nyx",
+      "action": "DESPAUSOU"
+    },
+    {
+      "timestamp": "2025-07-17T23:06:17.727Z",
+      "user": "Ra nyx",
+      "action": "PAUSOU"
+    },
+    {
+      "timestamp": "2025-07-17T23:06:14.552Z",
+      "user": "Ra nyx",
+      "action": "Aceitou o respawn"
+    },
+    {
+      "timestamp": "2025-07-17T23:06:13.272Z",
+      "user": "Ra nyx",
+      "action": "Pegou o respawn"
+    },
+    {
+      "timestamp": "2025-07-17T22:24:39.365Z",
+      "user": "Ra nyx",
+      "action": "Saiu do respawn"
+    },
+    {
+      "timestamp": "2025-07-17T22:22:18.309Z",
+      "user": "Ra nyx",
+      "action": "Aceitou o respawn"
+    },
+    {
+      "timestamp": "2025-07-17T22:22:17.181Z",
+      "user": "Ra nyx",
+      "action": "Pegou o respawn"
+    },
+    {
+      "timestamp": "2025-07-17T22:19:29.935Z",
+      "user": "Ra nyx",
+      "action": "Saiu do respawn"
+    },
+    {
+      "timestamp": "2025-07-17T18:49:48.958Z",
+      "user": "Ra nyx",
+      "action": "Tempo finalizado"
+    },
+    {
+      "timestamp": "2025-07-17T18:49:48.950Z",
+      "user": "Ra nyx",
+      "action": "Tempo finalizado"
+    },
+    {
+      "timestamp": "2025-07-17T18:49:48.942Z",
+      "user": "Ra nyx",
+      "action": "Removido por inatividade"
+    }
+  ],
+  "D31": [
+    {
+      "timestamp": "2025-07-18T21:15:25.121Z",
+      "user": "Pedimm",
+      "action": "Não aceitou"
+    },
+    {
+      "timestamp": "2025-07-18T21:05:24.868Z",
+      "user": "Pedimm",
+      "action": "Assumiu (fila)"
+    },
+    {
+      "timestamp": "2025-07-18T21:05:24.863Z",
+      "user": "Noffikz",
+      "action": "Não aceitou"
+    },
+    {
+      "timestamp": "2025-07-18T20:55:24.676Z",
+      "user": "Noffikz",
+      "action": "Assumiu (fila)"
+    },
+    {
+      "timestamp": "2025-07-18T20:55:24.668Z",
+      "user": "Syntzs",
+      "action": "Tempo finalizado"
+    },
+    {
+      "timestamp": "2025-07-17T18:59:54.435Z",
+      "user": "Oxe Brubru",
+      "action": "Não aceitou"
+    }
+  ],
+  "TODOS": [
+    {
+      "timestamp": "2025-07-17T23:06:27.119Z",
+      "user": "Líder",
+      "action": "DESPAUSOU TODOS"
+    },
+    {
+      "timestamp": "2025-07-17T23:06:23.368Z",
+      "user": "Líder",
+      "action": "PAUSOU TODOS"
+    }
+  ],
+  "K4": [
+    {
+      "timestamp": "2025-07-18T00:43:08.954Z",
+      "user": "Fininsk",
+      "action": "Tempo finalizado"
+    },
+    {
+      "timestamp": "2025-07-17T23:59:53.570Z",
+      "user": "Ra nyx",
+      "action": "Saiu do respawn"
+    },
+    {
+      "timestamp": "2025-07-17T23:59:49.521Z",
+      "user": "Ra nyx",
+      "action": "Aceitou o respawn"
+    },
+    {
+      "timestamp": "2025-07-17T23:59:38.930Z",
+      "user": "Ra nyx",
+      "action": "Pegou o respawn"
+    }
+  ],
+  "Z5": [
+    {
+      "timestamp": "2025-07-18T00:27:35.780Z",
+      "user": "Elajah",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "F33": [
+    {
+      "timestamp": "2025-07-18T00:51:08.768Z",
+      "user": "Gab Nofear",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "Z09": [
+    {
+      "timestamp": "2025-07-18T00:51:08.772Z",
+      "user": "Yikzs",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "T16": [
+    {
+      "timestamp": "2025-07-19T14:36:54.595Z",
+      "user": "Hatakedodos",
+      "action": "Removido por inatividade"
+    },
+    {
+      "timestamp": "2025-07-18T20:55:24.681Z",
+      "user": "Avatar Calvo",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "E29": [
+    {
+      "timestamp": "2025-07-19T14:58:15.097Z",
+      "user": "Neres Flecha Torta",
+      "action": "Assumiu (fila)"
+    },
+    {
+      "timestamp": "2025-07-19T14:58:15.090Z",
+      "user": "Zortax Incalculavel",
+      "action": "Tempo finalizado"
+    },
+    {
+      "timestamp": "2025-07-18T20:55:24.698Z",
+      "user": "Nahno",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "P17": [
+    {
+      "timestamp": "2025-07-18T21:05:24.879Z",
+      "user": "Eu Amo Voce",
+      "action": "Não aceitou"
+    },
+    {
+      "timestamp": "2025-07-18T20:55:24.712Z",
+      "user": "Eu Amo Voce",
+      "action": "Assumiu (fila)"
+    },
+    {
+      "timestamp": "2025-07-18T20:55:24.708Z",
+      "user": "Lemon Blan",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "Y1": [
+    {
+      "timestamp": "2025-07-18T20:55:24.717Z",
+      "user": "Kokusen Smash",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "B17": [
+    {
+      "timestamp": "2025-07-19T14:35:34.566Z",
+      "user": "Zughy",
+      "action": "Tempo finalizado"
+    },
+    {
+      "timestamp": "2025-07-18T20:55:24.722Z",
+      "user": "General Lubektron",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "T12": [
+    {
+      "timestamp": "2025-07-18T21:05:24.886Z",
+      "user": "Fortziinsz",
+      "action": "Não aceitou"
+    },
+    {
+      "timestamp": "2025-07-18T20:55:24.731Z",
+      "user": "Fortziinsz",
+      "action": "Assumiu (fila)"
+    },
+    {
+      "timestamp": "2025-07-18T20:55:24.727Z",
+      "user": "Reality Hegemon",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "D20": [
+    {
+      "timestamp": "2025-07-19T14:36:54.590Z",
+      "user": "Tfourzika",
+      "action": "Não aceitou"
+    },
+    {
+      "timestamp": "2025-07-19T14:26:54.389Z",
+      "user": "Tfourzika",
+      "action": "Assumiu (fila)"
+    },
+    {
+      "timestamp": "2025-07-19T14:26:54.384Z",
+      "user": "Megagiito",
+      "action": "Tempo finalizado"
+    },
+    {
+      "timestamp": "2025-07-18T21:05:24.890Z",
+      "user": "Piiloto Bighead",
+      "action": "Não aceitou"
+    },
+    {
+      "timestamp": "2025-07-18T20:55:24.740Z",
+      "user": "Piiloto Bighead",
+      "action": "Assumiu (fila)"
+    },
+    {
+      "timestamp": "2025-07-18T20:55:24.736Z",
+      "user": "Tfourzika",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "D40": [
+    {
+      "timestamp": "2025-07-18T20:55:24.745Z",
+      "user": "Lutti Frutti",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "K15": [
+    {
+      "timestamp": "2025-07-18T20:55:24.750Z",
+      "user": "Mista Kinda",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "C5": [
+    {
+      "timestamp": "2025-07-18T20:55:24.756Z",
+      "user": "Meziolsky",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "T13": [
+    {
+      "timestamp": "2025-07-18T20:55:24.760Z",
+      "user": "Krokodyl Piotrek",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "Q13": [
+    {
+      "timestamp": "2025-07-19T14:43:54.787Z",
+      "user": "El Kablum",
+      "action": "Não aceitou"
+    },
+    {
+      "timestamp": "2025-07-19T14:33:54.695Z",
+      "user": "El Kablum",
+      "action": "Assumiu (fila)"
+    },
+    {
+      "timestamp": "2025-07-19T14:33:54.689Z",
+      "user": "Tchores Saii",
+      "action": "Tempo finalizado"
+    },
+    {
+      "timestamp": "2025-07-18T21:15:25.126Z",
+      "user": "Lost Danett",
+      "action": "Não aceitou"
+    },
+    {
+      "timestamp": "2025-07-18T21:05:24.901Z",
+      "user": "Lost Danett",
+      "action": "Assumiu (fila)"
+    },
+    {
+      "timestamp": "2025-07-18T21:05:24.896Z",
+      "user": "King Thalin",
+      "action": "Não aceitou"
+    },
+    {
+      "timestamp": "2025-07-18T20:55:24.769Z",
+      "user": "King Thalin",
+      "action": "Assumiu (fila)"
+    },
+    {
+      "timestamp": "2025-07-18T20:55:24.764Z",
+      "user": "Neres Flecha Torta",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "G11": [
+    {
+      "timestamp": "2025-07-18T21:05:24.906Z",
+      "user": "Dark Mateico",
+      "action": "Não aceitou"
+    },
+    {
+      "timestamp": "2025-07-18T20:55:24.783Z",
+      "user": "Dark Mateico",
+      "action": "Assumiu (fila)"
+    },
+    {
+      "timestamp": "2025-07-18T20:55:24.778Z",
+      "user": "Colosso Von Terryer",
+      "action": "Tempo finalizado"
+    },
+    {
+      "timestamp": "2025-07-18T20:55:24.774Z",
+      "user": "Colosso Von Terryer",
+      "action": "Removido por inatividade"
+    }
+  ],
+  "U15": [
+    {
+      "timestamp": "2025-07-18T20:55:24.787Z",
+      "user": "Tony Paralyzer",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "D42": [
+    {
+      "timestamp": "2025-07-18T21:05:24.910Z",
+      "user": "Maohzera",
+      "action": "Não aceitou"
+    },
+    {
+      "timestamp": "2025-07-18T20:55:24.797Z",
+      "user": "Maohzera",
+      "action": "Assumiu (fila)"
+    },
+    {
+      "timestamp": "2025-07-18T20:55:24.793Z",
+      "user": "Caesar Corporation",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "E34": [
+    {
+      "timestamp": "2025-07-18T20:55:24.802Z",
+      "user": "Drig Corporation",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "W2": [
+    {
+      "timestamp": "2025-07-18T21:15:25.131Z",
+      "user": "Profesorez",
+      "action": "Não aceitou"
+    },
+    {
+      "timestamp": "2025-07-18T21:05:24.920Z",
+      "user": "Profesorez",
+      "action": "Assumiu (fila)"
+    },
+    {
+      "timestamp": "2025-07-18T21:05:24.916Z",
+      "user": "Pympones Insistente",
+      "action": "Não aceitou"
+    },
+    {
+      "timestamp": "2025-07-18T20:55:24.813Z",
+      "user": "Pympones Insistente",
+      "action": "Assumiu (fila)"
+    },
+    {
+      "timestamp": "2025-07-18T20:55:24.808Z",
+      "user": "Menczennica",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "K13": [
+    {
+      "timestamp": "2025-07-19T14:36:14.749Z",
+      "user": "Wellz Mage",
+      "action": "Não aceitou"
+    },
+    {
+      "timestamp": "2025-07-19T14:26:14.378Z",
+      "user": "Wellz Mage",
+      "action": "Assumiu (fila)"
+    },
+    {
+      "timestamp": "2025-07-19T14:26:14.372Z",
+      "user": "Absolutix",
+      "action": "Não aceitou"
+    },
+    {
+      "timestamp": "2025-07-18T20:55:24.817Z",
+      "user": "Eretica",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "G12": [
+    {
+      "timestamp": "2025-07-19T14:29:34.580Z",
+      "user": "Szlowsk Malkai",
+      "action": "Tempo finalizado"
+    },
+    {
+      "timestamp": "2025-07-18T20:55:24.822Z",
+      "user": "Verre",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "C7": [
+    {
+      "timestamp": "2025-07-18T20:55:24.826Z",
+      "user": "Madal Firma Forte",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "Q12": [
+    {
+      "timestamp": "2025-07-18T20:55:24.831Z",
+      "user": "Pedimm",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "D21": [
+    {
+      "timestamp": "2025-07-19T14:28:14.978Z",
+      "user": "Lost Danett",
+      "action": "Não aceitou"
+    },
+    {
+      "timestamp": "2025-07-19T14:18:14.475Z",
+      "user": "Lost Danett",
+      "action": "Assumiu (fila)"
+    },
+    {
+      "timestamp": "2025-07-19T14:18:14.468Z",
+      "user": "Kalahad the Defender",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "W6": [
+    {
+      "timestamp": "2025-07-19T14:20:14.642Z",
+      "user": "Fa va ro",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "O20": [
+    {
+      "timestamp": "2025-07-19T14:46:54.906Z",
+      "user": "Etstroth",
+      "action": "Não aceitou"
+    },
+    {
+      "timestamp": "2025-07-19T14:36:54.583Z",
+      "user": "Etstroth",
+      "action": "Assumiu (fila)"
+    },
+    {
+      "timestamp": "2025-07-19T14:36:54.578Z",
+      "user": "Dark Mateico",
+      "action": "Removido por inatividade"
+    }
+  ],
+  "D22": [
+    {
+      "timestamp": "2025-07-19T14:57:55.067Z",
+      "user": "Indagador of Mesopotamia",
+      "action": "Tempo finalizado"
+    }
+  ]
+}

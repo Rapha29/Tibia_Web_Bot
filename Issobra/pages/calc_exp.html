@@ -1,0 +1,196 @@
+<style>
+    .calc-container { max-width: 800px; width: 100%; margin: 0 auto; padding: 20px; background-color: var(--panel-bg-color); border: 1px solid var(--border-color); border-radius: 8px; }
+    .calc-row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 12px; }
+    .calc-group { flex: 1 1 100%; }
+    @media (min-width: 768px) { .calc-group { flex: 1; } }
+    .calc-container label { display: block; font-size: 14px; margin-bottom: 5px; font-weight: 600; }
+    .calc-container input, .calc-container select {
+        width: 100%; padding: 10px; font-size: 14px; border: 1px solid var(--border-color);
+        border-radius: 6px; background-color: var(--bg-color); color: var(--text-color);
+    }
+    .calc-container input:focus, .calc-container select:focus { outline: none; border-color: var(--gold-accent); box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2); }
+    .hour-group { margin-bottom: 8px; padding: 10px; border-radius: 6px; background-color: rgba(35, 134, 54, 0.1); border-left: 3px solid var(--success-color); display: flex; align-items: center; gap: 15px; }
+    .hour-group.orange { background-color: rgba(243, 156, 18, 0.1); border-left: 3px solid var(--warning-color); }
+    .stamina-options, .event-options { display: flex; flex-wrap: wrap; align-items: center; gap: 15px; }
+    .event-checkbox { display: flex; align-items: center; gap: 6px; }
+    .calc-button { padding: 12px 20px; background-color: var(--gold-accent); color: #111; font-size: 14px; font-weight: 600; border: none; border-radius: 6px; cursor: pointer; width: auto; }
+    .calc-button:hover { filter: brightness(1.1); }
+    .calc-result { background-color: var(--bg-color); padding: 15px; border: 1px solid var(--border-color); border-radius: 6px; margin-top: 15px; }
+    .xp-summary { margin-bottom: 10px; padding: 10px; background-color: var(--panel-bg-color); border-radius: 6px; border-left: 3px solid var(--gold-accent); }
+</style>
+
+<div class="header-container">
+  <h1><i class="fas fa-chart-line"></i> Calculadora de Experiência</h1>
+</div>
+
+<div class="calc-container">
+    <div id="loadingMessage" style="text-align:center; padding: 20px;">Carregando tabela de experiência...</div>
+    <div id="formContent" style="display: none;">
+        <div class="calc-row">
+            <div class="calc-group"><label for="currentLevel">Nível Atual:</label><input type="text" id="currentLevel" min="0" value=""></div>
+            <div class="calc-group"><label for="currentPercent">Progresso (%):</label><input type="number" id="currentPercent" min="0" max="100" value="0"></div>
+            <div class="calc-group"><label for="targetLevel">Nível Alvo:</label><input type="text" id="targetLevel" min="0" value=""></div>
+        </div>
+        <div class="calc-row">
+            <div class="calc-group"><label for="rawExperience">Experiência RAW/h:</label><input type="text" id="rawExperience" value="1.000.000"></div>
+            <div class="calc-group"><label for="numHours">Horas por dia:</label><select id="numHours"><option value="1">1 hora</option><option value="2">2 horas</option><option value="3">3 horas</option><option value="4">4 horas</option><option value="5">5 horas</option><option value="6">6 horas</option><option value="7">7 horas</option><option value="8">8 horas</option></select></div>
+        </div>
+        <div id="hourSelection" style="margin-top: 12px;"></div>
+        <div class="action-buttons" style="margin: 15px 0;">
+            <div class="event-options">
+                <div class="event-checkbox"><input type="checkbox" id="doubleExperience"><label for="doubleExperience">Double XP</label></div>
+                <div class="event-checkbox"><input type="checkbox" id="event30"><label for="event30">Evento 30%</label></div>
+                <div class="event-checkbox"><input type="checkbox" id="event50"><label for="event50">Evento 50%</label></div>
+            </div>
+            <button id="calculateButton" class="calc-button">Calcular</button>
+        </div>
+        <div class="calc-result" id="result" style="display:none;"></div>
+    </div>
+</div>
+
+<script>
+(function() {
+    if (!document.getElementById('formContent')) return;
+
+    const experienceTable = {};
+
+    const loadExperienceTable = async () => {
+        try {
+            const response = await fetch('/xpt2.txt');
+            if (!response.ok) {
+                throw new Error(`Arquivo xpt2.txt não encontrado na raiz do projeto (Status: ${response.status})`);
+            }
+            const data = await response.text();
+            data.split(', ').forEach(pair => {
+                const [level, exp] = pair.split(': ');
+                if(level && exp) experienceTable[level.trim()] = parseInt(exp.trim());
+            });
+            document.getElementById('loadingMessage').style.display = 'none';
+            document.getElementById('formContent').style.display = 'block';
+            setupEventListeners();
+        } catch (error) {
+            const loadingDiv = document.getElementById('loadingMessage');
+            loadingDiv.innerHTML = `<div style="color:var(--danger-color);">${error.message}</div>`;
+        }
+    };
+
+    function formatNumber(num) {
+        return (num || 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+    function parseFormattedNumber(str) {
+        return parseInt(String(str).replace(/\./g, '')) || 0;
+    }
+    function decimalToHoursMinutes(decimalHours) {
+        const hours = Math.floor(decimalHours || 0);
+        const minutes = Math.round(((decimalHours || 0) - hours) * 60);
+        if (minutes === 0) return `${hours} hora${hours !== 1 ? 's' : ''}`;
+        if (hours === 0) return `${minutes} minuto${minutes !== 1 ? 's' : ''}`;
+        return `${hours} hora${hours !== 1 ? 's' : ''} e ${minutes} minuto${minutes !== 1 ? 's' : ''}`;
+    }
+    function formatDate(date) {
+        return `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
+    }
+
+    const calculateExperience = () => {
+        const resultDiv = document.getElementById('result');
+        resultDiv.style.display = 'block';
+
+        const currentLevel = parseInt(document.getElementById('currentLevel').value) || 1;
+        const currentPercent = parseFloat(document.getElementById('currentPercent').value) || 0;
+        const targetLevel = parseInt(document.getElementById('targetLevel').value) || (currentLevel + 1);
+        const rawExperience = parseFormattedNumber(document.getElementById('rawExperience').value) || 1000000;
+        const doubleXP = document.getElementById('doubleExperience').checked;
+        const event30 = document.getElementById('event30').checked;
+        const event50 = document.getElementById('event50').checked;
+        const numHours = parseInt(document.getElementById('numHours').value) || 1;
+
+        let currentXP = experienceTable[currentLevel] || 0;
+        let targetXP = experienceTable[targetLevel] || 0;
+
+        if (!targetXP || !currentXP || targetLevel <= currentLevel) {
+            resultDiv.innerHTML = `<div style='color: var(--danger-color);'>O nível alvo precisa ser maior que o nível atual.</div>`;
+            return;
+        }
+
+        if (currentPercent > 0) {
+            const nextLevelXP = experienceTable[currentLevel + 1] || experienceTable[currentLevel];
+            const levelRange = nextLevelXP - currentXP;
+            currentXP += (levelRange * currentPercent) / 100;
+        }
+
+        let totalXPRequired = targetXP - currentXP;
+        const calculateHourXP = (stamina, boost) => {
+            let percentage = 100;
+            if (stamina === 'green') percentage *= 1.5;
+            if (boost) percentage *= 1.5;
+            if (event30) percentage *= 1.3;
+            if (event50) percentage *= 1.5;
+            if (doubleXP) percentage *= 2;
+            return { total: rawExperience * (percentage / 100), finalPercentage: Math.round(percentage) };
+        };
+
+        let totalXPPerDay = 0;
+        let hourDetails = [];
+        for (let i = 1; i <= numHours; i++) {
+            const stamina = document.querySelector(`input[name="stamina${i}"]:checked`)?.value || 'green';
+            const boost = document.getElementById(`boost${i}`)?.checked || false;
+            const xpCalc = calculateHourXP(stamina, boost);
+            hourDetails.push({ hour: i, stamina, boost, xpPerHour: xpCalc.total, finalPercentage: xpCalc.finalPercentage });
+            totalXPPerDay += xpCalc.total;
+        }
+
+        if (totalXPPerDay <= 0) {
+            resultDiv.innerHTML = `<div style='color: var(--danger-color);'>A experiência por dia é zero. Verifique os valores.</div>`;
+            return;
+        }
+
+        let totalDays = Math.floor(totalXPRequired / totalXPPerDay) || 0;
+        let remainingXP = totalXPRequired % totalXPPerDay || 0;
+        let remainingHours = (totalXPPerDay > 0) ? (remainingXP / (totalXPPerDay / numHours)) : 0;
+        const targetDate = new Date();
+        targetDate.setDate(targetDate.getDate() + totalDays);
+        let timeEstimation = (totalDays > 0) ? `${totalDays} dia(s)` : '';
+        if (remainingHours > 0.01) timeEstimation += (timeEstimation ? ' e ' : '') + decimalToHoursMinutes(remainingHours);
+
+        let resultText = `<div class="xp-summary"><strong>XP Necessária:</strong> ${formatNumber(Math.floor(totalXPRequired))}<br><strong>XP por Dia:</strong> ${formatNumber(Math.floor(totalXPPerDay))}<br><strong>Data Estimada:</strong> ${formatDate(targetDate)} (${timeEstimation})</div>`;
+        hourDetails.forEach(d => {
+            resultText += `<div style="padding: 6px; background-color: ${d.stamina === 'green' ? 'rgba(35, 134, 54, 0.1)' : 'rgba(243, 156, 18, 0.1)'}; border-radius: 4px; margin-bottom: 5px;"><strong>Hora ${d.hour}:</strong> ${formatNumber(d.xpPerHour)}/h (${d.finalPercentage}%)</div>`;
+        });
+        resultDiv.innerHTML = resultText;
+    };
+
+    const hourSelection = () => {
+        const container = document.getElementById('hourSelection');
+        if (!container) return;
+        let hourSelectionHTML = '';
+        let numHours = parseInt(document.getElementById('numHours').value) || 1;
+        for (let i = 1; i <= numHours; i++) {
+            hourSelectionHTML += `<div class="hour-group" id="hourGroup${i}"><label>Hora ${i}:</label><div class="stamina-options"><div class="stamina-option"><input type="radio" id="staminaGreen${i}" name="stamina${i}" value="green" checked><label for="staminaGreen${i}">Verde</label></div><div class="stamina-option"><input type="radio" id="staminaOrange${i}" name="stamina${i}" value="orange"><label for="staminaOrange${i}">Laranja</label></div><div class="boost-checkbox"><input type="checkbox" id="boost${i}"><label for="boost${i}">Boost</label></div></div></div>`;
+        }
+        container.innerHTML = hourSelectionHTML;
+
+        for (let i = 1; i <= numHours; i++) {
+            const greenRadio = document.getElementById(`staminaGreen${i}`);
+            const orangeRadio = document.getElementById(`staminaOrange${i}`);
+            const groupDiv = document.getElementById(`hourGroup${i}`);
+            if (greenRadio && orangeRadio && groupDiv) {
+                greenRadio.addEventListener('change', () => groupDiv.classList.remove('orange'));
+                orangeRadio.addEventListener('change', () => groupDiv.classList.add('orange'));
+            }
+        }
+    };
+
+    const setupEventListeners = () => {
+        document.getElementById('calculateButton').addEventListener('click', calculateExperience);
+        document.getElementById('numHours').addEventListener('change', hourSelection);
+        
+        document.getElementById('rawExperience').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\./g, '');
+            if (value === '' || isNaN(value)) e.target.value = '';
+            else e.target.value = formatNumber(parseInt(value));
+        });
+    };
+    
+    loadExperienceTable();
+})();
+</script>

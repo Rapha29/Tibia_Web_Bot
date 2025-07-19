@@ -1,0 +1,96 @@
+{
+  "k13": {
+    "current": {
+      "clid": "24",
+      "clientNickname": "De Lariva Godlike",
+      "clientUniqueIdentifier": "o4EtJq0xjoqxPL3dfVCqkuPc07I="
+    },
+    "queue": [],
+    "time": 21,
+    "waitingForAccept": false,
+    "acceptanceTime": 15
+  },
+  "e32": {
+    "current": {
+      "clid": "58",
+      "clientNickname": "Za go",
+      "clientUniqueIdentifier": "xq+7PEZYxbUU+hrh8Uegg+C1AkE="
+    },
+    "queue": [],
+    "time": 70,
+    "waitingForAccept": false,
+    "acceptanceTime": 15
+  },
+  "w2": {
+    "current": {
+      "clid": "92",
+      "clientNickname": "Atos - Profesorez",
+      "clientUniqueIdentifier": "YBKUgwFUsqy18WHufJ5sfwlG5Fw="
+    },
+    "queue": [],
+    "time": 92,
+    "waitingForAccept": false,
+    "acceptanceTime": 15
+  },
+  "b17": {
+    "current": {
+      "clid": "70",
+      "clientNickname": "Galleoti",
+      "clientUniqueIdentifier": "KBQLhugNtBFjUV9FtUavbQ3WVd8="
+    },
+    "queue": [
+      {
+        "clid": "10",
+        "clientNickname": "Ruiivaa/Hadragon",
+        "clientUniqueIdentifier": "4PFw18ZH93ZjmVkvMcxgxWNtYZw="
+      }
+    ],
+    "time": 161,
+    "waitingForAccept": false,
+    "acceptanceTime": 15
+  },
+  "p17": {
+    "current": {
+      "clid": "67",
+      "clientNickname": "Siles",
+      "clientUniqueIdentifier": "C/1dTNRnEgRZ3wRxjcKrgNeYTz8="
+    },
+    "queue": [],
+    "time": 112,
+    "waitingForAccept": false,
+    "acceptanceTime": 15
+  },
+  "z25": {
+    "current": {
+      "clid": "95",
+      "clientNickname": "Indagador Of Mesopotamia",
+      "clientUniqueIdentifier": "Qb84cu0eJrkGruly1XtdtK7M6sE="
+    },
+    "queue": [],
+    "time": 116,
+    "waitingForAccept": false,
+    "acceptanceTime": 15
+  },
+  "w3": {
+    "current": {
+      "clid": "89",
+      "clientNickname": "Elite Pasteleiro",
+      "clientUniqueIdentifier": "W8Ak7LZpO+MymCCyw8PJYj1gZng="
+    },
+    "queue": [],
+    "time": 131,
+    "waitingForAccept": false,
+    "acceptanceTime": 15
+  },
+  "q13": {
+    "current": {
+      "clid": "21",
+      "clientNickname": "Tchores Saii",
+      "clientUniqueIdentifier": "BzRPWVyyQhmlki7ARbHmBVVJiYY="
+    },
+    "queue": [],
+    "time": 118,
+    "waitingForAccept": false,
+    "acceptanceTime": 15
+  }
+}

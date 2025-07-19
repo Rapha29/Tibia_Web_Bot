@@ -1,0 +1,40 @@
+<!-- public/pages/bosses_history.html -->
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="text-muted"><i class="fas fa-clock"></i> Histórico de Bosses</h2>
+    <button class="btn btn-outline-secondary" onclick="loadPage('bosses')">Voltar</button>
+  </div>
+  <div id="history-list" class="row g-3"></div>
+</div>
+
+<script>
+  async function loadBossHistory() {
+    const res = await fetch('/api/bosses/history');
+    const groups = await res.json();
+    const list = document.getElementById('history-list');
+    list.innerHTML = '';
+    if (!groups.length) {
+      list.innerHTML = '<div class="alert alert-secondary">Nenhum grupo encontrado nos últimos 10 dias.</div>';
+      return;
+    }
+    groups.forEach(g => {
+      const col = document.createElement('div');
+      col.className = 'col-lg-6';
+      col.innerHTML = `
+        <div class="card">
+          <div class="card-header bg-light d-flex justify-content-between">
+            <div>
+              <h5 class="mb-0">${g.boss_name}</h5>
+              <small>Em ${new Date(g.event_time).toLocaleString()} - Por: ${g.creator}</small>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="mb-0"><strong>Mundo:</strong> ${g.world}</p>
+          </div>
+        </div>`;
+      list.appendChild(col);
+    });
+  }
+
+  loadBossHistory();
+</script>

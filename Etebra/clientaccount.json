@@ -1,0 +1,218 @@
+{
+  "mitheroffertibia@gmail.com": {
+    "name": "Artur jaernevay",
+    "phone": "32988962641",
+    "passwordHash": "f89df4a1f1397b9e6001f1d568d2a229:99031f1f4603981d461b01750b4d10437c37ccaa392bc30a313948a5ebf25ceeea499046a43b88c8b21bb3bb73bc47e5c4d01660112566ac0ac6329a58125ac9",
+    "tibiaCharacters": [],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "bcb0209244bc5aa0adb69409e0abc919a9b1dccc82163ff19068219725cedf30"
+    ]
+  },
+  "matt.garzo@hotmail.com": {
+    "name": "matheus henrique garzo",
+    "phone": "01998225-0675",
+    "passwordHash": "172df8deae6ae442bb100c0ded8a6575:7ab7586546778abd6af76981dc42246d697ddbea14fee55d22fa9b7d3470269ca5490b6b20e5b429cae207413d02e5193348e45120591f3899e700dae0013c65",
+    "tibiaCharacters": [],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "cb74f9485b5ca084885059bf3480fdf2beeadc919589be49c6350dac0fe383d5",
+      "eef23963814fb17a856bb73ab4470d524698f239a740b965c914194b026c4ff6",
+      "1ea1b2440775755ea39258ef07b569d3549894bded4952e333ec1abc17b1bd4b",
+      "5db821bb755a5a923dd2b811ca57580ca05b017639e10dd5f12df22874ee1f70",
+      "e50a5aaa7808084110d5c5d5a9d27bee92215744681b76291eadd331a389c06a"
+    ]
+  },
+  "peixoto.elon@gmail.com": {
+    "name": "Elon Peixoto",
+    "phone": "33 84088784",
+    "passwordHash": "b8de32bbf6271886cf4ea0eabbc1166d:b2e4ab9d40bd141643139fc3c50f81a8124f94cc6886ea18f07f247eb26df248dab5441e09288185d5264fb71f33d4296d60ae068ccf0efc43982c23e9206237",
+    "tibiaCharacters": [],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "49fc74d99683bceebca70ba021be12ba75059262a0fa76c29103e33399514372"
+    ]
+  },
+  "fo6481125@gmail.com": {
+    "name": "Ricardo Taliasin Netto",
+    "phone": "3298499059",
+    "passwordHash": "bda64e2594d4409d0fa8386e9dbae288:fe7696c117c665fca9ed72c987fe241525489022ae1cbd78f486c71f3f54f39b1a3b8f506e590d9d09a95aad2f68a3fa73b0ebde4f33a20f6a4ec9eec126c2fd",
+    "tibiaCharacters": [],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "6b98cd31e4ee9d48eb7a8e3041fd6d65fe2a3aee0d79ddb0982def2d169f2323",
+      "94e23d5b1b13805c7c1ff6f4e9df79f61aa6a2ad769d74b06a55b6662ef278a1",
+      "b87d851eb11f6765289ce1cbd8391239b6c4b1b2cf14186cf129b1d2e1d2daee"
+    ]
+  },
+  "mikewillianpacheco21@gmail.com": {
+    "name": "MIKE WILLIAM PACHECO CARVALHO",
+    "phone": "51991160918",
+    "passwordHash": "6f8ae38c377cb471a10838c9f2011ffd:942ed8451506cdb6f506884009205a7b80fb5745c392e333976336845d2ef1863717dcb185a504e755e0fcf9bad16916c0cb974cd8b86cd877e0f79d424fb597",
+    "tibiaCharacters": [],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "fef8b322a853456e9bc16e26bb8f87ce77d76a6fe37508e77644ca3e7196cc4c"
+    ]
+  },
+  "sebastianramirez_21_1991@hotmail.com": {
+    "name": "Sebastian Ramirez",
+    "phone": "+56934109514",
+    "passwordHash": "da3e006c652f39dfdaf646d29499d3ce:3c148dd1b52d324cce06f422800afa4b516ca500a4f4ccd5eee040e062a1205af64a069ed0a38c1ddfb55522f027e08885e7e00b957f720370edbef44a9bd6ff",
+    "tibiaCharacters": [],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "43d75c57e10b6644e74c4443f505e459bfee45f2d84207b633bb832ede847537"
+    ]
+  },
+  "fernando.portrait@gmail.com": {
+    "name": "fernando",
+    "phone": "34 991100927",
+    "passwordHash": "216cce15513d261a7cf5af8a8b5971f0:4728f67a1591247692c59f6fcf95464e7a0454ab3787fb572665bf66c6a6557bb2696ad7a61cdfeea11148d7a40b5d40bfa69ea77240b83e2a7eb39dca184b16",
+    "tibiaCharacters": [],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "055efd0d5c65f518c8477050bb4ccee68dcfc40568761e39f53e045a8e0914cb"
+    ]
+  },
+  "ffmanduca@gmail.com": {
+    "name": "fillipe",
+    "phone": "11951095513",
+    "passwordHash": "72cf402f709964cf9811d730f67742da:30c2092b256cf18cc0f8bc2e36464910daa442d9dd42471a6756f36b190b7b825ff93ff5b0d0afadefdcf3f3eb5b353eea85e25ae8b500471177945d4a2904a1",
+    "tibiaCharacters": [],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "5be8ebcd4234eb5663add1fdd5caede60fa241ff274b6ff408f102b550c590e3"
+    ]
+  },
+  "tales313233@gmail.com": {
+    "name": "tales marteli",
+    "phone": "17982303223",
+    "passwordHash": "789eb0ef9118516cee4568acdf76b133:fc180e76e67ea6a6c463d88e735a97da783c4dbdb167a7da59d6651a5f23db7a31cc9b126690b30d0a36b3121fba8f509fe7c4f85175c78b81f52cc08ade72f8",
+    "tibiaCharacters": [],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "5533e4878411db81df600c6d6797563fa04fde167e5a6e77f31364f4b9323bb9"
+    ]
+  },
+  "talesmpn1@gmail.com": {
+    "name": "tales m",
+    "phone": "17982303223",
+    "passwordHash": "a06100d384d01957762a50b30f58a376:68fe84b5fb9c546d5c600780a571ce795cec9bc190264759b68c9a3024e0f4fcc566996b0f6b00e48473553a197ac4256c7dd50e5b2adbd7b396b6e2476dc45c",
+    "tibiaCharacters": [],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "d7ec0c7201e44014134a13c823ff77efe192406a9194ab51d81d0f4f759643b0"
+    ]
+  },
+  "Viictor.medina@yahoo.com.br": {
+    "name": "Victor Alves Medina",
+    "phone": "19993496316",
+    "passwordHash": "99034c47adaf0f97fc01469d3420d1a3:086a052e599de3ac8852a50ee86331d234e954e58d9de87e5ca4415c95d38e2e011732ca48cf145a8c3e7e48fa023e745cc5fbd0e784708fbf350b2d3a567d33",
+    "tibiaCharacters": [],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "4582e08ea7a000f2d21bb99557e0c67422c7348b4e66322dec526c529bce7393"
+    ]
+  },
+  "matt.csg@gmail.com": {
+    "name": "Matheus Gabriel",
+    "phone": "11956726309",
+    "passwordHash": "a1731fb050e2c800d5ed32891ac96a79:e7e207f0aafaaa5e6926c515c27c7fec48681b73b2c374f108c8ce7a68e247bc66ce108155c960a62e86761f7692c19e3da4dae3070875c116e6f61889f9b6aa",
+    "tibiaCharacters": [],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "b0dfc59047b517bbb49a89ecb74e1e537d274cdf3ae2a82fe372f49835a91122",
+      "3a1a7d105411f558787207aae76e413f763cb0af66573e4d180784dbe14f467a"
+    ]
+  },
+  "Rodrigo.miguel.bellot@gmail.com": {
+    "name": "Rodrigo de Miguel Bellot",
+    "phone": "21969084594",
+    "passwordHash": "b9aeed909bc62eecd0842e80b440bb11:ecde044a8fed9ca1f038c9d494781e80efcf999494273c896365c9163798d87d6c0a8c0ea522eab5af30f32b3850a94a8dc10e5847281ddd23c3ff34a806922e",
+    "tibiaCharacters": [
+      {
+        "characterName": "Drigus Firma Forte",
+        "registeredAt": "2025-07-19T15:24:40.130Z",
+        "level": 656,
+        "vocation": "Royal Paladin",
+        "world": "Etebra",
+        "guildRank": "Hero",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "a93b8fa28283ebdf3c482f4f844fcb7018ad741b8195ba39dda08858d1fdb6ec"
+    ],
+    "email": "Rodrigo.miguel.bellot@gmail.com"
+  },
+  "rodneyandradejr@outlook.com": {
+    "name": "rodney julio de andrade junior",
+    "phone": "37991444013",
+    "passwordHash": "eaf9e00bfcba574a4a0147bbcb34a7a5:53084099f516826f318ad6a8f05866e8c25dbfdcb52fc4665b0dbe0a53ed72273a2a02162e61fa05be3445737601625bb0c48652a59bf9a252955f7b0f8c9873",
+    "tibiaCharacters": [
+      {
+        "characterName": "Fortzin",
+        "registeredAt": "2025-07-19T15:13:11.634Z",
+        "level": 544,
+        "vocation": "Elite Knight",
+        "world": "Etebra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "f2fe0f023d8c1c1406edf97bb6ead407cdf4e78c5dfd6f39adde63f39d50961c"
+    ],
+    "email": "rodneyandradejr@outlook.com"
+  },
+  "linderlanio@gmail.com": {
+    "name": "Linderlanio de lima vieira",
+    "phone": "11 975646289",
+    "passwordHash": "5f304d702d547714b22d20ce94ad279b:c9633b764c3713435aa7751cd21d39bc17f44010d18f0eef19eac622237f11d8bad72486844ba52bacbe43df77d3a920fe446070ffa8bba797d8301c9af051e1",
+    "tibiaCharacters": [],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "5800607d7fceaf604650526e9f9968d0dea9bb76c3b22224415363e6799940de"
+    ]
+  },
+  "vigasparorellana@gmail.com": {
+    "name": "Victor Orellana",
+    "phone": "11985687939",
+    "passwordHash": "2060482f0d6a775c3d5f344053e095d4:4742376f58f2e4a7236a050ff6ade652c6cfa9d3e55fcaae9bc418decb2d60406aa8b14dbe18d13a07babb616160d7e7c98d05badfbd752e4e2e2a697cf46621",
+    "tibiaCharacters": [],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "8c159c3b86603ca8bf19a9410e066c835e6757cd3e184f14353ff9c5b035bc07"
+    ]
+  },
+  "rapha2929@gmail.com": {
+    "name": "Rapha",
+    "phone": "11946788933",
+    "passwordHash": "11e5ba5b3b4067db666d4fb9c090bffc:116aec94772dfa2fa1316b86c665e253a0ea4e41d2ea13d83010ad6b2ac7aee555e142a0f96c64ef336c3e686098101cc45642308812abc3b85171449f59c580",
+    "tibiaCharacters": [],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "c8bed2e9eff9a54b16fcdb0078ac7d23f2c636b3519452f7ae9299de4422a131"
+    ]
+  }
+}

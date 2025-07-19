@@ -1,0 +1,282 @@
+{
+  "52": {
+    "current": {
+      "clientNickname": "Carry Oca",
+      "clientUniqueIdentifier": "ramonomena95@gmail.com",
+      "allocatedTime": 150
+    },
+    "queue": [],
+    "time": 150,
+    "waitingForAccept": true,
+    "acceptanceTime": 5,
+    "startTime": "2025-07-07T19:16:53.914Z",
+    "endTime": "2025-07-07T21:46:53.914Z"
+  },
+  "D20": {
+    "current": {
+      "clientNickname": "Tfourzika",
+      "clientUniqueIdentifier": "new.t4style@gmail.com",
+      "allocatedTime": 210
+    },
+    "queue": [
+      {
+        "clientNickname": "Dracon Endividado",
+        "clientUniqueIdentifier": "ricardo_cardoso_lemos@hotmail.com",
+        "allocatedTime": 150
+      },
+      {
+        "clientNickname": "Piiloto Bighead",
+        "clientUniqueIdentifier": "ericmatheuslopes@hotmail.com",
+        "allocatedTime": 150
+      },
+      {
+        "clientNickname": "Don Rafinha",
+        "clientUniqueIdentifier": "fabianorafael25@hotmail.com",
+        "allocatedTime": 150
+      },
+      {
+        "clientNickname": "Pizu",
+        "clientUniqueIdentifier": "daniel.teixeira.mello@gmail.com",
+        "allocatedTime": 150
+      }
+    ],
+    "time": 53,
+    "waitingForAccept": false,
+    "acceptanceTime": 8,
+    "startTime": "2025-07-07T16:43:53.014Z",
+    "endTime": "2025-07-07T20:13:53.014Z"
+  },
+  "P17": {
+    "current": {
+      "clientNickname": "Rexop",
+      "clientUniqueIdentifier": "juhandrade.mkt@gmail.com",
+      "allocatedTime": 150
+    },
+    "queue": [],
+    "time": 72,
+    "waitingForAccept": false,
+    "acceptanceTime": 10,
+    "startTime": "2025-07-07T18:03:33.352Z",
+    "endTime": "2025-07-07T20:33:33.352Z"
+  },
+  "D21": {
+    "current": {
+      "clientNickname": "Piiloto Bighead",
+      "clientUniqueIdentifier": "ericmatheuslopes@hotmail.com",
+      "allocatedTime": 150
+    },
+    "queue": [
+      {
+        "clientNickname": "Little Devill",
+        "clientUniqueIdentifier": "marlon_cavalcante99@hotmail.com",
+        "allocatedTime": 150
+      }
+    ],
+    "time": 16,
+    "waitingForAccept": false,
+    "acceptanceTime": 9,
+    "startTime": "2025-07-07T17:06:54.181Z",
+    "endTime": "2025-07-07T19:36:54.181Z"
+  },
+  "D22": {
+    "current": {
+      "clientNickname": "Indagador of Mesopotamia",
+      "clientUniqueIdentifier": "marcioabaira@gmail.com",
+      "allocatedTime": 150
+    },
+    "queue": [],
+    "time": 24,
+    "waitingForAccept": false,
+    "acceptanceTime": 10,
+    "startTime": "2025-07-07T17:15:20.842Z",
+    "endTime": "2025-07-07T19:45:20.842Z"
+  },
+  "G11": {
+    "current": {
+      "clientNickname": "Noffikz",
+      "clientUniqueIdentifier": "moysesnetoo35@gmail.com",
+      "allocatedTime": 150
+    },
+    "queue": [],
+    "time": 150,
+    "waitingForAccept": true,
+    "acceptanceTime": 6,
+    "startTime": "2025-07-07T19:18:32.446Z",
+    "endTime": "2025-07-07T21:48:32.446Z"
+  },
+  "G12": {
+    "current": {
+      "clientNickname": "Neymar Santos Club",
+      "clientUniqueIdentifier": "mario.ejn@live.com",
+      "allocatedTime": 150
+    },
+    "queue": [
+      {
+        "clientNickname": "Areander",
+        "clientUniqueIdentifier": "fajinv",
+        "allocatedTime": 150
+      }
+    ],
+    "time": 45,
+    "waitingForAccept": false,
+    "acceptanceTime": 8,
+    "startTime": "2025-07-07T17:36:31.435Z",
+    "endTime": "2025-07-07T20:06:31.435Z"
+  },
+  "Q8": {
+    "current": {
+      "clientNickname": "Cara Kas",
+      "clientUniqueIdentifier": "anademonsalves21@gmail.com",
+      "allocatedTime": 150
+    },
+    "queue": [],
+    "time": 60,
+    "waitingForAccept": false,
+    "acceptanceTime": 10,
+    "startTime": "2025-07-07T17:51:26.783Z",
+    "endTime": "2025-07-07T20:21:26.783Z"
+  },
+  "D31": {
+    "current": {
+      "clientNickname": "Gwaihir Windlord",
+      "clientUniqueIdentifier": "carlosalberto.jr90@outlook.com.br",
+      "allocatedTime": 150
+    },
+    "queue": [],
+    "time": 99,
+    "waitingForAccept": false,
+    "acceptanceTime": 6,
+    "startTime": "2025-07-07T18:30:15.902Z",
+    "endTime": "2025-07-07T21:00:15.902Z"
+  },
+  "D27": {
+    "current": {
+      "clientNickname": "Caesar Corporation",
+      "clientUniqueIdentifier": "endeavor.tibia@gmail.com",
+      "allocatedTime": 135
+    },
+    "queue": [],
+    "time": 62,
+    "waitingForAccept": false,
+    "acceptanceTime": 10,
+    "startTime": "2025-07-07T18:07:51.930Z",
+    "endTime": "2025-07-07T20:22:51.930Z"
+  },
+  "D42": {
+    "current": {
+      "clientNickname": "Lost Danett",
+      "clientUniqueIdentifier": "eduardosacchet@gmail.com",
+      "allocatedTime": 150
+    },
+    "queue": [],
+    "time": 77,
+    "waitingForAccept": false,
+    "acceptanceTime": 10,
+    "startTime": "2025-07-07T18:08:04.617Z",
+    "endTime": "2025-07-07T20:38:04.617Z"
+  },
+  "U22": {
+    "current": {
+      "clientNickname": "Gab Nofear",
+      "clientUniqueIdentifier": "gabriel-darocha@hotmail.com",
+      "allocatedTime": 150
+    },
+    "queue": [],
+    "time": 86,
+    "waitingForAccept": false,
+    "acceptanceTime": 10,
+    "startTime": "2025-07-07T18:17:15.572Z",
+    "endTime": "2025-07-07T20:47:15.572Z"
+  },
+  "Q4": {
+    "current": {
+      "clientNickname": "Inner Cansado",
+      "clientUniqueIdentifier": "roberinhojunior@hotmail.com",
+      "allocatedTime": 150
+    },
+    "queue": [],
+    "time": 92,
+    "waitingForAccept": false,
+    "acceptanceTime": 10,
+    "startTime": "2025-07-07T18:23:06.414Z",
+    "endTime": "2025-07-07T20:53:06.414Z"
+  },
+  "O20": {
+    "current": {
+      "clientNickname": "Etstroth",
+      "clientUniqueIdentifier": "romulo.saint@gmail.com",
+      "allocatedTime": 150
+    },
+    "queue": [],
+    "time": 119,
+    "waitingForAccept": false,
+    "acceptanceTime": 9,
+    "startTime": "2025-07-07T18:49:39.077Z",
+    "endTime": "2025-07-07T21:19:39.077Z"
+  },
+  "T12": {
+    "current": {
+      "clientNickname": "Reality Hegemon",
+      "clientUniqueIdentifier": "fernandomah@gmail.com",
+      "allocatedTime": 150
+    },
+    "queue": [],
+    "time": 120,
+    "waitingForAccept": false,
+    "acceptanceTime": 9,
+    "startTime": "2025-07-07T18:50:40.275Z",
+    "endTime": "2025-07-07T21:20:40.275Z"
+  },
+  "K14": {
+    "current": {
+      "clientNickname": "Saitama Woon",
+      "clientUniqueIdentifier": "Brunno_ms_@hotmail.com",
+      "allocatedTime": 80
+    },
+    "queue": [],
+    "time": 57,
+    "waitingForAccept": false,
+    "acceptanceTime": 10,
+    "startTime": "2025-07-07T18:58:33.854Z",
+    "endTime": "2025-07-07T20:18:33.854Z"
+  },
+  "Y1": {
+    "current": {
+      "clientNickname": "Dionez",
+      "clientUniqueIdentifier": "drn9090@gmail.com",
+      "allocatedTime": 150
+    },
+    "queue": [],
+    "time": 142,
+    "waitingForAccept": false,
+    "acceptanceTime": 10,
+    "startTime": "2025-07-07T19:13:03.020Z",
+    "endTime": "2025-07-07T21:43:03.020Z"
+  },
+  "E29": {
+    "current": {
+      "clientNickname": "Valen Rose",
+      "clientUniqueIdentifier": "caio.aderne@gmail.com",
+      "allocatedTime": 150
+    },
+    "queue": [],
+    "time": 145,
+    "waitingForAccept": false,
+    "acceptanceTime": 10,
+    "startTime": "2025-07-07T19:16:13.487Z",
+    "endTime": "2025-07-07T21:46:13.487Z"
+  },
+  "E31": {
+    "current": {
+      "clientNickname": "Yokezao",
+      "clientUniqueIdentifier": "rafa_augusto92@hotmail.com",
+      "allocatedTime": 150
+    },
+    "queue": [],
+    "time": 150,
+    "waitingForAccept": true,
+    "acceptanceTime": 7,
+    "startTime": "2025-07-07T19:19:21.910Z",
+    "endTime": "2025-07-07T21:49:21.910Z"
+  }
+}

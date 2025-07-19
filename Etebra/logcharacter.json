@@ -1,0 +1,160 @@
+{
+  "Brunow Rullez": [
+    {
+      "timestamp": "2025-07-19T16:28:25.739Z",
+      "respawn": "D31",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "Jamantrinha": [
+    {
+      "timestamp": "2025-07-19T16:28:25.742Z",
+      "respawn": "G11",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "Galenia": [
+    {
+      "timestamp": "2025-07-19T16:38:26.199Z",
+      "respawn": "G11",
+      "action": "Não aceitou"
+    },
+    {
+      "timestamp": "2025-07-19T16:28:25.744Z",
+      "respawn": "G11",
+      "action": "Assumiu (fila)"
+    }
+  ],
+  "Migatsu Winterfelix": [
+    {
+      "timestamp": "2025-07-19T16:28:25.747Z",
+      "respawn": "U19",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "Ferwinter": [
+    {
+      "timestamp": "2025-07-19T16:28:25.749Z",
+      "respawn": "C6",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "Floresta Proibida": [
+    {
+      "timestamp": "2025-07-19T16:28:25.754Z",
+      "respawn": "E29",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "Sollare": [
+    {
+      "timestamp": "2025-07-19T16:28:25.757Z",
+      "respawn": "K15",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "Ek Val": [
+    {
+      "timestamp": "2025-07-19T16:28:25.760Z",
+      "respawn": "Z20",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "Pugnac on Yubra": [
+    {
+      "timestamp": "2025-07-19T16:28:25.763Z",
+      "respawn": "D37",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "Ychiro": [
+    {
+      "timestamp": "2025-07-19T16:38:26.204Z",
+      "respawn": "D37",
+      "action": "Não aceitou"
+    },
+    {
+      "timestamp": "2025-07-19T16:28:25.766Z",
+      "respawn": "D37",
+      "action": "Assumiu (fila)"
+    }
+  ],
+  "Asow": [
+    {
+      "timestamp": "2025-07-19T16:28:25.769Z",
+      "respawn": "T16",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "Milady Mystik": [
+    {
+      "timestamp": "2025-07-19T16:28:25.772Z",
+      "respawn": "D42",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "Daemon Feanor": [
+    {
+      "timestamp": "2025-07-19T16:28:25.776Z",
+      "respawn": "D40",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "Nina Respekt": [
+    {
+      "timestamp": "2025-07-19T16:28:25.779Z",
+      "respawn": "K14",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "Adron Elol": [
+    {
+      "timestamp": "2025-07-19T16:28:25.782Z",
+      "respawn": "Z50",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "Sankyz": [
+    {
+      "timestamp": "2025-07-19T16:28:25.785Z",
+      "respawn": "P17",
+      "action": "Tempo finalizado"
+    }
+  ],
+  "Rosinha Baguncinha": [
+    {
+      "timestamp": "2025-07-19T16:38:26.208Z",
+      "respawn": "P17",
+      "action": "Não aceitou"
+    },
+    {
+      "timestamp": "2025-07-19T16:28:25.789Z",
+      "respawn": "P17",
+      "action": "Assumiu (fila)"
+    }
+  ],
+  "Santa Druida": [
+    {
+      "timestamp": "2025-07-19T16:48:26.280Z",
+      "respawn": "G11",
+      "action": "Não aceitou"
+    },
+    {
+      "timestamp": "2025-07-19T16:38:26.201Z",
+      "respawn": "G11",
+      "action": "Assumiu (fila)"
+    }
+  ],
+  "Raydelas": [
+    {
+      "timestamp": "2025-07-19T16:48:26.283Z",
+      "respawn": "D37",
+      "action": "Não aceitou"
+    },
+    {
+      "timestamp": "2025-07-19T16:38:26.206Z",
+      "respawn": "D37",
+      "action": "Assumiu (fila)"
+    }
+  ]
+}

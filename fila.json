@@ -1,0 +1,225 @@
+{
+  "D31": {
+    "current": {
+      "clientNickname": "Janoff",
+      "clientUniqueIdentifier": "vascainomendes@gmail.com",
+      "allocatedTime": 150,
+      "isMakerHunt": false,
+      "makerName": null
+    },
+    "queue": [
+      {
+        "clientNickname": "Ethern Elite",
+        "clientUniqueIdentifier": "victor.fisio1997@gmail.com",
+        "allocatedTime": 150,
+        "isMakerHunt": false,
+        "makerName": null
+      }
+    ],
+    "time": 150,
+    "waitingForAccept": false,
+    "acceptanceTime": 10,
+    "startTime": "2025-07-19T14:13:02.324Z",
+    "endTime": "2025-07-19T16:43:02.324Z",
+    "lastReminderSentAtMinute": 9
+  },
+  "G11": {
+    "current": {
+      "clientNickname": "Caesar Corporation",
+      "clientUniqueIdentifier": "endeavor.tibia@gmail.com",
+      "allocatedTime": 210,
+      "isMakerHunt": false,
+      "makerName": null
+    },
+    "queue": [],
+    "time": 210,
+    "waitingForAccept": false,
+    "acceptanceTime": 10,
+    "startTime": "2025-07-19T12:32:41.036Z",
+    "endTime": "2025-07-19T16:02:41.036Z",
+    "lastReminderSentAtMinute": 9
+  },
+  "Q4": {
+    "current": {
+      "clientNickname": "Lukz Shot",
+      "clientUniqueIdentifier": "ricardocoury@hotmail.com",
+      "allocatedTime": 150,
+      "isMakerHunt": false,
+      "makerName": null
+    },
+    "queue": [],
+    "time": 150,
+    "waitingForAccept": true,
+    "acceptanceTime": 10,
+    "startTime": "2025-07-19T14:57:15.188Z",
+    "endTime": null,
+    "lastReminderSentAtMinute": 3
+  },
+  "E29": {
+    "current": {
+      "clientNickname": "Neres Flecha Torta",
+      "clientUniqueIdentifier": "tibiarp1000@gmail.com",
+      "allocatedTime": 150,
+      "isMakerHunt": false,
+      "makerName": null
+    },
+    "queue": [
+      {
+        "clientNickname": "Nahno",
+        "clientUniqueIdentifier": "jaqueline.nidia@gmail.com",
+        "allocatedTime": 150,
+        "isMakerHunt": false,
+        "makerName": null
+      }
+    ],
+    "time": 150,
+    "waitingForAccept": true,
+    "acceptanceTime": 10,
+    "startTime": "2025-07-19T14:58:15.097Z",
+    "endTime": null,
+    "lastReminderSentAtMinute": 4
+  },
+  "U18": {
+    "current": {
+      "clientNickname": "Sensei Jaum",
+      "clientUniqueIdentifier": "jgfn91@gmail.com",
+      "allocatedTime": 150,
+      "isMakerHunt": false,
+      "makerName": null
+    },
+    "queue": [],
+    "time": 150,
+    "waitingForAccept": false,
+    "acceptanceTime": 10,
+    "startTime": "2025-07-19T12:47:58.924Z",
+    "lastReminderSentAtMinute": 8,
+    "endTime": "2025-07-19T15:17:58.924Z"
+  },
+  "F33": {
+    "current": {
+      "clientNickname": "Phiq",
+      "clientUniqueIdentifier": "smorfz12@gmail.com",
+      "allocatedTime": 150,
+      "isMakerHunt": false,
+      "makerName": null,
+      "offlineSince": 1752937155106
+    },
+    "queue": [],
+    "time": 150,
+    "waitingForAccept": false,
+    "acceptanceTime": 10,
+    "startTime": "2025-07-19T13:05:28.686Z",
+    "lastReminderSentAtMinute": 7,
+    "endTime": "2025-07-19T15:35:28.686Z"
+  },
+  "Y1": {
+    "current": {
+      "clientNickname": "Gustavo Prime",
+      "clientUniqueIdentifier": "gustavobfdesousa@gmail.com",
+      "allocatedTime": 150,
+      "isMakerHunt": false,
+      "makerName": null
+    },
+    "queue": [],
+    "time": 150,
+    "waitingForAccept": false,
+    "acceptanceTime": 10,
+    "startTime": "2025-07-19T13:04:15.918Z",
+    "endTime": "2025-07-19T15:34:15.918Z"
+  },
+  "P17": {
+    "current": {
+      "clientNickname": "Tridode Zen",
+      "clientUniqueIdentifier": "gfrozoni@gmail.com",
+      "allocatedTime": 150,
+      "isMakerHunt": false,
+      "makerName": null
+    },
+    "queue": [],
+    "time": 150,
+    "waitingForAccept": false,
+    "acceptanceTime": 10,
+    "startTime": "2025-07-19T13:15:16.429Z",
+    "lastReminderSentAtMinute": 8,
+    "endTime": "2025-07-19T15:45:16.429Z"
+  },
+  "K15": {
+    "current": {
+      "clientNickname": "Rapy Heartsoul",
+      "clientUniqueIdentifier": "raphael.yqd@gmail.com",
+      "allocatedTime": 150,
+      "isMakerHunt": false,
+      "makerName": null
+    },
+    "queue": [],
+    "time": 150,
+    "waitingForAccept": false,
+    "acceptanceTime": 10,
+    "startTime": "2025-07-19T13:30:38.056Z",
+    "lastReminderSentAtMinute": 9,
+    "endTime": "2025-07-19T16:00:38.056Z"
+  },
+  "E31": {
+    "current": {
+      "clientNickname": "Yikzs",
+      "clientUniqueIdentifier": "asdsa65@live.com",
+      "allocatedTime": 150,
+      "isMakerHunt": true,
+      "makerName": "Haarkzin"
+    },
+    "queue": [],
+    "time": 150,
+    "waitingForAccept": false,
+    "acceptanceTime": 10,
+    "startTime": "2025-07-19T13:42:49.979Z",
+    "lastReminderSentAtMinute": 8,
+    "endTime": "2025-07-19T16:12:49.979Z"
+  },
+  "Z11": {
+    "current": {
+      "clientNickname": "La Diiabla",
+      "clientUniqueIdentifier": "lorranymoura01@gmail.com",
+      "allocatedTime": 180,
+      "isMakerHunt": false,
+      "makerName": null
+    },
+    "queue": [],
+    "time": 180,
+    "waitingForAccept": false,
+    "acceptanceTime": 10,
+    "startTime": "2025-07-19T13:46:04.808Z",
+    "lastReminderSentAtMinute": 5,
+    "endTime": "2025-07-19T16:46:04.808Z"
+  },
+  "U15": {
+    "current": {
+      "clientNickname": "Tony Paralyzer",
+      "clientUniqueIdentifier": "d13.calgaro@gmail.com",
+      "allocatedTime": 150,
+      "isMakerHunt": false,
+      "makerName": null
+    },
+    "queue": [],
+    "time": 150,
+    "waitingForAccept": false,
+    "acceptanceTime": 10,
+    "startTime": "2025-07-19T13:44:36.825Z",
+    "endTime": "2025-07-19T16:14:36.825Z"
+  },
+  "U22": {
+    "current": {
+      "clientNickname": "Gab Nofear",
+      "clientUniqueIdentifier": "gabriel-darocha@hotmail.com",
+      "allocatedTime": 150,
+      "isMakerHunt": false,
+      "makerName": null
+    },
+    "queue": [],
+    "time": 150,
+    "waitingForAccept": false,
+    "acceptanceTime": 10,
+    "startTime": "2025-07-19T14:09:05.393Z",
+    "lastReminderSentAtMinute": 9,
+    "endTime": "2025-07-19T16:39:05.393Z"
+  }
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "world": "issobra",
+    "port": 3001
+  },
+  {
+    "world": "etebra",
+    "port": 3002
+  },
+  {
+    "world": "yubra",
+    "port": 3003
+  },
+  {
+    "world": "ustebra",
+    "port": 3004
+  },
+  {
+    "world": "luzibra",
+    "port": 3005
+  }
+]
