@@ -8,6 +8,7 @@ const DATA_FILES = {
     clientAccounts: path.join(__dirname, 'clientaccount.json'),
     verificationCodes: path.join(__dirname, 'verification_codes.json'),
     guildConfig: path.join(__dirname, 'set_guild.json'),
+    worldConfig: path.join(__dirname, 'set_world.json'),
     respawnQueue: path.join(__dirname, 'fila.json'),
     respawnTimes: path.join(__dirname, 'respawnTimes.json'),
     webGroups: path.join(__dirname, 'webgroups.json'),
@@ -23,8 +24,13 @@ const DATA_FILES = {
     planilhadoDoubleRespawns: path.join(__dirname, 'planilhado_double_respawns.json'),
     planilhadoDoubleSchedule: path.join(__dirname, 'planilhado_double_schedule.json'),
     underattack: path.join(__dirname, 'underattack.json'),
-
 };
+
+let moduleWorldName;
+
+function init(worldName) {
+    moduleWorldName = worldName;
+}
 
 /**
  * Registro de evento de segurança no arquivo underattack.json.
@@ -38,17 +44,20 @@ async function logUnderAttack(data) {
         ...data
     };
 
+    const logString = JSON.stringify(logEntry) + '\n';
+
     try {
-        const logs = await loadJsonFile(logFile, []);
-        logs.unshift(logEntry); 
-        
-        if (logs.length > 5000) {
-            logs.pop();
-        }
-        
-        await saveJsonFile(logFile, logs);
+        await fs.appendFile(logFile, logString, 'utf8');
     } catch (error) {
-        console.error(`[CRÍTICO] Falha ao escrever no log de ataque: ${logFile}`, error);
+        if (error.code === 'ENOENT') {
+            try {
+                await fs.writeFile(logFile, logString, 'utf8');
+            } catch (writeError) {
+                console.error(`[CRÍTICO] Falha ao criar o arquivo de log de ataque: ${logFile}`, writeError);
+            }
+        } else {
+            console.error(`[CRÍTICO] Falha ao escrever no log de ataque: ${logFile}`, error);
+        }
     }
 }
 
@@ -102,7 +111,7 @@ function verifyPassword(storedPassword, providedPassword) { if (!storedPassword 
 function parseCustomTime(timeString) { if (!timeString || !/^\d{1,2}:\d{2}$/.test(timeString)) return null; const parts = timeString.split(':'); return (parseInt(parts[0], 10) * 60) + parseInt(parts[1], 10); }
 function formatMinutesToHHMM(minutes) { if (isNaN(minutes)) return "00:00"; const h = Math.floor(minutes / 60); const m = Math.floor(minutes % 60); return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`; }
 async function getTibiaCharacterInfo(charName) { if (!charName) return null; try { const url = `https://api.tibiadata.com/v4/character/${encodeURIComponent(charName)}`; const response = await fetch(url); if (!response.ok) return null; const data = await response.json(); return data.character?.character || null; } catch (error) { console.error(`Erro ao buscar info de ${charName}:`, error); return null; } }
-async function getGuildName() { const setGuild = await loadJsonFile(DATA_FILES.guildConfig, { guild: 'Vindictam' }); return setGuild.guild || 'Vindictam'; }
+async function getGuildName() { const setGuild = await loadJsonFile(DATA_FILES.guildConfig, { guild: 'Exalted' }); return setGuild.guild || 'Exalted'; }
 async function checkTibiaCharacterInGuild(charName) { const guildAliada = await getGuildName(); const url = `https://api.tibiadata.com/v4/guild/${encodeURIComponent(guildAliada)}`; try { const response = await fetch(url); if (!response.ok) return null; const data = await response.json(); if (data.guild?.members) { return data.guild.members.find(member => member.name.toLowerCase() === charName.toLowerCase()); } } catch (error) { console.error("Erro ao buscar guilda:", error); } return null; }
 
 async function getUserMaxTime(registrationData) {
@@ -156,19 +165,37 @@ async function findRespawnCode(identifier) {
 
 async function logActivity(respawnCode, characterName, action) {
     const timestamp = new Date().toISOString();
-    const logRespawn = await loadJsonFile(DATA_FILES.logRespawn, {});
-    const logCharacter = await loadJsonFile(DATA_FILES.logCharacter, {});
     const respawns = cachedData.respawns;
     let respawnDisplayName = respawnCode.toUpperCase();
-    for (const region in respawns) { if (respawns[region][respawnCode.toUpperCase()]) { respawnDisplayName = `[${respawnCode.toUpperCase()}] ${respawns[region][respawnCode.toUpperCase()]}`; break; } }
-    if (!logRespawn[respawnCode]) { logRespawn[respawnCode] = []; }
-    if (!logCharacter[characterName]) { logCharacter[characterName] = []; }
-    logRespawn[respawnCode].unshift({ timestamp, user: characterName, action });
-    logCharacter[characterName].unshift({ timestamp, respawn: respawnDisplayName, action });
-    if (logRespawn[respawnCode].length > 100) { logRespawn[respawnCode].pop(); }
-    if (logCharacter[characterName].length > 100) { logCharacter[characterName].pop(); }
-    await saveJsonFile(DATA_FILES.logRespawn, logRespawn);
-    await saveJsonFile(DATA_FILES.logCharacter, logCharacter);
+    for (const region in respawns) {
+        if (respawns[region][respawnCode.toUpperCase()]) {
+            respawnDisplayName = `[${respawnCode.toUpperCase()}] ${respawns[region][respawnCode.toUpperCase()]}`;
+            break;
+        }
+    }
+
+    const logRespawnEntry = { timestamp, respawnCode: respawnCode.toUpperCase(), user: characterName, action };
+    const logCharacterEntry = { timestamp, characterName: characterName, respawn: respawnDisplayName, action };
+
+    try {
+        await fs.appendFile(DATA_FILES.logRespawn, JSON.stringify(logRespawnEntry) + '\n', 'utf8');
+    } catch (error) {
+        if (error.code === 'ENOENT') {
+            await fs.writeFile(DATA_FILES.logRespawn, JSON.stringify(logRespawnEntry) + '\n', 'utf8');
+        } else {
+            console.error(`Falha ao escrever no log de respawn: ${DATA_FILES.logRespawn}`, error);
+        }
+    }
+
+    try {
+        await fs.appendFile(DATA_FILES.logCharacter, JSON.stringify(logCharacterEntry) + '\n', 'utf8');
+    } catch (error) {
+        if (error.code === 'ENOENT') {
+            await fs.writeFile(DATA_FILES.logCharacter, JSON.stringify(logCharacterEntry) + '\n', 'utf8');
+        } else {
+            console.error(`Falha ao escrever no log de personagem: ${DATA_FILES.logCharacter}`, error);
+        }
+    }
 }
 
 async function processConversationReply(reply, user) {
@@ -793,13 +820,32 @@ async function adminPauseAll(isPaused) {
 }
 
 async function adminGetRespawnLog(respawnCode) {
-    const logData = await loadJsonFile(DATA_FILES.logRespawn, {});
-    return { title: `Log para Respawn: ${respawnCode.toUpperCase()}`, entries: logData[respawnCode] || [] };
+    let respawnDisplayName = respawnCode.toUpperCase();
+    const respawns = cachedData.respawns || {};
+
+    for (const region in respawns) {
+        if (respawns[region][respawnCode.toUpperCase()]) {
+            respawnDisplayName = respawns[region][respawnCode.toUpperCase()];
+            break;
+        }
+    }
+
+    const allEntries = await loadNdjsonFile(DATA_FILES.logRespawn);
+    const filteredEntries = allEntries
+        .filter(entry => entry.respawnCode && entry.respawnCode.toLowerCase() === respawnCode.toLowerCase())
+        .reverse()
+        .slice(0, 100);
+        
+    return { title: `Log para Respawn: ${respawnDisplayName}`, entries: filteredEntries };
 }
 
 async function adminGetCharacterLog(characterName) {
-    const logData = await loadJsonFile(DATA_FILES.logCharacter, {});
-    return { title: `Log para Personagem: ${characterName}`, entries: logData[characterName] || [] };
+    const allEntries = await loadNdjsonFile(DATA_FILES.logCharacter);
+    const filteredEntries = allEntries
+        .filter(entry => entry.characterName && entry.characterName.toLowerCase() === characterName.toLowerCase())
+        .reverse()
+        .slice(0, 100);
+    return { title: `Log para Personagem: ${characterName}`, entries: filteredEntries };
 }
 
 async function adminKickUser({ respawnCode, userToKick, adminName }) {
@@ -971,8 +1017,40 @@ async function getGuildMembers(guildName) {
 }
 
 async function getRelationsData() {
-    const defaultData = { world: "Issobra", source_allies: [], source_enemies: [], source_hunteds: [], players_allies: [], players_enemies: [], players_hunteds: [], last_sync: null };
+    const defaultData = {
+        world: moduleWorldName,
+        source_allies: [],
+        source_enemies: [],
+        source_hunteds: [],
+        players_allies: [],
+        players_enemies: [],
+        players_hunteds: [],
+        last_sync: null
+    };
     return await loadJsonFile(DATA_FILES.relations, defaultData);
+}
+
+async function loadNdjsonFile(filePath) {
+    try {
+        if (!fsSync.existsSync(filePath)) {
+            return [];
+        }
+        const data = await fs.readFile(filePath, 'utf8');
+        if (data.trim() === '') {
+            return [];
+        }
+        const lines = data.trim().split('\n');
+        return lines.map(line => {
+            try {
+                return JSON.parse(line);
+            } catch (e) {
+                return null;
+            }
+        }).filter(Boolean);
+    } catch (error) {
+        console.error(`Erro ao carregar o arquivo de log ${filePath}:`, error);
+        return [];
+    }
 }
 
 async function adminAddRelation({ type, name, reason }) {
@@ -1291,6 +1369,7 @@ async function adminUpdatePlanilhadoRespawns({ normal, double }) {
 }
 
 module.exports = {
+    init,
     processCommand,
     processConversationReply,
     loadJsonFile,

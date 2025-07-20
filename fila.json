@@ -1,48 +1,24 @@
 {
-  "D31": {
+  "Q4": {
     "current": {
-      "clientNickname": "Janoff",
-      "clientUniqueIdentifier": "vascainomendes@gmail.com",
+      "clientNickname": "Pedro Apocalipse",
+      "clientUniqueIdentifier": "ph.clash1991@gmail.com",
       "allocatedTime": 150,
       "isMakerHunt": false,
       "makerName": null
     },
-    "queue": [
-      {
-        "clientNickname": "Ethern Elite",
-        "clientUniqueIdentifier": "victor.fisio1997@gmail.com",
-        "allocatedTime": 150,
-        "isMakerHunt": false,
-        "makerName": null
-      }
-    ],
+    "queue": [],
     "time": 150,
     "waitingForAccept": false,
     "acceptanceTime": 10,
-    "startTime": "2025-07-19T14:13:02.324Z",
-    "endTime": "2025-07-19T16:43:02.324Z",
-    "lastReminderSentAtMinute": 9
+    "startTime": "2025-07-20T17:06:49.228Z",
+    "endTime": "2025-07-20T19:36:49.228Z",
+    "lastReminderSentAtMinute": 7
   },
-  "G11": {
+  "E29": {
     "current": {
-      "clientNickname": "Caesar Corporation",
-      "clientUniqueIdentifier": "endeavor.tibia@gmail.com",
-      "allocatedTime": 210,
-      "isMakerHunt": false,
-      "makerName": null
-    },
-    "queue": [],
-    "time": 210,
-    "waitingForAccept": false,
-    "acceptanceTime": 10,
-    "startTime": "2025-07-19T12:32:41.036Z",
-    "endTime": "2025-07-19T16:02:41.036Z",
-    "lastReminderSentAtMinute": 9
-  },
-  "Q4": {
-    "current": {
-      "clientNickname": "Lukz Shot",
-      "clientUniqueIdentifier": "ricardocoury@hotmail.com",
+      "clientNickname": "Nahno",
+      "clientUniqueIdentifier": "jaqueline.nidia@gmail.com",
       "allocatedTime": 150,
       "isMakerHunt": false,
       "makerName": null
@@ -51,11 +27,42 @@
     "time": 150,
     "waitingForAccept": true,
     "acceptanceTime": 10,
-    "startTime": "2025-07-19T14:57:15.188Z",
+    "startTime": "2025-07-20T19:14:29.331Z",
     "endTime": null,
-    "lastReminderSentAtMinute": 3
+    "lastReminderSentAtMinute": 5
   },
-  "E29": {
+  "W3": {
+    "current": {
+      "clientNickname": "Elite Pasteleiro",
+      "clientUniqueIdentifier": "makaveliaccc@gmail.com",
+      "allocatedTime": 150,
+      "isMakerHunt": false,
+      "makerName": null
+    },
+    "queue": [],
+    "time": 150,
+    "waitingForAccept": false,
+    "acceptanceTime": 10,
+    "startTime": "2025-07-20T17:19:16.792Z",
+    "endTime": "2025-07-20T19:49:16.792Z",
+    "lastReminderSentAtMinute": 8
+  },
+  "D41": {
+    "current": {
+      "clientNickname": "Raphitoz",
+      "clientUniqueIdentifier": "raphaelxikao@gmail.com",
+      "allocatedTime": 150,
+      "isMakerHunt": false,
+      "makerName": null
+    },
+    "queue": [],
+    "time": 150,
+    "waitingForAccept": false,
+    "acceptanceTime": 10,
+    "startTime": "2025-07-20T16:54:44.668Z",
+    "endTime": "2025-07-20T19:24:44.668Z"
+  },
+  "K13": {
     "current": {
       "clientNickname": "Neres Flecha Torta",
       "clientUniqueIdentifier": "tibiarp1000@gmail.com",
@@ -65,24 +72,24 @@
     },
     "queue": [
       {
-        "clientNickname": "Nahno",
-        "clientUniqueIdentifier": "jaqueline.nidia@gmail.com",
+        "clientNickname": "Bosy Wojtek",
+        "clientUniqueIdentifier": "tiago_hbm@hotmail.com",
         "allocatedTime": 150,
         "isMakerHunt": false,
         "makerName": null
       }
     ],
     "time": 150,
-    "waitingForAccept": true,
+    "waitingForAccept": false,
     "acceptanceTime": 10,
-    "startTime": "2025-07-19T14:58:15.097Z",
-    "endTime": null,
-    "lastReminderSentAtMinute": 4
+    "startTime": "2025-07-20T17:58:50.605Z",
+    "endTime": "2025-07-20T20:28:50.606Z",
+    "lastReminderSentAtMinute": 1
   },
-  "U18": {
+  "D42": {
     "current": {
-      "clientNickname": "Sensei Jaum",
-      "clientUniqueIdentifier": "jgfn91@gmail.com",
+      "clientNickname": "Maohzera",
+      "clientUniqueIdentifier": "huguinho.fa@gmail.com",
       "allocatedTime": 150,
       "isMakerHunt": false,
       "makerName": null
@@ -91,31 +98,14 @@
     "time": 150,
     "waitingForAccept": false,
     "acceptanceTime": 10,
-    "startTime": "2025-07-19T12:47:58.924Z",
-    "lastReminderSentAtMinute": 8,
-    "endTime": "2025-07-19T15:17:58.924Z"
+    "startTime": "2025-07-20T17:15:13.361Z",
+    "lastReminderSentAtMinute": -1,
+    "endTime": "2025-07-20T19:45:13.361Z"
   },
-  "F33": {
+  "T13": {
     "current": {
-      "clientNickname": "Phiq",
-      "clientUniqueIdentifier": "smorfz12@gmail.com",
-      "allocatedTime": 150,
-      "isMakerHunt": false,
-      "makerName": null,
-      "offlineSince": 1752937155106
-    },
-    "queue": [],
-    "time": 150,
-    "waitingForAccept": false,
-    "acceptanceTime": 10,
-    "startTime": "2025-07-19T13:05:28.686Z",
-    "lastReminderSentAtMinute": 7,
-    "endTime": "2025-07-19T15:35:28.686Z"
-  },
-  "Y1": {
-    "current": {
-      "clientNickname": "Gustavo Prime",
-      "clientUniqueIdentifier": "gustavobfdesousa@gmail.com",
+      "clientNickname": "Zilma Apelona",
+      "clientUniqueIdentifier": "celsotsjr@yahoo.com",
       "allocatedTime": 150,
       "isMakerHunt": false,
       "makerName": null
@@ -124,13 +114,13 @@
     "time": 150,
     "waitingForAccept": false,
     "acceptanceTime": 10,
-    "startTime": "2025-07-19T13:04:15.918Z",
-    "endTime": "2025-07-19T15:34:15.918Z"
+    "startTime": "2025-07-20T17:32:14.978Z",
+    "endTime": "2025-07-20T20:02:14.978Z"
   },
-  "P17": {
+  "D20": {
     "current": {
-      "clientNickname": "Tridode Zen",
-      "clientUniqueIdentifier": "gfrozoni@gmail.com",
+      "clientNickname": "Karol conka",
+      "clientUniqueIdentifier": "araujovini.v@gmail.com",
       "allocatedTime": 150,
       "isMakerHunt": false,
       "makerName": null
@@ -139,14 +129,13 @@
     "time": 150,
     "waitingForAccept": false,
     "acceptanceTime": 10,
-    "startTime": "2025-07-19T13:15:16.429Z",
-    "lastReminderSentAtMinute": 8,
-    "endTime": "2025-07-19T15:45:16.429Z"
+    "startTime": "2025-07-20T17:35:22.434Z",
+    "endTime": "2025-07-20T20:05:22.434Z"
   },
-  "K15": {
+  "D21": {
     "current": {
-      "clientNickname": "Rapy Heartsoul",
-      "clientUniqueIdentifier": "raphael.yqd@gmail.com",
+      "clientNickname": "Lost Danett",
+      "clientUniqueIdentifier": "eduardosacchet@gmail.com",
       "allocatedTime": 150,
       "isMakerHunt": false,
       "makerName": null
@@ -155,46 +144,45 @@
     "time": 150,
     "waitingForAccept": false,
     "acceptanceTime": 10,
-    "startTime": "2025-07-19T13:30:38.056Z",
-    "lastReminderSentAtMinute": 9,
-    "endTime": "2025-07-19T16:00:38.056Z"
+    "startTime": "2025-07-20T17:37:08.580Z",
+    "endTime": "2025-07-20T20:07:08.580Z"
   },
-  "E31": {
+  "D31": {
     "current": {
-      "clientNickname": "Yikzs",
-      "clientUniqueIdentifier": "asdsa65@live.com",
+      "clientNickname": "Janoff",
+      "clientUniqueIdentifier": "vascainomendes@gmail.com",
       "allocatedTime": 150,
-      "isMakerHunt": true,
-      "makerName": "Haarkzin"
+      "isMakerHunt": false,
+      "makerName": null
     },
     "queue": [],
     "time": 150,
     "waitingForAccept": false,
     "acceptanceTime": 10,
-    "startTime": "2025-07-19T13:42:49.979Z",
-    "lastReminderSentAtMinute": 8,
-    "endTime": "2025-07-19T16:12:49.979Z"
+    "startTime": "2025-07-20T17:51:25.288Z",
+    "lastReminderSentAtMinute": 6,
+    "endTime": "2025-07-20T20:21:25.288Z"
   },
-  "Z11": {
+  "D27": {
     "current": {
-      "clientNickname": "La Diiabla",
-      "clientUniqueIdentifier": "lorranymoura01@gmail.com",
+      "clientNickname": "Vataryel Godlike",
+      "clientUniqueIdentifier": "igordesideratisilva@gmail.com",
       "allocatedTime": 180,
-      "isMakerHunt": false,
-      "makerName": null
+      "isMakerHunt": true,
+      "makerName": "Rotten Golem"
     },
     "queue": [],
     "time": 180,
     "waitingForAccept": false,
     "acceptanceTime": 10,
-    "startTime": "2025-07-19T13:46:04.808Z",
+    "startTime": "2025-07-20T18:06:33.035Z",
     "lastReminderSentAtMinute": 5,
-    "endTime": "2025-07-19T16:46:04.808Z"
+    "endTime": "2025-07-20T21:06:33.035Z"
   },
-  "U15": {
+  "D24": {
     "current": {
-      "clientNickname": "Tony Paralyzer",
-      "clientUniqueIdentifier": "d13.calgaro@gmail.com",
+      "clientNickname": "Deadly Shadoww",
+      "clientUniqueIdentifier": "ndgcontato@gmail.com",
       "allocatedTime": 150,
       "isMakerHunt": false,
       "makerName": null
@@ -203,13 +191,13 @@
     "time": 150,
     "waitingForAccept": false,
     "acceptanceTime": 10,
-    "startTime": "2025-07-19T13:44:36.825Z",
-    "endTime": "2025-07-19T16:14:36.825Z"
+    "startTime": "2025-07-20T18:01:43.678Z",
+    "endTime": "2025-07-20T20:31:43.678Z"
   },
-  "U22": {
+  "B17": {
     "current": {
-      "clientNickname": "Gab Nofear",
-      "clientUniqueIdentifier": "gabriel-darocha@hotmail.com",
+      "clientNickname": "Thetawaves",
+      "clientUniqueIdentifier": "walid.omar.358@gmail.com",
       "allocatedTime": 150,
       "isMakerHunt": false,
       "makerName": null
@@ -218,8 +206,23 @@
     "time": 150,
     "waitingForAccept": false,
     "acceptanceTime": 10,
-    "startTime": "2025-07-19T14:09:05.393Z",
-    "lastReminderSentAtMinute": 9,
-    "endTime": "2025-07-19T16:39:05.393Z"
+    "startTime": "2025-07-20T18:11:26.055Z",
+    "lastReminderSentAtMinute": 7,
+    "endTime": "2025-07-20T20:41:26.055Z"
+  },
+  "Z25": {
+    "current": {
+      "clientNickname": "Psiconauta Corporation",
+      "clientUniqueIdentifier": "gabrielzanf@gmail.com",
+      "allocatedTime": 210,
+      "isMakerHunt": false,
+      "makerName": null
+    },
+    "queue": [],
+    "time": 210,
+    "waitingForAccept": false,
+    "acceptanceTime": 10,
+    "startTime": "2025-07-20T18:14:40.117Z",
+    "endTime": "2025-07-20T21:44:40.117Z"
   }
 }

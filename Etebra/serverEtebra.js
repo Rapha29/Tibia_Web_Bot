@@ -8,25 +8,13 @@ const bot = require('./bot_logic.js');
 const activeUsers = new Map();
 
 const app = express();
-// Confia no proxy para obter o IP correto (já implementado)
 app.set('trust proxy', 'loopback'); 
 
-// --- BLOCO ATUALIZADO: ADICIONANDO CABEÇALHOS DE SEGURANÇA MANUALMENTE ---
 app.use((req, res, next) => {
-    // X-Frame-Options: Protege contra ataques de clickjacking.
     res.setHeader('X-Frame-Options', 'SAMEORIGIN');
-
-    // X-Content-Type-Options: Impede que o navegador "adivinhe" o tipo de um arquivo.
     res.setHeader('X-Content-Type-Options', 'nosniff');
-
-    // Referrer-Policy: Controla a informação de referência.
     res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
-
-    // Permissions-Policy: Controla o acesso a APIs do navegador.
     res.setHeader('Permissions-Policy', 'geolocation=(), microphone=(), camera=()');
-
-    // Content-Security-Policy (CSP): VERSÃO CORRIGIDA
-    // Adicionamos 'unsafe-inline' para permitir os estilos e scripts inline do seu HTML/JS.
     res.setHeader('Content-Security-Policy', 
         "default-src 'self'; " +
         "script-src 'self' 'unsafe-inline' /socket.io/socket.io.js; " + // Adicionado 'unsafe-inline'
@@ -37,12 +25,8 @@ app.use((req, res, next) => {
         "object-src 'none';"
     );
 
-    // ... (cabeçalho HSTS comentado como antes) ...
-    // res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
-    
-    next(); // Passa para o próximo middleware ou rota.
+    next();
 });
-// --- FIM DO BLOCO ATUALIZADO ---
 const server = http.createServer(app);
 const io = new Server(server, {
     maxHttpBufferSize: 1e5 
@@ -55,7 +39,6 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// --- 2. LÓGICA DE AUTOCONFIGURAÇÃO PELO NOME DO ARQUIVO ---
 const scriptFileName = path.basename(__filename);
 const worldNameFromScript = scriptFileName.replace(/^server|\.js$/g, '').toLowerCase();
 
@@ -82,8 +65,8 @@ if (!serverConfig) {
 const PORT = serverConfig.port;
 const WORLD_NAME = serverConfig.world;
 
+bot.init(WORLD_NAME);
 
-// --- 3. DEFINIÇÃO DAS CONSTANTES E VARIÁVEIS GLOBAIS ---
 console.log(`[CONFIG] Configuração carregada para o mundo [${WORLD_NAME}] na porta [${PORT}]`);
 
 const webUsers = new Map();
@@ -92,13 +75,12 @@ const qeqAdmins = ['rapha2929@gmail.com'];
 const HUNTED_ALERT_COOLDOWN = 30 * 60 * 1000;
 const huntedLastAlert = new Map();
 const ENEMY_ALERT_COOLDOWN = 30 * 60 * 1000;
-const enemyLastAlert = new Map();
+const enemyLastAlert = new Map();   
 let cachedRespawnsData = {};
 let cachedClientAccounts = {};
 let isSyncingRelations = false; 
 let currentlyOnlinePlayers = new Set();
 
-// --- 4. FUNÇÕES AUXILIARES DO SERVIDOR ---
 async function updateCaches() {
     console.log('[CACHE-SERVER] Carregando ou atualizando dados em memória...');
     try {
@@ -111,8 +93,6 @@ async function updateCaches() {
 }
 
 async function getOnlinePlayers(worldName) {
-    // Esta função agora serve como um "getter" para o cache.
-    // A atualização real será feita em runAutomaticTasks para centralizar o fetch.
     return currentlyOnlinePlayers;
 }
 
@@ -159,15 +139,12 @@ function isRateLimited(socketId, eventName, limit, duration) {
     const now = Date.now();
     const durationMs = duration * 1000;
     
-    // Garante que a estrutura exista no objeto do usuário
     if (!user.rateLimitTimestamps) user.rateLimitTimestamps = {};
     if (!user.rateLimitTimestamps[eventName]) user.rateLimitTimestamps[eventName] = [];
 
-    // Filtra timestamps que estão fora da janela de tempo
     let timestamps = user.rateLimitTimestamps[eventName];
     timestamps = timestamps.filter(ts => now - ts < durationMs);
     
-    // Verifica se o limite foi atingido
     if (timestamps.length >= limit) {
         const socket = io.sockets.sockets.get(socketId);
         if (socket) {
@@ -177,7 +154,6 @@ function isRateLimited(socketId, eventName, limit, duration) {
         return true;
     }
 
-    // Adiciona o timestamp atual e permite a requisição
     timestamps.push(now);
     user.rateLimitTimestamps[eventName] = timestamps;
     return false;
@@ -204,11 +180,18 @@ async function sendHuntedAlert(onlinePlayers) {
     }
 }
 
+function cleanupAlertMap(alertMap, relationList) {
+    const currentNames = new Set((relationList || []).map(p => p.name));
+    
+    for (const name of alertMap.keys()) {
+        if (!currentNames.has(name)) {
+            alertMap.delete(name);
+        }
+    }
+}
+
 io.on('connection', (socket) => {
-    // --- LÓGICA DE DETECÇÃO DE IP CORRIGIDA E FINAL ---
-    // Lê o cabeçalho X-Forwarded-For adicionado pelo gateway.
-    // Se o cabeçalho existir, usa o primeiro IP da lista (o IP real do cliente).
-    // Se não, usa o endereço da conexão direta (fallback).
+    // --- LÓGICA DE DETECÇÃO DE IP ---
     const forwardedFor = socket.handshake.headers['x-forwarded-for'];
     const ip = forwardedFor ? forwardedFor.split(',')[0].trim() : socket.handshake.address;
 
@@ -240,7 +223,7 @@ io.on('connection', (socket) => {
 
         bot.logUnderAttack({
             type: 'Connection Flood',
-            ip: ip, // IP correto será logado aqui
+            ip: ip, 
             reason: `Mais de 5 conexões em 1 minuto. Bloqueado por 10 minutos.`,
             accountName: 'N/A',
             email: 'N/A',
@@ -269,6 +252,9 @@ io.on('connection', (socket) => {
 
     };
     webUsers.set(socket.id, userSession);
+
+    broadcastRespawnUpdates(socket);
+
 
     socket.on('user:time_info', (data) => {
         const user = webUsers.get(socket.id);
@@ -731,7 +717,6 @@ socket.on('friends:getData', async () => {
     }
 
     socket.on('planilhado:getData', async ({ type }) => {
-        // APLICA O RATE LIMIT: 5 requisições a cada 10 segundos
         if (isRateLimited(socket.id, 'planilhado:getData', 5, 10)) return;
 
         const data = await getFullPlanilhadoData(type);
@@ -829,10 +814,8 @@ socket.on('friends:getData', async () => {
     
     socket.on('disconnect', () => {
         console.log(`[INFO] Usuário desconectado: ${socket.id}`);
-        // NOVO: Remove o usuário do mapa de sessões ativas ao desconectar
         const user = webUsers.get(socket.id);
         if (user && user.account && user.account.email) {
-            // Apenas remove do mapa se o socket que está desconectando é o socket ativo
             if (activeUsers.get(user.account.email) === socket.id) {
                 activeUsers.delete(user.account.email);
                 console.log(`[INFO] Sessão ativa para ${user.account.email} foi limpa.`);
@@ -874,13 +857,14 @@ async function sendEnemyAlert(onlinePlayers) {
     }
 }
 
-async function broadcastRespawnUpdates() {
+async function broadcastRespawnUpdates(socket = null) {
     try {
         const fila = await bot.loadJsonFile(path.join(__dirname, 'fila.json'), {});
         const onlinePlayers = await getOnlinePlayers(WORLD_NAME);
         const clientAccounts = cachedClientAccounts;
         const plusStatusMap = {};
         const accountDataMap = {};
+
         for (const email in clientAccounts) {
             accountDataMap[email] = clientAccounts[email];
             const mainChar = clientAccounts[email].tibiaCharacters?.[0];
@@ -888,9 +872,9 @@ async function broadcastRespawnUpdates() {
                 plusStatusMap[email] = mainChar.plusExpiresAt;
             }
         }
+
         for (const code in fila) {
             const respawn = fila[code];
-
             const processUser = async (user) => {
                 if (!user) return;
                 const userAccount = accountDataMap[user.clientUniqueIdentifier];
@@ -906,7 +890,6 @@ async function broadcastRespawnUpdates() {
                     user.isMakerOnline = false;
                 }
             };
-
             if (respawn.current) {
                 await processUser(respawn.current);
             }
@@ -916,23 +899,46 @@ async function broadcastRespawnUpdates() {
                 }
             }
         }
+
         const allRespawnNames = {};
         for (const region in cachedRespawnsData) {
             for (const code in cachedRespawnsData[region]) {
                 allRespawnNames[code.toUpperCase()] = cachedRespawnsData[region][code];
             }
         }
-        io.emit('respawn:update', { fila, respawns: allRespawnNames });
+
+        const dataToSend = { fila, respawns: allRespawnNames };
+
+        if (socket) {
+            socket.emit('respawn:update', dataToSend);
+        } else {
+            io.emit('respawn:update', dataToSend);
+        }
     } catch (error) {
         console.error("[ERRO] Falha em broadcastRespawnUpdates:", error);
     }
 }
 
+async function fetchWithTimeout(url, timeout = 5000) {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), timeout);
+
+    try {
+        const response = await fetch(url, {
+            signal: controller.signal
+        });
+        clearTimeout(timeoutId);
+        return response;
+    } catch (err) {
+        clearTimeout(timeoutId);
+        throw err;
+    }
+}
+
 async function runAutomaticTasks() {
     try {
-        // 1. Atualiza a lista de jogadores online e a armazena no cache.
         const url = `https://api.tibiadata.com/v4/world/${encodeURIComponent(WORLD_NAME)}`;
-        const response = await fetch(url, { timeout: 5000 });
+        const response = await fetchWithTimeout(url, 5000);
         if (!response.ok) {
             console.error(`[API] Erro ao buscar jogadores na tarefa automática: Status ${response.status}.`);
             currentlyOnlinePlayers = new Set();
@@ -942,21 +948,18 @@ async function runAutomaticTasks() {
             currentlyOnlinePlayers = new Set(players.map(p => p.name));
         }
 
-        // 2. Processa respawns expirados
         const result = await bot.processExpiredRespawns(currentlyOnlinePlayers);
         if (result && result.hasChanges) {
             console.log("[AUTO] Respawns expirados processados.");
             broadcastRespawnUpdates();
         }
         
-        // 3. Processa membros Plus expirados
         const plusResult = await bot.processExpiredPlusMembers();
         if (plusResult && plusResult.hasChanges) {
             console.log("[AUTO] Assinaturas Plus expiradas processadas.");
             await updateCaches();
         }
 
-        // 4. Envia notificações privadas
         if (result && result.notifications && result.notifications.length > 0) {
             const connectedUsers = Array.from(webUsers.values());
             result.notifications.forEach(notification => {
@@ -968,18 +971,30 @@ async function runAutomaticTasks() {
             });
         }
 
-        // 5. Envia os alertas de Hunted e Inimigos usando a função genérica
         const relations = await bot.getRelationsData();
+        
+        cleanupAlertMap(huntedLastAlert, relations.players_hunteds);
+        cleanupAlertMap(enemyLastAlert, relations.players_enemies);
+
         await sendRelationAlert(relations.players_hunteds, huntedLastAlert, HUNTED_ALERT_COOLDOWN, 'bot:hunted_online', '[ALERTA HUNTED]');
         await sendRelationAlert(relations.players_enemies, enemyLastAlert, ENEMY_ALERT_COOLDOWN, 'bot:enemy_online', '[ALERTA INIMIGO]');
     } catch (error) {
         console.error("[ERRO] Falha nas tarefas automáticas:", error);
     }
 }
-   
 
-setInterval(runAutomaticTasks, 20000); 
-setInterval(broadcastRespawnUpdates, 30000);
+async function loopAutomaticTasks() {
+    while (true) {
+        try {
+            await runAutomaticTasks();
+        } catch (e) {
+            console.error("Erro em runAutomaticTasks:", e);
+        }
+        await new Promise(r => setTimeout(r, 60000));
+    }
+}
+loopAutomaticTasks();
+ 
 
 server.listen(PORT, async () => {
     console.log(`Servidor para o mundo [${WORLD_NAME}] rodando na porta http://127.0.0.1:${PORT}.`);
@@ -1000,3 +1015,39 @@ server.listen(PORT, async () => {
         });
     }
 });
+
+const MEMORY_LIMIT_MB = 200;
+
+setInterval(() => {
+    const memoryUsage = process.memoryUsage();
+    const memoryUsageInMB = memoryUsage.rss / 1024 / 1024;
+
+    console.log(`[MEMÓRIA] Uso atual: ${memoryUsageInMB.toFixed(2)} MB / ${MEMORY_LIMIT_MB} MB`);
+
+    if (memoryUsageInMB > MEMORY_LIMIT_MB) {
+        console.error(`[RESTART] Limite de memória de ${MEMORY_LIMIT_MB} MB excedido.`);
+        console.error(`[RESTART] Uso atual: ${memoryUsageInMB.toFixed(2)} MB. Finalizando o processo para reinício.`);
+                process.exit(1);
+    }
+}, 30000); // Verificando a cada 30 segundos
+
+setInterval(() => {
+    const now = Date.now();
+    let cleanedCount = 0;
+    
+    for (const [ip, expires] of blockedIPs.entries()) {
+        if (now >= expires) {
+            blockedIPs.delete(ip);
+            cleanedCount++;
+        }
+    }
+    
+    if (cleanedCount > 0) {
+        console.log(`[CLEANUP] Limpeza de ${cleanedCount} IP(s) expirados do mapa de bloqueio.`);
+    }
+}, 10 * 60 * 1000);
+
+setInterval(() => {
+    // Chama a função sem argumento para fazer o broadcast global
+    broadcastRespawnUpdates();
+}, 60000); // 60 segundos

@@ -156,7 +156,8 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "a93b8fa28283ebdf3c482f4f844fcb7018ad741b8195ba39dda08858d1fdb6ec"
+      "a93b8fa28283ebdf3c482f4f844fcb7018ad741b8195ba39dda08858d1fdb6ec",
+      "d16b3ee1df771229aff9d38ce61310234185502b81ecf6bbf976afd62305080c"
     ],
     "email": "Rodrigo.miguel.bellot@gmail.com"
   },
@@ -201,18 +202,52 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "8c159c3b86603ca8bf19a9410e066c835e6757cd3e184f14353ff9c5b035bc07"
+      "8c159c3b86603ca8bf19a9410e066c835e6757cd3e184f14353ff9c5b035bc07",
+      "a402331cb31693cbd866a26fa2afa4ba788332bd03bb5888c92b2ae7d8abb66a"
     ]
   },
-  "rapha2929@gmail.com": {
-    "name": "Rapha",
-    "phone": "11946788933",
-    "passwordHash": "11e5ba5b3b4067db666d4fb9c090bffc:116aec94772dfa2fa1316b86c665e253a0ea4e41d2ea13d83010ad6b2ac7aee555e142a0f96c64ef336c3e686098101cc45642308812abc3b85171449f59c580",
-    "tibiaCharacters": [],
+  "marcoscoletti01@gmail.com": {
+    "name": "Marcos Roberto Coletti",
+    "phone": "19989307446",
+    "passwordHash": "29b5dca956b34feb07203aed631896e9:1303bf026db84a406e226d61efbc990f77d060a8101615f8d7a8bfdf2d2a9c00cb62cfda5fdf58c4e042d78d106f332e54e44e9cd56ff4ffd2d5cc3421aac170",
+    "tibiaCharacters": [
+      {
+        "characterName": "Weak Lord",
+        "registeredAt": "2025-07-20T02:43:35.766Z",
+        "level": 859,
+        "vocation": "Royal Paladin",
+        "world": "Etebra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "c8bed2e9eff9a54b16fcdb0078ac7d23f2c636b3519452f7ae9299de4422a131"
-    ]
+      "c27c4550bff75ebb8204753c554fb27bcc697eb1316a2b1725b9d54bd8927218"
+    ],
+    "email": "marcoscoletti01@gmail.com"
+  },
+  "lucasbs1991@gmail.com": {
+    "name": "Lucas Barros de Souza",
+    "phone": "99981237921",
+    "passwordHash": "faee3083042e5a6175e73a579631622f:fca8596f345909d6e70cac40b4eb9286a08c74f3e961fb14388898d979b0de5a3bd371a04f49f0645ddbf79beb355453ce2621531dc0b668a6bf0ab843d7d5af",
+    "tibiaCharacters": [
+      {
+        "characterName": "Dahaka",
+        "registeredAt": "2025-07-20T05:08:21.742Z",
+        "level": 442,
+        "vocation": "Elite Knight",
+        "world": "Etebra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "7a61057becc2ea46b35f24c737e5cec586623fb68875d820eb6ddc1aaf39526b"
+    ],
+    "email": "lucasbs1991@gmail.com"
   }
 }
