@@ -39,6 +39,35 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+app.get('/api/stalker/:name', async (req, res) => {
+    try {
+        const characterName = req.params.name;
+        if (!characterName) {
+            return res.status(400).json({ error: 'Nome do personagem não fornecido.' });
+        }
+
+        const externalApiUrl = `https://api.tibiastalker.pl/api/tibia-stalker/v1/characters/${encodeURIComponent(characterName)}`;
+        
+        const response = await fetch(externalApiUrl, {
+            method: 'GET',
+            headers: { 'Accept': 'application/json' }
+        });
+
+        if (!response.ok) {
+            // Se a API externa retornar um erro (ex: 404), repassa o erro.
+            const errorData = await response.json();
+            return res.status(response.status).json(errorData);
+        }
+
+        const data = await response.json();
+        res.json(data);
+
+    } catch (error) {
+        console.error('[PROXY-STALKER] Erro:', error);
+        res.status(500).json({ error: 'Erro interno do servidor ao contatar a API externa.' });
+    }
+});
+
 const scriptFileName = path.basename(__filename);
 const worldNameFromScript = scriptFileName.replace(/^server|\.js$/g, '').toLowerCase();
 
@@ -80,6 +109,7 @@ let cachedRespawnsData = {};
 let cachedClientAccounts = {};
 let isSyncingRelations = false; 
 let currentlyOnlinePlayers = new Set();
+
 
 async function updateCaches() {
     console.log('[CACHE-SERVER] Carregando ou atualizando dados em memória...');
@@ -318,6 +348,16 @@ io.on('connection', (socket) => {
        }
     }, 1500);
 
+    socket.on('admin:updateRespawnRankRestrictions', async (data) => {
+        const user = webUsers.get(socket.id);
+        if (user && user.character && adminRanks.includes(user.character.guildRank?.toLowerCase())) {
+            await bot.adminUpdateRespawnRankRestrictions(data);
+            socket.emit('bot:success_notification', { message: 'Restrições de rank para o respawn foram salvas.' });
+        } else {
+            console.warn(`[SECURITY] Tentativa não autorizada de 'admin:updateRespawnRankRestrictions' pelo socket ${socket.id}`);
+        }
+    });
+
     socket.on('admin:getUsers', async () => {
         const user = webUsers.get(socket.id);
 
@@ -451,27 +491,19 @@ socket.on('friends:getData', async () => {
 
         const now = Date.now();
 
-        // --- INÍCIO DA LÓGICA DE RATE LIMIT FINAL ---
         const userIsAdmin = user.character && adminRanks.includes(user.character.guildRank?.toLowerCase());
 
         if (!userIsAdmin) {
-            // 1. VERIFICAÇÃO ATUALIZADA: Se o usuário já está mutado, simplesmente ignore o comando em silêncio.
             if (user.isMutedUntil && now < user.isMutedUntil) {
-                return; // Interrompe silenciosamente a execução para não enviar respostas repetidas.
+                return;
             }
 
-            // 2. Limpa timestamps de comandos com mais de 10 segundos
             user.commandTimestamps = user.commandTimestamps.filter(timestamp => now - timestamp < 10000);
-
-            // 3. Adiciona o timestamp do comando atual
             user.commandTimestamps.push(now);
 
-            // 4. Verifica se o limite foi excedido. Este bloco agora só executa UMA VEZ, no momento do bloqueio.
             if (user.commandTimestamps.length > 5) {
-                // Define o tempo de mute por 5 minutos
                 user.isMutedUntil = now + 300000;
                 console.log(`[SECURITY] Usuário do socket ${socket.id} mutado por 5 minutos por excesso de comandos.`);
-
                 bot.logUnderAttack({
                     type: 'Command Flood',
                     ip: socket.handshake.address,
@@ -480,25 +512,21 @@ socket.on('friends:getData', async () => {
                     email: user.account?.email || 'N/A',
                     phone: user.account?.phone || 'Não cadastrado',
                     character: user.character?.characterName || 'Nenhum',
-                    clientTime: user.clientTimeInfo 
-
+                    clientTime: user.clientTimeInfo
                 });
-
-                // Envia a MENSAGEM ÚNICA de aviso para o usuário.
                 socket.emit('bot:response',`Limite de comandos excedido. Você não poderá enviar comandos por 5 minutos.`);
                 return;
             }
         }
-        // --- FIM DA LÓGICA DE RATE LIMIT ---
 
-        // O restante da função original continua aqui...
         const senderName = user.character ? user.character.characterName : (user.account ? user.account.name : 'Visitante');
         socket.emit('command:echo', { sender: senderName, text: message });
         let result;
         if (message.startsWith('!')) {
             const args = message.trim().substring(1).split(" ");
             const command = args.shift().toLowerCase();
-            result = await bot.processCommand(command, args, user);
+            // HERE IS THE CHANGE: Pass currentlyOnlinePlayers
+            result = await bot.processCommand(command, args, user, currentlyOnlinePlayers); 
         } else if (user.conversationState) {
             result = await bot.processConversationReply(message, user);
         } else {
@@ -857,16 +885,27 @@ async function sendEnemyAlert(onlinePlayers) {
     }
 }
 
+
 async function broadcastRespawnUpdates(socket = null) {
     try {
         const fila = await bot.loadJsonFile(path.join(__dirname, 'fila.json'), {});
         const onlinePlayers = await getOnlinePlayers(WORLD_NAME);
         const clientAccounts = cachedClientAccounts;
+
         const plusStatusMap = {};
         const accountDataMap = {};
+        // Cria um mapa de characterName para os dados completos do personagem para busca rápida
+        const characterDetailsMap = new Map(); 
 
         for (const email in clientAccounts) {
             accountDataMap[email] = clientAccounts[email];
+            if (clientAccounts[email].tibiaCharacters) {
+                clientAccounts[email].tibiaCharacters.forEach(char => {
+                    if (char.characterName) {
+                        characterDetailsMap.set(char.characterName.toLowerCase(), char);
+                    }
+                });
+            }
             const mainChar = clientAccounts[email].tibiaCharacters?.[0];
             if (mainChar?.plusExpiresAt) {
                 plusStatusMap[email] = mainChar.plusExpiresAt;
@@ -889,12 +928,48 @@ async function broadcastRespawnUpdates(socket = null) {
                 } else {
                     user.isMakerOnline = false;
                 }
+                
+                // Lógica para enriquecer os detalhes dos membros do grupo planilhado
+                if (user.isPlanilhado && user.groupMembers) {
+                    user.groupMembers = await Promise.all(user.groupMembers.map(async (member) => {
+                        let memberDetails = {
+                            name: member.name, // Nome já vem do bot_logic.js
+                            level: 'N/A',
+                            vocation: 'N/A',
+                            guildRank: 'N/A',
+                            isOnline: onlinePlayers.has(member.name) // Verifica status online
+                        };
+
+                        // 1. Tentar encontrar nos cachedClientAccounts (mapa de detalhes de char)
+                        const cachedChar = characterDetailsMap.get(member.name.toLowerCase());
+                        if (cachedChar) {
+                            memberDetails.level = cachedChar.level || 'N/A';
+                            memberDetails.vocation = cachedChar.vocation || 'N/A';
+                            memberDetails.guildRank = cachedChar.guildRank || 'N/A';
+                        } else {
+                            // 2. Se não encontrado no cache local, tentar buscar na API externa, segundo caso pois custa memória
+                            try {
+                                const charInfoFromApi = await bot.getTibiaCharacterInfo(member.name);
+                                if (charInfoFromApi) {
+                                    memberDetails.level = charInfoFromApi.level || 'N/A';
+                                    memberDetails.vocation = charInfoFromApi.vocation || 'N/A';
+                                    const guildMemberInfo = await bot.checkTibiaCharacterInGuild(charInfoFromApi.name);
+                                    memberDetails.guildRank = guildMemberInfo ? guildMemberInfo.rank : 'N/A';
+                                }
+                            } catch (apiError) {
+                                console.error(`Erro ao buscar info de ${member.name} na API para planilhado:`, apiError);
+                            }
+                        }
+                        return memberDetails;
+                    }));
+                }
             };
+
             if (respawn.current) {
                 await processUser(respawn.current);
             }
             if (respawn.queue) {
-                for(const userInQueue of respawn.queue) {
+                for (const userInQueue of respawn.queue) {
                     await processUser(userInQueue);
                 }
             }
@@ -908,7 +983,6 @@ async function broadcastRespawnUpdates(socket = null) {
         }
 
         const dataToSend = { fila, respawns: allRespawnNames };
-
         if (socket) {
             socket.emit('respawn:update', dataToSend);
         } else {
@@ -918,7 +992,6 @@ async function broadcastRespawnUpdates(socket = null) {
         console.error("[ERRO] Falha em broadcastRespawnUpdates:", error);
     }
 }
-
 async function fetchWithTimeout(url, timeout = 5000) {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), timeout);
@@ -1048,6 +1121,5 @@ setInterval(() => {
 }, 10 * 60 * 1000);
 
 setInterval(() => {
-    // Chama a função sem argumento para fazer o broadcast global
     broadcastRespawnUpdates();
 }, 60000); // 60 segundos

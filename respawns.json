@@ -95,10 +95,10 @@
     "Q3": "Guzzlewaw Valley (Bones)",
     "Q4": "Guzzlewaw Valley (West)",
     "Q12": "Lower",
-    "Q6": "Prision -1",
-    "Q7": "Prision -2",
-    "Q8": "Prision -3",
-    "Q13": "Roshamuul DP (ALL)"
+    "Q13": "Roshamuul DP (ALL)",
+    "Q6": "Prison -1",
+    "Q8": "Prison -3",
+    "Q7": "Prison -2"
   },
   "Svargrond": {
     "U22": "Gold Token (Svar)"

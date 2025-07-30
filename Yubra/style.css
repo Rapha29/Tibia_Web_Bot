@@ -946,3 +946,33 @@ html, body {
 .chat-section #command-form, .chat-section #quick-actions, .chat-section .chat-options {
     flex-shrink: 0;
 }
+
+.time-breakdown-link {
+    color: #f0f0f0; /* Cor branca/cinza claro, para combinar com o texto normal */
+    text-decoration: none; /* Remove o sublinhado padrão do link */
+    cursor: pointer; /* Mantém o cursor de mão para indicar que é clicável */
+}
+
+.time-breakdown-link:hover {
+    color: #ffc107; /* Opcional: Muda a cor para um amarelo/dourado quando o mouse passa por cima */
+    text-decoration: underline; /* Opcional: Adiciona um sublinhado apenas quando o mouse está sobre o link */
+}
+
+/* Bolinhas de status online/offline */
+.status-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.status-dot.online {
+    background-color: #28a745; /* Verde */
+}
+
+.status-dot.offline {
+    background-color: #dc3545; /* Vermelho */
+}
+

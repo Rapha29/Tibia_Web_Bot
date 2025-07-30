@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Códigos de Respawn Tibia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            /* Cores para o tema escuro (suave/pastel) */
+            --background-color-dark: #1a1a1a; /* Preto escuro */
+            --container-bg-dark: #282828;     /* Cinza muito escuro */
+            --text-color-dark: #ecf0f1;       /* Cinza claro */
+            --heading-color-dark: #4CAF50;    /* Verde esmeralda */
+            --filter-group-bg-dark: #333333;  /* Cinza escuro */
+            --input-bg-dark: #444444;         /* Cinza um pouco mais claro */
+            --input-border-dark: #7f8c8d;     /* Cinza médio */
+            --list-bg-dark: #3a3a3a;          /* Cinza escuro */
+            --code-bg-dark: #34495e;          /* Azul petróleo */
+            --code-color-dark: #2ecc71;       /* Verde esmeralda */
+            --scrollbar-track-dark: #405d76;  /* Azul acinzentado */
+            --scrollbar-thumb-dark: #2ecc71;  /* Verde esmeralda */
+            --scrollbar-thumb-hover-dark: #27ae60; /* Verde um pouco mais escuro */
+            --icon-color-dark: #f39c12;       /* Laranja para o sol */
+            --placeholder-color-dark: #aaa;   /* Cinza claro para placeholder */
+
+            /* Cores para o tema claro (suave/pastel) */
+            --background-color-light: #f4f4f4; /* Cinza claro */
+            --container-bg-light: #ffffff;    /* Branco puro */
+            --text-color-light: #34495e;      /* Azul petróleo */
+            --heading-color-light: #28a745;   /* Verde jade suave */
+            --filter-group-bg-light: #e0e6e8; /* Cinza bem claro */
+            --input-bg-light: #ffffff;        /* Branco puro */
+            --input-border-light: #bdc3c7;    /* Cinza claro */
+            --list-bg-light: #f8f9fa;         /* Cinza quase branco */
+            --code-bg-light: #e0e6e8;         /* Mesmo do filter group */
+            --code-color-light: #27ae60;      /* Mesmo do heading */
+            --scrollbar-track-light: #f8f9fa; /* Mesmo do list bg */
+            --scrollbar-thumb-light: #27ae60; /* Mesmo do heading */
+            --scrollbar-thumb-hover-light: #2ecc71; /* Verde um pouco mais claro */
+            --icon-color-light: #34495e;      /* Azul petróleo para a lua */
+            --placeholder-color-light: #777;  /* Cinza médio para placeholder */
+
+            /* Cores para o popup */
+            --popup-bg-dark: #3a3a3a;
+            --popup-text-dark: #ecf0f1;
+            --popup-bg-light: #ffffff;
+            --popup-text-light: #34495e;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: var(--background-color-dark);
+            color: var(--text-color-dark);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.light-theme {
+            background-color: var(--background-color-light);
+            color: var(--text-color-light);
+        }
+
+        .container {
+            background-color: var(--container-bg-dark);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            max-width: 900px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        body.light-theme .container {
+            background-color: var(--container-bg-light);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: var(--heading-color-dark);
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--heading-color-dark);
+            padding-bottom: 10px;
+            transition: color 0.3s, border-color 0.3s;
+        }
+
+        body.light-theme h1, body.light-theme h2 {
+            color: var(--heading-color-light);
+            border-color: var(--heading-color-light);
+        }
+        
+        .manual-section {
+            background-color: var(--filter-group-bg-dark);
+            padding: 15px 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        body.light-theme .manual-section {
+            background-color: var(--filter-group-bg-light);
+            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .manual-section h3 {
+            color: var(--heading-color-dark);
+            margin-top: 0;
+            margin-bottom: 15px;
+            text-align: center;
+            transition: color 0.3s;
+        }
+        body.light-theme .manual-section h3 {
+            color: var(--heading-color-light);
+        }
+        .manual-section ol {
+            padding-left: 25px;
+            line-height: 1.6;
+        }
+        .manual-section li {
+            margin-bottom: 8px;
+        }
+        .manual-section strong {
+            color: var(--text-color-dark); /* Garante visibilidade do bold */
+            transition: color 0.3s;
+        }
+        body.light-theme .manual-section strong {
+            color: var(--text-color-light);
+        }
+
+
+        .theme-switcher {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        .theme-switcher button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.8em; /* Tamanho do ícone */
+            padding: 0;
+            transition: color 0.3s, transform 0.2s;
+            line-height: 1; /* Alinha o ícone */
+        }
+
+        .theme-switcher button:hover {
+            transform: scale(1.1);
+        }
+
+        /* Cores dos ícones */
+        .theme-switcher #theme-toggle.dark-mode-icon {
+            color: var(--icon-color-dark); /* Cor do sol no tema escuro */
+        }
+
+        .theme-switcher #theme-toggle.light-mode-icon {
+            color: var(--icon-color-light); /* Cor da lua no tema claro */
+        }
+
+        .filter-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+            justify-content: space-around;
+        }
+
+        .filter-group {
+            flex: 1;
+            min-width: 300px;
+            background-color: var(--filter-group-bg-dark);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        body.light-theme .filter-group {
+            background-color: var(--filter-group-bg-light);
+            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--text-color-dark);
+            transition: color 0.3s;
+        }
+
+        body.light-theme label {
+            color: var(--text-color-light);
+        }
+
+        select, input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid var(--input-border-dark);
+            border-radius: 5px;
+            background-color: var(--input-bg-dark);
+            color: var(--text-color-dark);
+            font-size: 1em;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
+        body.light-theme select, body.light-theme input[type="text"] {
+            border: 1px solid var(--input-border-light);
+            background-color: var(--input-bg-light);
+            color: var(--text-color-light);
+        }
+
+        select:focus, input[type="text"]:focus {
+            outline: none;
+            border-color: var(--heading-color-dark);
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+        }
+
+        body.light-theme select:focus, body.light-theme input[type="text"]:focus {
+            border-color: var(--heading-color-light);
+            box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+        }
+
+        /* Estilo para o placeholder */
+        input::placeholder {
+            color: var(--placeholder-color-dark);
+            opacity: 1; /* Garante que a cor seja aplicada */
+            transition: color 0.3s;
+        }
+        body.light-theme input::placeholder {
+            color: var(--placeholder-color-light);
+        }
+
+        .respawn-list {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid var(--input-border-dark);
+            border-radius: 5px;
+            background-color: var(--list-bg-dark);
+            padding: 10px;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        body.light-theme .respawn-list {
+            border: 1px solid var(--input-border-light);
+            background-color: var(--list-bg-light);
+        }
+
+        .respawn-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 10px;
+            margin-bottom: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s, color 0.2s;
+            font-weight: bold;
+        }
+        
+        .respawn-item:hover {
+            transform: translateY(-2px);
+            opacity: 0.9; /* Pequena opacidade para efeito de hover */
+        }
+
+        .respawn-item:active {
+            transform: translateY(0);
+        }
+
+        .respawn-item .respawn-name {
+            pointer-events: none; /* Permite que o clique no div pai funcione */
+        }
+
+        .respawn-item .code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--code-bg-dark);
+            color: var(--code-color-dark);
+            padding: 5px 10px;
+            border-radius: 3px;
+            margin-left: 10px;
+            font-weight: bold; /* Deixando o código em negrito */
+            font-size: 1.1em; /* Deixando o código um pouco maior */
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.light-theme .respawn-item .code {
+            background-color: var(--code-bg-light);
+            color: var(--code-color-light);
+        }
+
+        /* Estilo da barra de rolagem */
+        .respawn-list::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .respawn-list::-webkit-scrollbar-track {
+            background: var(--scrollbar-track-dark);
+            border-radius: 10px;
+        }
+
+        body.light-theme .respawn-list::-webkit-scrollbar-track {
+            background: var(--scrollbar-track-light);
+        }
+
+        .respawn-list::-webkit-scrollbar-thumb {
+            background-color: var(--scrollbar-thumb-dark);
+            border-radius: 10px;
+            border: 2px solid var(--scrollbar-track-dark);
+        }
+
+        body.light-theme .respawn-list::-webkit-scrollbar-thumb {
+            background-color: var(--scrollbar-thumb-light);
+            border: 2px solid var(--scrollbar-track-light);
+        }
+
+        .respawn-list::-webkit-scrollbar-thumb:hover {
+            background-color: var(--scrollbar-thumb-hover-dark);
+        }
+
+        body.light-theme .respawn-list::-webkit-scrollbar-thumb:hover {
+            background-color: var(--scrollbar-thumb-hover-light);
+        }
+
+        /* --- Estilos do Popup --- */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: var(--popup-bg-dark);
+            color: var(--popup-text-dark);
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
+            font-size: 1.2em;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .popup.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        body.light-theme .popup {
+            background-color: var(--popup-bg-light);
+            color: var(--popup-text-light);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .popup i {
+            color: var(--heading-color-dark); /* Cor do ícone de check */
+        }
+        body.light-theme .popup i {
+            color: var(--heading-color-light);
+        }
+
+        /* Estilos do overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
+        }
+
+        .overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        /* --- Fim Estilos do Popup --- */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="theme-switcher">
+            <button id="theme-toggle" aria-label="Mudar Tema">
+                <i class="fas fa-sun"></i>
+            </button>
+        </div>
+
+        <h1>Códigos de Respawn Tibia</h1>
+
+        <div class="manual-section">
+            <h3>Manual de Uso</h3>
+            <ol>
+                <ul>
+                    <li>Ao clicar no código será copiado no formato !resp [CÓDIGO], basta colar no TS e dar Enter</li>
+                </ul>
+            </ol>
+        </div>
+        <hr> <div class="filter-section">
+            <div class="filter-group">
+                <label for="city-filter">Filtrar por Cidade:</label>
+                <select id="city-filter">
+                    <option value="">Todas as Cidades</option>
+                </select>
+                <div id="city-respawns" class="respawn-list"></div>
+            </div>
+
+            <div class="filter-group">
+                <label for="creature-search">Buscar por Respawn:</label>
+                <input type="text" id="creature-search" placeholder="Digite o nome do respawn...">
+                <div id="search-results" class="respawn-list"></div>
+            </div>
+        </div>
+
+        <div class="full-list-section">
+            <h2>Todos os Códigos de Respawn</h2>
+            <div id="all-respawns" class="respawn-list"></div>
+        </div>
+    </div>
+
+    <div id="copy-popup" class="popup">
+        <i class="fas fa-check-circle"></i> Código Copiado!
+    </div>
+    <div id="overlay" class="overlay"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let respawnData = {}; // Para armazenar os dados JSON
+
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            const themeIcon = themeToggle.querySelector('i');
+
+            // Elementos do popup
+            const copyPopup = document.getElementById('copy-popup');
+            const overlay = document.getElementById('overlay');
+
+            // Função para exibir o popup
+            function showPopup() {
+                copyPopup.classList.add('show');
+                overlay.classList.add('show');
+                setTimeout(() => {
+                    copyPopup.classList.remove('show');
+                    overlay.classList.remove('show');
+                }, 1500); // Popup desaparece após 1.5 segundos
+            }
+
+            // Função para atualizar o ícone do tema
+            function updateThemeIcon() {
+                if (body.classList.contains('dark-theme')) {
+                    themeIcon.classList.remove('fa-moon', 'light-mode-icon');
+                    themeIcon.classList.add('fa-sun', 'dark-mode-icon');
+                    themeToggle.setAttribute('aria-label', 'Mudar para Tema Claro');
+                } else {
+                    themeIcon.classList.remove('fa-sun', 'dark-mode-icon');
+                    themeIcon.classList.add('fa-moon', 'light-mode-icon');
+                    themeToggle.setAttribute('aria-label', 'Mudar para Tema Escuro');
+                }
+            }
+
+            // Carrega o tema salvo no localStorage ou define como escuro por padrão
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                body.classList.add(savedTheme);
+            } else {
+                body.classList.add('dark-theme'); // Tema padrão
+            }
+            updateThemeIcon(); // Atualiza o ícone ao carregar a página
+
+            themeToggle.addEventListener('click', () => {
+                if (body.classList.contains('dark-theme')) {
+                    body.classList.remove('dark-theme');
+                    body.classList.add('light-theme');
+                    localStorage.setItem('theme', 'light-theme');
+                } else {
+                    body.classList.remove('light-theme');
+                    body.classList.add('dark-theme');
+                    localStorage.setItem('theme', 'dark-theme');
+                }
+                updateThemeIcon(); // Atualiza o ícone ao mudar o tema
+            });
+
+            // Função para gerar uma cor HSL a partir de uma string
+            function stringToHslColor(str, s, l) {
+                let hash = 0;
+                for (let i = 0; i < str.length; i++) {
+                    hash = str.charCodeAt(i) + ((hash << 5) - hash);
+                }
+                const h = hash % 360;
+                return `hsl(${h}, ${s}%, ${l}%)`;
+            }
+
+            // Mapeamento de cores para cidades
+            const cityColors = new Map();
+
+            // Função para determinar a cor do texto com base na luminosidade do fundo
+            function getTextColor(bgColor) {
+                // Remove 'hsl(', ')' and split by ',' to get h, s, l values
+                const hslValues = bgColor.substring(bgColor.indexOf('(') + 1, bgColor.indexOf(')')).split(',').map(s => parseFloat(s.trim()));
+                const lightness = hslValues[2]; // Get the lightness value
+
+                // Determine text color based on lightness
+                // A common threshold is 50%, but it can be adjusted for better perceived contrast
+                return lightness > 60 ? '#333' : '#eee'; // Use dark text for light backgrounds, light text for dark backgrounds
+            }
+
+            // Busca os dados JSON
+            fetch('respawns.json') // Certifique-se de ter um arquivo 'respawns.json' no mesmo diretório
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Erro HTTP! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    respawnData = data;
+                    // Pré-gerar cores para todas as cidades
+                    for (const city in respawnData) {
+                        // Saturação e luminosidade ajustadas para tons pastel e bom contraste
+                        cityColors.set(city, {
+                            dark: stringToHslColor(city, 40, 50), // Cores suaves para tema escuro (um pouco mais saturadas que antes, mas ainda suaves)
+                            light: stringToHslColor(city, 30, 80) // Cores bem claras para tema claro (menos saturadas que antes, mais pastel)
+                        });
+                    }
+                    populateCityFilter(respawnData);
+                    displayAllRespawns(respawnData);
+                })
+                .catch(error => {
+                    console.error('Erro ao buscar dados de respawn:', error);
+                    document.getElementById('city-respawns').innerHTML = `<p style="color: red;">Erro ao carregar dados: ${error.message}</p>`;
+                    document.getElementById('search-results').innerHTML = `<p style="color: red;">Erro ao carregar dados: ${error.message}</p>`;
+                    document.getElementById('all-respawns').innerHTML = `<p style="color: red;">Erro ao carregar dados: ${error.message}</p>`;
+                });
+
+            const cityFilter = document.getElementById('city-filter');
+            const cityRespawnsDiv = document.getElementById('city-respawns');
+            const creatureSearchInput = document.getElementById('creature-search');
+            const searchResultsDiv = document.getElementById('search-results');
+            const allRespawnsDiv = document.getElementById('all-respawns');
+
+            // Função para preencher o filtro de cidade
+            function populateCityFilter(data) {
+                // Remove opções existentes, exceto a primeira
+                cityFilter.querySelectorAll('option:not([value=""])').forEach(option => option.remove());
+
+                const sortedCities = Object.keys(data).sort();
+                sortedCities.forEach(city => {
+                    const option = document.createElement('option');
+                    option.value = city;
+                    option.textContent = city;
+                    cityFilter.appendChild(option);
+                });
+            }
+
+            // Função para exibir respawns para uma cidade selecionada
+            function displayRespawnsByCity(city) {
+                cityRespawnsDiv.innerHTML = ''; // Limpa resultados anteriores
+                if (city && respawnData[city]) {
+                    const currentTheme = body.classList.contains('light-theme') ? 'light' : 'dark';
+                    const respawnsArray = [];
+                    for (const code in respawnData[city]) {
+                        respawnsArray.push({ name: respawnData[city][code], code: code });
+                    }
+                    respawnsArray.sort((a, b) => a.name.localeCompare(b.name)); // Ordena alfabeticamente
+
+                    respawnsArray.forEach(respawn => {
+                        const itemDiv = createRespawnItem(respawn.name, respawn.code, city, currentTheme);
+                        cityRespawnsDiv.appendChild(itemDiv);
+                    });
+                }
+            }
+
+            // Função para filtrar respawns com base na entrada de busca
+            function filterRespawnsByCreature(searchTerm) {
+                searchResultsDiv.innerHTML = ''; // Limpa resultados anteriores
+                const lowerCaseSearchTerm = searchTerm.toLowerCase();
+
+                if (lowerCaseSearchTerm.length < 2) { // Requer pelo menos 2 caracteres para busca
+                    searchResultsDiv.innerHTML = '<p>Digite pelo menos 2 caracteres para buscar.</p>';
+                    return;
+                }
+
+                let foundRespawns = [];
+                const currentTheme = body.classList.contains('light-theme') ? 'light' : 'dark';
+                for (const city in respawnData) {
+                    for (const code in respawnData[city]) {
+                        const respawnName = respawnData[city][code];
+                        if (respawnName.toLowerCase().includes(lowerCaseSearchTerm)) {
+                            foundRespawns.push({ name: respawnName, code: code, city: city });
+                        }
+                    }
+                }
+                
+                foundRespawns.sort((a, b) => a.name.localeCompare(b.name)); // Ordena alfabeticamente
+
+                if (foundRespawns.length > 0) {
+                    foundRespawns.forEach(respawn => {
+                        const itemDiv = createRespawnItem(respawn.name, respawn.code, respawn.city, currentTheme);
+                        searchResultsDiv.appendChild(itemDiv);
+                    });
+                } else {
+                    searchResultsDiv.innerHTML = '<p>Nenhum respawn correspondente encontrado.</p>';
+                }
+            }
+
+            // Função para exibir todos os respawns
+            function displayAllRespawns(data) {
+                allRespawnsDiv.innerHTML = '';
+                const currentTheme = body.classList.contains('light-theme') ? 'light' : 'dark';
+                const allRespawnsArray = [];
+
+                for (const city in data) {
+                    for (const code in data[city]) {
+                        allRespawnsArray.push({ name: data[city][code], code: code, city: city });
+                    }
+                }
+                
+                allRespawnsArray.sort((a, b) => {
+                    const cityComparison = a.city.localeCompare(b.city);
+                    if (cityComparison !== 0) {
+                        return cityComparison; // Ordena por cidade primeiro
+                    }
+                    return a.name.localeCompare(b.name); // Depois por nome do respawn
+                });
+
+                allRespawnsArray.forEach(respawn => {
+                    const itemDiv = createRespawnItem(respawn.name, respawn.code, respawn.city, currentTheme);
+                    allRespawnsDiv.appendChild(itemDiv);
+                });
+            }
+
+            // Função auxiliar para criar um item de respawn (div)
+            function createRespawnItem(name, code, city = null, theme = 'dark') { // Removido isFullList pois cor é dinâmica
+                const itemDiv = document.createElement('div');
+                itemDiv.classList.add('respawn-item');
+
+                // Define a cor de fundo do item baseada na cidade e tema
+                if (city && cityColors.has(city)) {
+                    const bgColor = cityColors.get(city)[theme];
+                    itemDiv.style.backgroundColor = bgColor;
+                    itemDiv.style.color = getTextColor(bgColor); // Define a cor do texto com base na cor de fundo
+                }
+
+                const nameSpan = document.createElement('span');
+                nameSpan.classList.add('respawn-name'); // Adiciona classe para o span do nome
+                // Adiciona o nome da cidade antes do nome do respawn
+                nameSpan.textContent = city ? `${city} - ${name}` : name;
+                
+                const codeSpan = document.createElement('span');
+                codeSpan.classList.add('code');
+                codeSpan.textContent = code;
+
+                itemDiv.appendChild(nameSpan);
+                itemDiv.appendChild(codeSpan);
+
+                itemDiv.addEventListener('click', () => {
+                    const textToCopy = `!resp ${code}`; // Adiciona "!resp " antes do código
+                    navigator.clipboard.writeText(textToCopy)
+                        .then(() => {
+                            showPopup(); // Mostra o popup de "Código Copiado!"
+                        })
+                        .catch(err => {
+                            console.error('Falha ao copiar texto: ', err);
+                            alert('Falha ao copiar código. Por favor, tente manualmente.');
+                        });
+                });
+                return itemDiv;
+            }
+
+            // Listeners de Eventos
+            cityFilter.addEventListener('change', (event) => {
+                displayRespawnsByCity(event.target.value);
+            });
+
+            creatureSearchInput.addEventListener('input', (event) => {
+                filterRespawnsByCreature(event.target.value);
+            });
+
+            // Adiciona um listener para re-renderizar as cores dos itens ao mudar o tema
+            themeToggle.addEventListener('click', () => {
+                // Re-renderiza a lista de cidades filtradas (se alguma cidade estiver selecionada)
+                displayRespawnsByCity(cityFilter.value);
+                // Re-renderiza a lista de busca (se houver termo de busca)
+                filterRespawnsByCreature(creatureSearchInput.value);
+                // Re-renderiza a lista completa
+                displayAllRespawns(respawnData);
+            });
+        });
+    </script>
+</body>
+</html>

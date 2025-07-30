@@ -102,7 +102,7 @@
         loadingSpinner.style.display = 'block';
         resultsContainer.innerHTML = '';
         const encodedName = encodeURIComponent(characterName);
-        const apiUrl = `https://api.tibiastalker.pl/api/tibia-stalker/v1/characters/${encodedName}`;
+        const apiUrl = `/api/stalker/${encodedName}`;
 
         try {
             const response = await fetch(apiUrl);

@@ -1,8 +1,13 @@
+// Ver sistema de planilhado, gerenciar tempo para planilha ativa
+// opção de horario menor para planilhado
+
 const fs = require('fs').promises;
 const fsSync = require('fs');
 const path = require('path');
 const fetch = require('node-fetch');
 const crypto = require('crypto');
+
+const adminRanks = ["leader alliance", "leader", "vice leader"];
 
 const DATA_FILES = {
     clientAccounts: path.join(__dirname, 'clientaccount.json'),
@@ -127,7 +132,6 @@ async function getUserMaxTime(registrationData) {
 
     let extraTime = 0;
     const groupBreakdown = [];
-
     if (Array.isArray(registrationData?.groups)) {
         registrationData.groups.forEach(userGroupId => {
             const groupInfo = webGroups.find(g => g.id === userGroupId);
@@ -138,13 +142,15 @@ async function getUserMaxTime(registrationData) {
         });
     }
 
-    const totalTime = baseTime + extraTime;
+    const calculatedTime = baseTime + extraTime;
+    const totalTime = Math.min(calculatedTime, 210);
 
     return {
-        total: totalTime,
+        total: totalTime, 
         breakdown: {
             base: { name: rankName, time: baseTime },
             groups: groupBreakdown,
+            calculated: calculatedTime 
         }
     };
 }
@@ -293,15 +299,35 @@ async function processConversationReply(reply, user) {
     return result;
 }
 
-async function processCommand(command, args, user) {
-    const filaRespawns = await loadJsonFile(DATA_FILES.respawnQueue);
+// bot_logic.js
+
+async function processCommand(command, args, user, onlinePlayers) {
+    const filaRespawns = await loadJsonFile(DATA_FILES.respawnQueue, {});
     let cooldowns = await loadJsonFile(DATA_FILES.cooldowns, {});
     const respawnGroups = await loadJsonFile(DATA_FILES.respawnGroups, {});
     let result = { responseText: "", needsBroadcast: false, broadcastType: null, broadcastPayload: {}, adminDataUpdate: false };
     const loggedInAccount = user.account;
     const activeCharacter = user.character;
+
+    const superAdmins = ['rapha2929@gmail.com'];
+    const isSuperAdmin = loggedInAccount && superAdmins.includes(loggedInAccount.email);
+
+    if (!loggedInAccount) {
+        result.responseText = { type: 'actionable_message', text: "Você precisa fazer login para usar este comando.", actions: [{ buttonText: 'Fazer Login', command_to_run: '!showlogin' }] };
+        return result;
+    }
+
+    if (!activeCharacter && !isSuperAdmin && !['register', 'confirmregister', 'startchangechar', 'stream', 'removestream', 'plan'].includes(command)) {
+        result.responseText = { type: 'actionable_message', text: "Você precisa registrar um personagem para usar este comando.", actions: [{ buttonText: 'Registrar Personagem', command_to_run: '!startcharregister' }] };
+        return result;
+    }
+
+    const charName = activeCharacter?.characterName || (isSuperAdmin ? loggedInAccount.name : 'Visitante');
+    const registration = { ...loggedInAccount, ...activeCharacter };
+    const userIdentifier = loggedInAccount.email;
+
     switch (command) {
-        case "help": result.responseText = `Comandos disponíveis:\n!register -> Inicia o registro.\n!resp [código] [tempo] -> Reserva um respawn.\n!respmaker [código] -> Reserva um respawn para caçar com maker.\n!maker [nome] -> Define o nome do seu maker.\n!respdel [código] -> Libera um respawn.\n!aceitar -> Confirma sua reserva.\n!mp [msg] -> Envia mensagem em massa (líderes).\n!shared [lvl] -> Calcula faixa de XP.\n!stream -> Adiciona/atualiza sua live.\n!removestream -> Remove sua live.\n!recover -> Recupera sua conta.`;
+        case "help": result.responseText = `Comandos disponíveis:\n!register -> Inicia o registro.\n!resp [código] [tempo] -> Reserva um respawn.\n!respmaker [código] -> Reserva um respawn para caçar com maker.\n!maker [nome] -> Define o nome do seu maker.\n!respdel [código] -> Libera um respawn.\n!aceitar -> Confirma sua reserva.\n!mp [msg] -> Envia mensagem em massa (líderes).\n!shared [lvl] -> Calcula faixa de XP.\n!stream -> Adiciona/atualiza sua live.\n!removestream -> Remove sua live.\n!recover -> Recupera sua conta.\n!plan [código] -> Assume um respawn planilhado.`;
         return result;
         case "showlogin": if (loggedInAccount) { result.responseText = `Você já está conectado como ${loggedInAccount.name}.`; return result;
         } user.conversationState = 'awaiting_login_email';
@@ -311,20 +337,11 @@ async function processCommand(command, args, user) {
         case "recover": user.conversationState = 'awaiting_recovery_email';
         result.responseText = "Ok, vamos iniciar a recuperação. Por favor, digite o e-mail da sua conta:"; return result;
         case "resetpassword": return result;
-    }
-    if (!loggedInAccount) { result.responseText = { type: 'actionable_message', text: "Você precisa fazer login para usar este comando.", actions: [{ buttonText: 'Fazer Login', command_to_run: '!showlogin' }] };
-        return result; }
-    const registration = { ...loggedInAccount, ...activeCharacter };
-    const userIdentifier = loggedInAccount.email;
-    if (!activeCharacter && !['register', 'confirmregister', 'startchangechar', 'stream', 'removestream'].includes(command)) { result.responseText = { type: 'actionable_message', text: "Você precisa registrar um personagem para usar este comando.", actions: [{ buttonText: 'Registrar Personagem', command_to_run: '!startcharregister' }] };
-        return result; }
-    const charName = activeCharacter?.characterName;
-    switch (command) {
-        case "stream": 
+        case "stream":
             user.conversationState = 'awaiting_stream_link';
             result.responseText = "Por favor, cole o link da sua stream (ex: https://twitch.tv/seu_canal):";
             break;
-        case "removestream": { 
+        case "removestream": {
             const allClientAccounts = await loadJsonFile(DATA_FILES.clientAccounts);
             const userAccount = allClientAccounts[userIdentifier];
             const charIndex = userAccount.tibiaCharacters.findIndex(c => c && c.characterName === charName);
@@ -338,60 +355,243 @@ async function processCommand(command, args, user) {
             }
             break;
         }
-        case "startchangechar": user.conversationState = 'awaiting_change_char_name';
-            result.responseText = "Qual o nome do personagem para o qual você deseja trocar?"; break;
-        case "register": { const characterName = args.join(" "); if (!characterName) { user.conversationState = 'awaiting_char_name';
-            result.responseText = "Entendido. Digite o nome exato do personagem que deseja registrar:"; } else { const verificationCodes = await loadJsonFile(DATA_FILES.verificationCodes);
-            const codeToUse = crypto.randomBytes(6).toString('hex').toUpperCase().substring(0, 12); verificationCodes[userIdentifier] = codeToUse; await saveJsonFile(DATA_FILES.verificationCodes, verificationCodes); result.responseText = { type: 'actionable_message', text: `Ok. Para registrar [b]${characterName}[/b], adicione o código [b]${codeToUse}[/b] ao comentário dele no Tibia.com e clique no botão.`, actions: [{ buttonText: `Verificar e Registrar ${characterName}`, command_to_run: `!confirmregister ${characterName}` }] };
-        } break; }
-        case "confirmregister": { const characterNameToConfirm = args.join(" ");
-            if (!characterNameToConfirm) { result.responseText = "Especifique o nome do personagem."; break; } const verificationCodes = await loadJsonFile(DATA_FILES.verificationCodes);
-            const code = verificationCodes[userIdentifier]; if (!code) { result.responseText = "Nenhum código de verificação ativo. Use !register."; break;
-            } const charInfo = await getTibiaCharacterInfo(characterNameToConfirm); if (!charInfo || !charInfo.comment || !charInfo.comment.includes(code)) { result.responseText = { type: 'actionable_message', text: `Código '${code}' não encontrado no comentário de '${characterNameToConfirm}'. Aguarde 5 minutos e tente novamente.`, actions: [{ buttonText: `Verificar Novamente`, command_to_run: `!confirmregister ${characterNameToConfirm}` }] }; break;
-            } const guildMember = await checkTibiaCharacterInGuild(charInfo.name); if (!guildMember) { result.responseText = `O personagem ${charInfo.name} não pertence à guilda '${await getGuildName()}'.`;
-                break; } const allClientAccounts = await loadJsonFile(DATA_FILES.clientAccounts); Object.values(allClientAccounts).forEach(acc => { acc.tibiaCharacters = (acc.tibiaCharacters || []).filter(c => c && c.characterName && c.characterName.toLowerCase() !== charInfo.name.toLowerCase()); });
-            const newCharData = { characterName: charInfo.name, registeredAt: new Date().toISOString(), level: charInfo.level, vocation: charInfo.vocation, world: charInfo.world, guildRank: guildMember.rank || null, groups: [] }; loggedInAccount.tibiaCharacters.push(newCharData); allClientAccounts[userIdentifier] = loggedInAccount; user.character = newCharData; delete verificationCodes[userIdentifier]; await saveJsonFile(DATA_FILES.verificationCodes, verificationCodes); await saveJsonFile(DATA_FILES.clientAccounts, allClientAccounts);
-            result.adminDataUpdate = true; result.responseText = `✅ Sucesso! O personagem ${charInfo.name} foi registrado na sua conta.`; break;
+        case "startchangechar":
+            user.conversationState = 'awaiting_change_char_name';
+            result.responseText = "Qual o nome do personagem para o qual você deseja trocar?";
+            break;
+        case "register": {
+            const characterName = args.join(" ");
+            if (!characterName) {
+                user.conversationState = 'awaiting_char_name';
+                result.responseText = "Entendido. Digite o nome exato do personagem que deseja registrar:";
+            } else {
+                const verificationCodes = await loadJsonFile(DATA_FILES.verificationCodes);
+                const codeToUse = crypto.randomBytes(6).toString('hex').toUpperCase().substring(0, 12);
+                verificationCodes[userIdentifier] = codeToUse;
+                await saveJsonFile(DATA_FILES.verificationCodes, verificationCodes);
+                result.responseText = {
+                    type: 'actionable_message',
+                    text: `Ok.\nPara registrar [b]${characterName}[/b], adicione o código [b]${codeToUse}[/b] ao comentário dele no Tibia.com e clique no botão.`,
+                    actions: [{ buttonText: `Verificar e Registrar ${characterName}`, command_to_run: `!confirmregister ${characterName}` }]
+                };
+            }
+            break;
         }
-        case "mp": { const allowedRanks = ["leader alliance", "leader", "prodigy"];
-            if (!allowedRanks.includes((registration.guildRank || "").toLowerCase())) { result.responseText = "Sem permissão."; break; } const message = args.join(" ");
-            if (!message) { result.responseText = "Uso: !mp [mensagem]"; break; } result.responseText = "✅ Mensagem enviada."; result.broadcastType = 'mass_message';
-            result.broadcastPayload = { sender: charName, message: message }; break; }
+        case "confirmregister": {
+            const characterNameToConfirm = args.join(" ");
+            if (!characterNameToConfirm) { result.responseText = "Especifique o nome do personagem."; break;
+            }
+            const verificationCodes = await loadJsonFile(DATA_FILES.verificationCodes);
+            const code = verificationCodes[userIdentifier];
+            if (!code) { result.responseText = "Nenhum código de verificação ativo. Use !register."; break;
+            }
+            const charInfo = await getTibiaCharacterInfo(characterNameToConfirm);
+            if (!charInfo || !charInfo.comment || !charInfo.comment.includes(code)) {
+                result.responseText = {
+                    type: 'actionable_message',
+                    text: `Código '${code}' não encontrado no comentário de '${characterNameToConfirm}'.\nAguarde 5 minutos e tente novamente.`,
+                    actions: [{
+                        buttonText: `Verificar Novamente`, command_to_run: `!confirmregister ${characterNameToConfirm}` }]
+                };
+                break;
+            }
+            const guildMember = await checkTibiaCharacterInGuild(charInfo.name);
+            if (!guildMember) {
+                result.responseText = `O personagem ${charInfo.name} não pertence à guilda '${await getGuildName()}'.`;
+                break;
+            }
+            const allClientAccounts = await loadJsonFile(DATA_FILES.clientAccounts);
+            Object.values(allClientAccounts).forEach(acc => {
+                acc.tibiaCharacters = (acc.tibiaCharacters || []).filter(c => c && c.characterName && c.characterName.toLowerCase() !== charInfo.name.toLowerCase());
+            });
+            const newCharData = {
+                characterName: charInfo.name,
+                registeredAt: new Date().toISOString(),
+                level: charInfo.level,
+                vocation: charInfo.vocation,
+                world: charInfo.world,
+                guildRank: guildMember.rank || null,
+                groups: []
+            };
+            loggedInAccount.tibiaCharacters.push(newCharData);
+            allClientAccounts[userIdentifier] = loggedInAccount;
+            user.character = newCharData;
+            delete verificationCodes[userIdentifier];
+            await saveJsonFile(DATA_FILES.verificationCodes, verificationCodes);
+            await saveJsonFile(DATA_FILES.clientAccounts, allClientAccounts);
+            result.adminDataUpdate = true;
+            result.responseText = `✅ Sucesso! O personagem ${charInfo.name} foi registrado na sua conta.`;
+            break;
+        }
+        case "mp": {
+            const allowedRanks = ["leader alliance", "leader", "prodigy"];
+            if (!allowedRanks.includes((registration.guildRank || "").toLowerCase())) {
+                result.responseText = "Sem permissão.";
+                break;
+            }
+            const message = args.join(" ");
+            if (!message) {
+                result.responseText = "Uso: !mp [mensagem]";
+                break;
+            }
+            result.responseText = "✅ Mensagem enviada.";
+            result.broadcastType = 'mass_message';
+            result.broadcastPayload = { sender: charName, message: message };
+            break;
+        }
         case "respinfo": {
             const userInput = args.join(" ");
-            if (!userInput) { result.responseText = "Uso: !respinfo [nome ou código]"; break; }
+            if (!userInput) { result.responseText = "Uso: !respinfo [nome ou código]"; break;
+            }
             const respawnCode = await findRespawnCode(userInput);
-            if (!respawnCode) { result.responseText = `Respawn "${userInput}" não encontrado.`; break; }
+            if (!respawnCode) { result.responseText = `Respawn "${userInput}" não encontrado.`; break;
+            }
             const actualRespawnKey = Object.keys(filaRespawns).find(k => k.toLowerCase() === respawnCode.toLowerCase());
-            if (!actualRespawnKey) { result.responseText = `Ninguém está no respawn ${respawnCode.toUpperCase()}.`; break; }
+            if (!actualRespawnKey) { result.responseText = `Ninguém está no respawn ${respawnCode.toUpperCase()}.`; break;
+            }
             const respawn = filaRespawns[actualRespawnKey];
             let infoText = `Informações para ${respawnCode.toUpperCase()}:\n`;
             infoText += `Caçando agora: ${respawn.current ? respawn.current.clientNickname : 'Ninguém'}\n`;
+            infoText += "Fila de espera (Nexts):\n";
             if (respawn.queue && respawn.queue.length > 0) {
-                infoText += "Fila de espera (Nexts):\n";
                 respawn.queue.forEach((user, index) => { infoText += `${index + 1}. ${user.clientNickname}\n`; });
-            } else { infoText += "Fila de espera está vazia."; }
+            } else {
+                infoText += "Fila de espera está vazia.";
+            }
             result.responseText = infoText;
             break;
         }
-        
+        case "plan": {
+            if (!activeCharacter) {
+                result.responseText = "Você precisa ter um personagem ativo para usar este comando.";
+                return result;
+            }
+
+            const respawnCodeInput = args[0];
+            if (!respawnCodeInput) {
+                result.responseText = "Uso: !plan [código do respawn]";
+                return result;
+            }
+
+            const respawnCode = await findRespawnCode(respawnCodeInput);
+            if (!respawnCode) {
+                result.responseText = `Respawn "${respawnCodeInput}" não encontrado.`;
+                return result;
+            }
+
+            const planilhadoScheduleNormal = await loadJsonFile(DATA_FILES.planilhadoSchedule, {});
+            const planilhadoScheduleDouble = await loadJsonFile(DATA_FILES.planilhadoDoubleSchedule, {});
+
+            let isLeaderInPlanilhado = false;
+            let planilhadoType = null;
+            let scheduledLeader = null;
+
+            const checkScheduleForLeader = (schedule, type) => {
+                if (schedule[respawnCode]) {
+                    for (const timeSlot in schedule[respawnCode]) {
+                        const leader = schedule[respawnCode][timeSlot];
+                        if (leader.toLowerCase() === charName.toLowerCase()) {
+                            isLeaderInPlanilhado = true;
+                            planilhadoType = type;
+                            scheduledLeader = leader;
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            };
+
+            if (!checkScheduleForLeader(planilhadoScheduleNormal, 'normal')) {
+                checkScheduleForLeader(planilhadoScheduleDouble, 'double');
+            }
+            
+            if (!isLeaderInPlanilhado) {
+                result.responseText = `❌ Você não tem um agendamento na planilha para o respawn ${respawnCode.toUpperCase()}.`;
+                return result;
+            }
+
+            const actualRespawnKey = Object.keys(filaRespawns).find(k => k.toLowerCase() === respawnCode.toLowerCase());
+            if (actualRespawnKey && filaRespawns[actualRespawnKey].current?.clientUniqueIdentifier === userIdentifier) {
+                result.responseText = `Você já está no respawn ${respawnCode.toUpperCase()} como planilhado.`;
+                return result;
+            }
+
+            if (actualRespawnKey && filaRespawns[actualRespawnKey].current) {
+                const kickedUser = filaRespawns[actualRespawnKey].current.clientNickname;
+                await logActivity(actualRespawnKey, kickedUser, `Removido por ${charName} (Planilhado)`);
+                notifications.push({
+                    recipientEmail: filaRespawns[actualRespawnKey].current.clientUniqueIdentifier,
+                    type: 'private_message',
+                    message: `❌ Você foi removido do respawn ${actualRespawnKey.toUpperCase()} pois o grupo planilhado de ${charName} assumiu.`
+                });
+            }
+            
+            if (actualRespawnKey && filaRespawns[actualRespawnKey].queue.length > 0) {
+                 filaRespawns[actualRespawnKey].queue = [];
+            }
+
+            const allPlanilhadoGroups = await loadJsonFile(DATA_FILES.planilhadoGroups, {});
+            const currentGroup = allPlanilhadoGroups.find(g => g.leader.toLowerCase() === charName.toLowerCase());
+            
+            // Simplifica o groupMembersDetails para apenas nomes.
+            // O enriquecimento completo será feito em broadcastRespawnUpdates no server.js.
+            const groupMembersNames = currentGroup ? currentGroup.members.map(name => ({ name: name })) : [];
+            
+            const planilhadoUserData = {
+                clientNickname: charName,
+                clientUniqueIdentifier: userIdentifier,
+                allocatedTime: 210,
+                isPlanilhado: true,
+                planilhadoType: planilhadoType,
+                groupLeader: scheduledLeader,
+                groupMembers: groupMembersNames // Agora apenas nomes dos membros
+            };
+
+            const now = new Date();
+            filaRespawns[respawnCode] = {
+                current: planilhadoUserData,
+                queue: [],
+                time: 210,
+                waitingForAccept: false,
+                acceptanceTime: 0,
+                startTime: now.toISOString(),
+                endTime: new Date(now.getTime() + (210 * 60 * 1000)).toISOString(),
+                planilhadoGroup: currentGroup
+            };
+            await logActivity(respawnCode, charName, `Assumiu (Planilhado)`);
+            result.responseText = `✅ O respawn ${respawnCode.toUpperCase()} foi assumido pelo seu grupo planilhado por 3 horas e 30 minutos.`;
+            result.needsBroadcast = true;
+            await saveJsonFile(DATA_FILES.respawnQueue, filaRespawns);
+            break;
+        }
         case "respmaker":
         case "resp": {
-            const isMakerHunt = command === 'respmaker';
-
-            const userGroups = registration.groups || [];
-            if (userGroups.includes('resp-block')) {
-                result.responseText = "❌ Você não pode reservar respawns porque possui o grupo 'Resp-Block'.";
-                break; 
+            if (!isSuperAdmin) {
+                const guildMemberCheck = await checkTibiaCharacterInGuild(charName);
+                if (!guildMemberCheck) {
+                    result.responseText = `❌ Você não pode reservar um respawn pois não faz parte da guilda '${await getGuildName()}'.`;
+                    return result;
+                }
             }
-            if (cooldowns[userIdentifier] && cooldowns[userIdentifier] > Date.now()) {
+
+            const isMakerHunt = command === 'respmaker';
+            if (!isSuperAdmin) {
+                const userGroups = registration.groups ||
+                [];
+                if (userGroups.includes('resp-block')) {
+                    result.responseText = "❌ Você não pode reservar respawns porque possui o grupo 'Resp-Block'.";
+                    break;
+                }
+            }
+
+            if (cooldowns[userIdentifier] && cooldowns[userIdentifier] > Date.now() && !isSuperAdmin) {
                 const remaining = Math.ceil((cooldowns[userIdentifier] - Date.now()) / 60000);
                 result.responseText = `Você está em cooldown e não pode reservar um novo respawn. Espere mais ${remaining} minuto(s).`;
                 return result;
             }
 
             const maxTimeData = await getUserMaxTime(registration);
-            if (maxTimeData.total === 0) {
+            if (maxTimeData.total === 0 && !isSuperAdmin) {
                 result.responseText = "Você não pode reservar um Respawn com esse Character";
                 return result;
             }
@@ -403,48 +603,79 @@ async function processCommand(command, args, user) {
                 await logActivity(respawnKeyWaiting, charName, `Abandonou (nova reserva)`);
                 if (oldRespawn.queue.length > 0) {
                     const nextUser = oldRespawn.queue.shift();
-                    oldRespawn.current = nextUser; oldRespawn.time = nextUser.allocatedTime;
-                    oldRespawn.waitingForAccept = true; oldRespawn.acceptanceTime = 10;
-                    oldRespawn.startTime = new Date().toISOString(); oldRespawn.endTime = null;
+                    oldRespawn.current = nextUser;
+                    oldRespawn.time = nextUser.allocatedTime;
+                    oldRespawn.waitingForAccept = true;
+                    oldRespawn.acceptanceTime = 10;
+                    oldRespawn.startTime = new Date().toISOString();
+                    oldRespawn.endTime = null;
                     await logActivity(respawnKeyWaiting, nextUser.clientNickname, `Assumiu (abandono)`);
-                } else { delete filaRespawns[respawnKeyWaiting]; }
+                } else {
+                    delete filaRespawns[respawnKeyWaiting];
+                }
             }
-            const timeArg = /^\d{1,2}:\d{2}$/.test(args[args.length - 1]) ? args[args.length - 1] : null;
+
+            const timeArg = /^\d{1,2}:\d{2}$/.test(args[args.length - 1]) ?
+            args[args.length - 1] : null;
             const userInput = timeArg ? args.slice(0, -1).join(' ') : args.join(' ');
-            if (!userInput) { result.responseText += `Uso: !${command} [nome ou código] [tempo opcional]`; break; }
+            if (!userInput) { result.responseText += `Uso: !${command} [nome ou código] [tempo opcional]`; break;
+            }
             const respawnCode = await findRespawnCode(userInput);
-            if (!respawnCode) { result.responseText += `Respawn "${userInput}" não encontrado.`; break; }
-            const requiredGroups = respawnGroups[respawnCode];
-            if (requiredGroups?.length > 0 && !requiredGroups.some(g => (registration.groups || []).includes(g))) {
-                result.responseText += `Requer um dos grupos: ${cachedData.webGroups.find(g => requiredGroups.includes(g.id))?.name || 'desconhecido'}.`;
+            if (!respawnCode) { result.responseText += `Respawn "${userInput}" não encontrado.`; break;
+            }
+
+            if (!isSuperAdmin) {
+                const rankRestrictions = await loadJsonFile(path.join(__dirname, 'respawn_rank_restrictions.json'), {});
+                const restrictedRanksForRespawn = rankRestrictions[respawnCode] || [];
+                if (restrictedRanksForRespawn.includes(registration.guildRank)) {
+                    result.responseText = `❌ Seu rank ('${registration.guildRank}') não tem permissão para reservar este respawn.`;
+                    return result;
+                }
+
+                const requiredGroups = respawnGroups[respawnCode];
+                if (requiredGroups?.length > 0 && !requiredGroups.some(g => (registration.groups || []).includes(g))) {
+                    result.responseText += `Requer um dos grupos: ${cachedData.webGroups.find(g => requiredGroups.includes(g.id))?.name ||
+                    'desconhecido'}.`;
+                    break;
+                }
+            }
+
+            if (Object.values(filaRespawns).reduce((c, r) => c + (r.current?.clientUniqueIdentifier === userIdentifier) + r.queue.some(u => u.clientUniqueIdentifier === userIdentifier), 0) >= 2 && !isSuperAdmin) {
+                result.responseText += "Limite de 2 respawns atingido.";
                 break;
             }
-            if (Object.values(filaRespawns).reduce((c, r) => c + (r.current?.clientUniqueIdentifier === userIdentifier) + r.queue.some(u => u.clientUniqueIdentifier === userIdentifier), 0) >= 2) {
-                result.responseText += "Limite de 2 respawns atingido."; break;
-            }
-            const maxTimeAllowed = maxTimeData.total;
+
+            const maxTimeAllowed = isSuperAdmin ?
+            210 : maxTimeData.total;
+
             let finalTimeInMinutes = maxTimeAllowed;
             if (timeArg) {
                 const requestedTime = parseCustomTime(timeArg);
-                if (requestedTime === null) { result.responseText += `Formato de tempo inválido: "${timeArg}". Use HH:MM.`; break; }
-                if (requestedTime > maxTimeAllowed) { result.responseText += `Tempo excede seu limite de ${formatMinutesToHHMM(maxTimeAllowed)}.`; break; }
+                if (requestedTime === null) { result.responseText += `Formato de tempo inválido: "${timeArg}". Use HH:MM.`; break;
+                }
+                if (requestedTime > maxTimeAllowed) { result.responseText += `Tempo excede seu limite de ${formatMinutesToHHMM(maxTimeAllowed)}.`;
+                break; }
                 finalTimeInMinutes = requestedTime;
             }
-            
+
+            const userData = { clientNickname: charName, clientUniqueIdentifier: userIdentifier, allocatedTime: finalTimeInMinutes, isMakerHunt: isMakerHunt, makerName: null };
+
             const actualRespawnKey = Object.keys(filaRespawns).find(k => k.toLowerCase() === respawnCode.toLowerCase());
             const respawnExists = actualRespawnKey ? filaRespawns[actualRespawnKey] : null;
-            const userData = { clientNickname: charName, clientUniqueIdentifier: userIdentifier, allocatedTime: finalTimeInMinutes, isMakerHunt: isMakerHunt, makerName: null };
             const isHuntingElsewhere = Object.values(filaRespawns).some(r => r.current?.clientUniqueIdentifier === userIdentifier);
-            if (isHuntingElsewhere && !respawnExists) {
-                result.responseText = `❌ Você não pode pegar um respawn vazio enquanto estiver caçando ativamente em outro. Saia do seu respawn atual ou entre na fila de um já existente.`;
+
+            if (isHuntingElsewhere && !respawnExists && !isSuperAdmin) {
+                result.responseText = `❌ Você não pode pegar um respawn vazio enquanto estiver caçando ativamente em outro.\nSaia do seu respawn atual ou entre na fila de um já existente.`;
                 return result;
             }
+
             if (respawnExists) {
                 if (respawnExists.current?.clientUniqueIdentifier === userIdentifier || respawnExists.queue.some(u => u.clientUniqueIdentifier === userIdentifier)) {
                     result.responseText += `Você já está em ${respawnCode.toUpperCase()}.`;
                 } else {
-                    if (isHuntingElsewhere && respawnExists.queue.length === 0) {
-                        result.responseText += `❌ Você não pode ser o próximo na fila enquanto estiver caçando ativamente em outro respawn.`; return result;
+                    if (isHuntingElsewhere && respawnExists.queue.length === 0 && !isSuperAdmin) {
+                        result.responseText += `❌ Você não pode ser o próximo na fila enquanto estiver caçando ativamente em outro respawn.`;
+                        return result;
                     }
                     respawnExists.queue.push(userData);
                     await logActivity(respawnCode, charName, `Entrou na fila`);
@@ -454,16 +685,15 @@ async function processCommand(command, args, user) {
                 filaRespawns[respawnCode] = { current: userData, queue: [], time: finalTimeInMinutes, waitingForAccept: true, acceptanceTime: 10, startTime: new Date().toISOString() };
                 await logActivity(respawnCode, charName, `Pegou o respawn`);
                 if (isMakerHunt) {
-                    result.responseText += `Você pegou ${respawnCode.toUpperCase()} para uma hunt com maker. Use !maker nome_do_maker para defini-lo.`;
+                    result.responseText += `Você pegou ${respawnCode.toUpperCase()} para uma hunt com maker.\nUse !maker nome_do_maker para defini-lo.`;
                 } else {
-                    result.responseText += `Você pegou ${respawnCode.toUpperCase()}. Use 'Aceitar' em 10 min.`;
+                    result.responseText += `Você pegou ${respawnCode.toUpperCase()}.\nUse 'Aceitar' em 10 min.`;
                 }
             }
             result.needsBroadcast = true;
             await saveJsonFile(DATA_FILES.respawnQueue, filaRespawns);
             break;
         }
-
         case "maker": {
             const makerName = args.join(" ");
             if (!makerName) {
@@ -474,9 +704,17 @@ async function processCommand(command, args, user) {
             let respawnKey = null;
             for (const key in filaRespawns) {
                 const respawn = filaRespawns[key];
-                if (respawn.current?.clientUniqueIdentifier === userIdentifier) { userEntry = respawn.current; respawnKey = key; break; }
+                if (respawn.current?.clientUniqueIdentifier === userIdentifier) {
+                    userEntry = respawn.current;
+                    respawnKey = key;
+                    break;
+                }
                 const queueIndex = respawn.queue.findIndex(u => u.clientUniqueIdentifier === userIdentifier);
-                if (queueIndex > -1) { userEntry = respawn.queue[queueIndex]; respawnKey = key; break; }
+                if (queueIndex > -1) {
+                    userEntry = respawn.queue[queueIndex];
+                    respawnKey = key;
+                    break;
+                }
             }
             if (userEntry && userEntry.isMakerHunt) {
                 userEntry.makerName = makerName;
@@ -488,7 +726,6 @@ async function processCommand(command, args, user) {
             }
             break;
         }
-
         case "aceitar": {
             if (cooldowns[userIdentifier] && cooldowns[userIdentifier] > Date.now()) {
                 const remaining = Math.ceil((cooldowns[userIdentifier] - Date.now()) / 60000);
@@ -496,15 +733,20 @@ async function processCommand(command, args, user) {
                 break;
             }
             const respawnKey = Object.keys(filaRespawns).find(k => filaRespawns[k].current?.clientUniqueIdentifier === userIdentifier && filaRespawns[k].waitingForAccept);
-            if (!respawnKey) { result.responseText = "Nenhum respawn para aceitar."; break; }
-            
+            if (!respawnKey) {
+                result.responseText = "Nenhum respawn para aceitar.";
+                break;
+            }
             const respawn = filaRespawns[respawnKey];
-            
             if (respawn.paused) {
-                respawn.waitingForAccept = false; respawn.time = respawn.current.allocatedTime;
-                respawn.startTime = new Date().toISOString(); respawn.endTime = null;
+                respawn.waitingForAccept = false;
+                respawn.time = respawn.current.allocatedTime;
+                respawn.startTime = new Date().toISOString();
+                respawn.endTime = null;
                 respawn.remainingTimeOnPause = respawn.time * 60000;
-                if (respawn.hasOwnProperty('remainingAcceptanceTimeOnPause')) { delete respawn.remainingAcceptanceTimeOnPause; }
+                if (respawn.hasOwnProperty('remainingAcceptanceTimeOnPause')) {
+                    delete respawn.remainingAcceptanceTimeOnPause;
+                }
                 await logActivity(respawnKey, charName, `Aceitou o respawn (PAUSADO)`);
                 result.responseText = `✅ Você aceitou ${respawnKey.toUpperCase()}. Ele permanecerá PAUSADO até ser liberado por um líder.`;
                 cooldowns[userIdentifier] = Date.now() + 10 * 60 * 1000;
@@ -527,50 +769,174 @@ async function processCommand(command, args, user) {
             }
             break;
         }
-
         case "respdel": {
             const userInput = args.join(" ");
-            if (!userInput) { result.responseText = "Uso: !respdel [nome ou código]"; break; }
+            if (!userInput) { result.responseText = "Uso: !respdel [nome ou código]"; break;
+            }
             const respawnCode = await findRespawnCode(userInput);
-            if (!respawnCode) { result.responseText = `Respawn "${userInput}" não encontrado.`; break; }
+            if (!respawnCode) { result.responseText = `Respawn "${userInput}" não encontrado.`; break;
+            }
             const key = Object.keys(filaRespawns).find(k => k.toLowerCase() === respawnCode.toLowerCase());
-            if (!key) { result.responseText = `Respawn ${respawnCode.toUpperCase()} não está ativo.`; break; }
+            if (!key) { result.responseText = `Respawn ${respawnCode.toUpperCase()} não está ativo.`; break;
+            }
             const respawn = filaRespawns[key];
+
+            let removed = false;
+
             if (respawn.current?.clientUniqueIdentifier === userIdentifier) {
-                cooldowns[userIdentifier] = Date.now() + 10 * 60 * 1000;
-                await saveJsonFile(DATA_FILES.cooldowns, cooldowns);
-                await logActivity(key, charName, `Saiu do respawn`);
-                result.responseText = `Você saiu de ${respawnCode.toUpperCase()} e entrou em cooldown de 10 min.`;
-                if (respawn.queue.length > 0) {
-                    const nextUser = respawn.queue.shift();
-                    respawn.current = nextUser; respawn.time = nextUser.allocatedTime;
-                    respawn.waitingForAccept = true; respawn.acceptanceTime = 10;
-                    respawn.startTime = new Date().toISOString(); respawn.endTime = null;
-                    await logActivity(key, nextUser.clientNickname, `Assumiu (fila)`);
-                    if (respawn.paused) { respawn.remainingAcceptanceTimeOnPause = respawn.acceptanceTime * 60 * 1000; }
-                } else { delete filaRespawns[key]; }
-                result.needsBroadcast = true;
-                await saveJsonFile(DATA_FILES.respawnQueue, filaRespawns);
+                if (respawn.current.isPlanilhado) {
+                    const allPlanilhadoGroups = await loadJsonFile(DATA_FILES.planilhadoGroups, {});
+                    const currentGroup = allPlanilhadoGroups.find(g => g.leader.toLowerCase() === respawn.current.groupLeader.toLowerCase());
+                    if (currentGroup && currentGroup.members.some(member => member.toLowerCase() === charName.toLowerCase())) {
+                        cooldowns[userIdentifier] = Date.now() + 10 * 60 * 1000;
+                        await saveJsonFile(DATA_FILES.cooldowns, cooldowns);
+                        await logActivity(key, charName, `Saiu do respawn (Planilhado)`);
+                        result.responseText = `Você saiu de ${respawnCode.toUpperCase()} (planilhado) e entrou em cooldown de 10 min.`;
+                        if (respawn.queue.length > 0) {
+                            const nextUser = respawn.queue.shift();
+                            respawn.current = nextUser;
+                            respawn.time = nextUser.allocatedTime;
+                            respawn.waitingForAccept = true;
+                            respawn.acceptanceTime = 10;
+                            respawn.startTime = new Date().toISOString();
+                            respawn.endTime = null;
+                            await logActivity(key, nextUser.clientNickname, `Assumiu (fila)`);
+                            if (respawn.paused) {
+                                respawn.remainingAcceptanceTimeOnPause = respawn.acceptanceTime * 60 * 1000;
+                            }
+                        } else {
+                            delete filaRespawns[key];
+                        }
+                        removed = true;
+                    }
+                } else {
+                    cooldowns[userIdentifier] = Date.now() + 10 * 60 * 1000;
+                    await saveJsonFile(DATA_FILES.cooldowns, cooldowns);
+                    await logActivity(key, charName, `Saiu do respawn`);
+                    result.responseText = `Você saiu de ${respawnCode.toUpperCase()} e entrou em cooldown de 10 min.`;
+                    if (respawn.queue.length > 0) {
+                        const nextUser = respawn.queue.shift();
+                        respawn.current = nextUser;
+                        respawn.time = nextUser.allocatedTime;
+                        respawn.waitingForAccept = true;
+                        respawn.acceptanceTime = 10;
+                        respawn.startTime = new Date().toISOString();
+                        respawn.endTime = null;
+                        await logActivity(key, nextUser.clientNickname, `Assumiu (fila)`);
+                        if (respawn.paused) {
+                            respawn.remainingAcceptanceTimeOnPause = respawn.acceptanceTime * 60 * 1000;
+                        }
+                    } else {
+                        delete filaRespawns[key];
+                    }
+                    removed = true;
+                }
             } else {
                 const queueIndex = respawn.queue.findIndex(u => u.clientUniqueIdentifier === userIdentifier);
                 if (queueIndex > -1) {
                     respawn.queue.splice(queueIndex, 1);
                     await logActivity(key, charName, `Saiu da fila`);
                     result.responseText = `Você foi removido da fila de ${respawnCode.toUpperCase()}.`;
-                    result.needsBroadcast = true;
-                    await saveJsonFile(DATA_FILES.respawnQueue, filaRespawns);
-                } else { result.responseText = `Você não está em ${respawnCode.toUpperCase()}.`; }
+                    removed = true;
+                } else {
+                    result.responseText = `Você não está em ${respawnCode.toUpperCase()}.`;
+                }
+            }
+
+            if (removed) {
+                result.needsBroadcast = true;
+                await saveJsonFile(DATA_FILES.respawnQueue, filaRespawns);
             }
             break;
         }
-        case "shared": { const level = parseInt(args[0], 10);
-            if (isNaN(level) || level <= 0) { result.responseText = "Forneça um nível válido.";
-            } else { result.responseText = `Um nível ${level} compartilha XP com ${Math.ceil(level * 2/3)} e ${Math.floor(level * 3/2)}.`; } break;
+        case "shared": {
+            const level = parseInt(args[0], 10);
+            if (isNaN(level) || level <= 0) {
+                result.responseText = "Forneça um nível válido.";
+            } else {
+                result.responseText = `Um nível ${level} compartilha XP com ${Math.ceil(level * 2 / 3)} e ${Math.floor(level * 3 / 2)}.`;
+            }
+            break;
         }
-        case "logout": const token = args[0];
-            if(token && loggedInAccount.sessionTokens) { const allClientAccounts = await loadJsonFile(DATA_FILES.clientAccounts); loggedInAccount.sessionTokens = loggedInAccount.sessionTokens.filter(t => t !== token); allClientAccounts[userIdentifier] = loggedInAccount;
-                await saveJsonFile(DATA_FILES.clientAccounts, allClientAccounts); } result.logoutSuccess = true; result.responseText = "Desconectado com sucesso."; break;
-        default: result.responseText = `Comando '${command}' não reconhecido.`;
+
+                case "planilhadoremove": { // Comando para remover grupo planilhado do respawn (kick)
+            const respawnCodeInput = args[0];
+            const groupLeaderToRemove = args[1]; // Quem é o líder do grupo a ser removido
+
+            if (!respawnCodeInput || !groupLeaderToRemove) {
+                result.responseText = "Uso: !planilhadoremove [código do respawn] [nome do líder do grupo]";
+                return result;
+            }
+
+            const userIsAdmin = user.character && adminRanks.includes(user.character.guildRank?.toLowerCase());
+            const isGroupLeader = user.character && user.character.characterName.toLowerCase() === groupLeaderToRemove.toLowerCase();
+
+            if (!userIsAdmin && !isGroupLeader) {
+                result.responseText = "❌ Você não tem permissão para remover este grupo planilhado do respawn.";
+                return result;
+            }
+
+            const respawnCode = await findRespawnCode(respawnCodeInput);
+            if (!respawnCode) {
+                result.responseText = `Respawn "${respawnCodeInput}" não encontrado.`;
+                return result;
+            }
+
+            const key = Object.keys(filaRespawns).find(k => k.toLowerCase() === respawnCode.toLowerCase());
+            if (!key) {
+                result.responseText = `Respawn ${respawnCode.toUpperCase()} não está ativo.`;
+                return result;
+            }
+
+            const respawn = filaRespawns[key];
+
+            // VERIFICAÇÃO ALTERADA: Apenas se o respawn estiver ativo E o líder corresponder (ou se for admin).
+            // A flag 'isPlanilhado' não é mais o principal critério para a remoção FORÇADA por comando,
+            // mas é relevante para o log e a mensagem de feedback.
+            const currentOccupantIsPlanilhadoLeader = respawn.current?.groupLeader?.toLowerCase() === groupLeaderToRemove.toLowerCase() ||
+                                                      respawn.current?.clientNickname?.toLowerCase() === groupLeaderToRemove.toLowerCase(); // Incluir o nickname caso o groupLeader não esteja definido
+
+            if (currentOccupantIsPlanilhadoLeader || userIsAdmin) { // Se o líder corresponde ou é admin
+                await logActivity(key, respawn.current?.clientNickname || 'N/A', `Grupo Planilhado removido por ${user.character?.characterName || 'Admin'}`); 
+
+                if (respawn.queue.length > 0) {
+                    const nextUser = respawn.queue.shift(); 
+                    respawn.current = nextUser; 
+                    respawn.time = nextUser.allocatedTime; 
+                    respawn.waitingForAccept = true; 
+                    respawn.acceptanceTime = 10; 
+                    respawn.startTime = new Date().toISOString(); 
+                    respawn.endTime = null; 
+                    await logActivity(key, nextUser.clientNickname, `Assumiu (fila)`); 
+                } else {
+                    delete filaRespawns[key]; // Remove completamente se não houver fila 
+                }
+
+                result.responseText = `✅ O grupo planilhado de ${groupLeaderToRemove} foi removido do respawn ${respawnCode.toUpperCase()}.`;
+                result.needsBroadcast = true;
+                await saveJsonFile(DATA_FILES.respawnQueue, filaRespawns);
+
+            } else {
+                result.responseText = `❌ O respawn ${respawnCode.toUpperCase()} não está ocupado por um grupo planilhado de ${groupLeaderToRemove}, ou você não tem permissão.`;
+            }
+            break;
+        }
+
+
+        case "logout": {
+            const token = args[0];
+            if (token && loggedInAccount.sessionTokens) {
+                const allClientAccounts = await loadJsonFile(DATA_FILES.clientAccounts);
+                loggedInAccount.sessionTokens = loggedInAccount.sessionTokens.filter(t => t !== token);
+                allClientAccounts[userIdentifier] = loggedInAccount;
+                await saveJsonFile(DATA_FILES.clientAccounts, allClientAccounts);
+            }
+            result.logoutSuccess = true;
+            result.responseText = "Desconectado com sucesso.";
+            break;
+        }
+        default:
+            result.responseText = `Comando '${command}' não reconhecido.`;
     }
     return result;
 }
@@ -583,6 +949,7 @@ async function adminGetFullData() {
     const cooldowns = await loadJsonFile(DATA_FILES.cooldowns, {});
     const planilhadoRespawns = await loadJsonFile(DATA_FILES.planilhadoRespawns, []);
     const planilhadoDoubleRespawns = await loadJsonFile(DATA_FILES.planilhadoDoubleRespawns, []);
+    const respawnRankRestrictions = await loadJsonFile(path.join(__dirname, 'respawn_rank_restrictions.json'), {});
     const allUsersForRankCheck = await loadJsonFile(DATA_FILES.clientAccounts, {});
     const allRanksInGuild = new Set(['default']);
     Object.values(allUsersForRankCheck).forEach(userAccount => {
@@ -611,7 +978,8 @@ async function adminGetFullData() {
         respawnTimes,
         cooldowns,
         planilhadoRespawns,
-        planilhadoDoubleRespawns
+        planilhadoDoubleRespawns,
+        respawnRankRestrictions 
     };
 }
 
@@ -677,6 +1045,19 @@ async function adminDeleteRespawn(respawnCode) {
         return { success: true };
     }
     return { success: false, message: 'Respawn não encontrado.' };
+}
+
+async function adminUpdateRespawnRankRestrictions({ respawnCode, restrictedRanks }) {
+    const restrictionsFile = path.join(__dirname, 'respawn_rank_restrictions.json');
+    const restrictions = await loadJsonFile(restrictionsFile, {});
+
+    if (restrictedRanks && restrictedRanks.length > 0) {
+        restrictions[respawnCode] = restrictedRanks;
+    } else {
+        delete restrictions[respawnCode];
+    }
+
+    await saveJsonFile(restrictionsFile, restrictions);
 }
 
 async function adminRemoveCooldown(userIdentifier) {
@@ -848,26 +1229,38 @@ async function adminGetCharacterLog(characterName) {
     return { title: `Log para Personagem: ${characterName}`, entries: filteredEntries };
 }
 
+// bot_logic.js
+
 async function adminKickUser({ respawnCode, userToKick, adminName }) {
     const fila = await loadJsonFile(DATA_FILES.respawnQueue, {});
     const key = Object.keys(fila).find(k => k.toLowerCase() === respawnCode.toLowerCase());
     if (!key) return;
     const respawn = fila[key];
+
+    // Caso especial: o usuário a ser kickado é o 'current' e o respawn é planilhado
     if (respawn.current?.clientNickname === userToKick) {
-        await logActivity(key, userToKick, `Removido por ${adminName}`);
-        if (respawn.queue.length > 0) {
-            const nextUser = respawn.queue.shift();
-            respawn.current = nextUser;
-            respawn.time = nextUser.allocatedTime;
-            respawn.waitingForAccept = true;
-            respawn.acceptanceTime = 10;
-            respawn.startTime = new Date().toISOString();
-            respawn.endTime = null;
-            await logActivity(key, nextUser.clientNickname, `Assumiu (kick)`);
+        if (respawn.current.isPlanilhado) {
+            // Se for um respawn planilhado, o "kick" remove o grupo inteiro
+            await logActivity(key, userToKick, `Grupo Planilhado removido por ${adminName}`);
+            delete fila[key]; // Remove o respawn planilhado completamente
         } else {
-            delete fila[key];
+            // Lógica existente para respawns normais
+            await logActivity(key, userToKick, `Removido por ${adminName}`);
+            if (respawn.queue.length > 0) {
+                const nextUser = respawn.queue.shift();
+                respawn.current = nextUser;
+                respawn.time = nextUser.allocatedTime;
+                respawn.waitingForAccept = true;
+                respawn.acceptanceTime = 10;
+                respawn.startTime = new Date().toISOString();
+                respawn.endTime = null;
+                await logActivity(key, nextUser.clientNickname, `Assumiu (kick)`);
+            } else {
+                delete fila[key];
+            }
         }
     } else {
+        // Lógica para remover da fila (não muda para planilhados, pois o grupo é "atômico" no current)
         const originalLength = respawn.queue.length;
         respawn.queue = respawn.queue.filter(u => u.clientNickname !== userToKick);
         if (respawn.queue.length < originalLength) {
@@ -883,7 +1276,7 @@ async function processExpiredRespawns(onlinePlayers) {
     let hasChanges = false; 
     const notifications = [];
     const now = Date.now();
-    
+
     if (!onlinePlayers) {
         console.error("[processExpiredRespawns] Lista de jogadores online não recebida.");
         return { hasChanges: false, notifications: [] };
@@ -897,11 +1290,20 @@ async function processExpiredRespawns(onlinePlayers) {
 
         if (respawn.current && !respawn.waitingForAccept) {
             
-            const characterToCheck = (respawn.current.isMakerHunt && respawn.current.makerName)
-                ? respawn.current.makerName
-                : respawn.current.clientNickname;
+            let userIsOnline = false;
+            let characterToCheckForInactivity = respawn.current.clientNickname; // Padrão
 
-            const userIsOnline = onlinePlayers.has(characterToCheck);
+            if (respawn.current.isPlanilhado && respawn.current.groupMembers) {
+                // Para respawns planilhados, verifica se algum membro do grupo está online
+                userIsOnline = respawn.current.groupMembers.some(member => onlinePlayers.has(member.name));
+                characterToCheckForInactivity = respawn.current.groupLeader; // Para fins de log de inatividade, o líder é o principal
+            } else if (respawn.current.isMakerHunt && respawn.current.makerName) {
+                userIsOnline = onlinePlayers.has(respawn.current.makerName);
+                characterToCheckForInactivity = respawn.current.makerName;
+            } else {
+                userIsOnline = onlinePlayers.has(respawn.current.clientNickname);
+            }
+
             const offlineTimeLimit = (respawn.current.acceptedOffline ? 16 : 15) * 60 * 1000;
 
             if (!userIsOnline) {
@@ -909,9 +1311,8 @@ async function processExpiredRespawns(onlinePlayers) {
                     respawn.current.offlineSince = now;
                     hasChanges = true;
                 } else if (now - respawn.current.offlineSince > offlineTimeLimit) {
-                    const reason = respawn.current.isMakerHunt ? `inatividade do maker (${characterToCheck})` : 'inatividade';
+                    const reason = respawn.current.isPlanilhado ? `inatividade do grupo planilhado (${characterToCheckForInactivity})` : (respawn.current.isMakerHunt ? `inatividade do maker (${characterToCheckForInactivity})` : 'inatividade');
                     await logActivity(key, respawn.current.clientNickname, `Removido por ${reason}`);
-                    
                     notifications.push({ 
                         recipientEmail: respawn.current.clientUniqueIdentifier, 
                         type: 'private_message', 
@@ -963,7 +1364,10 @@ async function processExpiredRespawns(onlinePlayers) {
                     type: 'private_message', 
                     message: `Seu tempo no respawn ${key.toUpperCase()} acabou!` 
                 });
-                cooldowns[respawn.current.clientUniqueIdentifier] = Date.now() + 10 * 60 * 1000; 
+                // Aplica cooldown apenas se não for um respawn planilhado (planilhados não têm cooldown de saída)
+                if (!respawn.current.isPlanilhado) {
+                    cooldowns[respawn.current.clientUniqueIdentifier] = Date.now() + 10 * 60 * 1000; 
+                }
             }
             needsUpdate = true;
         }
@@ -1279,10 +1683,35 @@ async function createOrUpdatePlanilhadoGroup(leaderName, memberNames) {
     if (!leaderName) return { success: false, message: 'Líder do grupo é inválido.' };
     if (memberNames.length > 4) return { success: false, message: 'Um grupo pode ter no máximo 4 membros além do líder.' };
 
+    const allClientAccounts = await loadJsonFile(DATA_FILES.clientAccounts, {}); // Carrega todas as contas
+    const allRegisteredCharacters = new Set();
+    for (const email in allClientAccounts) {
+        if (allClientAccounts[email].tibiaCharacters) {
+            allClientAccounts[email].tibiaCharacters.forEach(char => {
+                if (char.characterName) {
+                    allRegisteredCharacters.add(char.characterName.toLowerCase());
+                }
+            });
+        }
+    }
+
+    // Verifica se o líder está cadastrado
+    if (!allRegisteredCharacters.has(leaderName.toLowerCase())) {
+        return { success: false, message: `O líder ${leaderName} não está cadastrado no sistema.` };
+    }
+
+    // Verifica se todos os membros estão cadastrados
+    for (const member of memberNames) {
+        if (member && !allRegisteredCharacters.has(member.toLowerCase())) {
+            return { success: false, message: `O membro "${member}" não está cadastrado no sistema e não pode ser adicionado ao grupo.` };
+        }
+    }
+
     const allGroups = await loadJsonFile(DATA_FILES.planilhadoGroups, []);
-    const existingGroupIndex = allGroups.findIndex(g => g.leader === leaderName);
+    const existingGroupIndex = allGroups.findIndex(g => g.leader.toLowerCase() === leaderName.toLowerCase());
     
-    const finalMembers = [leaderName, ...memberNames.filter(Boolean).filter((v, i, a) => a.indexOf(v) === i)]; // Remove duplicados e vazios
+    // Filtra membros vazios e duplicados e garante que o líder esteja no início
+    const finalMembers = [leaderName, ...memberNames.filter(Boolean).filter((v, i, a) => a.indexOf(v) === i && v.toLowerCase() !== leaderName.toLowerCase())];
 
     if (existingGroupIndex > -1) {
         allGroups[existingGroupIndex].members = finalMembers;
@@ -1291,8 +1720,9 @@ async function createOrUpdatePlanilhadoGroup(leaderName, memberNames) {
     }
 
     await saveJsonFile(DATA_FILES.planilhadoGroups, allGroups);
-    return { success: true };
+    return { success: true, message: 'Grupo de planilhado atualizado com sucesso.' };
 }
+
 
 async function assignToPlanilha({ type = 'normal', respawnCode, groupLeader, startTime, duration }) {
     if (!startTime || typeof startTime.split !== 'function' || !duration) {
@@ -1405,5 +1835,6 @@ module.exports = {
     assignToPlanilha,
     removeFromPlanilha,
     adminUpdatePlanilhadoRespawns,
+    adminUpdateRespawnRankRestrictions,
     logUnderAttack
 };

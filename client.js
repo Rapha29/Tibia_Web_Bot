@@ -104,6 +104,7 @@ async function loadPage(pageName) {
     }
 }
 
+
 function updateRespawnTable(fila, allRespawnNames) {
     const respawnTableBody = document.getElementById('respawn-table-body');
     const updateTimeEl = document.getElementById('update-time');
@@ -111,17 +112,15 @@ function updateRespawnTable(fila, allRespawnNames) {
     if (!respawnTableBody || !updateTimeEl) return;
     const now = new Date();
     const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
-
     const formatMinutesToHHMM = (minutes) => {
         if (isNaN(minutes) || minutes < 0) return "00:00";
         const h = Math.floor(minutes / 60);
         const m = Math.floor(minutes % 60);
         return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
     };
-
     if (!fila || typeof fila !== 'object' || Object.keys(fila).length === 0) {
         respawnTableBody.innerHTML = '<tr><td colspan="5" style="text-align:center;">Atualizando cache, Aguarde...</td></tr>';
-        if(updateTimeEl) updateTimeEl.innerText = `Atualizado: ${now.toLocaleTimeString()}`;
+        if (updateTimeEl) updateTimeEl.innerText = `Atualizado: ${now.toLocaleTimeString()}`;
         return;
     }
 
@@ -130,13 +129,13 @@ function updateRespawnTable(fila, allRespawnNames) {
         code,
         name: allRespawnNames[code.toUpperCase()] || "Desconhecido"
     }))
-    .filter(entry => 
-        entry.name.toLowerCase().includes(searchTerm) || 
-        entry.code.toLowerCase().includes(searchTerm) ||
-        (entry.current?.clientNickname || '').toLowerCase().includes(searchTerm) ||
-        (entry.current?.makerName || '').toLowerCase().includes(searchTerm)
-    )
-    .sort((a, b) => a.name.localeCompare(b.name));
+        .filter(entry =>
+            entry.name.toLowerCase().includes(searchTerm) ||
+            entry.code.toLowerCase().includes(searchTerm) ||
+            (entry.current?.clientNickname || '').toLowerCase().includes(searchTerm) ||
+            (entry.current?.makerName || '').toLowerCase().includes(searchTerm)
+        )
+        .sort((a, b) => a.name.localeCompare(b.name));
     if (rowsData.length === 0) {
         respawnTableBody.innerHTML = '<tr><td colspan="5" style="text-align:center;">Nenhum respawn encontrado com este filtro.</td></tr>';
         return;
@@ -146,10 +145,11 @@ function updateRespawnTable(fila, allRespawnNames) {
         const { code, name } = entry;
         const current = entry.current;
         const queue = entry.queue || [];
-        
+
         const isOwner = current?.clientNickname === window.activeCharacterName;
         const isInQueue = queue.some(u => u?.clientNickname === window.activeCharacterName);
-        const highlightClass = (isOwner || isInQueue) ? 'user-highlight' : '';
+        const highlightClass = (isOwner || isInQueue) ? 'user-highlight' :
+            '';
 
         let tempoText;
         if (entry.paused) {
@@ -164,52 +164,78 @@ function updateRespawnTable(fila, allRespawnNames) {
             } else {
                 const remaining = Math.floor((endTime - now) / 60000);
                 const displayRemaining = Math.max(0, remaining);
-                tempoText = `<span class="red">${formatMinutesToHHMM(displayRemaining)}</span> / <span>${formatMinutesToHHMM(current?.allocatedTime || 0)}</span>`;
+
+                const totalTimeFormatted = formatMinutesToHHMM(current?.allocatedTime || 0);
+                const timeDetailsJson = JSON.stringify(current || {});
+
+                tempoText = `
+                    <span class="red">${formatMinutesToHHMM(displayRemaining)}</span> /
+                    <a href="#" class="time-breakdown-link" data-user-details='${timeDetailsJson}'>
+                        ${totalTimeFormatted}
+                    </a>
+                `;
             }
         }
 
         const renderPlayerName = (user) => {
             if (!user || !user.clientNickname) return 'Ninguém';
-            
             const isAdmin = window.isAdmin;
-            const star = (user.plusExpiresAt && new Date(user.plusExpiresAt) > now) ? '<span class="plus-star" title="Usuário Plus">⭐</span>' : '';
-            const createStreamIcon = (link) => link ? ` <a href="${link}" target="_blank" title="Assistir ao Vivo" class="stream-icon"><i class="fab fa-twitch"></i></a>` : '';
-
-            if (user.isMakerHunt && user.makerName) {
-                if (user.isMakerOnline) {
-                    const onlineClass = 'status-online';
-                    const tooltip = `maker de ${user.clientNickname}`;
-                    const makerAlertIcon = `<span title="${tooltip}" style="cursor:help;">⚠️</span>`;
-                    const kickButton = isAdmin ? `<button title="Remover" class="respawn-action-btn admin-kick-btn" data-respawn-code="${code}" data-user-to-kick="${user.clientNickname}">❌</button>` : '';
-                    return `${star} ${makerAlertIcon} <a href="#" class="character-log-link ${onlineClass}" data-character-name="${user.makerName}">${user.makerName}</a> ${kickButton}`;
-                } else {
-                    const onlineClass = user.isOnline ? 'status-online' : 'status-offline';
-                    const kickButton = isAdmin ? `<button title="Remover" class="respawn-action-btn admin-kick-btn" data-respawn-code="${code}" data-user-to-kick="${user.clientNickname}">❌</button>` : '';
-                    const makerOfflineAlert = `<span style="font-size: 0.8em; color: #ffc107;">(Maker offline)</span>`;
-                    return `${star}<a href="#" class="character-log-link ${onlineClass}" data-character-name="${user.clientNickname}">${user.clientNickname}</a> ${makerOfflineAlert} ${createStreamIcon(user.streamLink)} ${kickButton}`;
-                }
+            const plusStar = (user.plusExpiresAt && new Date(user.plusExpiresAt) > now) ? '<span class="plus-star" title="Usuário Plus">⭐</span>' : '';
+            const streamIcon = (user.streamLink) ? ` <a href="${user.streamLink}" target="_blank" title="Assistir ao Vivo" class="stream-icon"><i class="fab fa-twitch"></i></a>` : '';
+            
+            let onlineIndicator = '';
+            if (!user.isOnline) {
+                onlineIndicator = '<span class="status-dot offline" title="Offline"></span>';
+            }
+            
+            let kickButtonHtml = '';
+            if (isAdmin) {
+                const userToKick = user.isPlanilhado ? (user.groupLeader || user.clientNickname) : user.clientNickname;
+                const isPlanilhadoData = user.isPlanilhado ? 'data-is-planilhado="true"' : '';
+                kickButtonHtml = `<button title="Remover" class="respawn-action-btn admin-kick-btn" data-respawn-code="${code}" data-user-to-kick="${userToKick}" ${isPlanilhadoData}>❌</button>`;
             }
 
-            const onlineClass = user.isOnline ? 'status-online' : 'status-offline';
-            const kickButton = isAdmin ? `<button title="Remover" class="respawn-action-btn admin-kick-btn" data-respawn-code="${code}" data-user-to-kick="${user.clientNickname}">❌</button>` : '';
-            return `${star}<a href="#" class="character-log-link ${onlineClass}" data-character-name="${user.clientNickname}">${user.clientNickname}</a>${createStreamIcon(user.streamLink)} ${kickButton}`;
+            if (user.isPlanilhado) {
+                const groupDetailsJson = JSON.stringify(user.groupMembers || []);
+                const leaderName = user.groupLeader || user.clientNickname;
+                return `${onlineIndicator}<span style="color: lightblue;">Planilhado </span><a href="#" class="planilhado-group-link" data-group-details='${groupDetailsJson}'><span style="color: white;">${leaderName}</span></a> ${kickButtonHtml}`;
+            } else if (user.isMakerHunt && user.makerName) {
+                let makerOnlineIndicator = '';
+                if (!user.isMakerOnline) {
+                    makerOnlineIndicator = '<span class="status-dot offline" title="Maker Offline"></span>';
+                }
+                const mainCharHidden = `<span class="hidden-main-char-icon" title="Maker de: ${user.clientNickname}">&#128100;</span>`; 
+
+                return `${plusStar} ${makerOnlineIndicator} <a href="#" class="character-log-link" data-character-name="${user.makerName}">${user.makerName}</a> ${mainCharHidden} ${kickButtonHtml}`;
+            }
+
+            return `${plusStar}${onlineIndicator}<a href="#" class="character-log-link" data-character-name="${user.clientNickname}">${user.clientNickname}</a>${streamIcon} ${kickButtonHtml}`;
         };
-        
+
         const characterLink = renderPlayerName(current);
         let nextsContent = 'Nenhum';
         if (queue.length > 0) {
-            const fullQueueList = queue.slice(1).map((p, i) => `<div class="queue-item">${i + 2}. ${renderPlayerName(p)}</div>`).join('');
-            const expandButton = queue.length > 1 ? ` <button class="queue-expand-btn">(${queue.length})</button>` : '';
-            nextsContent = `<div class="nexts-container"><span>1. ${renderPlayerName(queue[0])}</span>${expandButton}<div class="full-queue-list">${fullQueueList}</div></div>`;
+            const fullQueueItems = queue.map((p, i) => `<div class="queue-item">${i + 1}. ${renderPlayerName(p)}</div>`).join('');
+            
+            nextsContent = `
+                <div class="nexts-container">
+                    <button class="queue-expand-button" title="Clique para expandir/recolher a fila">Next (${queue.length})</button>
+                    <div class="full-queue-list">
+                        ${fullQueueItems}
+                    </div>
+                </div>
+            `;
         }
-        
-        const respawnLink = window.isAdmin ? `<a href="#" class="respawn-log-link" data-respawn-code="${code}">${name}</a>` : name;
+
+        const respawnLink = window.isAdmin ?
+            `<a href="#" class="respawn-log-link" data-respawn-code="${code}">${name}</a>` : name;
         let actionContent = '';
-        if (isOwner || isInQueue) {
+        if (isOwner || isInQueue || (current?.isPlanilhado && current?.groupMembers?.some(member => member.name.toLowerCase() === window.activeCharacterName.toLowerCase()))) {
             actionContent += `<button class="action-btn leave-respawn-btn" data-respawn-code="${code}">Sair</button>`;
         }
         if (window.isAdmin && current) {
-            actionContent += entry.paused ? `<button title="Despausar" class="respawn-action-btn unpause" data-respawn-code="${code}">▶️</button>` : `<button title="Pausar" class="respawn-action-btn pause" data-respawn-code="${code}">⏸️</button>`;
+            actionContent += entry.paused ?
+                `<button title="Despausar" class="respawn-action-btn unpause" data-respawn-code="${code}">▶️</button>` : `<button title="Pausar" class="respawn-action-btn pause" data-respawn-code="${code}">⏸️</button>`;
         }
 
         return `<tr class="${highlightClass}">
@@ -220,8 +246,10 @@ function updateRespawnTable(fila, allRespawnNames) {
             <td data-label="Ações">${actionContent}</td>
          </tr>`;
     }).join('');
-    if(updateTimeEl) updateTimeEl.innerText = `Atualizado: ${now.toLocaleTimeString()}`;
+    if (updateTimeEl) updateTimeEl.innerText = `Atualizado: ${now.toLocaleTimeString()}`;
 }
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
     window.appSocket = io({
@@ -260,6 +288,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let selectedUserId = null;
     let selectedCharacterName = null;
     let selectedRespawnCode = null;
+    let allRankRestrictions = {};
+
 
     window.cachedRespawnData = { fila: {}, respawns: {} };
 
@@ -376,6 +406,62 @@ document.addEventListener('DOMContentLoaded', () => {
             loadPage(page);
         });
     });
+
+    document.addEventListener('click', (e) => {
+        const link = e.target.closest('.planilhado-group-link');
+        if (link) {
+            e.preventDefault();
+            try {
+                const groupMembers = JSON.parse(link.dataset.groupDetails);
+                showPlanilhadoGroupModal(groupMembers);
+            } catch (err) {
+                console.error('Erro ao ler os detalhes do grupo planilhado:', err);
+            }
+        }
+    });
+
+    // Função para exibir o modal de detalhes do grupo planilhado
+    function showPlanilhadoGroupModal(members) {
+        const modal = document.getElementById('planilhado-group-modal');
+        const modalBody = document.getElementById('planilhado-group-body');
+
+        if (!modal || !modalBody || !members) {
+            return;
+        }
+
+        let membersHtml = '<ul>';
+        if (members.length === 0) {
+            membersHtml += '<li>Nenhum membro encontrado neste grupo.</li>';
+        } else {
+            members.forEach(member => {
+                const onlineIndicator = member.isOnline ? '<span class="status-dot online" title="Online"></span>' : '<span class="status-dot offline" title="Offline"></span>';
+                membersHtml += `<li>
+                                    ${onlineIndicator}
+                                    <strong>${member.name}</strong> 
+                                    (${member.level}, ${member.vocation}, Rank: ${member.guildRank})
+                                </li>`;
+            });
+        }
+        membersHtml += '</ul>';
+
+        modalBody.innerHTML = membersHtml;
+        modal.classList.add('show');
+    }
+
+    // Listener para fechar o modal de detalhes do grupo planilhado
+    const planilhadoGroupModal = document.getElementById('planilhado-group-modal');
+    if (planilhadoGroupModal) {
+        const closeBtn = planilhadoGroupModal.querySelector('.modal-close-btn');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => planilhadoGroupModal.classList.remove('show'));
+        }
+        planilhadoGroupModal.addEventListener('click', (e) => {
+            if (e.target === planilhadoGroupModal) {
+                planilhadoGroupModal.classList.remove('show');
+            }
+        });
+    }
+
     const cooldownsList = document.getElementById('admin-cooldowns-list');
     if (cooldownsList) {
         cooldownsList.addEventListener('click', (e) => {
@@ -463,6 +549,7 @@ document.addEventListener('DOMContentLoaded', () => {
         allCooldowns = data.cooldowns || {};
         allPlanilhadoRespawns = data.planilhadoRespawns || [];
         allPlanilhadoDoubleRespawns = data.planilhadoDoubleRespawns || [];
+        allRankRestrictions = data.respawnRankRestrictions || {};
 
         if (adminModal && adminModal.classList.contains('show')) {
             renderAdminPanel();
@@ -649,43 +736,87 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
-    contentPanel.addEventListener('click', (e) => {
-        const target = e.target;
-        if (!target) return;
-        const button = target.closest('button');
-        if (button?.classList.contains('leave-respawn-btn')) {
-            const code = button.dataset.respawnCode;
-            if (code) window.appSocket.emit('user:command', `!respdel ${code}`);
-        } else if (button?.classList.contains('admin-kick-btn')) {
-            const respawnCode = button.dataset.respawnCode;
-            const userToKick = button.dataset.userToKick;
-            if (confirm(`Remover "${userToKick}" de ${respawnCode.toUpperCase()}?`)) {
-                window.appSocket.emit('admin:kickUser', { respawnCode, userToKick });
-            }
-        } else if (button?.classList.contains('respawn-action-btn')) {
-            const respawnCode = button.dataset.respawnCode;
-             const isToPause = button.classList.contains('pause');
-            window.appSocket.emit('admin:pauseRespawn', { respawnCode, isPaused: isToPause });
-        } else if (target.closest('.queue-expand-btn')) {
-            const expandButton = target.closest('.queue-expand-btn');
-            const queueList = expandButton.nextElementSibling;
-            if (queueList?.classList.contains('full-queue-list')) {
-                const isShowing = queueList.classList.contains('show');
-                document.querySelectorAll('.full-queue-list.show').forEach(list => list.classList.remove('show'));
-                if (!isShowing) {
-                    queueList.classList.add('show');
-                }
-            }
-        } else if (window.isAdmin && target.closest('.respawn-log-link')) {
-            e.preventDefault();
-            const respawnCode = target.closest('.respawn-log-link').dataset.respawnCode;
-            window.appSocket.emit('admin:getRespawnLog', respawnCode);
-        } else if (window.isAdmin && target.closest('.character-log-link')) {
-            e.preventDefault();
-            const characterName = target.closest('.character-log-link').dataset.characterName;
-            window.appSocket.emit('admin:getCharacterLog', characterName);
+
+contentPanel.addEventListener('click', (e) => {
+    const target = e.target;
+    if (!target) return;
+    const button = target.closest('button');
+
+    // Botão "Sair" de um respawn normal
+    if (button?.classList.contains('leave-respawn-btn')) {
+        const code = button.dataset.respawnCode;
+        if (code) window.appSocket.emit('user:command', `!respdel ${code}`);
+    }
+    // Lógica UNIFICADA para o botão "Kick" (incluindo planilhado)
+    else if (button?.classList.contains('admin-kick-btn')) {
+        const respawnCode = button.dataset.respawnCode;
+        const userToKick = button.dataset.userToKick; // Pode ser o nome do player ou do líder planilhado
+        const isPlanilhado = button.dataset.isPlanilhado === 'true'; // Verifica o novo atributo
+
+        let confirmMessage;
+        let commandToEmit;
+
+        if (isPlanilhado) {
+            confirmMessage = `Tem certeza que deseja remover o grupo planilhado de ${userToKick} do respawn ${respawnCode.toUpperCase()}? (O agendamento na planilha será mantido.)`;
+            commandToEmit = `!planilhadoremove ${respawnCode} ${userToKick}`;
+        } else {
+            confirmMessage = `Remover "${userToKick}" de ${respawnCode.toUpperCase()}?`;
+            commandToEmit = { event: 'admin:kickUser', data: { respawnCode, userToKick } }; // Objeto para evento direto
         }
-    });
+
+        if (confirm(confirmMessage)) {
+            if (typeof commandToEmit === 'string') { // Se for um comando de texto para o bot
+                window.appSocket.emit('user:command', commandToEmit);
+            } else { // Se for um evento direto do socket
+                window.appSocket.emit(commandToEmit.event, commandToEmit.data);
+            }
+        }
+    }
+    // Botão de Pause/Unpause (admin)
+    else if (button?.classList.contains('respawn-action-btn') && (button.classList.contains('pause') || button.classList.contains('unpause'))) {
+        const respawnCode = button.dataset.respawnCode;
+        const isToPause = button.classList.contains('pause');
+        window.appSocket.emit('admin:pauseRespawn', { respawnCode, isPaused: isToPause });
+    }
+    // Lógica para expandir/recolher a fila
+    else if (target.closest('.queue-expand-btn')) {
+        const expandButton = target.closest('.queue-expand-btn');
+        const queueList = expandButton.nextElementSibling;
+        if (queueList?.classList.contains('full-queue-list')) {
+            const isShowing = queueList.classList.contains('show');
+            document.querySelectorAll('.full-queue-list.show').forEach(list => list.classList.remove('show'));
+            if (!isShowing) {
+                queueList.classList.add('show');
+            }
+        }
+    }
+    // Lógica para links de log (se for admin)
+    else if (window.isAdmin && target.closest('.respawn-log-link')) {
+        e.preventDefault();
+        const respawnCode = target.closest('.respawn-log-link').dataset.respawnCode;
+        window.appSocket.emit('admin:getRespawnLog', respawnCode);
+    }
+
+        // Lógica para expandir/recolher a fila
+    else if (button?.classList.contains('queue-expand-button')) { // Alterado para buscar a nova classe do botão
+        const expandButton = button; // O próprio botão é o expandButton
+        const queueList = expandButton.nextElementSibling; // Isso pegará o div .full-queue-list
+        if (queueList?.classList.contains('full-queue-list')) {
+            const isShowing = queueList.classList.contains('show');
+            document.querySelectorAll('.full-queue-list.show').forEach(list => list.classList.remove('show')); // Esconde outras listas
+            if (!isShowing) {
+                queueList.classList.add('show'); // Mostra a lista clicada
+            }
+        }
+    }
+    // Lógica para links de log de personagem (se for admin)
+    else if (window.isAdmin && target.closest('.character-log-link')) {
+        e.preventDefault();
+        const characterName = target.closest('.character-log-link').dataset.characterName;
+        window.appSocket.emit('admin:getCharacterLog', characterName);
+    }
+});
+
     document.addEventListener('click', (e) => {
         if (!e.target.closest('.nexts-container')) {
             document.querySelectorAll('.full-queue-list.show').forEach(list => list.classList.remove('show'));
@@ -829,6 +960,15 @@ if (adminModal) {
             }
     
             window.appSocket.emit('admin:updatePlanilhadoRespawns', { normal: updatedNormal, double: updatedDouble });
+            const respawnRanksChecklist = document.getElementById('respawn-ranks-checklist');
+            const checkedRankCheckboxes = respawnRanksChecklist.querySelectorAll('input[type="checkbox"]:checked');
+            const selectedRankNames = Array.from(checkedRankCheckboxes).map(cb => cb.dataset.rankName);
+
+            window.appSocket.emit('admin:updateRespawnRankRestrictions', {
+                respawnCode: selectedRespawnCode,
+                restrictedRanks: selectedRankNames
+            });
+
         });
     }
 
@@ -1233,7 +1373,7 @@ function renderUserList() {
                 item.className = 'group-member-item'; 
                 item.innerHTML = `
                     <span>${user.characterName} (${user.name})</span>
-                    <button class="admin-action-btn danger-btn remove-user-from-group-btn" data-character-name="${user.characterName}" data-group-id="${selectedGroupId}">Remover</button>
+                    <button class="action-btn.success-btn danger-btn remove-user-from-group-btn" data-character-name="${user.characterName}" data-group-id="${selectedGroupId}">Remover</button>
                 `;
                 usersListEl.appendChild(item);
             });
@@ -1376,6 +1516,7 @@ function renderRespawnManagementPanel() {
         const respawnGroupsChecklist = document.getElementById('respawn-groups-checklist');
         const planilhadoCheckbox = document.getElementById('respawn-planilhado-chk');
         const planilhadoDoubleCheckbox = document.getElementById('respawn-planilhado-double-chk');
+        const respawnRanksChecklist = document.getElementById('respawn-ranks-checklist');
     
         if (!selectedRespawnCode || !adminSelectedRespawnPanel) {
             if (adminSelectedRespawnPanel) adminSelectedRespawnPanel.style.display = 'none';
@@ -1391,6 +1532,7 @@ function renderRespawnManagementPanel() {
             }
         }
         if (selectedRespawnNameEl) selectedRespawnNameEl.textContent = respawnName;
+        if (!respawnGroupsChecklist || !planilhadoCheckbox || !planilhadoDoubleCheckbox || !respawnRanksChecklist) return;
         if (!respawnGroupsChecklist || !planilhadoCheckbox || !planilhadoDoubleCheckbox) return;
     
         planilhadoCheckbox.checked = allPlanilhadoRespawns.includes(selectedRespawnCode);
@@ -1410,6 +1552,22 @@ function renderRespawnManagementPanel() {
                 respawnGroupsChecklist.appendChild(checkItem);
             });
         }
+        respawnRanksChecklist.innerHTML = '';
+    const allRanks = Object.keys(respawnTimes).sort((a, b) => (a === 'default') ? 1 : (b === 'default') ? -1 : a.localeCompare(b));
+    const currentRestrictedRanks = new Set(allRankRestrictions[selectedRespawnCode] || []);
+
+    if (allRanks.length === 0) {
+        respawnRanksChecklist.innerHTML = '<p>Nenhum rank encontrado.</p>';
+    } else {
+        allRanks.forEach(rank => {
+            if (rank === 'default') return; // Não faz sentido restringir o rank 'default'
+            const isChecked = currentRestrictedRanks.has(rank);
+            const checkItem = document.createElement('div');
+            checkItem.className = 'group-checklist-item'; // Reutilizando a classe
+            checkItem.innerHTML = `<input type="checkbox" id="respawn-rank-chk-${rank}" data-rank-name="${rank}" ${isChecked ? 'checked' : ''}><label for="respawn-rank-chk-${rank}">${rank}</label>`;
+            respawnRanksChecklist.appendChild(checkItem);
+        });
+    }
     }
 
     function initializeRespawnFinder() {
@@ -1574,3 +1732,73 @@ function renderRespawnManagementPanel() {
     loadPage('respawns');
     initializeRespawnFinder();
 });
+
+function showTimeBreakdownModal(userDetails) {
+    const modal = document.getElementById('time-breakdown-modal');
+    const modalTitle = document.getElementById('time-breakdown-title');
+    const modalBody = document.getElementById('time-breakdown-body');
+
+    if (!modal || !modalTitle || !modalBody || !userDetails || !userDetails.entitledTime) {
+        return;
+    }
+    
+    const { total, breakdown } = userDetails.entitledTime;
+    const { base, groups, calculated } = breakdown;
+    
+    modalTitle.textContent = `Detalhes do Tempo de ${userDetails.clientNickname}`;
+    
+    const formatMinutes = (min) => {
+        if (isNaN(min)) return "0h 0min";
+        return `${Math.floor(min / 60)}h ${min % 60}min`;
+    };
+
+    let descriptionHTML = `<p>Tempo Base (${base.name}): <strong>${formatMinutes(base.time)}</strong></p>`;
+    
+    if (groups && groups.length > 0) {
+        descriptionHTML += '<p>Bônus de Grupos:</p><ul style="list-style-position: inside; padding-left: 10px;">';
+        groups.forEach(g => {
+            descriptionHTML += `<li>${g.name}: <strong>+${formatMinutes(g.time)}</strong></li>`;
+        });
+        descriptionHTML += '</ul>';
+    }
+
+    descriptionHTML += `<hr style="margin: 15px 0;">`;
+    descriptionHTML += `<p>Soma (Base + Bônus): <strong>${formatMinutes(calculated)}</strong></p>`;
+
+    if (calculated > total) {
+        descriptionHTML += `<p style="color: #ffc107; font-size: 0.9em;">(Seu tempo foi limitado ao máximo de 3h 30min)</p>`;
+    }
+    
+    descriptionHTML += `<h3 style="margin-top: 15px;">Tempo Total Permitido: <strong>${formatMinutes(total)}</strong></h3>`;
+
+    modalBody.innerHTML = descriptionHTML;
+    modal.classList.add('show');
+}
+
+// Listener para abrir o modal de detalhamento de tempo
+document.addEventListener('click', (e) => {
+    const link = e.target.closest('.time-breakdown-link');
+    if (link) {
+        e.preventDefault();
+        try {
+            const userDetails = JSON.parse(link.dataset.userDetails);
+            showTimeBreakdownModal(userDetails);
+        } catch (err) {
+            console.error('Erro ao ler os detalhes do tempo:', err);
+        }
+    }
+});
+
+// Listener para fechar o modal
+const timeBreakdownModal = document.getElementById('time-breakdown-modal');
+if (timeBreakdownModal) {
+    const closeBtn = timeBreakdownModal.querySelector('.modal-close-btn');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => timeBreakdownModal.classList.remove('show'));
+    }
+    timeBreakdownModal.addEventListener('click', (e) => {
+        if (e.target === timeBreakdownModal) {
+            timeBreakdownModal.classList.remove('show');
+        }
+    });
+}

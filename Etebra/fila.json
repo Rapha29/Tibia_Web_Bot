@@ -1,48 +1,8 @@
 {
-  "Q4": {
+  "52": {
     "current": {
-      "clientNickname": "Joao Victor",
-      "clientUniqueIdentifier": "bacis70@gmail.com",
-      "allocatedTime": 150,
-      "isMakerHunt": false,
-      "makerName": null
-    },
-    "queue": [
-      {
-        "clientNickname": "Borel Up",
-        "clientUniqueIdentifier": "tibiafixo@gmail.com",
-        "allocatedTime": 150,
-        "isMakerHunt": false,
-        "makerName": null
-      }
-    ],
-    "time": 150,
-    "waitingForAccept": false,
-    "acceptanceTime": 10,
-    "startTime": "2025-07-20T15:39:40.296Z",
-    "endTime": "2025-07-20T18:09:40.296Z",
-    "lastReminderSentAtMinute": 9
-  },
-  "U14": {
-    "current": {
-      "clientNickname": "Malton",
-      "clientUniqueIdentifier": "diegolangersouza@gmail.com",
-      "allocatedTime": 150,
-      "isMakerHunt": false,
-      "makerName": null,
-      "offlineSince": 1753031913162
-    },
-    "queue": [],
-    "time": 150,
-    "waitingForAccept": false,
-    "acceptanceTime": 10,
-    "startTime": "2025-07-20T15:02:45.859Z",
-    "endTime": "2025-07-20T17:32:45.859Z"
-  },
-  "K13": {
-    "current": {
-      "clientNickname": "Lelllis",
-      "clientUniqueIdentifier": "moiseslellis@gmail.com",
+      "clientNickname": "Spec tros",
+      "clientUniqueIdentifier": "itachiokarin@hotmail.com",
       "allocatedTime": 150,
       "isMakerHunt": false,
       "makerName": null
@@ -51,29 +11,13 @@
     "time": 150,
     "waitingForAccept": false,
     "acceptanceTime": 10,
-    "startTime": "2025-07-20T15:12:11.330Z",
-    "endTime": "2025-07-20T17:42:11.330Z"
+    "startTime": "2025-07-29T03:31:13.309Z",
+    "endTime": "2025-07-29T06:01:13.309Z"
   },
-  "U22": {
+  "D21": {
     "current": {
-      "clientNickname": "Brubinhas",
-      "clientUniqueIdentifier": "asscardis@gmail.com",
-      "allocatedTime": 150,
-      "isMakerHunt": false,
-      "makerName": null,
-      "offlineSince": 1753031913162
-    },
-    "queue": [],
-    "time": 150,
-    "waitingForAccept": false,
-    "acceptanceTime": 10,
-    "startTime": "2025-07-20T15:55:30.188Z",
-    "endTime": "2025-07-20T18:25:30.188Z"
-  },
-  "W1": {
-    "current": {
-      "clientNickname": "Lokonyz",
-      "clientUniqueIdentifier": "lucas.d.moraes@hotmail.com",
+      "clientNickname": "Tomy Firma Forte",
+      "clientUniqueIdentifier": "tonycamargo1995@gmail.com",
       "allocatedTime": 150,
       "isMakerHunt": false,
       "makerName": null
@@ -82,13 +26,13 @@
     "time": 150,
     "waitingForAccept": false,
     "acceptanceTime": 10,
-    "startTime": "2025-07-20T16:18:54.619Z",
-    "endTime": "2025-07-20T18:48:54.619Z"
+    "startTime": "2025-07-29T04:55:26.445Z",
+    "endTime": "2025-07-29T07:25:26.445Z"
   },
-  "Y1": {
+  "E29": {
     "current": {
-      "clientNickname": "Monkhauser",
-      "clientUniqueIdentifier": "beckhauser18@gmail.com",
+      "clientNickname": "Gi tto",
+      "clientUniqueIdentifier": "gitto@hotmail.com",
       "allocatedTime": 150,
       "isMakerHunt": false,
       "makerName": null
@@ -97,38 +41,7 @@
     "time": 150,
     "waitingForAccept": false,
     "acceptanceTime": 10,
-    "startTime": "2025-07-20T16:21:32.043Z",
-    "endTime": "2025-07-20T18:51:32.043Z"
-  },
-  "K4": {
-    "current": {
-      "clientNickname": "The Blister Exists",
-      "clientUniqueIdentifier": "filipecorti@gmail.com",
-      "allocatedTime": 150,
-      "isMakerHunt": false,
-      "makerName": null,
-      "offlineSince": 1753031246024
-    },
-    "queue": [],
-    "time": 150,
-    "waitingForAccept": false,
-    "acceptanceTime": 10,
-    "startTime": "2025-07-20T16:31:33.945Z",
-    "endTime": "2025-07-20T19:01:33.945Z"
-  },
-  "G11": {
-    "current": {
-      "clientNickname": "Ro Berg",
-      "clientUniqueIdentifier": "robergmelo@gmail.com",
-      "allocatedTime": 150,
-      "isMakerHunt": false,
-      "makerName": null
-    },
-    "queue": [],
-    "time": 150,
-    "waitingForAccept": false,
-    "acceptanceTime": 10,
-    "startTime": "2025-07-20T16:37:19.157Z",
-    "endTime": "2025-07-20T19:07:19.157Z"
+    "startTime": "2025-07-29T05:43:20.098Z",
+    "endTime": "2025-07-29T08:13:20.098Z"
   }
 }

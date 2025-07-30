@@ -3,130 +3,104 @@ const httpProxy = require('http-proxy');
 const http = require('http');
 
 const app = express();
-
 app.use(express.json({ limit: '1mb' }));
 
 const routes = {
     'issobra.newcorporation.com.br': 'http://localhost:3001',
+    'newcorporation.com.br': 'http://localhost:3001',
     'etebra.jowbot.com.br': 'http://localhost:3000',
     'yubra.jowbot.com.br': 'http://localhost:3003',
     'ustebra.jowbot.com.br': 'http://localhost:3004',
     'luzibra.jowbot.com.br': 'http://localhost:3005',
-    'bkhealth.claimed.com.br': 'http://localhost:8080',
+    'bkhealth.claimed.com.br': 'http://localhost:5000',
     'localhost': 'http://localhost:3001',
     '127.0.0.1': 'http://localhost:3001'
 };
 
 const proxies = {};
-const serverStatus = {}; // Guarda estado do servidor: { online: boolean, lastCheck: timestamp }
-
-const OFFLINE_TIMEOUT = 30 * 1000; // 30 segundos
+const serverStatus = {};
+const OFFLINE_TIMEOUT = 30 * 1000; // 30s cooldown
 
 for (const host in routes) {
     const proxy = httpProxy.createProxyServer({ ws: true });
 
     proxy.on('error', (err, req, res) => {
-        const hostname = req?.headers?.host || host;
+        const hostname = req?.headers?.host?.split(':')[0] || host;
         console.error(`[PROXY ERRO] ${hostname}:`, err.message);
 
-        // Marca servidor como offline e salva timestamp
         serverStatus[hostname] = {
             online: false,
             lastCheck: Date.now()
         };
 
-        if (res && !res.headersSent) {
+        if (res && res.writeHead && !res.headersSent) {
             res.writeHead(502, { 'Content-Type': 'text/plain' });
-            res.end('Erro ao conectar ao backend.');
+            res.end('Erro: O backend está indisponível.');
+        } else if (res?.destroy) {
+            res.destroy();
         }
     });
 
     proxies[host] = proxy;
-
-    // Inicialmente, consideramos o servidor online
     serverStatus[host] = { online: true, lastCheck: 0 };
 }
 
+// Middleware principal
 app.use((req, res) => {
-    let hostname = req.headers.host;
-    if (hostname && hostname.includes(':')) {
-        hostname = hostname.split(':')[0];
-    }
-
+    let hostname = req.headers.host?.split(':')[0];
     const target = routes[hostname];
     const proxy = proxies[hostname];
     const status = serverStatus[hostname];
 
     if (!target || !proxy) {
-        console.warn(`[PROXY] Host não reconhecido: ${hostname}`);
+        console.warn(`[PROXY] Host desconhecido: ${hostname}`);
         return res.status(404).send('Host não encontrado');
     }
 
-    // Se servidor marcado como offline, só tenta proxy se já passou o timeout
-    if (!status.online) {
+    if (status && !status.online) {
         const now = Date.now();
         if (now - status.lastCheck < OFFLINE_TIMEOUT) {
-            // Ainda está dentro do tempo de espera: responde erro rápido
-            console.log(`[PROXY] ${hostname} está offline. Ignorando tentativa até 30s.`);
-            return res.status(502).send('Backend offline temporariamente.');
+            console.log(`[PROXY] ${hostname} bloqueado (cooldown).`);
+            return res.status(503).send('Serviço temporariamente indisponível.');
         } else {
-            // Timeout expirou, tentaremos de novo e atualizamos lastCheck para evitar múltiplas tentativas
-            serverStatus[hostname].lastCheck = now;
-            console.log(`[PROXY] Tentando reconectar ao backend ${hostname} após timeout.`);
+            console.log(`[PROXY] ${hostname} saindo do cooldown.`);
+            serverStatus[hostname].online = true;
         }
     }
 
-    // Tenta proxy
-    proxy.web(req, res, { target }, (e) => {
-        // Se der erro no proxy (não capturado pelo proxy.on('error')) pode colocar aqui, se quiser
-    });
+    proxy.web(req, res, { target });
 });
 
-// WebSocket upgrade handler - não altera, mas podemos aplicar mesma lógica offline
+// WebSocket (upgrade)
 const server = http.createServer(app);
-server.on('upgrade', (req, socket, head) => {
-    let hostname = req.headers.host;
-    if (hostname && hostname.includes(':')) {
-        hostname = hostname.split(':')[0];
-    }
 
+server.on('upgrade', (req, socket, head) => {
+    let hostname = req.headers.host?.split(':')[0];
     const target = routes[hostname];
     const proxy = proxies[hostname];
     const status = serverStatus[hostname];
 
     if (!target || !proxy) {
-        console.warn(`[WS] Host não encontrado para WebSocket: ${hostname}`);
+        console.warn(`[WS] Host desconhecido: ${hostname}`);
         return socket.destroy();
     }
 
-    if (!status.online) {
+    if (status && !status.online) {
         const now = Date.now();
         if (now - status.lastCheck < OFFLINE_TIMEOUT) {
-            console.log(`[WS] ${hostname} está offline. Fechando conexão WebSocket.`);
+            console.log(`[WS] ${hostname} bloqueado (cooldown).`);
             return socket.destroy();
         } else {
-            serverStatus[hostname].lastCheck = now;
-            console.log(`[WS] Tentando reconectar WebSocket para ${hostname} após timeout.`);
+            console.log(`[WS] ${hostname} saindo do cooldown.`);
+            serverStatus[hostname].online = true;
         }
     }
 
     proxy.ws(req, socket, head, { target });
 });
 
-// Log de uso de memória
-setInterval(() => {
-    const used = process.memoryUsage();
-    console.log(`[MEMÓRIA] RSS: ${(used.rss / 1024 / 1024).toFixed(2)} MB`);
-}, 60000);
-
-if (global.gc) {
-    setInterval(() => {
-        global.gc();
-        console.log('[GC] Coleta de lixo forçada');
-    }, 300000);
-}
-
+// Inicia o servidor na porta 80
 const PORT = 80;
 server.listen(PORT, () => {
-    console.log(`🔁 Gateway rodando na porta ${PORT}`);
+    console.log(`🔁 Gateway iniciado na porta ${PORT} com circuit breaker de 30s.`);
 });

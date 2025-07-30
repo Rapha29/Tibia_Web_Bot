@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-
         .character-log-link.status-offline {
             text-decoration: underline;
             text-decoration-color: #dc3545; /* Vermelho */
@@ -19,6 +18,7 @@
             overflow-y: auto;
         }
     </style>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚔️</text></svg>">
 </head>
 <body>
 <nav class="main-nav">
@@ -70,13 +70,13 @@
             </div>
             <h2>Chat com o Bot</h2> 
             <div class="chat-options">
-                  <div class="checkbox-wrapper">
-                    <input type="checkbox" id="sound-enabled-checkbox">
-                    <label for="sound-enabled-checkbox">🔊 Som</label>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="sound-enabled-checkbox">
+                        <label for="sound-enabled-checkbox">🔊 Som</label>
                 </div>
                 <div class="checkbox-wrapper">
-                   <input type="checkbox" id="alert-enabled-checkbox">
-                    <label for="alert-enabled-checkbox">🔔 Alerta</label>
+                       <input type="checkbox" id="alert-enabled-checkbox">
+                        <label for="alert-enabled-checkbox">🔔 Alerta</label>
                 </div>
             </div>
             <div id="chat-log"></div> 
@@ -87,7 +87,7 @@
             </div>
             <form id="command-form">
                 <input type="text" id="command-input" placeholder="Ou digite um comando aqui..." autocomplete="off" required> 
-                 <button type="submit">Enviar</button> 
+                   <button type="submit">Enviar</button> 
             </form>
         </div>
     </div>
@@ -97,22 +97,22 @@
             <button class="modal-close-btn">&times;</button> 
             <h1>Códigos de Respawn</h1> 
             <div class="filter-section"> 
-                 <div class="filter-group">
+                   <div class="filter-group">
                     <label for="city-filter">Filtrar por Cidade:</label> 
                     <select id="city-filter"><option value="">Todas as Cidades</option></select> 
                     <div id="city-respawns" class="respawn-list"></div> 
-                 </div>
-                <div class="filter-group">
+                   </div>
+                 <div class="filter-group">
                     <label for="creature-search">Buscar por Respawn:</label> 
                     <input type="text" id="creature-search" placeholder="Digite o nome do respawn..."> 
                     <div id="search-results" class="respawn-list"></div> 
-                 </div>
+                   </div>
             </div>
             <div class="full-list-section">
                 <h2>Todos os Códigos de Respawn</h2> 
                 <div id="all-respawns" class="respawn-list"></div> 
             </div>
-         </div>
+           </div>
     </div>
 
     <div id="admin-modal" class="modal-overlay"> 
@@ -127,14 +127,14 @@
                </div>
             </div>
             <hr>
-          
+           
             <div class="admin-tabs">
-                 <button class="tab-btn active" data-tab="members">Membros</button> 
-                 <button class="tab-btn" data-tab="groups">Grupos</button>
-                 <button class="tab-btn" data-tab="respawns">Respawns</button> 
-                 <button class="tab-btn" data-tab="times">Tempos</button> 
-                 <button class="tab-btn" data-tab="usuarios">Todos os Usuários</button>
-                 <button class="tab-btn" data-tab="cooldowns">Cooldowns</button>
+                   <button class="tab-btn active" data-tab="members">Membros</button> 
+                   <button class="tab-btn" data-tab="groups">Grupos</button>
+                   <button class="tab-btn" data-tab="respawns">Respawns</button> 
+                   <button class="tab-btn" data-tab="times">Tempos</button> 
+                   <button class="tab-btn" data-tab="usuarios">Todos os Usuários</button>
+                   <button class="tab-btn" data-tab="cooldowns">Cooldowns</button>
             </div>
             
             <div id="tab-content-members" class="tab-content active"> 
@@ -145,13 +145,13 @@
                         <div id="admin-user-list" class="admin-list"></div> 
                     </div>
                     <div class="admin-panel">
-                         <div id="admin-selected-user-panel" style="display:none;">
-                            <h2>Grupos para: <span id="selected-user-name"></span></h2> 
-                            <div id="user-groups-checklist" class="admin-list"></div> 
-                            <button id="save-user-groups-btn" class="action-btn success-btn">Salvar Grupos do Usuário</button> 
-                        </div>
+                           <div id="admin-selected-user-panel" style="display:none;">
+                               <h2>Grupos para: <span id="selected-user-name"></span></h2> 
+                               <div id="user-groups-checklist" class="admin-list"></div> 
+                               <button id="save-user-groups-btn" class="action-btn success-btn">Salvar Grupos do Usuário</button> 
+                           </div>
                     </div>
-                 </div>
+                   </div>
             </div>
 
             <div id="tab-content-groups" class="tab-content">
@@ -188,9 +188,20 @@
             <div id="tab-content-respawns" class="tab-content">
                 <div class="admin-container">
                     <div class="admin-panel">
-                         <h2>Todos os Respawns</h2>
-                         <input type="text" id="admin-respawn-search" placeholder="Buscar por nome ou código...">
-                        <div id="admin-respawn-list" class="admin-list"></div>
+                           <h2>Todos os Respawns</h2>
+                           <input type="text" id="admin-respawn-search" placeholder="Buscar por nome ou código...">
+                         <div id="admin-respawn-list" class="admin-list"></div>
+                        <hr>
+                        <form id="admin-respawn-form">
+                            <h3>Criar / Editar Respawn</h3>
+                            <input type="text" id="respawn-code-input" placeholder="Código (ex: GSLOWER)" required>
+                            <input type="text" id="respawn-name-input" placeholder="Nome do Respawn (ex: Gazer Spectres)" required>
+                            <input type="text" id="respawn-region-input" placeholder="Cidade / Região (ex: Feyrist)" required>
+                            <div class="form-actions">
+                                   <button type="submit">Salvar Respawn</button>
+                                 <button type="button" id="clear-respawn-form-btn">Limpar</button>
+                            </div>
+                        </form>
                     </div>
                     <div class="admin-panel">
                         <div id="admin-selected-respawn-panel" style="display:none;">
@@ -207,57 +218,53 @@
                             <h4>Grupos de Acesso</h4>
                             <p>Selecione os grupos necessários para reservar este respawn. Se nenhum for selecionado, o respawn é público.</p>
                             <div id="respawn-groups-checklist" class="admin-list"></div>
+                            <hr>
+                            <h4>Ranks com Restrição de Reserva</h4>
+                            <p>Selecione os ranks que <strong>NÃO PODERÃO</strong> reservar este respawn.</p>
+                            <div id="respawn-ranks-checklist" class="admin-list"></div>
                             <button id="save-respawn-options-btn" class="action-btn success-btn">Salvar Opções do Respawn</button>
+                            
                         </div>
-                        <hr>
-                        <form id="admin-respawn-form">
-                            <h3>Criar / Editar Respawn</h3>
-                            <input type="text" id="respawn-code-input" placeholder="Código (ex: GSLOWER)" required>
-                            <input type="text" id="respawn-name-input" placeholder="Nome do Respawn (ex: Gazer Spectres)" required>
-                            <input type="text" id="respawn-region-input" placeholder="Cidade / Região (ex: Feyrist)" required>
-                            <div class="form-actions">
-                                 <button type="submit">Salvar Respawn</button>
-                                <button type="button" id="clear-respawn-form-btn">Limpar</button>
-                            </div>
-                        </form>
-                     </div>
+                    </div>
                 </div>
             </div>
             
             <div id="tab-content-times" class="tab-content"> 
                 <div class="admin-container solo-panel"> 
-                     <div class="admin-panel">
-                        <h2>Tempos de Reserva por Rank (em minutos)</h2>
-                        <form id="admin-add-rank-form" class="inline-form">
-                             <input type="text" id="new-rank-name-input" placeholder="Nome do Novo Rank" required>
+                    <div class="admin-panel">
+                           <h2>Tempos de Reserva por Rank (em minutos)</h2>
+                         <form id="admin-add-rank-form" class="inline-form">
+                               <input type="text" id="new-rank-name-input" placeholder="Nome do Novo Rank" required>
                             <input type="number" id="new-rank-time-input" placeholder="Tempo (min)" value="150" min="0" required>
                             <button type="button" id="add-rank-btn">Adicionar Rank</button>
                         </form>
-                         <hr>
+                           <hr>
                         <input type="text" id="admin-times-search" placeholder="Buscar por rank...">
                         <p>Defina o tempo máximo de reserva para cada rank da guilda. Ranks novos são adicionados aqui automaticamente com tempo padrão de 150 minutos.</p>
                         <div id="admin-times-list" class="admin-list"></div>
                         <br>
                         <button id="save-times-btn" class="action-btn success-btn">Salvar Todos os Tempos</button> 
-                     </div>
+                   </div>
                 </div>
             </div>
 
             <div id="tab-content-usuarios" class="tab-content">
                 <div class="admin-container solo-panel">
                     <div class="admin-panel">
-                         <h2>Todos os Usuários e Personagens Registrados</h2>
-                        <input type="text" id="admin-all-users-search" placeholder="Buscar por nome, e-mail ou personagem...">
+                           <h2>Todos os Usuários e Personagens Registrados</h2>
+                         <input type="text" id="admin-all-users-search" placeholder="Buscar por nome, e-mail ou personagem...">
                         <div id="admin-all-users-list" class="admin-list"></div>
-                     </div>
+                   </div>
                 </div>
             </div>
+
+
 
             <div id="tab-content-cooldowns" class="tab-content">
                 <div class="admin-container solo-panel">
                     <div class="admin-panel">
-                         <h2>Usuários em Cooldown</h2>
-                        <div id="admin-cooldowns-list" class="admin-list"></div>
+                           <h2>Usuários em Cooldown</h2>
+                         <div id="admin-cooldowns-list" class="admin-list"></div>
                     </div>
                 </div>
             </div>
@@ -289,7 +296,16 @@
             </div>
     </div>
 </div>
-    <script src="/socket.io/socket.io.js"></script> 
+
+<div id="planilhado-group-modal" class="modal-overlay">
+    <div class="modal-content">
+        <span class="modal-close-btn">&times;</span>
+        <h2 id="planilhado-group-title">Membros do Grupo Planilhado</h2>
+        <div id="planilhado-group-body">
+            </div>
+    </div>
+</div>
+<script src="/socket.io/socket.io.js"></script> 
     <script src="client.js"></script> 
 </body>
 </html>

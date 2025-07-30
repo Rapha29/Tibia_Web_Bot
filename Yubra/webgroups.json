@@ -23,5 +23,10 @@
     "id": "resp-block",
     "name": "Resp-Block",
     "extraTime": 0
+  },
+  {
+    "id": "planilhado",
+    "name": "Planilhado",
+    "extraTime": 60
   }
 ]

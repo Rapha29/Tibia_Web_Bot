@@ -41,7 +41,12 @@
     "sessionTokens": [
       "df3e7f5516cd720c1aa6d1351082fdaa8e9f441d62f3b8804535b0925d14e826",
       "e2384347b6f28f337a437e8c218190cff2a2cb4049f930ebc9786896b1dd036d",
-      "9dd099919c11c6a88cf9667117e894c0858c759fac727dd08dfff275bda944a1"
+      "9dd099919c11c6a88cf9667117e894c0858c759fac727dd08dfff275bda944a1",
+      "3709474b51a746f560bd847411d208bf1a9cb3b7bbee48d44bb33793c2f575cf",
+      "d2263524b2b05eec40e3157bce105e6039d3cc5e655853957494b01a18757993",
+      "a5d146818e0eb0c8f51f371aa9bb07b627f0912264f7ad235607afc5d69043bc",
+      "b721e9f98a84589317fd5ce6ce5d25df880c89e940a8137c477aa41543139aee",
+      "88acf4449793e066cca92d0fd32fefc4404f0536a519d1f31f278516e3cfbec5"
     ],
     "email": "lucasv.gomes98@outlook.com"
   },
@@ -63,7 +68,9 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "a01bff70a96e0ba50567112a4bea56a142d6c6a30ffeb196bc88289b7878338b"
+      "a01bff70a96e0ba50567112a4bea56a142d6c6a30ffeb196bc88289b7878338b",
+      "52074323b4e3aef7cd60fba8d0dd8096032eb6790614cd5b87b005a09837e1b3",
+      "5020d02b66b965074b1f558bb60a26af419a080559276f40916119a58f1f9054"
     ],
     "email": "je-an2012@hotmail.com"
   },
@@ -85,7 +92,9 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "f085a59913390d6771ef939a7288a0b8eb062b06742ee6fa785c9a4633a8c4f1"
+      "f085a59913390d6771ef939a7288a0b8eb062b06742ee6fa785c9a4633a8c4f1",
+      "e4a5de6bc463147d9e0c236c452964933c62c8cc14a516fde52a194c8670e743",
+      "d23e67f946a14ae470087779a4ccad37536ff8a1a8a5bf33786d31c2fee93956"
     ],
     "email": "rhmello1910b@gmail.com"
   },
@@ -130,7 +139,12 @@
     "recoveryTokenExpires": null,
     "sessionTokens": [
       "1bf7b4c58a340d775041ed29c876cfa22f42c7de50c2028f7aade52509dd2205",
-      "53b2326f489a5e7019fa7a3e8ecfa26eea5e689fda757b278a2197f49ae7cad9"
+      "53b2326f489a5e7019fa7a3e8ecfa26eea5e689fda757b278a2197f49ae7cad9",
+      "9ac7a0b806587ca7ca783b6749f41de5362e4f0c730eb134aae6d55d1ba8d324",
+      "d57d7040246c414980fc1c831bece65c2bba60431d894d829a38cd3cd572c48b",
+      "916143d31026a66ccee288282c63857e2f90bc7bef707a4e68d35508a1516695",
+      "559cb6aaebbd1d10bebf8eda6b3bac57b0f8a394c8c4b2aeb86413e71e4924d6",
+      "44801e83527d767f21ca34219508daebf38d4f80fe4c5e5342119511ffd58123"
     ],
     "email": "saulodiasrodrigues@hotmail.com"
   },
@@ -152,7 +166,8 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "dfeb2b74c3402940ee385b3880b9ad3b7dc3adebc277f09d96dad9005d125397"
+      "dfeb2b74c3402940ee385b3880b9ad3b7dc3adebc277f09d96dad9005d125397",
+      "e464cd53f69d9f04eec75d958f4a1c6b7273ce98dac1cdc6fedd5e57988fae3d"
     ],
     "email": "khanximi@gmail.com"
   },
@@ -174,7 +189,8 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "404cd95a5e4d9fbe5ff0c0b7be6edb3e5f40e19ce5519f9f5104564bd2c051a0"
+      "404cd95a5e4d9fbe5ff0c0b7be6edb3e5f40e19ce5519f9f5104564bd2c051a0",
+      "75e1dd8736bfd4fadd21afa6002c8d5457ad2f6cb8bab37b96fcf8b80bb912d2"
     ],
     "email": "juniorgouvea5@gmail.com"
   },
@@ -220,7 +236,9 @@
     "sessionTokens": [
       "f7176aef969755b8c3cb211c4b5156fcb30c573d87a851150f44f00b59248fb0",
       "d405d2b8c4d794a4723735d63c8976163063386b1335c0f4119cbb5c578a9006",
-      "85190790ca4e488ab3d90ae1221957bef5feae8f97d3e7aeb7fdb5953555d842"
+      "85190790ca4e488ab3d90ae1221957bef5feae8f97d3e7aeb7fdb5953555d842",
+      "20615eb850ada595967d04b1c9660c0829fdc54fe6a09988330def6419812d6c",
+      "7349702f29cfb3a12110e27ccb92417621d98edfa82b66cf23439778a4a0b57d"
     ],
     "email": "jose_hamiltonro@hotmail.com"
   },
@@ -228,26 +246,7 @@
     "name": "Jailton SS",
     "phone": "81984183355",
     "passwordHash": "d7d4922c229f6348c34736caafff2a18:aa0ca7f99c0949c44a49975dab2946eb23deb1115b71a4f3561de34b75edbfbf8c3b4e0f90ac812436fb174d3ea2c9fa02a785e8c4767cdf09f0e0456f0406eb",
-    "tibiaCharacters": [
-      {
-        "characterName": "Lu Zi",
-        "registeredAt": "2025-07-14T23:20:51.534Z",
-        "level": 261,
-        "vocation": "Elite Knight",
-        "world": "Luzibra",
-        "guildRank": "Recruta",
-        "groups": []
-      },
-      {
-        "characterName": "Lu Zi",
-        "registeredAt": "2025-07-14T23:49:23.488Z",
-        "level": 261,
-        "vocation": "Elite Knight",
-        "world": "Luzibra",
-        "guildRank": "Recruta",
-        "groups": []
-      }
-    ],
+    "tibiaCharacters": [],
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
@@ -282,7 +281,15 @@
       "03a6fbbc62d346248bf5cb01f6a9e7b4a4164755955a3fb88159f49c01b65d4e",
       "46d36d49b7f468714f5b8258abbcc65dca562a3d72b077b7d81fa5547177c70f",
       "00e264fb6f430adda3a3299deaf4b82b36304be4458ac1bfff21af8f70401e97",
-      "5b4f531e7ed28e7a07b9f7fbdc90480e3e8bea9144dca80ca7c9bacdc9b1cab1"
+      "5b4f531e7ed28e7a07b9f7fbdc90480e3e8bea9144dca80ca7c9bacdc9b1cab1",
+      "60cb2560aae17a9d76ced663be095cc5ca7bf59a7e2ec1ac7f99bf48800f5251",
+      "01ba45e6861dfb3431537acd6194ffb1fd857b9a7090539319e2a910247c71d1",
+      "24fb8ced4106188a6ae6cc7b84fcad5e3b1f72e53191e5da4d7fd91814e51fd5",
+      "49747dc72b94bcaa2aedb2fc5e2e324c7d27e098e8fa07987e6ca73d75aa1361",
+      "be775c725fedb36e9e7a1e3c2fa738a1217ff2e61379fff78aa759539a6e9387",
+      "ee2e16fa47d95ee3c29b4bc719a31c6efc27ca5a3f9c993daf45b4ea5ff5b9e3",
+      "716dfc2e1a2e966e86edaba435f6417a6541b4d308cd5d6dee6483331ca87522",
+      "82626f4a546afd7dea67daab6cb1d247cf0fc71bb8d35241eff79879e2252af6"
     ],
     "email": "guilzinho1@gmail.com"
   },
@@ -310,7 +317,18 @@
       "e14ffef3d2167ccd970ac15d82edf96f96a87c8d5b22585021417fe453f04089",
       "b61129e4cc2287e72e8c0dcacf2a4cf024ef3450a6fe5add5115644984e75905",
       "f6de395d63c227bbdb3410b6cdf75452286b31ba1bf6d5ef986136af42a24bde",
-      "1b0960d93c78aa58ed69b0b44116dee7ae0942117318dcb3a40003f89c86f781"
+      "1b0960d93c78aa58ed69b0b44116dee7ae0942117318dcb3a40003f89c86f781",
+      "ff1c3555fdef0c98e220fda3156c86e90ee5b0688fede20e99cd8c787a3001c0",
+      "ac5f7a93c8c8141205562e774f50ac919343b70d1a3a0db81c0c1afecb7e1bb5",
+      "0fa0dfcceb09665da8ae3c040fdf919be621855601553a47ad61047913f33e04",
+      "423bcd9e258f9fd030d8f6d6362786a1d38b0ec59147348dcd02058d20b57afb",
+      "78edb64699b69930c860b96f5e76d132f34a262ca89919cdb9aa9b386405d243",
+      "5c2372b6bf1d51a5f4a987d2696d04edfd3bb6bea8f0ab1b052a405b4d9639e2",
+      "36ea738a02b968ecc6dc3749d621a29d659f2c4f51b2b4b547ef39ef7e64a6e1",
+      "d958230da374d533764376942e64f8ec5afb28879c61a6fc6dde5fa79e4dcbca",
+      "02a8159a7f5dbd17a85410daa9fab479c373db15c8a47837fd3ac8453dfbdbef",
+      "23054b86bc52fa075aa97eb65963832f98535fd15ef72ce9e08684ad9cec6f6f",
+      "fccf9d4e13c80ad53d4afb622f72a0a1a9f2197601b8bc71e57b8f42c6366065"
     ],
     "email": "igor.mesquita.im@gmail.com"
   },
@@ -392,6 +410,15 @@
         "level": 23,
         "vocation": "Elder Druid",
         "world": "Luzibra",
+        "guildRank": "Reserva",
+        "groups": []
+      },
+      {
+        "characterName": "Girininha Omago",
+        "registeredAt": "2025-07-19T18:24:18.126Z",
+        "level": 186,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
         "guildRank": "Membro Novo",
         "groups": []
       }
@@ -400,9 +427,16 @@
     "recoveryTokenExpires": null,
     "sessionTokens": [
       "728bb187866859a58097ada2041eef3efad3bfd455dcb4a26580f53a16ff6251",
-      "8391c8c46b271d0bb6892a2602521785f676feb4de10ccf9ffdc7027e3e4c03d"
+      "5d384534892ffe86b6879ffdfafc0b05b0c91c70a5c18bc13079c25daa28e412",
+      "eb7a2aec5c838389fc116f97933590424572a25a68368d2976a791b456c8cf58",
+      "96bdb0fb5e14619e2ec586cf249fd6c6e99063ec458b224d5a6d2288d225bf37",
+      "0ef58fc41c7143e41afacbc77d611a63edfa6d145c0c09ad8162b6d9635e4f7d",
+      "7f5c5aedf595cb6ae4ce6fe202af74586139d57563e9af9bb5e8ad7167c38e66",
+      "53b5598d4cb4428582ba3588e254212f1b13be5f122e6700da5180c8da88a60c",
+      "34d46a17a7f92144e993a9da7f3f781b89c6e071f620f9448040a078ee3d14c5"
     ],
-    "email": "gustavohenriqueh@hotmail.com"
+    "email": "gustavohenriqueh@hotmail.com",
+    "activeCharacterName": "Girininha Omago"
   },
   "viictor.medina@yahoo.com.br": {
     "name": "Victor Alves Medina",
@@ -422,7 +456,8 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "95c58196a822c261e3b158fded7b7b1e2dc42c40796792045e9abf4b49a572c0"
+      "95c58196a822c261e3b158fded7b7b1e2dc42c40796792045e9abf4b49a572c0",
+      "68fa1832bbe59757c14c189da0e0bf6fc8537dc16e6fb75e72ff2295d43e0ac6"
     ],
     "email": "viictor.medina@yahoo.com.br"
   },
@@ -466,7 +501,8 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "f3b7802f12ec0747f16dab9a09d626c08b9d867a4df5205a9046b8a70d7ad37e"
+      "f3b7802f12ec0747f16dab9a09d626c08b9d867a4df5205a9046b8a70d7ad37e",
+      "aaa7acb7f4e6ad77ee66bc5deb4b44d1ed37cf4c74473a1dcad1c48bd467c06e"
     ],
     "email": "kaadins@outlook.com"
   },
@@ -488,7 +524,8 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "f5262aab49e905c10269246d9148e73c45da745025e17ddf99fb13d6e7a6b902"
+      "f5262aab49e905c10269246d9148e73c45da745025e17ddf99fb13d6e7a6b902",
+      "fc314a8e9eafec25d91d2e019dd9bc1a2e7b478074177f6c3f8f7483a0a2ea3f"
     ],
     "email": "deoliveirayuri7@yahoo.com"
   },
@@ -511,7 +548,13 @@
     "recoveryTokenExpires": null,
     "sessionTokens": [
       "390af5cd5858b0c127a327775cb5844ee4b1d808d954207275dd467e9866b9e0",
-      "ec0c693554fa9d7f9020194b5f6782258793b10e0b9fb0b56bdea06eec70a084"
+      "ec0c693554fa9d7f9020194b5f6782258793b10e0b9fb0b56bdea06eec70a084",
+      "b830b81b9f82383e5cbbb5e1fe34a6dd75cf914e9834869bc6db42c0e9fb790b",
+      "ed55e106a81fd6349febebff16a9a4d89ea3aaf7d6d1ffc641fbe4127dfe496f",
+      "2174830ce7672b6bf84cb702d95be580f038783c090292e3b7a7def4bc677dfe",
+      "5e54cb447c875a1c6239cec2a16ea4cf460b4f89e365491e3472cdc369da753c",
+      "286d75bfa64f8b5e014b756f3c552333910692c5442fe2444f07cc4167aadea4",
+      "f36c97a7125dd2227fb15c2899f09d94919d22009482ad09397d49b0f9311476"
     ],
     "email": "diegocostaedfisica@gmail.com"
   },
@@ -536,7 +579,8 @@
       "99c897f944395637db3a60682d289b13ec96ed8287bf9378862562951dc2a651",
       "d3d9b3366243d1746e327e6d75b6bba44291b4f6bb4503bf2320213382b5f1ab",
       "3f0f7747c2b4cd3aadd9733ad0ab86691b094b4f407ce4fe1f4318b0b9216917",
-      "e68cd2f61db04207c7af814c5ae34a830dc8820c6c528223334715a34941fa8e"
+      "e68cd2f61db04207c7af814c5ae34a830dc8820c6c528223334715a34941fa8e",
+      "0450f76194dda2350df26297592718e9db9439e3676c80a362127a73c5adc8fe"
     ],
     "email": "foxriachuelo@hotmail.com"
   },
@@ -558,7 +602,9 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "7d15595ada1e4f7212cb3dd90a287d447dd7c6fa9a1f83faafd4ce6e5175bd85"
+      "7d15595ada1e4f7212cb3dd90a287d447dd7c6fa9a1f83faafd4ce6e5175bd85",
+      "6a984c43700cb756e521e291387562a10d6bb656d2162da470a81214c2ae7976",
+      "cd44609d69fc682633714fab9a82b7b6a23b44885bbb02582962ea45413602e2"
     ],
     "email": "hermesfernando27@gmail.com"
   },
@@ -603,7 +649,8 @@
     "recoveryTokenExpires": null,
     "sessionTokens": [
       "617bfcc3f22b730a0677a086ac2cf765b12cf330e0877c5222ed1bf793c84a2a",
-      "0d3f2e13b45ab02f235393ff3a686f5171d8725a33ce73ce355ac6e7866dbf99"
+      "0d3f2e13b45ab02f235393ff3a686f5171d8725a33ce73ce355ac6e7866dbf99",
+      "cb3acd47f503ea8e752b6a6122570e00c781b316be646d17485d0ca9a3e40685"
     ],
     "email": "diegocostarn+1@gmail.com"
   },
@@ -635,7 +682,9 @@
     "recoveryTokenExpires": null,
     "sessionTokens": [
       "4826ad6af79255917a597e3ed8925200d969ee377a0d11b2844ef0fdd6a883c2",
-      "e1928863e2099801d0cbdd5fd6eb02be5f6d3cfbbc2df6f3bdc33665489dad7d"
+      "e1928863e2099801d0cbdd5fd6eb02be5f6d3cfbbc2df6f3bdc33665489dad7d",
+      "605e38f4ba7530452cf9ac03dd2ce99164649cbe65357dd77f4c508cf1edd9df",
+      "bd310efa51a62def69480ff1b0e72175f893dacdfab3b3572c439b1f8f33587d"
     ],
     "email": "lucasbona@live.com",
     "activeCharacterName": "Fighter Bonaas"
@@ -651,7 +700,7 @@
         "level": 306,
         "vocation": "Elder Druid",
         "world": "Luzibra",
-        "guildRank": "Recruta",
+        "guildRank": "Left Guild",
         "groups": []
       }
     ],
@@ -666,21 +715,12 @@
     "name": "Igor Santos Coelho de Vasconcelos",
     "phone": "61981681318",
     "passwordHash": "0951a416f00218a9b5422e7f21ba2b7e:b1f581b87c33a7413dd1105961ea643720c4e35b8d913d6d5f60617b3374d6ab2a9f057934fe33ec90044c2d18155af5aa54468a19a57f09e2dbff006f19afbc",
-    "tibiaCharacters": [
-      {
-        "characterName": "Zlaped",
-        "registeredAt": "2025-07-15T05:08:15.094Z",
-        "level": 201,
-        "vocation": "Elite Knight",
-        "world": "Luzibra",
-        "guildRank": "Membro Novo",
-        "groups": []
-      }
-    ],
+    "tibiaCharacters": [],
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "26dc5a95650d5583b5abb6852b0d4c574e598c01355c9aba2cdf14e605d6ce5e"
+      "26dc5a95650d5583b5abb6852b0d4c574e598c01355c9aba2cdf14e605d6ce5e",
+      "754eb9aee6f30a5e273b4dd5a9eb17491e6aeebafcca57c16dca729ab65e7ae3"
     ],
     "email": "befuzy@gmail.com"
   },
@@ -754,7 +794,9 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "23fa44378837682e41f061e9382b07cda74cc308c5c876fe44b94e4ec3fdb0ac"
+      "23fa44378837682e41f061e9382b07cda74cc308c5c876fe44b94e4ec3fdb0ac",
+      "17a1b8c82c2d0e15f1db9a11ae1a5531a0ad06938a44c03c1c98e77c057602b4",
+      "47d47dabe26ee17a611d3562f1ceb28268b470fb96235bc945415902978e5ac2"
     ],
     "email": "leandro.cfis@gmail.com"
   },
@@ -800,7 +842,14 @@
     "sessionTokens": [
       "cd6d2913e4a8bc6862c2fd57ff106b9178443ba406503d21047a87679173457a",
       "e7b02719175498ac8efb76c336f851c276811a24565182caaa323ce635e9f6b4",
-      "2ff2d39058f9d2032a614f54a7d691df40604d1eb076dce209aff947b663569a"
+      "2ff2d39058f9d2032a614f54a7d691df40604d1eb076dce209aff947b663569a",
+      "e2f07804fba61a77a2a9cb56405ecbb25016a2e658008afcb8b267662a8bf6c3",
+      "47dbe7257f7717eba9b5d184e7cde5ab79fc2d036108e43aa949a94d390dc6d5",
+      "d305647998d263388c61976426fff69395f39a20f518949ee0a40ff5dabd1d24",
+      "f336ba6f9f217c0de9925528ebd78f5daf9831f39c75c7c78aa35cef8301d1e5",
+      "2beca6312fd9a3fc4369adbe51f85dd289a89747f3f6598bf222d92fdccbb1ae",
+      "a32ff03211c490dcd37298eab5ab84e3370d1786bf347d41bbaf8da4c1432c24",
+      "a861bc7d1cca24fdb2015f26decf4fb566499bffcd57465ad320360d74e5c4fb"
     ],
     "email": "marcos_viana11@hotmail.com"
   },
@@ -828,7 +877,9 @@
       "da383a3c7a06e054e92d75ed5c1a755494f752abe4345e7b6dc67dafcd0b4cc9",
       "945092f3ea869834048114d95f5ad203a2f2b9c91e82a3756f38a6873f7db7a7",
       "457f8aadf6f34eca0d5ab6c47ceea283b18c2862478ace1e4f9ec200472fd7d4",
-      "4f4e05f67c19d000f53ba4698ec202621eaab9f9a79b95c9a96a7f3bd42b0a93"
+      "4f4e05f67c19d000f53ba4698ec202621eaab9f9a79b95c9a96a7f3bd42b0a93",
+      "ef2839bc28877eaba524344ebff5abe45bd0f3477921a8a481a39e4dc5498639",
+      "922335c47d0ead2bee7227d0ba6cbc92e9938034c360bfb67fc65cb33ef2a230"
     ],
     "email": "ekgladera@outlook.com"
   },
@@ -856,7 +907,11 @@
       "954b33b8e6256085f3ed5c43fe900fb48e3e83f2b06e76bc942e99c1afbd8ec2",
       "7c2efd186e30635ee2fa879c2518f42384b75a51e79dbda21447632fd54319f1",
       "83c59f67c67400fb2b5b649b9257a13ff678c4c1b5bc1a5cf9f14e4886e5ded8",
-      "2668eaf4bd8e28318af89451677ac7ba277becd17c9474fd07eaf7dd67200f0f"
+      "2668eaf4bd8e28318af89451677ac7ba277becd17c9474fd07eaf7dd67200f0f",
+      "2b3bd9ea8a282ad7bad3371cd71399601303831b7347e07c6474ff6f591bb80f",
+      "109dc8b9879f7b902ff4dfa2addab15f1c0ff2da0127491fb2853d85520c1e54",
+      "6cd6361840ac9597de5828fa68e06d062971bc0180f464f85681520f5892c812",
+      "52059a67eead007671b575115774efda02442b19825238928985af7a4ceb7038"
     ],
     "email": "matheussouza199@hotmail.com"
   },
@@ -884,7 +939,12 @@
       "533319f715219958b48b7d7b71a56f9e50f8582e1a99c42e9b5c46629060bc5c",
       "3dd7a120b4341cadcef0d131ead1645f09b6fd8dada7663b2f5280788769f7ff",
       "d19aa7e3d3e66c8db1098a35ff0155321fe9730a5ec9153386a0a751b3258ae3",
-      "c90442b81d34abc1f1cead9ad781d58f62ca8f1603688ad273906e4347658991"
+      "c90442b81d34abc1f1cead9ad781d58f62ca8f1603688ad273906e4347658991",
+      "d7f04437c4fe271e417250940671746a125cc5fabeff4cd4f7a84451a553f063",
+      "38d781f599519872c5b7fbbc3c50bf9756f030dc75a7d11938996da0bc7f1f06",
+      "e57266434a053ae6e074432dc78270eb727484884e873258fac91eb7200c2aa2",
+      "600f0eb8ed0aa2cc3617c894a6c54fe705a8ee841788f719d2b29795a4dea7a5",
+      "9078d97e6830ceda1330a9e1b3f3abc5613d563694004ec1172dedd7a3255a6b"
     ],
     "email": "lucasempe@gmail.com"
   },
@@ -930,7 +990,15 @@
     "sessionTokens": [
       "88c12d2ec8358454a05b88abbd92ddf2985731146a74a73bbe5d7f3b384e48c3",
       "8fb6a8840b4f57218f489156df7fbcb1252f523899d778a64af83a243ec6b3ad",
-      "84f93e73afdd7613ef2336d4224f0e72816694044d1f3980fee0c162d7180255"
+      "84f93e73afdd7613ef2336d4224f0e72816694044d1f3980fee0c162d7180255",
+      "3cb2b77271ccfd2eb350c2caf7813f58cb8915c23f28299da035a33ca4448689",
+      "71997349d38ce16876214e87e171c45d07f79581d0d7c28652834dd709dfc4ad",
+      "95c558b69c47c64c905defe60e5cfb6ed04a1cf0ccba2d8cfee6b8a6dab1073c",
+      "7eb6bf62b21b975a79980e88ae755584f14a06f99ab867ac45feae8c265eb9ce",
+      "504f5a8a91239b38da879523e314591e2d9f6360966e55d05cdfc6ba25e833c0",
+      "1902679a2f18667576e6439ac042f24695aa034f19a99f93a7cf9ea9fac79719",
+      "4e77a68bc6027411f30f6622ea7ac5f0b2ed00881d18dac80a22b56c5968a05e",
+      "608f7ef923d808c2685e353cd94eed0c346e5e8b5956cb34a689ba3af493e855"
     ],
     "email": "fe.mrcs@gmail.com"
   },
@@ -938,17 +1006,7 @@
     "name": "max douglas",
     "phone": "41998460926",
     "passwordHash": "ead83ef32917cef81e44f4638c2d13ba:a47988a62825c8e911458394e7b73c14e7d20cbb4388ed0ad343c5bf665fbee04199ebf5cd2ea16faa78c1e9b042207a4cebeca5e498bb42f27c2c68e82b0616",
-    "tibiaCharacters": [
-      {
-        "characterName": "Zoebeer",
-        "registeredAt": "2025-07-15T11:53:47.616Z",
-        "level": 287,
-        "vocation": "Royal Paladin",
-        "world": "Luzibra",
-        "guildRank": "Member",
-        "groups": []
-      }
-    ],
+    "tibiaCharacters": [],
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
@@ -1008,7 +1066,20 @@
       "b5fd7f72bae5f49ea6d31a651a5a7973f80416eefffcd3aa7cfa230b5c69c587",
       "566b918920391c354183a3e23f4c49cb6fdde82469beb4140632ae74109aef33",
       "1696299dbaa186b5fd0f5b899726f261694f54f967005d2684b8f6a33ab5603b",
-      "5a208dcd94e2a0d9eac7249ebdc1a91b9bd1eacdfd5eb2be3c29930cfbc5760e"
+      "5a208dcd94e2a0d9eac7249ebdc1a91b9bd1eacdfd5eb2be3c29930cfbc5760e",
+      "8ee46abf9da155bac39758b378ce7eec747e4ddc05a74175052b72764beb34e6",
+      "e8a0977e4b890ad86e09f991637b6da80078089745a68ba0188478aee884ce30",
+      "365c35ddf2790d773fd7cf5b95b753febfa1cb21d169d6f2d96c65fcd471ed3e",
+      "e78f784e9ef8676325258f2d66dda53dd022d19b9791ce63decc2e96a13e7fce",
+      "c66e8b74a3ac9606986643cf8e46b33784fd5d9ce862b5c1a78eef833781f0b2",
+      "84170223591d624de67e1c90caa42d72b2ef2d896a87ce70bda34048f96ad0d3",
+      "80cc1101d27da057d2c760ef0bbc07d2d6f13abd7bc445b5504410f9e1359aee",
+      "cf713453b70aa9deaab0dc860d7b58e625e8989f82fdfa6b1d2831c94c5969a9",
+      "c8728fedc62be2e3be58c4ebed120f3e206c571b6014ae5701c9c018dc556d02",
+      "31cfd60d8444e2dd952a5d57ecf8c12893334359aa2975b9df38d4a08a7c3084",
+      "b97741702107f6866061aea42ee1f99d6dbb725c31f2bdda7d8186ddb75c7f34",
+      "083d7a7d5d5a6831500fde2002fd1c120c7152d24c686d64126cf7afeca0d41b",
+      "654960a846d65f16c2c708a968856e0d0d3738e5dd0998c41a3ac82703a1abf4"
     ],
     "email": "andreydanilo@gmail.com"
   },
@@ -1088,7 +1159,12 @@
       "90bed6edb014ae65ab2c77c41278d92036095214b4032b1e566adc54a9d2ec10",
       "cce5e9ab250e237c63a7bd6d44b2b62feee3716e676c1c589c25a58c4329b229",
       "190ca36ec6e9e8134a915f93a0b047a0a2355ecba93370c5300fffe0ff0c259b",
-      "eed8611010d896926713c873ab8b90f87fee54b52ef136040d042035c7c6f7fc"
+      "eed8611010d896926713c873ab8b90f87fee54b52ef136040d042035c7c6f7fc",
+      "fef81b7182f3e4e87bfa45da7b460b64c8e9c024151a7c28ee86107e10ee949f",
+      "7ba4b0673a97cbcc43a1d3be87c34a50b25cd1df6256aa83dd8069024de238bd",
+      "c288a73db8b1857c569371f65c2aadc7fc7e60a546185ffb4280062bc8f4482c",
+      "b76eeec500e5e713195f53e34c0034788059851fde83fc8b246dbc5c84826602",
+      "9b5e019837fabc6a84589e0a1aa7995c7597867945ade30340e090da2cc4bea2"
     ],
     "email": "slashwylde@hotmail.com"
   },
@@ -1110,14 +1186,15 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "4ce2e337c0c1a56b2896a0b48fbb4f65cd3751bfc3ca44416db4aca36c5b440d"
+      "4ce2e337c0c1a56b2896a0b48fbb4f65cd3751bfc3ca44416db4aca36c5b440d",
+      "c3c7b5a6b5c7dc399d174866688951d7aed07ba83bf24aa58ed1267077b5e329"
     ],
     "email": "matheus_ab@live.com"
   },
   "arthurcasteliano@gmail.com": {
     "name": "Arthur Faria",
     "phone": "11969182257",
-    "passwordHash": "4d6bd1b74be8cb0dc43634887a3bbdb2:2c3304da9980ad200112e30ddaf3c16a0e266b2375f8f6f8a5528ae6ebfcfed9d9d95703cc7d28a5519b575d27034ba97d80077f876f5c47d0d66b1f76ad9610",
+    "passwordHash": "20cf204ee1e2670bfde25c39e4e1fff8:eb7c7dccac0851063603ec662efc5c78410a1f0119f10560ed4e540b719b35f60188f5a1f79199de99ab1ac6cd1401ef26f823800db0f9ab9cdef81d2a16af7b",
     "tibiaCharacters": [
       {
         "characterName": "Alex Unit",
@@ -1132,7 +1209,9 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "90d1e3b086c6fad4f0178c13eca40f765d1e8dbe900c0cf539d340ac84117218"
+      "90d1e3b086c6fad4f0178c13eca40f765d1e8dbe900c0cf539d340ac84117218",
+      "4fb536076343fe092cf17e5182b4e95379a27936d88de3f067b7df99d744a962",
+      "c321c8ce859e1c32cd03d62906fccbe89bf1814e18cbe0938a39d279cb06d73c"
     ],
     "email": "arthurcasteliano@gmail.com"
   },
@@ -1154,7 +1233,9 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "fe50ff260912b254ae78505036ce48507a8ac8ec66a94fbc4b33da7f7ead909b"
+      "fe50ff260912b254ae78505036ce48507a8ac8ec66a94fbc4b33da7f7ead909b",
+      "b532e950f3321e15e81f6b8345fb2b0f11dbd0806d8d722d9e574501bc44bb0e",
+      "450feec2d42fd6afcd896666719e1f003a77eef3e7a330a8ddb4e7192dd6b5f7"
     ],
     "email": "lucasanhalt@gmail.com"
   },
@@ -1198,7 +1279,8 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "6346e66831f49879020892b141d954378e8fb9d65af38e5b88c67b44b7893725"
+      "6346e66831f49879020892b141d954378e8fb9d65af38e5b88c67b44b7893725",
+      "84ea2f28ea37864fc97b2383c1cfb382401c947a448513578da2f0a5e75e76ff"
     ],
     "email": "matheus.oliveeira@gmail.com"
   },
@@ -1244,7 +1326,8 @@
     "sessionTokens": [
       "7abe52277f7aff0caf37077f90f7c17e50a8ad687510ae2e40530079b30600fb",
       "99198de00a77dd35f7727cc5d344947b214edeea95535a2c0de4e8598efbd635",
-      "20e0a5672df313063b83401326f348bcef6e43acbebce4131ff0dca52d23dc8b"
+      "20e0a5672df313063b83401326f348bcef6e43acbebce4131ff0dca52d23dc8b",
+      "9d321c6ca9f2182b1e94689a29a55c6825788c60136a2fbc5a699a166798ce61"
     ],
     "email": "esteban.wigor@gmail.com"
   },
@@ -1261,14 +1344,27 @@
         "world": "Luzibra",
         "guildRank": "Membro Novo",
         "groups": []
+      },
+      {
+        "characterName": "Luficer Mornig",
+        "registeredAt": "2025-07-25T12:31:07.751Z",
+        "level": 106,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Reserva",
+        "groups": []
       }
     ],
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "fda078adc312998f3a99ad4f59d7a62e7a3797d5e7828d0e24c96292989cbad9"
+      "fda078adc312998f3a99ad4f59d7a62e7a3797d5e7828d0e24c96292989cbad9",
+      "594211e8dd580091fad6f5473095dd90a0ff098943728dd620f34762517eba40",
+      "1e868609394f4779dd338d8da890cb8bb5f0e79b0d3e08b40fa3c400292aa0ab",
+      "d00af04665253a289746685a6f67753941466a4a5d6c857b6cf37eaaf336933f"
     ],
-    "email": "cavalari.flp@gmail.com"
+    "email": "cavalari.flp@gmail.com",
+    "activeCharacterName": "Luficer Mornig"
   },
   "errado": {
     "name": "errado",
@@ -1331,7 +1427,8 @@
       "a5065f07a4921bc72b7d597a282906fc192eb3a65ead73857867b820cfde7d89",
       "f625bb47e199e8380775a14f40a8de02ce51ff6169c6376c894fdf49c7ade49a",
       "94c3608b97437be0904a2ec8e8fc3d340f464cbf1d789fe531724a7cc15b56b2",
-      "17fbdfe9ae48c8626759d1b8ad783c38d57560195601eaefb1e70696dc237f57"
+      "17fbdfe9ae48c8626759d1b8ad783c38d57560195601eaefb1e70696dc237f57",
+      "e3d793db055b0b26858523b95012401d0fc1318f7b080c72b4d713253d73aa19"
     ],
     "email": "posseidomlr@hotmail.com"
   },
@@ -1402,7 +1499,20 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "05c479ab86e67c4250ee047dc5d26b78ae864f604346967a2bc293846cd2f2e9"
+      "05c479ab86e67c4250ee047dc5d26b78ae864f604346967a2bc293846cd2f2e9",
+      "e81ed3bfa8da611f2027b768b88cca15467c2848b3d338003ba6c4ae9d325576",
+      "00bb5616ce7fdd8133043f8a53373cb1e35fb2283da87ead375c6efbd0e1201c",
+      "839988c254447d4f3795cfe791bd1480ef44a5866f62233ce2322697a4e92162",
+      "8afd78c566b7dc43c1faf1ac763a95a3773383a0ec5e4cc4dca89112d77ccf04",
+      "1966a1a1b62d9a6b0ed25a22acb3a169c24e0696ed50c56b18d70cda52028182",
+      "b9019abe6c9d368df809769147bd916c29168021f6b41b104b4126ab4a4cff10",
+      "a7a56c50a7072c8191bc9948f11d8d0575affe48decdb186f5bc5ea82c84e6e0",
+      "eaf407f1635fdd64785f022c2aab59f2925c7e52b327f0d064a4b6a4d676575d",
+      "cb157dbae5310dbdd86d0a8d0f035885e63484a6417c1d0f626c6d6067e5c462",
+      "cab2de246af3b1fa597caf3ee3994551f9878d9a1e7675799d90d0d0f57ee77a",
+      "659fe0f1fffd91eb291cd2a6343c4974c75858c834965a561ed3a011cae22c7a",
+      "d44f38a3c37bf575e0b680bfb282e3c7affafd94a4e9c256b69aa4d0c00673dd",
+      "ce67292358518e4c4ab4751fbe70ceb4226b5a83dbce090f3439b252da71a733"
     ],
     "email": "darquelhanter1@gmail.com"
   },
@@ -1417,7 +1527,7 @@
         "level": 268,
         "vocation": "Elite Knight",
         "world": "Luzibra",
-        "guildRank": "Recruta",
+        "guildRank": "Reserva",
         "groups": []
       }
     ],
@@ -1450,7 +1560,17 @@
       "78dab8585a8391c3bdbcd45ec78d492957a639f93a4298372c212dda1a7d903a",
       "b19abaab03bb65ea12ce6d0de87cfae2321b1265032f37fd619956056237f278",
       "5b4690ed527dc286fcb61c61cdcffcc8a13e9b0e4bf2be508b6c0dce35363c61",
-      "b147bf7df6a2b1bb0bf387406c87a5eef37988e8ffb548e9543a027383e12393"
+      "b147bf7df6a2b1bb0bf387406c87a5eef37988e8ffb548e9543a027383e12393",
+      "2ff88f59c40c0fa894c1ad100bacbb9d83a92c28f0defb8bbadd6fac511b8010",
+      "50a6650f76a6799fe7cc08f3f06eed590659a592fb4ba97bb297195cd36f990e",
+      "d5dca0c1ef23486622c3aa89ee11883be4cdc66d9e97c12c90e78703f28127aa",
+      "0f7fc3ec7250fac5ce3653375f8fb650c384fe75ae1706b75206af5e7ff276a3",
+      "f3540aa579ff88001b41d2c7c20718e6072edd23ea949e44b0057e9c095bb577",
+      "80b2ea69f0728cb6674ac8799a49c443ccabd8436b505a8ac0da5cfa701812de",
+      "0456fbf1805d04b54edb7318f87448562875ba745ca76063e3ebca652376dd98",
+      "66b588f83f8d97669a0972d015b5379db2cf238c5e7be3304a153b79681d4fc5",
+      "db0bb311e6579c19c23c2fa49e9012b5990a57dcfea2cf79a11b442ff3152ea3",
+      "de57d77081a8e3d54a07da796dea6b12127b8f6a675535fcee7a06c218b5408b"
     ],
     "email": "yxpedro@gmail.com"
   },
@@ -1472,7 +1592,12 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "bad99e5f04588cd1359623b303ec3a7330f1e2b1b0fd04d934255e0a86008f51"
+      "bad99e5f04588cd1359623b303ec3a7330f1e2b1b0fd04d934255e0a86008f51",
+      "a50647b02cdaa050701c9e64a60e61a6706baed6575f0e1c9393e4e42f7c2739",
+      "81a2ef4499d56396020716b3b31c52d792bef5a898476545d7ad59964c963465",
+      "4447d8d21e8e20a4aefe627efa7c823106a6a6a2deb2f6f3b53878b06edd0e08",
+      "c973b067d466db8771dd795ad09310eaa0cd77e7d666db3e52fa6a4323b9878c",
+      "bec1dd80d37e6d34d59cfca64089cc70c94f0dd36054913d0cfd1a929e04ceee"
     ],
     "email": "matheusfellippy@gmail.com"
   },
@@ -1547,7 +1672,8 @@
     "sessionTokens": [
       "3f2ab52474bb4c0e86d70e21ed106cbf1bc8a9dbf1992d59cc2c81ced3eddc44"
     ],
-    "email": "samirgomes_@hotmail.com"
+    "email": "samirgomes_@hotmail.com",
+    "activeCharacterName": "Doctor Coorporative"
   },
   "ecobertanha@gmail.com": {
     "name": "Samuel Bertanha",
@@ -1570,7 +1696,8 @@
       "d37f00298b4011291e34e5747d6983ab9543b16e5ff48dabfc01269fc9c9865b",
       "f60b2b2610b6a38c906659defab1d30fae69ecb76a1375ec66912abc677f4ec7",
       "c7be180c804725d3c0515d462916abbacebf72c893955305e753205917232fde",
-      "79e3604c6a1756c769b4e367efe6a431bd7b385b67a9af4171a3a33bc51b3290"
+      "79e3604c6a1756c769b4e367efe6a431bd7b385b67a9af4171a3a33bc51b3290",
+      "2b192122f87ab21a74cd572111db534d2a827164a5789063f724b2b19b89f147"
     ],
     "email": "ecobertanha@gmail.com",
     "activeCharacterName": "Delwyn"
@@ -1594,7 +1721,20 @@
     "recoveryTokenExpires": null,
     "sessionTokens": [
       "214538584a4f39eed68b58675d2ef96803352c85a2f3afce8b3d6a34c0208ef1",
-      "6e43fc0bf06855827479a08a0f9c5397c80408f59e93b137871e0692021931c9"
+      "6e43fc0bf06855827479a08a0f9c5397c80408f59e93b137871e0692021931c9",
+      "51b9c6ca462d880cac70dc0075b0dfa2697be13b29e69de1b69e8ede11c38060",
+      "af8ba3b53806a5933f465da07d7ac6c495b50cf8ac86267b634c59e2a414e2e2",
+      "7bce170fd638207020198128bb3d5a8f09000bd92c0b682583cc19b78dd90e32",
+      "c265b83c7ab169050d5c303663264a646e0b3170df4232446a26db4e9fbaaa32",
+      "98528d4b858bf8aaeec3e9e0f1ff53c01f4e32dff601cffa4ec7fecc4926cbc1",
+      "547990ba6544aba3ed9650150cb0d7b970f6d29dd8bd09283bb6c58d5b9171f6",
+      "3740c7a56af90aa0317c7d4ea81442c7a745499ea86760b6c9fb6649e0a8e681",
+      "daa7e67a9b9a0ebd4d17672c3751ac05fca1a693115648a7f8d1464261624b4e",
+      "81350da80c9c052ae8c103fe3b05b32d911f7ab472ec9e34d614feeb26ec6691",
+      "959aced4a61d35f1bbb5c5bc5263f2511937155815a24fc9aa62209753afcc48",
+      "83bce6f78e49eefe9b170cad3a0cbd00aaa066f9c96b8cde9b5a2d3215aaf05e",
+      "6dcb1adbdcf71e78f0c0b689ee9c2b3780f99cb0100d3a71c21ec3508bf6bdb1",
+      "80c94af1821795c728711e47555f84bff9d534262d48a2d4c54f2fd11e82a6d1"
     ],
     "email": "rbvicoso@gmail.com"
   },
@@ -1624,7 +1764,13 @@
       "9ee731b5e427e0d77564bad865ae3a00fbccc4e689baa2b2266a3c8bd6842fe4",
       "637c7adcc1e25daed9d6e1f187b58945d7199a7bf1047ef5356727599fd0e0da",
       "fb955736a66001f7c70da0bcdfd8d6b1847933779050f3257cf02f5dc97bd0ab",
-      "d52c6044fab3162b8ff0fa36985d09354f843489c512790a204263b32ce84292"
+      "d52c6044fab3162b8ff0fa36985d09354f843489c512790a204263b32ce84292",
+      "20d48c80d6ec7f09f0b2f26b2ac21a7f1f64040be840a49002d9cb172001d276",
+      "3dabb08755f6dc75f08a1df748df196b014e282ae2c5aebe64321b6410084836",
+      "4b47b8ee8d8924e3de674b049621eb59dd7eede21d31b8399fc9d7b81c93c288",
+      "733028733c8eaf992f90f60b1743003cfea1ad5cfef3c9e338f63f10ca24c28d",
+      "fefe1107fe431df2bec690caaf4f220f8256dbdbc3d640f3b65a9475509a05b5",
+      "880a910ce1ec5a3bd74688666d51c09c8308c147975f4b6d12205305f8e8a93d"
     ],
     "email": "luzsannik@gmail.com"
   },
@@ -1648,7 +1794,9 @@
     "sessionTokens": [
       "6ecb101473b1105df85d859cbcd0a02cc79ac18ff24e31fd1c0ab2fddb5cbb8f",
       "0f23ce1c1cc90f637851ab96a49cdf6400b5a6c21114fa9c6b3a10636d1e780c",
-      "2191147483b1c8170ba95002aefe51597ef787a81020e324ca18aab195ae7683"
+      "2191147483b1c8170ba95002aefe51597ef787a81020e324ca18aab195ae7683",
+      "12e8ccacf7ff7fc9e3f0e91602164d9d855eaf61f12ebdd8ed36dc1f8d5afaef",
+      "5265bc87d2759eee07c17e8a94543b0ef0f128004c7d71e75214993461d30fff"
     ],
     "email": "joao23mellany21@gmail.com"
   },
@@ -1677,7 +1825,11 @@
       "db8e071f68e48306a7120a971ccde11762b936fb0168b624463f6fc59a230e14",
       "f7e94c05f0c93b77e085b952b0d01c9b6f7c2ae7143dfdf609b6657419a8451d",
       "5a4121c10f3ec82a170a5f1bfec7d11eeda7f3f2ccd401738c426d555b4dfb91",
-      "c39af44ae8eb29c20d18c0840a516e45ccff7ea6baac7c539aebc70222da3632"
+      "c39af44ae8eb29c20d18c0840a516e45ccff7ea6baac7c539aebc70222da3632",
+      "042e64361eff5b5f83c32ebddb7146f96475e00bf48c38cb1410b0ea921c22e5",
+      "65f31c6e6d2062343bd6c26f8a3d3426d03b0625bce180a161c982fb89f4db93",
+      "57e1cce4a9cac0a11262bf3e9fd58b00ca0c09c032675e379dfaa40058a9f49b",
+      "10d8d7c5c797d812212028212bdb7728e201a589cdad3f8aedb001c37d448a58"
     ],
     "email": "reis.samuelima@gmail.com",
     "activeCharacterName": "Dykator Shiimuzera"
@@ -1685,7 +1837,7 @@
   "jacksoncat15@gmail.com": {
     "name": "Jackson Mie",
     "phone": "66981016122",
-    "passwordHash": "0831aa0c8dd0bb6008e65e0a8ad4ae08:5513de23f0a41a2ed5da5aebbc64a90e94980167b44bdf74a78b5d41b66db399dc977a60918b7740c7058cec34fd326a3a60c5aebf03f1f8551e0f06b45d7995",
+    "passwordHash": "f2eae1c7556878d7478a278dbb0cb81a:272b26c6069d1fe45858d7dea810ba7e17626cb8f877ba3f9d00f07e01c24c1b4050b5dd59896bba9758ce91b86c1f30ee68ad858de0d83a4d968608bb99b906",
     "tibiaCharacters": [
       {
         "characterName": "Jota Bow",
@@ -1700,7 +1852,9 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "4477857db1661ed59c3710109e72229a23dce82ce3fb3408b2821ad2e13eb27a"
+      "4477857db1661ed59c3710109e72229a23dce82ce3fb3408b2821ad2e13eb27a",
+      "d4a34f98fb3b29d6eb3efe63d3a8ef583f09f5a8b63cec0b8fffc14b8da4f245",
+      "eb5143ae6b070265cdc26b2feb0c9b9a5f00cc3e339d43d07d975eaa71e0678c"
     ],
     "email": "jacksoncat15@gmail.com"
   },
@@ -1723,7 +1877,12 @@
     "recoveryTokenExpires": null,
     "sessionTokens": [
       "b976a99e3d06118de6d4bc451c2a37ae55b2eb46187870065ebdf62d47050dc2",
-      "4d64639d9e29447eaf5fe3e4973f1621528506cc402b8e8d6ed93e55d198f555"
+      "4d64639d9e29447eaf5fe3e4973f1621528506cc402b8e8d6ed93e55d198f555",
+      "faa93857cf0498fe216712d1db9a0290b7646bcd915145cf2770cb7bd0631714",
+      "6fb39f5f3a5596d12f0601eb67197ca609f6f01f1e3ed56f8ba20a4b87e30510",
+      "cb4039f67763745c721a65b3af13a815101d7be86a1e5f8457a9b4e0751cf4fe",
+      "5d58c437b73328f847d9f02389827c26f4ddbe038a09429c0ca3db7e6df0296c",
+      "2afafb4c7c22927e21761d4bfb1c69a81940d16a30f36563d6277cec633b8d70"
     ],
     "email": "alberto_zuchetti@hotmail.com"
   },
@@ -1745,7 +1904,14 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "d78b6ef846091f870b9cd9633af651ecf9252b2fe86f14bc5ff35b1238a0aa3f"
+      "d78b6ef846091f870b9cd9633af651ecf9252b2fe86f14bc5ff35b1238a0aa3f",
+      "b61454cb5c8a87efaecf7665776b97253116711ddd325fd4511b169ceb48539d",
+      "8b2b7126da4c64b0ecc01ba998b384b67912469145b012caafd1ee903c865795",
+      "fa85f3fbf24d0d744ce4e9dea31860bc152403d0a10d6f60f0fddbda9134e6ee",
+      "710895687f8cc7d2de33503b9550f861b8deb7f346a7d394266521bbb839da38",
+      "f631e7746cd35cb75cef864b88984ebf3f49a48669312d6442f5a38a7b5053c4",
+      "95c93e057ce39d5db3965a0e501d0784d0622c029530d6bbccbfd25450bcf781",
+      "af2ac701c3cb4c82b668806b7dd3569ced57cce0f7dce1e76e474739a047ee17"
     ],
     "email": "abraaocaminha@gmail.com"
   },
@@ -1760,7 +1926,7 @@
         "level": 251,
         "vocation": "Exalted Monk",
         "world": "Luzibra",
-        "guildRank": "Recruta",
+        "guildRank": "Membro Novo",
         "groups": []
       }
     ],
@@ -1791,7 +1957,17 @@
     "sessionTokens": [
       "f61788af866c5b8174fc4c4a19192ab5bc4657b8e362f87ccee87ad94eb88b56",
       "f1d20f32754a2fc2b5e288e901b4949e44e5b110fbffb9df64b9ca4df99be1ab",
-      "dc575fa4795ece864e62f1e8a6d9e7ee95a9ef52ec3df13b93ef7e822d87d64f"
+      "dc575fa4795ece864e62f1e8a6d9e7ee95a9ef52ec3df13b93ef7e822d87d64f",
+      "1ebc63df68ad7eff5285a20bc6a2b894fc35bcc2e1d3735eac34090261ac33bc",
+      "19330662acd61c252a709fbcb4c50de0b6f28687f055b0302150ad9b57e5fab3",
+      "f4a0a84d21713dd82246202e6614f9a8f0ca185154a6747b2e9dd170b0c2e511",
+      "4cd2e5535684a7458310c0d6b04db643f063134d20eff76e57006ea77a88e789",
+      "9a7d8f9fe004a2d5cf2521ad01df6a4fc495e6725471f26f252653313afe2c75",
+      "32501199e59cb4448fcfcff1ea337abd6fded814c2286f54d2bf7c3045f4e0ad",
+      "c24be5eee797e27cf34e05a55ef34f2350974dd814b3b5e5704f9542e2db5b2f",
+      "aaf0cb418f041cd8bd0e5d3ad3503b7922eef12fa2c978a4d2c2dc91221e6bbd",
+      "08ccd942008894b1e05d745f4907233633f683abea82d3c5f4eb638139e86d21",
+      "224f19ff7ebb755e4ea6b5664b853a1b56f6847340337e5f620948b7b7069fb8"
     ],
     "email": "jotatvoficial@hotmail.com"
   },
@@ -1837,7 +2013,8 @@
     "recoveryTokenExpires": null,
     "sessionTokens": [
       "f7c1dd4ee76f35e538c810880c01d3bec7895f7bb08c6b3c7db857fa2a9d1fde",
-      "87f311c6eb0d2b61ff2769f840803f802aaf590055863844c406389c1cb4eae3"
+      "87f311c6eb0d2b61ff2769f840803f802aaf590055863844c406389c1cb4eae3",
+      "61b4373ed81a4ca6e420213ff82b7416ab0734c03362b58c68e969ff6a41e2c4"
     ],
     "email": "leo.tfonseca@gmail.com"
   },
@@ -1864,7 +2041,13 @@
       "02b277818a68f2682630e54b3e540c62b77229b0fb95fe55a14f870250ef5db6",
       "2505686fa4de3ce75759630e8a07a9104b59f7f5e99bd217e07a17a7cf4d2e4f",
       "ca6a4f5c3bd455224dcda5fa978ba63152e52e79f42af0b64a7e87ec2fde127e",
-      "893c110dbf796144d055688118fcc80ebdb39fa1053810ac4a8ba854432ff4a0"
+      "893c110dbf796144d055688118fcc80ebdb39fa1053810ac4a8ba854432ff4a0",
+      "f4c1304e480294a27a4785a4e22889cc9cb9cd9136fb01d1a91258c9f0e83a36",
+      "1616ec7e14ec24d07867a1dc072b6d7e801e3a9e13818469729d74f366cb5a94",
+      "c9116b85f76b050a57e4fdec6ebf767a12af73e4a64966196a5e418d221c94b7",
+      "036bf8615f690358e6c83cb6e1b570afdd3e67785e0ca0aef9c6e9e0c05f993c",
+      "3ed64abac107720a1ecf0a532ef2622b33608f6c89b10b97fe1e2af95510a7ab",
+      "ecc9246e5984682ab22e1334b64a430029739fbd4af8cad23dd47d79cfddb822"
     ],
     "email": "felipelala@me.com"
   },
@@ -1888,7 +2071,10 @@
     "sessionTokens": [
       "858ccd2114b7f69354cd25de82599a94fc8d0b16211986e4c6bce1df7c5711c9",
       "577c4db744e9d445c4ac235a0d9b6f9a4a57309e4beda889239a246b606a4a62",
-      "5a880f190a38617857cffa5df3131f0bb4f7a425e9f04c3d746bcb4548936faa"
+      "5a880f190a38617857cffa5df3131f0bb4f7a425e9f04c3d746bcb4548936faa",
+      "ed1decfa6117d5602ed4dcff7788fc120ef434a2d084b48c52e52b085425a7c3",
+      "d9144a863e8c9e8321b964c05c0e622d8bbacd679b3fbc4c5dc6bd0f3dd041da",
+      "b8849ca25661b22ec1d2a1bb5e6dacbfd895af44bb5dd600351f6cba4af656d0"
     ],
     "email": "ronie.mortatti@gmail.com"
   },
@@ -1909,7 +2095,10 @@
     ],
     "recoveryToken": null,
     "recoveryTokenExpires": null,
-    "sessionTokens": [],
+    "sessionTokens": [
+      "85213920881344095f502b4119eab81f3ecd142e894da21b3a0da4742126433c",
+      "32fd0e7eae1aa47e73bfabea4efdef7a2365dbec19c8c45de008da9a36d35ea7"
+    ],
     "email": "mgmoraesr@gmail.com"
   },
   "gustavoabdo3@live.com": {
@@ -1932,17 +2121,28 @@
         "level": 257,
         "vocation": "Exalted Monk",
         "world": "Luzibra",
-        "guildRank": "Recruta",
+        "guildRank": "Left Guild",
+        "groups": []
+      },
+      {
+        "characterName": "Salomao Fibrado",
+        "registeredAt": "2025-07-24T12:30:50.583Z",
+        "level": 378,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
         "groups": []
       }
     ],
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "b804815d3dbacc627a0df785b4002422b65e2ef870e1b5741c77e3b81b3a798e"
+      "b804815d3dbacc627a0df785b4002422b65e2ef870e1b5741c77e3b81b3a798e",
+      "4a765dc7b943eb93df28fabcaa8185bd48baa99dfe75c0b5aaf1b779e2117140",
+      "22e0ee6d9b378d7bd4ad28718d9510c453a90d3c2996b4eb7bdbe2374b726bce"
     ],
     "email": "gustavoabdo3@live.com",
-    "activeCharacterName": "Punhodo Gato Manco"
+    "activeCharacterName": "Salomao Fibrado"
   },
   "saulosrg770@gmail.com": {
     "name": "Elendra Vaelthorn",
@@ -1963,7 +2163,8 @@
     "recoveryTokenExpires": null,
     "sessionTokens": [
       "d53c76f8e9453c6150a047ffcef6e555a2760a6ba7e9d090cd80e71a62ba1511",
-      "484afc689817605a0b59ef9f51defba8f4963ea5e41a8de28ee8bfd198854fd3"
+      "484afc689817605a0b59ef9f51defba8f4963ea5e41a8de28ee8bfd198854fd3",
+      "0f2fc410b7ae47da262d8e994e15c2c0d963b396fcf4032bc7a6a504de05a833"
     ],
     "email": "saulosrg770@gmail.com"
   },
@@ -2000,7 +2201,28 @@
       "1e5509022b31175084b0dcf40891cd9ed77bdf1d04a32177e23af083560f4946",
       "66c18ea800b77af3fb5e3e56012c16f0eb549f93335baaecc1de63dc1a2dc6cc",
       "3408a15546c909ba118138e5089a8cf41f99c3b7d95cc42c2818bc7dcdb4e655",
-      "3419c39284ca1d31b10fc98df1041147b2610a561bc8d965da4825f343aef85d"
+      "3419c39284ca1d31b10fc98df1041147b2610a561bc8d965da4825f343aef85d",
+      "450f0d4138a01c46f8a04dd896684faecd60e6236d6c782c57afefaad4390811",
+      "1bec87fe11af5a226fc468bec83dd0de866077fb408da74e2a0dccae0b0e58fe",
+      "f076c483a412c80ffa93804b5dc38ef61ff833fe518bbece589f4caba49eaa91",
+      "4b47a688f904d11b1349964698cec633db8b88a3e8b8081cf42d4c545ba15e86",
+      "ca6784c7a18d027a5dbff1613ae7a2523f12208ad57c1adf55eeb1a0532dce2f",
+      "3f664667ebad053e8bb584208a1382e01ea540087cf81a3b8694602535010b69",
+      "0d37dc625e2ea6204c7b458ddbaf6396a5eac4d91eee53201c0b899b5c83057a",
+      "55c1ea5f415ed9de3d1d95aabc65e002c4450445bff5ef9a4e64f48c807d6448",
+      "c04dc600d3c88ea827ff09280dfbde3154c803441752bb65e90b5ed2fab62310",
+      "a033dc33a7b05a9607a45c4cab907c886b4241223a51ab5f125e2e05186bc7ac",
+      "8b363b6e143dcb3731ff6e50305a2f3fd001e637b08dfb8e0c955bf9303671c1",
+      "afd44d5b9f831275e6e9a33947b24de4b618435563f4820685040f03bad7fdfd",
+      "274cfa501980e33ee3e2fb40744614f27c1a3e3648ad411e5463a9fef8fc5375",
+      "25ec1fb3f37290a20b810054294df6ff26e58653265eddd176a3ed014c8c1607",
+      "c3f1e1c1a1ccf166876d22cc19853e2ed5aa557d173239d49df7924d85837d00",
+      "846faadcd2042ef05d835f415db6c726eb1654699802033851a477bcf5943439",
+      "49354ea8c583ae9815004bed7a27ddae6e6b8854edac602f1217215c91d67721",
+      "23b39dab9be277beb9c73416668e0b8435eb0ac5a79d05bc47144337f8708398",
+      "cf353138d723c6708d97bc94ce3fe60608834eab88084d3533696cde1b15b4dc",
+      "9dab3a8736d0085db96cbceaa70232fda028e4f1a04bd0b0431004bb7ca69608",
+      "7f625ea2b10cbf044ce3f8391f9dcf34cac3732652ce5b0b28abd3c2e7223b31"
     ],
     "email": "renatomeiercabral@hotmail.com"
   },
@@ -2024,7 +2246,11 @@
     "sessionTokens": [
       "01c5b59dda5cb41de76c1beb3fa2526762550abfc01f8ec8c679cc267db50fd3",
       "d0794c766d8c5ec6a39bf3360099c767de9509af3532e6451408d41e65820be4",
-      "8f86d7a73347880e5ee9c8baa9d7dce0042a4059c29d72a4d1c6e19e12413d21"
+      "8f86d7a73347880e5ee9c8baa9d7dce0042a4059c29d72a4d1c6e19e12413d21",
+      "4f9b5b9a05894d610b5c0edf45c247b83bd97ccd3f0003b14fc0eede33ce9119",
+      "327a36ea62b86673ebadf22e38346dd1feb708fde4ef968b335804f937cc22aa",
+      "bc141a5ad4cb8557c7b2c4aa753a0804c1c7c570764ad5955ba2f17af8bc861d",
+      "62316511d1caad0bbcf4a5c77a7dabb93097c265f82c81158b77ef1c1156b785"
     ],
     "email": "victor.pereirazikas@gmail.com"
   },
@@ -2048,7 +2274,8 @@
     "sessionTokens": [
       "28d4dfc7a39e6dd75a44e342b017d3d1de5f662e78c48006bc72d314b9cd9b33",
       "b7c7f8e0ff744f7e57296d394ee7f0ea45d9584bfbedfb2871c14ad6131d1b4d",
-      "0e34a821fab184778eeb56b381cdca724681d774cac718f53d18daa31d291f95"
+      "0e34a821fab184778eeb56b381cdca724681d774cac718f53d18daa31d291f95",
+      "de51ee6df43c64c40899588be7de8d84358938a9a503829acc05689ec6b1e635"
     ],
     "email": "mudancasvaldecir@gmail.com"
   },
@@ -2073,7 +2300,10 @@
       "f668b2878a947ab12716bb3f835ae49497007f1d0a9b38de18a1d194048f5ab2",
       "e12bbe32b728bf0ca7ce9e9d611784751221ae0f507fb37a4e362d51298abbd8",
       "3d192864c47da551cf3be3c0dc9badfc713e6fc4030e182caee7972f8e8f899f",
-      "646e2e9a283b70ae7f1de92b49e8bf396bef7fdadb234d322ac8442c19e59d50"
+      "646e2e9a283b70ae7f1de92b49e8bf396bef7fdadb234d322ac8442c19e59d50",
+      "aef672cd3ceebec99e2f0968f7a807dad406e86d6f3e4852d1f42238d7c1a1df",
+      "2e6927dab6aa0ba70333384a7c9d4ff22da19b238f1d77d4d432e39199dd1707",
+      "c2632727ecde7c2be5bdb26571c0571da724dad19f7dad008d380568c85670b2"
     ],
     "email": "surfnandoo@hotmail.com"
   },
@@ -2096,7 +2326,11 @@
     "recoveryTokenExpires": null,
     "sessionTokens": [
       "a8e445fd0e803067b1d4c53226b045e1c407f708488632d4ee6792ce53fedd1d",
-      "6cadb6f00e701f9875f33586240ee2d4c76c3ed2cf75a59f393a369b868f7090"
+      "6cadb6f00e701f9875f33586240ee2d4c76c3ed2cf75a59f393a369b868f7090",
+      "061d15c831324ef0681de4b7d40839a1178bd3cdb4ef6a4ce85f97b0b4a53f6a",
+      "599133fbbda998989e8aadc54d9789492b97fabfc73fdd2e850b23a8b653fc9e",
+      "256002d5cdfc14d278adb4234fc2cd68dc75b0af4895a8812c9387576821018d",
+      "2693897500961eae410f9de676cd0422db5f0d940c3d279e3e31969806166e19"
     ],
     "email": "rodrigohenrique.ecv@gmail.com"
   },
@@ -2162,7 +2396,8 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "e0fab3bcca4c29fd7560c2c7d687bd1de7aa0963f96f376f21d88aee6d975f9b"
+      "e0fab3bcca4c29fd7560c2c7d687bd1de7aa0963f96f376f21d88aee6d975f9b",
+      "f53286661089d69e5f7531e309dd110e2925778f80be234668ebae8c36b6ccba"
     ],
     "email": "juliomatos.c11@gmail.com"
   },
@@ -2187,7 +2422,13 @@
       "9f8544a65ddaf7679b56acaed9f271424c93044cd6d261cca32bf2cfe88f6b4c",
       "a70022a98b0ed9dd20ee5330c3ceb0e8706636c8c5dcaadcdeb63e29f39fd92c",
       "a3301829c776ffb60a2ca1e561414e876ea966a4ac62548eeca5032f8a3dd6e6",
-      "ed868d4dfdb03379f83089a2d8c9a55014a93d9a15977963569da6a151c9383b"
+      "ed868d4dfdb03379f83089a2d8c9a55014a93d9a15977963569da6a151c9383b",
+      "4ec43437c684ac23c7ba4b5a4e44509c3af210df7d40d97944b85fe086ee2ded",
+      "56bbda5c35339c12938eb921a7acde69da2aac36dbecddeff2d5e75e2926f800",
+      "afc14438506ad70cbf93a49f1f805c60fb0847b52f19b6714ba104054da95741",
+      "33282893e2496d769128dacd830b35a399a8d01337355eb7cdb399b076002cbc",
+      "7c7c2f84b0525e3396ba6391e859dbace410e940753fe2d096035f23efc118ce",
+      "1f5cbf780df08ab67c06769e1a5a786cf3bdc769a011fa636ce382164b335ea5"
     ],
     "email": "sebastian.zuniga@vendomatica.cl"
   },
@@ -2221,7 +2462,9 @@
     "recoveryTokenExpires": null,
     "sessionTokens": [
       "4e6c265955352407157494ea15885049da7cc2955c4b2d04b79a7b9659a2eaf7",
-      "68170e37f826589dbbb86154a472cef5821ffe149b4273968df959fbc10512df"
+      "68170e37f826589dbbb86154a472cef5821ffe149b4273968df959fbc10512df",
+      "b83c48e250ec58f26882a33185ff74a452dc9704e63518fb4a83204f3fb3bf3d",
+      "5119c13fd7fc30ffc64c22520d207a07dd610e1fd6bdaa4d80b91adba4140b2f"
     ],
     "email": "ginaldoluiz64@gmail.com"
   },
@@ -2245,7 +2488,11 @@
     "sessionTokens": [
       "1dfc969a66131e58d63df91bdfeb228a65bde4f706a4ce2ae5a8de5a5b3d427f",
       "cc2d8ad9894c9fa87f6d62c5e1824e93941af7599a62499bca8ea61442045f4d",
-      "8d3250d197d3bda1ed2233eca97e9ccab74767450e02c0dbd3031a94c10acc8e"
+      "8d3250d197d3bda1ed2233eca97e9ccab74767450e02c0dbd3031a94c10acc8e",
+      "3db3f6c7a04e475ba99739b4eb3c9200948855e7702f75af34d3a013cd4d4ea7",
+      "e1b9a4c253d3b75d06aa7d51b34500d5b06c70fc33fcf55d34c5719da03b6d28",
+      "f76cdac51125dd6d6ac1f7ba6ed429afb04f7f5324f3415e9c20fd0c555b427b",
+      "6d99df2375793c070e972271e92a9dcffa3b2ee48477c070c4a9b4ae22d2f652"
     ],
     "email": "humbertosilveiracruz@gmail.com"
   },
@@ -2289,7 +2536,14 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "4118ecf5a8c53833d736f744a0d39e6934907aa98c011e638879b6ba8c69433c"
+      "4118ecf5a8c53833d736f744a0d39e6934907aa98c011e638879b6ba8c69433c",
+      "25a7bca15baffdee465667d6d1fab6ca52e3518ee317b576ed0da599232f573e",
+      "260e5284cfb9f67bab86f3c99f7bf249c656a391f25edb617ccf8b86c6eda176",
+      "e1cfca339bd1a7bcd007319efc6aacbcb3a59f9f3f17fdd9d2eb10006b6df810",
+      "0278af502d86bbb891a8555563d8e082ea5ac5f60dd366174a01943bbbd1e78f",
+      "0f1fdfe37b91f27d5e87ac19821f9eeb5881c393813db40d7ae88d4c39dcc8ff",
+      "2e0d9f36e31d0c36f48907a0db0071840979776b82951d1c39101eae353aa664",
+      "5044e564ae61975e81d315afa7c6bc39e75ca22b228dab356346385cae258acf"
     ],
     "email": "vkasdew@outlook.com"
   },
@@ -2334,7 +2588,8 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "1f4d15b37e188bd8161b29d0981b56a33b3d002680a570d5042741c99683b703"
+      "1f4d15b37e188bd8161b29d0981b56a33b3d002680a570d5042741c99683b703",
+      "b7b1501d78d6589938c9d8c2cf0ddfddcca7a1f3f8998bee75a6b02dbb6a80ca"
     ],
     "email": "namelessone187@gmail.com"
   },
@@ -2358,7 +2613,9 @@
     "sessionTokens": [
       "ad65e2fec26e6ce295d540b98fb13d9a6aa5809c1eaf19127cd9abba38dce847",
       "082035806bc8d11a9548ca5bde340ec66c88749d0347080102afb8c9848f34d6",
-      "76a06abe5b8b9b97274599a7ae5fed1c1375d89e231b393e39c07ce6d8fa3286"
+      "76a06abe5b8b9b97274599a7ae5fed1c1375d89e231b393e39c07ce6d8fa3286",
+      "bed6f96f1b4ac705476b1a56bfd14bc3d60b6cd078f0fd93af9c34175214118b",
+      "0acf3aabb88ac122e285f70a2532f50acdd9cf25558df858ea045ec46b11353e"
     ],
     "email": "gamajunior521@gmail.com"
   },
@@ -2396,7 +2653,25 @@
       "38089c6c0aa30cc267ec3265225a5dc06d8691b3d601c3a330b2f1fbc2b219f9",
       "c9d368fb5a6fa4d577e33911641e5c4320676fb2c0be399cab761a5ee6cf1039",
       "c5894701d92a9d47c65636a42f46e11c508aa13aba4c7766a74b798330d8eb01",
-      "b0d08e4ca24b9945499a1d8d7d12e7a1f1a894ca95cd0b1b9ecf5e0f9350cf32"
+      "b0d08e4ca24b9945499a1d8d7d12e7a1f1a894ca95cd0b1b9ecf5e0f9350cf32",
+      "bc211d8ed0c6f8ad9130c56f17380de4e2ec0520b72468003b01f7f8d223af19",
+      "353ea73b5973a30e8fc4308b5035241632da0eb0d026af55abd6a21de423e335",
+      "c55f1d906967ab962c86ee0449ea76f57fb92e8a1ad1aa7abfdec499c0e456ab",
+      "ea16010eb3d0038b2579e46a41ebcd6c03a98225602371f5f349eed9b93100f9",
+      "556fa5337fb01fbfd69e573b11a3516f68579753870fcaeb0cc6801c4667c232",
+      "5893f474eb8c1fc20826f21f096c137143db41d3c57fcb44111c4ca48ccd78d9",
+      "89ce5a03635830c118f1156afe8c8a5c634fea542205e9c6ffec5d6dcaf3cd32",
+      "46ff101a2b79bd01ee24b180219fdfe718a05e7f623783f1a4aa515e4a16eec3",
+      "bbfeebabd79da0ae039eb677a60bad210c9875a85762ee1523dd450460a010a6",
+      "a7046c1f0988631f090f32cba4e57f068172b0039d081306f5dfea5dd768e283",
+      "583cd8ecd7898bcae6b4b63c68bf731ab3c707f258c0afb66b30d383920cdfb1",
+      "2b785dcc314bc96170eccfcab3cd8088aaa1a9f3ebf93eee48c374f1be9326cd",
+      "750bf0d91d486991743bd207363db612d1d6d303778c8167c9d4ffc9dd1c67fe",
+      "04acc2c5da070f2e208c10bfe4e02fd3b51036817a64aa0586400623ee044dca",
+      "9d97ccce43826e6fb300dcdb17a98f5b56dc02924dfda89ca96149398322a92d",
+      "d2d8001be291aebdbb24eed2f01c7a4fc39548af748408e4845d85c6903d7aa3",
+      "015195f009afbc8380e814583761b82bdf064ab0edb121257463413d55c08e3f",
+      "898c0b98cc91b68833d8996c0a0290931d391cc45b7d24bd49384f6d833aea6f"
     ],
     "email": "caiovfrota4@gmail.com"
   },
@@ -2442,7 +2717,8 @@
     "recoveryTokenExpires": null,
     "sessionTokens": [
       "32b4eec9b2dd5cc1fc6c1e2dd757e711d3bb27358e7429efa7a50df3ba689fef",
-      "b095a48de4621af582211e91fc4e84221ae9cffdf4b5dd05836ac2b044313980"
+      "b095a48de4621af582211e91fc4e84221ae9cffdf4b5dd05836ac2b044313980",
+      "f8e79cbd2163c1a0f02c02cb2e531aac9356377beae221465eb0d2f20578fd15"
     ],
     "email": "almeidalucascoelho@gmail.com"
   },
@@ -2464,7 +2740,11 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "b1173395567d2ae1561e333f656feaa766bb398f97e385a39e33b6053035146b"
+      "b1173395567d2ae1561e333f656feaa766bb398f97e385a39e33b6053035146b",
+      "d96b68524d400ab050dc831cf6015a2c9f9c117cf6068f104f25e03a7a9014d2",
+      "8baffe1371590bbba13e5927a22ed90d0f50e9c5d9778a372df01e1b72bea4c0",
+      "a5971bca1b56c574e5f94634bb861e12266c0157280a299ca506b6d86407a750",
+      "1574ce228373be7826b46043cab03a1e0c69470c8561499b75ec19125872f711"
     ],
     "email": "bruna2020adao@gmail.com"
   },
@@ -2487,7 +2767,8 @@
     "recoveryTokenExpires": null,
     "sessionTokens": [
       "440e9d7d1cb54297d918d444f046bc41ca97bcc73f6200fd5c05912ac4424418",
-      "bdb08b0eb78c504559912624c9492e3f109324ef56172b444a0b58cb6069cc72"
+      "bdb08b0eb78c504559912624c9492e3f109324ef56172b444a0b58cb6069cc72",
+      "c6026798f4694591bce607c21e2e536192f4cc2c7abc257dfe68ff206233a15d"
     ],
     "email": "eugenio_capatti@hotmail.com"
   },
@@ -2531,7 +2812,8 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "c280b67bcd0f7d174a0457af35b181b03c2326ef8114576afeaa9e0cdb2aa876"
+      "c280b67bcd0f7d174a0457af35b181b03c2326ef8114576afeaa9e0cdb2aa876",
+      "cceb014e1902e55099448d488b44a439ffbc1362d0f0f17386406627c2abe27e"
     ],
     "email": "putaquepariunadadisponivel@gmail.com"
   },
@@ -2575,7 +2857,9 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "3cf51e79be3cfeebbe9f330221a9bcb5cea18572acbaeb940e4dc65b11b5fb69"
+      "3cf51e79be3cfeebbe9f330221a9bcb5cea18572acbaeb940e4dc65b11b5fb69",
+      "d19cdb9b59a58a83ffb91c13434e3ad16afec25c2e26ad71cdecd638f6aecb05",
+      "79ce42e97b78ff15bc3769899fa7dc4a9374b610703ca2a8e8a21ed647032c84"
     ],
     "email": "playeryoshi@hotmail.com",
     "activeCharacterName": "Natureza Proibida"
@@ -2598,7 +2882,8 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "871ca7cb325e1cf1ce269fbc2af2a85e09e3ceca860c1a2cb33a1ec8084098f8"
+      "871ca7cb325e1cf1ce269fbc2af2a85e09e3ceca860c1a2cb33a1ec8084098f8",
+      "a6264adf69f6b548cbbc7b413e84688a4ea691827ded02400c311114c34e4f12"
     ],
     "email": "coberturademorango382@gmail.com"
   },
@@ -2620,7 +2905,9 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "0cbd3029d359d7af05318a95f4b4a36b88f8de6e79163cfcf9783c80bae27a15"
+      "0cbd3029d359d7af05318a95f4b4a36b88f8de6e79163cfcf9783c80bae27a15",
+      "083582a42a22a8c94ae30267ff037414849a224fab8d28064e60ad1b46d534a4",
+      "e41a4a51b74fbf4430c698da4ed544b45b84a1928701e8cc5b5236f82a0ed607"
     ],
     "email": "luizfelipenobrega99@gmail.com"
   },
@@ -2665,7 +2952,11 @@
     "recoveryTokenExpires": null,
     "sessionTokens": [
       "cd3dfd85de52df1c59c4a3a54398bf16023f6d1eab0450ffdcb3b55ffed151d1",
-      "ee37c368fd1d2036dc3c636b5e1ce0c0e235b6446de7966b64839aaad073c3e0"
+      "ee37c368fd1d2036dc3c636b5e1ce0c0e235b6446de7966b64839aaad073c3e0",
+      "7e6edad01dd5a24858a8a95d4b0e77b9491eea21fff7c1b03acc360673770047",
+      "d49617c69e120abafd8974a107a93c92658da740d360500e605a358c4771f04b",
+      "8a6dcdd11022438d3819c92b782d2592ec9d701cf2ceff281ba004fcfc079db4",
+      "fbc8f6552ea7f2071ba06af8a035cb1cd0e7e119b919a54106a17f83c5ab0743"
     ],
     "email": "giuliano.inter@hotmail.com"
   },
@@ -2732,7 +3023,15 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "55d1c315e6c05aa2e4c3589c1ec47654f467e460840197dc155bd5dd70c426b0"
+      "55d1c315e6c05aa2e4c3589c1ec47654f467e460840197dc155bd5dd70c426b0",
+      "ffa37b785e43fd05cf8e5c41cdc3624952dc0835baee60bd595bff26a41364ad",
+      "9ff3525355db8259f62ac4775ab68b34c43e53e156e713da00559f6cf4c24492",
+      "bc321af53780bef137d549b4001d4338f3091aa4acea7f71837ccf16847b5179",
+      "5c0dc1451e2bd148520043c471913813b0dc4b11b04d53faa9fdf6493b3756f8",
+      "2a3cd24303e75e81a5977093f5a700bfa8c25c1f3d6f5d1c255a4e8c640719de",
+      "f5af27bb41d8618f5102f5c8b4846ebdc0e047a65f1e096d80a63eb2ef05e01d",
+      "c15c91cb116558e519ff90433c98e5b31a21222a9201d60c2d4e0328779ee63f",
+      "c94b7082450b4b1b82a3c81d123dba4c66eaa91396244fa9c8c89147ff342cba"
     ],
     "email": "r2scontemplados@gmail.com"
   },
@@ -2756,7 +3055,12 @@
     "sessionTokens": [
       "ec7b1f4ccf7c9f07395ed5ecd73b8983d228e234ef924ce7440284544e48d944",
       "06563cdb96c5e12ba23d07eaa54d8de3ae34c073410bdd206fa0e5e1a363f267",
-      "c1d3f0551791d676a546ef0556286f5725eda56865c31cd339195074eead48c1"
+      "c1d3f0551791d676a546ef0556286f5725eda56865c31cd339195074eead48c1",
+      "8dc829a5a04677e894c05ce0a9c6fa90db17394c9e26896729ccc670307ac9ed",
+      "ec01309810566a2b247ab9cfcaa50b0ca9dd8a0ff443958cbc09de26478bada2",
+      "19c630e4bea9d67e12c3bc3997541286e453a173680b682c070296d437972a5b",
+      "7ca795557bd0bfc7d8e74bbd92dc18ebbdc0f45a50e033550500fb7ec3fc5979",
+      "a9dbd36dc1726c4ebe79ba5c18a63b6d9ea1449b94b53fb065f412f092e084dc"
     ],
     "email": "lucaslock15@hotmail.com"
   },
@@ -2783,7 +3087,11 @@
       "701914165a4ecfd02d83a97ae252dce7f3e7cbcf4ceda0c4b6354d1430193828",
       "a7fe5f62d7e910cc6b22be5fcaef6b22281b2f57a54743de13e237ebd51f097a",
       "07eb5d7468b1f197d0664ffbea65c871a62859d1847cf912d868437e3c519ef3",
-      "cac65fbfd0b37477d043edd2ac3155bb2087f893a225e7a45dccee2e24eef40d"
+      "cac65fbfd0b37477d043edd2ac3155bb2087f893a225e7a45dccee2e24eef40d",
+      "453ce9491884605b9477976898e9b081db9237c1edc931d0bcefb3a53d1b9e3c",
+      "ec5021eae479dd4f84d1fe37ea9dcf5f1a46f039a90af152e4f659b0ec0fe6e8",
+      "62aa296a7165321cda37358b0e95765adc4e2e41e394d7f34f9cd2e609693030",
+      "dfc00ec57a975431d8cb1d7b1856b29e597c8f8af7ec4351c8f795568c25bc4d"
     ],
     "email": "victornds94@gmail.com"
   },
@@ -2810,7 +3118,9 @@
       "fa2416acaa82941f0132c97828db2f27366bce0d6ee7bd0588ca99b8fbf351bd",
       "eb79bed9877c673f78c65343bbb373020bb577ecf1cb25cea6e562019581cb7c",
       "9b81f3ddf78037ab2036f1c2a9e0416d54e85e511394433b01974123ea757236",
-      "1bc8df5676175251fac3ec02bb5e3d6599cd55f5029ef559a884c79642359624"
+      "1bc8df5676175251fac3ec02bb5e3d6599cd55f5029ef559a884c79642359624",
+      "8cb791b0c57d3507ac43b7ee580156f2a4e7f3cfa5c71d067a318956e2c3a9c1",
+      "0b39ece2a6449e9be251d78b9c03066de44f72beb3e772166abb8eaee4025bba"
     ],
     "email": "l.evangelistasouza@outlook.com"
   },
@@ -2837,7 +3147,15 @@
       "655784936699e05fad6be7a0e5bdceeffb6970dab82c7c0b6e649abd00232a1a",
       "03709cd96597d9f70b3377de4e5790d500214fecc9bcf042c405bdb4d1f8a033",
       "883463c43b39b92325a691bd76ab4e03d20aa2400e211516261a5992048b79ad",
-      "65055a457bb59b2d5da1035c2af01c0b364828b6eeb7593d3de5965302a9b62e"
+      "65055a457bb59b2d5da1035c2af01c0b364828b6eeb7593d3de5965302a9b62e",
+      "ebf0ae3b74eafad7e892351c0f38755478521b440ceaa436b41f2f49ce2dd0a6",
+      "b106584eb67f6f74dd497ce67fa38b8a60f484a5c7dbc26aeae04cd3e9258001",
+      "abfe3dea3b643bed62e5c18d30bc71e275926840157db7e4d53fd72a69ef07e3",
+      "b744b1df8ec2c6b84f696921a3fb38f7151b6c448c7fc86b24ff5f75eb048ccc",
+      "19ac092c22f977f4a6e44057b0c633de66a13868ccebe23a1d5ccab26f8f330b",
+      "1a5a6f6433aa36ddd511772677cf196466639faf1fc7cafdd73449faa2e5af5f",
+      "ecdddfe934e6e258e25b81d53e8f538dbf0abaaa0c2febdca1a95bc706944bbc",
+      "41d8a5b4515539b6ab55b957c7fc34ee27e3c27ae33de91fa0654be64456bb4d"
     ],
     "email": "nenidual@gmail.com"
   },
@@ -2885,7 +3203,14 @@
       "61263d34905b6b5d001c1e1273354cd5a04b7dedb985b8ca6455338c631249cb",
       "768f1bbecb073c6ab612c1355641b7ae169c2a145ddadd191da04d41a96e3bec",
       "175aa4da869726626a6b41646c5997e376478c17f7734f14295ba49408885866",
-      "8ae3c6ba8dcd7578d6a4dbd34d85063f0093b3318566c4c197a625f41c5292d6"
+      "8ae3c6ba8dcd7578d6a4dbd34d85063f0093b3318566c4c197a625f41c5292d6",
+      "db30ba24f73331f2907d12477ff3fc908657dcf18747812d955599f0aa5af4ca",
+      "4f184fe637456f70d343bd449119109628652adf19304285ffb3a538ec010eb4",
+      "842da3be4a201ada9686349c3f53e2da524daa5bd0e07ac52b304676dbfd9894",
+      "5f0f1887cfb7f19a79cd18d0ef13b3dcecd8a5a3a00f29c911a0d1838dee3769",
+      "adeb0f1df78364d6f2f7aa8af286572c664c1f02e3669b1521b67a296fb367dc",
+      "60f91de2f222ae2011fe255c4e6d3ad7906483e123dabdf5bf3ae80518472c65",
+      "afb516aeb9ec0f578c8d42ca5269f5d404d94fb3740c0d1f4e3e5a33e1e37ea1"
     ],
     "email": "gscheffer@hotmail.com"
   },
@@ -2911,7 +3236,17 @@
       "e93e550607e26f45ac850ffe1c323b36900fd1a09617376646455db9dc21ab5e",
       "6f63901deef5380b0c90f4bb8dff38ecc40958cda6b61263cedcce5674cb5e8b",
       "56ff4ccd805646a6caa0700c072f544d509cd9867b68dac8bbdd6d5278f9734f",
-      "22e25d650a569bfea4250d2baf520bd2ba5ed6f4ea6959c10c79ec0c8dc5f365"
+      "22e25d650a569bfea4250d2baf520bd2ba5ed6f4ea6959c10c79ec0c8dc5f365",
+      "f31d60389d2dd2b7315ebd2cd6f9453eaedcf562b928ae5ec96af5556f9c09dc",
+      "ff335a86d168e7eef835c3b4cd137a1c6fa8f4745e70b33b8213b26db28015fa",
+      "b9d9210496c19dd30e5646a6ef62b93c637b275ecfd64e6e484be5d04bbbb6a8",
+      "59d781988673df1beea3a14b9ff21943e70de13064b1db4a0565cf262e78a420",
+      "82f3d2fd7e942ba062dba6c6d127b232ab6e96b8a1786269102cea9e2d3d444c",
+      "124ae3b68b29d7f8f69c6e79747a27a11795f683db94b736cd5898bc9338b2c3",
+      "3e1c97ca57967b6dc44ac784789bea98de00648cc873313170732247a09ae854",
+      "be84fc80978cec771c0fcdfa7f4fed65328054152c82cf5d6963014ed61799dd",
+      "8d34f48598b05d0342f7a18f767e8369806362e2360f4040d40cf6f90c706ba0",
+      "038d2fcdc5757a2dcb26974bfb6545207ed2c9e9eded0a4b3d727805d3b56128"
     ],
     "email": "rubao_@hotmail.com"
   },
@@ -2933,7 +3268,11 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "6f078d028a9f6e7c5c35c564a689d234f0e81e39297114d64648f7f38344c304"
+      "6f078d028a9f6e7c5c35c564a689d234f0e81e39297114d64648f7f38344c304",
+      "f07ff57ef5bc2d30c510a57e5c305be22029946e6cf03d0490b9a6377a01cc7e",
+      "43b828f81e4d8154ca6a806c3ccf67ff00c7f003d9b98927ec0251dea4830072",
+      "ec78d721eb39d50ffa932e50dc712eaf3af3b492cb71d45ce52d442c7b421863",
+      "75119f409506ebe09182ec70dc9bb0fc2cf7c646a096a465284f5e84095c2cc5"
     ],
     "email": "marcos.pjh99@gmail.com"
   },
@@ -2948,7 +3287,7 @@
         "level": 302,
         "vocation": "Master Sorcerer",
         "world": "Luzibra",
-        "guildRank": "Recruta",
+        "guildRank": "Left Guild",
         "groups": []
       }
     ],
@@ -2963,12 +3302,23 @@
     "name": "Marcos Moura",
     "phone": "31998996166",
     "passwordHash": "02ec01a5a4da47f807591fc292b81de3:69f563544a9ca24cf479888b503349819a2239d4b7954ec5f2a9fc8064545f025771faf0c26775fbbf069687f95d2e7e92063dca4105ba22d28e9f08b0038ffe",
-    "tibiaCharacters": [],
+    "tibiaCharacters": [
+      {
+        "characterName": "Sag Galo Doido",
+        "registeredAt": "2025-07-22T18:27:36.795Z",
+        "level": 393,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Major",
+        "groups": []
+      }
+    ],
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
       "1d9668cec9ef1d153d18052eacd66bf92c9c2a99545f437888e13e92cc429fc7"
-    ]
+    ],
+    "email": "marcosholiveirabh@gmail.com"
   },
   "gabrieljanir96@hotmail.com": {
     "name": "Sir Bibito",
@@ -2990,7 +3340,9 @@
     "sessionTokens": [
       "948a8a85286cf6cbfff0a9fa16ccc95e752b93c6f6a07052678ba789bd54e47f",
       "559a05ef5da876226757580bac543b1222f5839100f160028181bc2970349558",
-      "f16740e28f83d248c7b264211fea26552a76a2347e44a537bd554c35e83194aa"
+      "f16740e28f83d248c7b264211fea26552a76a2347e44a537bd554c35e83194aa",
+      "84e530a67b415c886fc07b4aabbed8a71c3cb2f16e4df8e719ee22d50eed1c7c",
+      "a58ddb31f84c90ca53672a567533a375a979ed46c5885d5ae07403846eac5c2a"
     ],
     "email": "gabrieljanir96@hotmail.com"
   },
@@ -3014,7 +3366,12 @@
     "sessionTokens": [
       "004482a72f3e479c969bd57b71cea20311242c2b64437d4709c22a99ba4d5d34",
       "12379915bc86b9dc937d908e507339ba0a4b489d095f6dab8bc70c97742d70df",
-      "69ff7e6fadd57cabc9c582b5e7ac8871bd73dc671cb555360ecfa2bc4e9e67cd"
+      "69ff7e6fadd57cabc9c582b5e7ac8871bd73dc671cb555360ecfa2bc4e9e67cd",
+      "a6072c81a99a5953023d953c5560bf28f0879e520bcd74ff269508eb51c86a3c",
+      "3a97dd5f48d9273c50c57accb9a6251ac6a95b51ac08fc4ca268c7f78411259e",
+      "09f25e5ec6b76e782c01d5acc8a002c1264aa1e81be26da7fa0e0df3cc5ee847",
+      "c6e25e77dd9bb581a6af4af9e9d6a76f8dd09115872bd9fb5070d4f77f256525",
+      "4ca70c6339062a851f0079ffb748b57e2347e80c0fd3c4b29e46f1d67e49481f"
     ],
     "email": "klon.lima143@gmail.com"
   },
@@ -3062,7 +3419,12 @@
       "40b1d19bd9d6a998dcaf03bda80a3eb98e825eab59a149683b75df4b46cd17fc",
       "8ba9de6b6c4cba5bc5622d1b8d875e74a56bf1033856292ca6b0b0994205a812",
       "cccb1abe02d61e11e4d17d54764e0e9f933917515c432215a49e0a2940cbff47",
-      "f8b625aa5708e5e36ffd48623b5433dde47b32344c457fc037cd250dd781a058"
+      "f8b625aa5708e5e36ffd48623b5433dde47b32344c457fc037cd250dd781a058",
+      "779c78bbcb9185bae6ee1d943855b0157b303926b406db18b066fa253394e0b3",
+      "25543d13e58cecee9d9d8f5b2c66b76ef950e0b978aa83437a410c1c7fbe02f8",
+      "3679149460b068e4adbdb55943184b60e3dcbe34877fcba805a1f452925c6016",
+      "c3baeac2372d004a615271c7f98451e7248bfffe81106cd5287e8f272bc2d6a7",
+      "2f439522c3ae4450a0a4db860f89f36f90f579b0fc3a8ec67a0af7ffc45905b0"
     ],
     "email": "guikawa.tibia@gmail.com"
   },
@@ -3085,7 +3447,8 @@
     "recoveryTokenExpires": null,
     "sessionTokens": [
       "eb703a0f4e9873e21ca1bbf790f8924fdccb33a3e725c147e771ab457dd4fd99",
-      "b4b769202fdcab69b5f187e8f630f01982ac62b782f8cc793adc8996ee8e4916"
+      "b4b769202fdcab69b5f187e8f630f01982ac62b782f8cc793adc8996ee8e4916",
+      "e15bd69fa35359157e952fe71bffe8e0f89a473b9973cba1b46b624a7116796f"
     ],
     "email": "rafaelmadden18@gmail.com"
   },
@@ -3130,7 +3493,12 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "ff9affc3826cb50f359b352b8e640ae92680fd7a0abd858e4e3d44bf749fad36"
+      "ff9affc3826cb50f359b352b8e640ae92680fd7a0abd858e4e3d44bf749fad36",
+      "38d63ad4c9d0bcd46f9e94a417ea2d0860b3fcb62ac0169d259a0854cf584ca5",
+      "8fb8223877f15b879c35463f29d4c51c6a0f314e1456b49d3cc21a49e0a1bd1d",
+      "9a16d1e9daca8ae103014c547784b38d59d506364b208c98acf9dea6c7574763",
+      "b2859bd86bcf6c8c57416e8e26faaa55dd2e6fff9f48b5a13f331711ee6182dd",
+      "a431a9536523db5cbeb6b4887a41b64f1b5c18326211f39d27624c4f5f226da5"
     ],
     "email": "gabriel159garcia@hotmail.com"
   },
@@ -3141,8 +3509,8 @@
     "tibiaCharacters": [
       {
         "characterName": "New Croonos",
-        "registeredAt": "2025-07-15T23:09:59.013Z",
-        "level": 254,
+        "registeredAt": "2025-07-24T22:44:15.499Z",
+        "level": 265,
         "vocation": "Elder Druid",
         "world": "Luzibra",
         "guildRank": "Recruta",
@@ -3152,7 +3520,15 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "71b814c3b112959fade4a921a8325e95fc632104af7ad25cfe46f1561af03395"
+      "71b814c3b112959fade4a921a8325e95fc632104af7ad25cfe46f1561af03395",
+      "b9d30d30c9ade1ac7ddc9864a12f1251a34631da29c6e0c3b13120a6b71e9d43",
+      "8b0595430d298738ae7954a2272a93a90f08c128ecb943d25b9ac3306d05ffed",
+      "da121d8436b191197c0026159bf70e982ecaa54b9e5af317601cf83008feaed3",
+      "ea9fd2040aef50fad5f03fd86e0dcedf6808c90cdffbe147014a71bde1611053",
+      "f18b47f27971bcaae3ffa4efd95878571a9e4cc4e5adeb833739599228a46eea",
+      "ea357ba78ac6d2671a00334d9c36e386c8556d67a6d59da1f3717e09b082a245",
+      "57bea8a9c0d33e8476c0229fabee28d79b257e6069400fd8d5744366ef8f9ee7",
+      "508b786c4db9b04585e69ce0db37a6779185a26f2e1ce92d00f2b6365f36f5f1"
     ],
     "email": "marciodiassantana@gmail.com.br"
   },
@@ -3175,7 +3551,9 @@
     "recoveryTokenExpires": null,
     "sessionTokens": [
       "774ee2239a31560fb556288b44778206a2b83fc684e6f8c88d08578218888bfb",
-      "5ac00fee3671dc6bd1a8acd4cbd0098757218c626ef531daac2fb211e8b1e8c3"
+      "5ac00fee3671dc6bd1a8acd4cbd0098757218c626ef531daac2fb211e8b1e8c3",
+      "7ef9fdf5aa8879e63e833546e16834f56e8f5794c1d1b9b229d3db6e5a199594",
+      "45eea2da568b318108d3164effa1def24ec9de91856e41e6ad55d28ac42f0c0d"
     ],
     "email": "marceloavv2024@gmail.com"
   },
@@ -3285,7 +3663,18 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "76b918d7adfa8286fa2106ad0c09f10c1216c3fe949d10a09186c9eaee092fec"
+      "76b918d7adfa8286fa2106ad0c09f10c1216c3fe949d10a09186c9eaee092fec",
+      "efa95c83e4074cc57833c4b05e88a7e389d41000c85a7c0ccfa3e7ac026cfb58",
+      "6ace8e5e7d812f8ce965f314cce7831da407a366a6b5252e8d1d477b60808111",
+      "ea5fd123faf7aa5ba99d9ff1f9f44da92dedb92a147ddb08cad25483840ea530",
+      "f1c063b32f22077a6a7076ca0306cb0473d9c2a82ea0aa08eee26d311500d0d3",
+      "a540da388c9040a86a891c8dc513b0c9aa92e46fcf474f82f591dffb0ff9db71",
+      "c5aca99b0b6ebd49eb509fccf18243e1f4b117b2eb3f6cd10418c982487a77a0",
+      "67025f49b51abb5926ca4a62dee32f47014ac1344c58fc1ceea91e663a806f83",
+      "fed6dd1ebf6a5e7a4ae0591354eb040b1aa51672c8abc9abfd19868f86be0a4b",
+      "0f19a6dcd2a6462b42ce6ac32557c69faf33fc6bdfc2be221b5ece7f55d15146",
+      "25820bc45aa53b24426ec7080994c76a898af3e632bc981796f59576cdacf261",
+      "eb52552ae4e261b8a55de88e07ab540e67a136166cda12e58b0708d44500623a"
     ],
     "email": "renan.174@hotmail.com"
   },
@@ -3333,7 +3722,11 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "e95c45fa16164c6fadffee858a0cb57869c74e270e87278c1858df05fe96b9b9"
+      "e95c45fa16164c6fadffee858a0cb57869c74e270e87278c1858df05fe96b9b9",
+      "6b1da8ac939cc38ed4a1bb2ed78cba269aa23b2fcea7101284b48fa844d96c52",
+      "fe312694b90f3207398656a984c7764ad84dc5a140393878450731f76fda7622",
+      "72f8dd0708a8047e4686b9a064ae52d77e9cce4f911406aa2b23a77a480c38a1",
+      "7d4aa8b90f1aafcf66e8b26c5705226245583086993c7bdd47bf0c13bd41befa"
     ],
     "email": "amarovmf@gmail.com"
   },
@@ -3372,14 +3765,40 @@
         "world": "Luzibra",
         "guildRank": "Recruta",
         "groups": []
+      },
+      {
+        "characterName": "Arcanum Wizard",
+        "registeredAt": "2025-07-27T21:06:09.027Z",
+        "level": 229,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Reserva",
+        "groups": []
       }
     ],
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "9e7bfa42ee9b7ccb128e55a69eb508f3c51ef81169a93dac71921fd71ff4987f"
+      "9e7bfa42ee9b7ccb128e55a69eb508f3c51ef81169a93dac71921fd71ff4987f",
+      "0ae9651f1de0a95c4f8515d634ec26721aa825cd0989a62e8e8a5bf3684773f9",
+      "eb6f80744ad11d91842abd176b3f5ba7ada8137201c867c2f6d1409f21771f28",
+      "65768ae68e60bb5345c8590972e32c644aba28aa695e450faf5ff812379e3d97",
+      "970c11bc0afeb61a021e96944fbcf83d65d52f5c4730d97087b9e4d861543a5e",
+      "51292a89e0d0c575ae950a107caa76cf582d8340578d51e1e174d99e3b608320",
+      "8c393bd65bc5677e22ee2acf0921a136ec9104d0c1881c7191ea314b523cbad8",
+      "c9e0341d65b3a62d1484303931904855a21f39699a64c2070ea022184de89d7d",
+      "19c40a310f6db646755951076ad1b14526d74ae42efcecf544d75f17a81bb6db",
+      "ac2981c6f9dd65f0ac0915cff3f7d7f2d411a62dfb32ac6417536da090f578e3",
+      "c66e9d7933c76019a69e27f1efa4f14e175a2d079965bc83728e43ac7bdf4ecb",
+      "1f351505837cb5ef8466c2e622403c9c46f1c4518a5214354dca2145a54ddced",
+      "21700ee231e1aa7dd570399f9d2993ab3a65c3dd1097b7fa3eaf9b9c8aabb76f",
+      "f81569a614e2d20a5dbbb9f5fc9432923b200f0fe0638112ef6af866c343aefa",
+      "d9b24ec6a56054e8e99036a458b1d5510c614e7abb2e5726e7f14aeed8b55e39",
+      "adf20e6555e363e68c92866ba1adfc2c53754daf9516d99b778cf6c3cbcbeb7c",
+      "16ea9e8cb1759a414c92e07f786af180519aa5a3ca986b41886eacd033d32828"
     ],
-    "email": "andrearaujo133@gmail.com"
+    "email": "andrearaujo133@gmail.com",
+    "activeCharacterName": "Arcanum Wizard"
   },
   "luzibra@tibia.com.br": {
     "name": "Ruivo",
@@ -3401,7 +3820,8 @@
     "sessionTokens": [
       "2b104dd84933dcc476abf753a4f52e7299bc8936cd473bb8b6f454e8615360f9",
       "caff3847f3e83c84e4eeef47b03f4033ae94418c3e16b90ce0b953a06b9fd290",
-      "7555b4be74698dfd294c4801a9094b87c748ecbf38b66f9cda3658d83e20550b"
+      "7555b4be74698dfd294c4801a9094b87c748ecbf38b66f9cda3658d83e20550b",
+      "24e9ae79f6f1d8585114e2c25a658324008c3050a01865a6ba173415b632f0fd"
     ],
     "email": "luzibra@tibia.com.br"
   },
@@ -3460,6 +3880,15 @@
         "level": 115,
         "vocation": "Royal Paladin",
         "world": "Luzibra",
+        "guildRank": "Left Guild",
+        "groups": []
+      },
+      {
+        "characterName": "Zoebeer",
+        "registeredAt": "2025-07-28T23:59:52.603Z",
+        "level": 294,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
         "guildRank": "Membro Novo",
         "groups": []
       }
@@ -3468,9 +3897,13 @@
     "recoveryTokenExpires": null,
     "sessionTokens": [
       "a782e8e10b5bb34ea28b0f31650181479567d59c007408762e1129bba0315a8e",
-      "5826fbf17982075447511ed0265b295a795c5d845edf590cc777bc28d48c48d6"
+      "5826fbf17982075447511ed0265b295a795c5d845edf590cc777bc28d48c48d6",
+      "c3b0d29e39ed853b77185db25f790b5115242573c3f9418f93075f73bb36322a",
+      "d34e6413ac08cc237fc59194b8c96617bd32231e827c813593e3295454ebeb88",
+      "2ef21351a7efea0203d7c75f3fed2d876ff4af1e411e9a44cfbb73ea1436055e"
     ],
-    "email": "mgmsouza11@hotmail.com"
+    "email": "mgmsouza11@hotmail.com",
+    "activeCharacterName": "Zoebeer"
   },
   "lisvassoler@gmail.com": {
     "name": "Elisa",
@@ -3491,7 +3924,19 @@
     "recoveryTokenExpires": null,
     "sessionTokens": [
       "5271d9a5df93fcea5f735b47091fd243ac06366c421b76ef19f0f0e93a522cef",
-      "a70286073301d3c8563684cd7b64edcc3ab9af6d77f173b238bd32cbf62179f4"
+      "a70286073301d3c8563684cd7b64edcc3ab9af6d77f173b238bd32cbf62179f4",
+      "c2f376a2ac58ff293e35fc75c036465f49eaeb966f27e7c3270f6fbc6e76ac19",
+      "6af4cde6b8cb2f4d333bef474cab80199723f2dd54c991d30a83dd6d42c6680f",
+      "a64f72a59dfdeafa294bb926690e4cb832a73a50bdcdb5903eb2f191e970ac94",
+      "9af4e4a355383b7a856f1f11d5c70ed9bf7852ab79e591d5ef12170f7108b22b",
+      "3784c2729cf6fd762b3b060426440a3968d17012f74efd4f0e82ad6f1731c8bf",
+      "a29a75981f874779701698fd791074743d72e1a8405b69a6dcd9cead08f93357",
+      "17b0abf419e3875fab799723d0f461832523ba72bfa59a433ea32302697a5686",
+      "284f2bc28ed1b2461ae589f138168415e125c8f2b421da5446ea73d932f0482b",
+      "a5fca6faeb99eafc1a2b5d1fcbedfdf8312136c6c03ed6ed705fc0016c8db4cc",
+      "a6609d85ec3f29d876077fc7195eca6a7b24abfb33c1d84a6c201b44041d4b6a",
+      "95808f8f9488952cfbc351d8276799eae97f9f661efdae132894b23411ca164f",
+      "adda2dc5a42701d5ab5011a118e26ce2a9f349aab8a68394be54c7d05a8b3f1d"
     ],
     "email": "lisvassoler@gmail.com"
   },
@@ -3522,13 +3967,25 @@
     "name": "Renan Ferreira",
     "phone": "11952861152",
     "passwordHash": "f1a7c19f661c88182b9b352c3363a799:a8e454a75fda435ca28baef2c5706fd163648238e1eeb95d913e2179d144ecfd92e45781c7102673c7b700ea344442f797f8de84a36811a15f9bea2fa8607985",
-    "tibiaCharacters": [],
+    "tibiaCharacters": [
+      {
+        "characterName": "Arceed",
+        "registeredAt": "2025-07-26T17:49:48.691Z",
+        "level": 276,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
       "67fc5d8c25a54ce9fdeb23780a606e714db0ac3dffe5326ab4f1022504ddc5bc",
-      "e7b4b04018fd6fb391ff013d83d239e820e1f72a8fea0cd1fc02917472708b27"
-    ]
+      "e7b4b04018fd6fb391ff013d83d239e820e1f72a8fea0cd1fc02917472708b27",
+      "6128ccf8afbc5e6b923160bd056e4173ecf7bf5817505a704c76f2a6dd78c04b"
+    ],
+    "email": "renan_alves05@hotmail.com"
   },
   "pablocarloscardoso@gmail.com": {
     "name": "pablo",
@@ -3550,7 +4007,9 @@
     "sessionTokens": [
       "4d46bfbd000ca0f50f3d164fe5c31a1c7da34765086b9b151f49aa387631e4eb",
       "a7e41412ee83e4cb2aef4c62f3b469bbdd351b33c772c6d66b2c03f0af6f2917",
-      "bbee9db028d0c9dc468230de85d7cd48ec027854e5686e134e0955bb04e30564"
+      "bbee9db028d0c9dc468230de85d7cd48ec027854e5686e134e0955bb04e30564",
+      "2e02a14266b705e9ebb8ed0168a048b0621e5682f90bfe9dc118769abcd9618f",
+      "fc0d10f128d6ced41e459a6bd005cbf678022be9795cd7a9db5fe4b8dfdf6dbc"
     ],
     "email": "pablocarloscardoso@gmail.com"
   },
@@ -3573,7 +4032,12 @@
     "recoveryTokenExpires": null,
     "sessionTokens": [
       "64d29c2dd6fb5a7d57930dee43598ed548c628414aec09dd58f147d834c7f163",
-      "a42ac42ccabf20926fced883b6f6447608c6768cf724cb0e0dd65fc1903a718e"
+      "a42ac42ccabf20926fced883b6f6447608c6768cf724cb0e0dd65fc1903a718e",
+      "53154efda448b7244642313d0bbcf6102f5a6d32045daef4224e9a7afe1a1d36",
+      "50d2de7af8e30648a3db964bc2ee4330a564a65da68303e9cc9c32f1728b0f1e",
+      "e97aaae811b9083150fda9108fe21a3966e8d08b67f0acf6210b34e00a11fde9",
+      "3bce2ab9469513cb9ef6bfb50d01b481020c745c49c46c511b8e037c91adc62f",
+      "d2598eaa85e47781d23013db89f047d5574f711e7e18214b6d939b901460dd26"
     ],
     "email": "nocyamhelio@gmail.com"
   },
@@ -3622,7 +4086,20 @@
       "f72c6397804027c29efec22d4cd00da95950aa985282d923fd0ef34e5b25e1b9",
       "7827fc594b6690273052d86fc2dccc5307b804c87136b56bf42e555a0dba47b7",
       "bb39993a70675e113ce8ac722645b858cb11cbfc26ba1c167a8c1afb1e2a2333",
-      "fb878c7f770b107a370e20a14d1d3a4c3e6acb81c1064deeb398092ec722ddcd"
+      "fb878c7f770b107a370e20a14d1d3a4c3e6acb81c1064deeb398092ec722ddcd",
+      "f670e8abaa9ef0cf4fcba7f1c02b2292e7e01cacf537acbac008c5c7635cb63a",
+      "e945733f6623115f21893b4032e6397b9a15acde337de35f0ca610a9c4300291",
+      "634a987535fe3ab1711956ab915ea65d7b5078d9dd57e0efc0beb733e17b63bc",
+      "70dfcf4450fad3d297ad220b6ff39f3775ce8d69d5d03884f0bbcd39a75e50fc",
+      "4038f1e0acaddeb0a0547412898e8083d403e3218c624cbf02e29efb96e9eafd",
+      "3b641533461522122d971940618edf489ae32cf38df35acb7b769a9792f9d0d5",
+      "468ca5708704ae103a66d4f8057587e127afae00ea5d8696617da8e612d7a1dc",
+      "fa9b3a84c7a02439c628f61d9ef847dcf70e01bda58d6efba9c48dff6ba0316b",
+      "0e2ffc9d89ef633760fe4b664d81301c15fd522085fd4120188d09f3594d99ab",
+      "b1ff08781390a154b57c9fcb232f15a547409b64e3f5d9dde151496d6c0a67d0",
+      "923a346ae659d0b2541a1c786e1a38e6b1e2b76b12c6b30f8126ef17e5762fbd",
+      "856542622c0f56056168fac31d458495c804f57feebd29941fafd8a9ca466916",
+      "32a3006f970d89d5ce9863e57e4b047b0d207465913243556e6b24af433f6e18"
     ],
     "email": "julianousoneferraz@hotmail.com"
   },
@@ -3643,7 +4120,12 @@
     ],
     "recoveryToken": null,
     "recoveryTokenExpires": null,
-    "sessionTokens": [],
+    "sessionTokens": [
+      "8f121db8728890976a76f7811106f9de6def3aaf7ead288ebe77a3d4acae7d96",
+      "4ffe2ec94bfb718ec337e0c0132dc0037c1e3326424b74627cda0f418f614416",
+      "9adceb297e5913bad2655bdfef9d497e5045e39c541ae48ca9c824b4edb80fd4",
+      "f7a51ea7eaaa5eac06a073c7d04d3a3606d5aae6a18b4bd1da2c80833735af9d"
+    ],
     "email": "Tibia.ts.ek@hotmail.com"
   },
   "gui.mazocante@gmail.com": {
@@ -3694,7 +4176,20 @@
       "dff537727035d97853df06a5498c243cb8fc67de98c9d0c7e61650c17bfaff91",
       "083965d37a35306a9d27d7fc940aecc731c2038e142fcbb61b4877da271608e0",
       "e0b0979bd907c0396a6a5d2ee60bdb8b5230176931a191f5dbfefdd92492c6f7",
-      "60b75fb5241d3529248609a0007e72306c083bf013e08aab9c1297cee3f93535"
+      "60b75fb5241d3529248609a0007e72306c083bf013e08aab9c1297cee3f93535",
+      "ded37c04f0ebe8bc150aeea7dc5f93cfeca1c5c059d1bc90b686fe0963056a0c",
+      "ec1063e9baba690e8bd4fe32dcc3952c3822f209c213ae3f379d6d3bc4cadfc6",
+      "f49af4a92ba7f6d58bf1921670c192877a8b37441f318acc62d32d8054166107",
+      "2461a52c73231d93e1506d54aa3cccc1aacb42c71bf921bf7df630a3841f093f",
+      "fb438c031cb6e30258e142007c8b2d4237224271f5a77e4601ac1df89dbe5b02",
+      "63776a2c269a1608c3320fed4c85aca9ef9240d25440f168babd739b70381bac",
+      "73bafe5f048d09219efeb48b947ddb4151324064e77c7094eeb27b9c0c5e033b",
+      "d626f4e01fabd5c9f81f20152ffcaa05c837674056c877db4c9f937c82873e5d",
+      "c610cf6878cbbb4c22cf945ead77fbd469e533b7644005fe37539089ef3137dc",
+      "01f13210d79dc3a8c0fdc2b336626f9c4ff95e56f5e79eb45ad49b8656358600",
+      "e32d6a5e25d3781c0e14a9dca209540e3182eef56a4beaff4175c1e6c1cac782",
+      "8d9024bbae4aa7ba702f2e6b2ca249d4a03fd14bfdef331f87a22dba0aea17d1",
+      "4b2bd49431d3f1bde7b9b5d989c627e9e31c1e4e41a05e9a289889d815535fe0"
     ],
     "email": "castilho1994.lu@gmail.com"
   },
@@ -3717,7 +4212,15 @@
     "recoveryTokenExpires": null,
     "sessionTokens": [
       "a816e92df1743b372f9a80ab37bd7cc1cec12b4488f7cbb00f4b6a5b6ab78237",
-      "b9febdd743216cabdfb059d70c2ee61781437c2b272331efb264101e61077162"
+      "b9febdd743216cabdfb059d70c2ee61781437c2b272331efb264101e61077162",
+      "3ce5fa06724ccbca3d7e3d98cf47c4d58343e0a577d7136108e9dbb980adb68a",
+      "5e55a22a13d4191c9b391cec1572cc6fb2b2f6176b23cdf920158cab6b68d045",
+      "7f313ab079e003cd4643e569221a1c14fa16a03d5e98a0b5c9b49d4e5c7770c0",
+      "b6b613fd5c38180912c36926798821e964adec52a6bac1c39aa38e259ac6ba24",
+      "9fc91f4a8c103bf05b62efb1de365ce3e064867ea9fbafbb4b6c15b1784d0e52",
+      "22b69de0ef40e8502bc88df75644921d815dafab05396ba62ccdd60d67232868",
+      "882fc7a12e9997a56c4fea3227ebd724ac3c88d491aaa3614045e08bd97c3df0",
+      "5194f2ff2edb8bce62c52abf25d6e2459441ecf2469d8cc8a370ae6b875fd9bb"
     ],
     "email": "lourencoalvesnet@gmail.com"
   },
@@ -3732,7 +4235,7 @@
         "level": 167,
         "vocation": "Exalted Monk",
         "world": "Luzibra",
-        "guildRank": "Membro Novo",
+        "guildRank": "Left Guild",
         "groups": []
       }
     ],
@@ -3763,14 +4266,18 @@
     "sessionTokens": [
       "fd11274acb518ea2e7d1182fb874e4e0067e967110bc6b9238d115eb58542a1f",
       "a0d9bc37f598fad8b245c1a722517a51f3f9ca1468aac815084674702b80d9e3",
-      "3b2268f27c74d0c60768ccf238e34acde927a2e40cb3f55238866ea0c9b8cb9c"
+      "3b2268f27c74d0c60768ccf238e34acde927a2e40cb3f55238866ea0c9b8cb9c",
+      "5f062e3bc858204ac9e0c5e507aa08bedf9e849a533c6dafb500e5e87fcd42f1",
+      "3d3d33cb49d874aeb06f26ce09d680fab4c2927d3e855ec60db430bba6492f0d",
+      "5bba18b00f620ee916d44b844a9c6dc1b105e60cbe78c37754fe351a17b1e9a1",
+      "7d8a16443e86746c101a8bc68e9a1cb987e32a9b84e0ea636db24c746c9b67c3"
     ],
     "email": "jvbrunaa@gmail.com"
   },
   "laurofernandes09@hotmail.com": {
     "name": "lauro fernandes peixoto",
     "phone": "82981135107",
-    "passwordHash": "c612dc33fc3bdbf5358f91a0041232c9:af1f79cb73c243b8d2471c337865848209a637ce7ccacad250a1533433550012053bc8d09af428fa4cfdfb0658d3269f9328079d491db2cc48152517ecf67f21",
+    "passwordHash": "054fd2801df04e33784022f03a82a458:8642cf25511a9a130e7cfe4154f8de1a68290e9ff23fef7a1d0eb64f65e51b83bf96db846cb3109b9bc0de6fb42d14bb91d9e01966de960054fb227ca1f7e7ff",
     "tibiaCharacters": [
       {
         "characterName": "Monkkey Draggon",
@@ -3785,7 +4292,9 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "0eadaa734046c1b84146e3fab7aa50c64023eb6ce60453c4f25472e5b3f875ff"
+      "0eadaa734046c1b84146e3fab7aa50c64023eb6ce60453c4f25472e5b3f875ff",
+      "6b67ad7dab554c70acaaef20cc015edb283df357d11cb64fa1ce9bf68dada3be",
+      "9ac63a5df55b02a230871f705770a88ea3213cd6dd8a3e0be7fb026ab021f4d8"
     ],
     "email": "laurofernandes09@hotmail.com"
   },
@@ -3808,7 +4317,11 @@
     "recoveryTokenExpires": null,
     "sessionTokens": [
       "3455d421ca20e89e5da03d7cd5d2492b7b796b12038983449bad76fa22150a65",
-      "8b261b9f0fbe477b34eeec12dcfafb0f6560a445587369117189f4e9e10cbce7"
+      "8b261b9f0fbe477b34eeec12dcfafb0f6560a445587369117189f4e9e10cbce7",
+      "32dc978fda620d3546f7ab467526a2f5e3bf498b03a33885c598849481944928",
+      "472a00927ee82c4bfc0441e2616966577f1c931bf36e825785fc84bc5a20f6c4",
+      "cf01d454ea91bb139932e0b9140fa4e0805a0a1bc78638714e5592e2d680c5b9",
+      "f4b5e0e7ee9dc36a401d0f0e79dd8bcc9a804d1b736176166d15e975726e8f9d"
     ],
     "email": "giglioliraul@gmail.com"
   },
@@ -3898,7 +4411,9 @@
     "recoveryTokenExpires": null,
     "sessionTokens": [
       "102c705e89065666f14d36c014e632bd6b079f02f4d7a2549478c38f0e313b63",
-      "e883be03680f2b6dd8d7227da3bcdc5d963104adc6798d9b5e948180ca59812b"
+      "e883be03680f2b6dd8d7227da3bcdc5d963104adc6798d9b5e948180ca59812b",
+      "14b8840e7893728f7e6acd659378cf74d8d3efbbff83b7b5a91f6656e8df25ce",
+      "aeea4cb08f8c382f07a04633db5e568e78fa01f4560ef55aaec3244c53136913"
     ],
     "email": "diegodesouzatanajura@gmail.com"
   },
@@ -3921,7 +4436,16 @@
     "recoveryTokenExpires": null,
     "sessionTokens": [
       "e2bfab5bc0f754c72afdebecafbe4e32a5a12a323a9e73a732333a65608c48f1",
-      "3b98038a4ff9e175bf1a45c070ba4f2b4dff0d27954d191ad7f91eedd42e32de"
+      "3b98038a4ff9e175bf1a45c070ba4f2b4dff0d27954d191ad7f91eedd42e32de",
+      "21f4631766823309e23beb3786b1bdb3219df7681f658a95437f42be6f94b48e",
+      "279306c3a7b9f1fedc47bb6dc9d4d9c1cc01402340979f3534da9cd11b00ecfe",
+      "aa82352ed0650cd1ca07daaea6cc2eed4b2a590dd10d56f257042ddec7105ade",
+      "2d5d72369e06b19a2c66b983d6138a0675cda94f833dfbea244203cda6c4733b",
+      "dabd6f73b5a7a46014defcb022e6c1a47c20a162b9f7a17f071310854839fefb",
+      "1505dbc71174c43e46864a7839f8f2b5b539fff1300ab11fe4dfc5da65011478",
+      "3137c01021b17bc573ebaa39c28f6448ef63e4fbd4f855aa93118423b0e6816c",
+      "252d91bc3b9dd5b95bc59823833d232a6270dde0a1b95f2676f22c28d22c4d3a",
+      "ec6ac08b5e0fa068f5aeffd717c95517058711a886a0766201edbb39bc444429"
     ],
     "email": "contato.lucasmachado@gmail.com"
   },
@@ -3947,7 +4471,25 @@
       "d7e68d70b625b168abd8e04dec0f8419491d3d70aa1c5622e2cfae11ef877239",
       "88f7c82e689869f93ab6549b96b142cb04b594381a7d92488a548a75e38f160b",
       "620678d2e008f650de5695e6d4b04c7c18810b7ced95f0bc94514bedf229b778",
-      "8c483a1277bb9342a01440cbcf3735c9eddd34bd169568dbf20080584c5a1512"
+      "8c483a1277bb9342a01440cbcf3735c9eddd34bd169568dbf20080584c5a1512",
+      "1384dc49996f250b5232b0f1a7f9a7939c020079fe172f0b09ddae89cde83e9a",
+      "a7db9af714affbdc41a1bb7ca468c6e9053ce5b47895270314a413709945e6d5",
+      "251bd09c201e30794c73c9562b9376183153bcc40549c46b392fad0b7c650e16",
+      "ba5ea31b8e8f9ac264f5f53b645bf1cf769cae8d78c893a8b08ef66c53655f55",
+      "2116b07d8a9aa105120f5b693370cf0e5a6bf1b192bef49c1804729a15bde522",
+      "01f38f6b03f0bb7c41955f2a1c2b7bba180e09b540670102c6c5d8b674b84a74",
+      "eb5cd2f3f5680042cadd54e8270961910392036ff763967b37056669084a12bd",
+      "f5def8daac6514606e85dde23a6b1bfc1ae6721f91d0db5a35de22b007a7caf1",
+      "5a5ea7c0bad709b1fdb515a9f806f6feb68cf1d3e884da14fa977f69a8870100",
+      "dab545496bca294763e9a8a9d03a3639312e94af9c5bead931ab46fa75fd6f84",
+      "6c664824a0fbaa1ab9f13181642e7e054c5c04c2b0b35e88314101f3169042b7",
+      "417da918a447ca14311f835e7a3e5d465033aec7a63e0a1f05e484cb456b18f1",
+      "5c1d4dc131338d84b2d59ff6a29fae87bdeba583c4a7a263ec92ec87151f44d1",
+      "0f8b5184eea9ea63da5bad9f7278abea97a2ea379bf6a5fd1a380074971af02e",
+      "d8d3593fbff70db196478e59a5c954541786ad8ccaccdb62c5910a34082f10ac",
+      "0e59d7159d85d675565d3e781f243895635602c4b35c629ccdf2f15250e247a4",
+      "8cfd0d789778ceca1f2fe56e059b17cea9340ea543c293e89292ca07a4a2c7e0",
+      "d617f1fb686a08ebdfe3ae775c08e0fb078e46c741c28b2a8036e0217d5c84ba"
     ],
     "email": "ra.fa.com@hotmail.com"
   },
@@ -3970,7 +4512,8 @@
     "recoveryTokenExpires": null,
     "sessionTokens": [
       "0fe607b35462880fec657e7a0ad5b1d6c8f2890e0590c5727d222199c35474cd",
-      "6ec21d9e46e968c82ed0115221b1ef0043d7c66f4542f99af5f08b87d36e16da"
+      "6ec21d9e46e968c82ed0115221b1ef0043d7c66f4542f99af5f08b87d36e16da",
+      "b93762d3e17059fe80ba4570474218368bf9980ec3d8e141648568b3e4fb60f3"
     ],
     "email": "gurox14@gmail.com"
   },
@@ -3995,7 +4538,10 @@
       "9717ba5538ce981c8f5832c7ba73c86e00aacfb0c5518961a96a6916cdb2876d",
       "0353786a16381eb9eadd2f003b8622a3701738a419cea47605cd12fc45504fe8",
       "9665d08f54d6c4c153d80d8748d5b6b2fca5c1a48e567e94c2f7b2a08f760130",
-      "f9d6bf3455b9bd1294a8f88b6d36ddc24053b750fe831edd32c701feb8cea7d9"
+      "f9d6bf3455b9bd1294a8f88b6d36ddc24053b750fe831edd32c701feb8cea7d9",
+      "376cc22abaf5084b8bb2a2a966c88cb3f6c2a04257d0d03c836bc783a3003d87",
+      "a932c25d1d7defc6ac791db2231e314c80536e1a3523e4ff4ec97f358f8655d2",
+      "d8ec8e78a551e3bd40ff00811a88bada3e89085d1c230e4b67118f013d975e34"
     ],
     "email": "familianovo10@gmail.com"
   },
@@ -4067,7 +4613,14 @@
       "b0d2d675e6eb197c522f4aaeb14f075c708696412d87726e341d38e9a503cb83",
       "3bf2935c14f798b6d4ce263de60d0c0b53f0d29ee17fbbcb57ee5bf61efe23c4",
       "47309975af618d3539feafe62ce66bcb218cc99d8ec2c730ce227f0223bac4a0",
-      "2429b74626379113b05a7c88c573f31ef140ddbd4bdb4510d411e304ceeb892e"
+      "2429b74626379113b05a7c88c573f31ef140ddbd4bdb4510d411e304ceeb892e",
+      "cad0a0274547bb77a76a3ad363b97054e6ee330e41938ad06f1419a3f8b39145",
+      "235916245bd62d49f60bd6e8f8875299d09da045bd85469997d26c87ea24ceb2",
+      "116789da615187b51b0a2ee3e749c3a44f8b97f2f87f033753034c6986053f4c",
+      "a80418bcfec4fabbb65031e0f810656401ef00a36eb20fe5f4f969f4c8838dc5",
+      "597ccedfc0face0d05566ae2abdb27922fde17f9d447fcfb47d8543da385be25",
+      "7a023afb636a19b6c4ef99e8234c07a86b4311fd2bb90409c5dd248119c762ca",
+      "14a72744e44fe8324fe6d7958d06cb9ccafe7f6b9c91000fdf9fc178c5803a66"
     ],
     "email": "victorsukuzi@gmail.com"
   },
@@ -4098,7 +4651,11 @@
     "recoveryTokenExpires": null,
     "sessionTokens": [
       "c19e315bec2fb902fa5848db09f7d6647f85d734f2549312968422d0dc3d6cd4",
-      "17d1d26020b57c2acefb1bd5612fda030445642f15094ec1e3b89a0853e427ea"
+      "17d1d26020b57c2acefb1bd5612fda030445642f15094ec1e3b89a0853e427ea",
+      "5967e36d11d1ab3dd20f4de948d697c58d1aa6b81f4810d447c37585afae84b1",
+      "b855af7179868b7933594d4faf6e8a378fe2f1035c165c67896d0052bce0e187",
+      "4d1ffe3c2d52be0910b92db9b4040ac9a576c9fa5f37ceda5b51411a5819ab68",
+      "49d9fe26bd4f84f61fae57e67fe03b4ab4a974701138277e4fa641fd2110aa0d"
     ],
     "email": "iigorswboy@gmail.com"
   },
@@ -4143,7 +4700,11 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "2915251e2056b205ed292b2971df3f5345a1069365200654b6cace16f410d11a"
+      "2915251e2056b205ed292b2971df3f5345a1069365200654b6cace16f410d11a",
+      "8b5ad4df47cce6079328dccaf6d823da19368f98156a5f48c29fb4ac8538c94b",
+      "d944866b80b4af1695df81b43b668c1e413265447a0f55ad6d29e8bc5f742baa",
+      "c4cb50bdf38351dc007e606397ddc889c5f0d6033a73e1f8378f6d532ceeed59",
+      "2b531101526f4211e33db95254a8a9f35b78c1a7768d91effdb20a7340378223"
     ],
     "email": "engdefende@hotmail.com"
   },
@@ -4166,7 +4727,8 @@
     "recoveryTokenExpires": null,
     "sessionTokens": [
       "38fc5d6b4346a8f9bf78e225580b1a86aeb21a4264b2dc590a1c28bfbd5df4a7",
-      "480e6368f545bdecd7dccb7e58d8ecb752a17ed64c0324609de91a58d5cc13b7"
+      "480e6368f545bdecd7dccb7e58d8ecb752a17ed64c0324609de91a58d5cc13b7",
+      "7d9d40b8f87bee94f9588747314542a21c0944eb47c56f8503baa0ad2820765d"
     ],
     "email": "isaacadriano017@gmail.com"
   },
@@ -4189,7 +4751,16 @@
     "recoveryTokenExpires": null,
     "sessionTokens": [
       "747594faa924b9543c5a2b919ca10e7b7898ca14dca2d33b8620cfb31d15f882",
-      "dc77d1b6fef6b1669618b382eb693acf276f6c0e21e423b4e3c38c26d6a196c8"
+      "dc77d1b6fef6b1669618b382eb693acf276f6c0e21e423b4e3c38c26d6a196c8",
+      "c5a3d2818f0433cfadc3e9784fa6f2232f06824d5e840eb80a67ce132968c599",
+      "b0d55bfe2db61b048177fbf6a7813c4bb689a57f6e58e65a8c4082add6f188d7",
+      "85ec18da6474748936f9825f52cefc9863a318aae281abcd8339214e2d2dad00",
+      "973445cf98262fea80ecc200b24f59ccb241b451c58484fb198204f914818b3d",
+      "1a557aca72b9a91a72f6312051e83ddb4ade28fa9aa55d487519225743ce2526",
+      "9dbc76673e4e715d24fcd3685f3a032ea0a3631f820976a6695573f3fa0408aa",
+      "608738c3f519136ac4df64e12b8e46d44efcb903b388e996d8f43e2d9081daea",
+      "3c080141ee070b6c8c4eb2cc543c9ba2240aa5069290774db3e232bddae84276",
+      "46bd1544abe0e55ea80ab4421eea770c61177028da26d6633e55b2b5edc608dd"
     ],
     "email": "nardex10@yahoo.com"
   },
@@ -4211,7 +4782,8 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "c226944571384d0636e211302ddc3176a6ed238768fa5b94be685fd1361d57e9"
+      "c226944571384d0636e211302ddc3176a6ed238768fa5b94be685fd1361d57e9",
+      "efcb7feb808ac4d3fc53b5b22d16a2a9e028d070244637357c8f071693da6e95"
     ],
     "email": "lhpratto@gmail.com"
   },
@@ -4280,7 +4852,19 @@
       "7b0858ac88e8c51a5564275130eb453884cae673f227055f66c361a0f619373f",
       "295a99f13b9da58a96f648dea7b32ea7bb34bb518dc1a2504601bedae5139163",
       "6011aab6c6f25703ab0b0c65c4df939f648ea396fa6133ed8ad95e3ce4453e38",
-      "f527645cde9a85475af3c6743416ad21d6e062a89b6c3e341a639765581e8583"
+      "f527645cde9a85475af3c6743416ad21d6e062a89b6c3e341a639765581e8583",
+      "7fce3903c0db76790c908e8825e4d626fe421e58e0caf43400b60faeb3f9031a",
+      "9ed682fd4306b17d579a4e1597090fe079128ad3074301819ee2634bc65e848d",
+      "9669fa3dc92543cac09f166d806c39878c35a0d49f5826134f9b4cb4f30d4a46",
+      "e8e6e1266a9cdd1073cd5bc1cb1087379de9ce89c826cd786c4e99335e46db82",
+      "d7cab1513b58528e04e7305c751138043d58483e05c7de045280243236559e1e",
+      "641d4e957daeace0ee99e36a7dab1074053584fab1c470f1f728a2f1b9023d66",
+      "c953f9ed01e49ba61ad7bd89870ac327293ad18dd613c2ca8d0531ea0598577a",
+      "4ba8fdce45007c81bb0816ca056140311ab1997c0cfb6f55d914056a26b4e395",
+      "e93eb211f4ca8892ca19f95c6a0955d98d71fb766230bd73b0a15c111fa125f6",
+      "485e914a6a3feb4ee713a8b649867ce25bb851ada6acea0a765411ec4e859185",
+      "20be78497f15724addbb56f058ca988bb503e50a943a967f2780eaf39a2f015a",
+      "86d162f2dbc2ab4b001371d540dc663f58c9c01299323b9c526720498b60ac5e"
     ],
     "email": "popolislv@gmail.com"
   },
@@ -4303,7 +4887,8 @@
     "recoveryTokenExpires": null,
     "sessionTokens": [
       "365a4ea6103748c852ee2275ea4579caa2326880bd2a308c098666682781c11a",
-      "82b4d52a3a9b03de4a76e867781af09fd0e44c050a9579bf8d40adf559f2ebbc"
+      "82b4d52a3a9b03de4a76e867781af09fd0e44c050a9579bf8d40adf559f2ebbc",
+      "8a3061db1ab5c6abdacb5534c3fe2237d79444c663a593724b98f6a33025df3b"
     ],
     "email": "ronaldodalla@Outlook.com"
   },
@@ -4333,7 +4918,11 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "585212040216e7a133d21d4c9cfaa8aab46f2dd5d36eb7bee1da85cf14938041"
+      "585212040216e7a133d21d4c9cfaa8aab46f2dd5d36eb7bee1da85cf14938041",
+      "abf9c1c61ecdaf651d21b46da54c5bdc4f2851c47330eba444368de760d4d785",
+      "2c1439451aa31d6eaf2259aa7b6443506297a585c9684e3180fc4bb5bed864e8",
+      "fc400228ba97e696341c0f7f233da0b71ae2671a46346e6d3b4496e8f280f23b",
+      "7beb84b037029410e4e55314c452fad68a8c47c35c495ffa412984c1b65178d3"
     ],
     "email": "guilhermeengpro@hotmail.com"
   },
@@ -4377,7 +4966,7 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "6542ffc67886972802a9388295bc6e844859fbfea7f453993c360f64db13f867"
+      "adbce03dd42bb2f07df7b13cfdba327753782de423028ef2b45b717a99428f6b"
     ],
     "email": "xolari_93@hotmail.com"
   },
@@ -4400,7 +4989,12 @@
     "recoveryTokenExpires": null,
     "sessionTokens": [
       "c9644bafe597a6f2f740956d899f9b24a7c366688a6d0ac8a4bb44be0052ffa5",
-      "15b89773a37a34fad3898ffffa64a5016c2852126eb2dcf0b4319d14b2014379"
+      "15b89773a37a34fad3898ffffa64a5016c2852126eb2dcf0b4319d14b2014379",
+      "1ef95c55c3dfa0b0fbc55f60a542b5639ca05d9bae375c15202e7e08686512f8",
+      "b8bcbc2b58a43cd46e192c68cfc61126d5100d18afd268ad46b7770ae4422a59",
+      "8a0e8f906b72dc5d2558e80b96f496d9604c8ad7a208abef99983087ed80d74c",
+      "6fd755b306a7cba4831f446557589bd7b8c226c03c3e199da2b8e76bba5d5fcc",
+      "b41af1885daf8c0429514a6f93fa2bfa61b84a735e20db0f291897dd9dc93835"
     ],
     "email": "bergamo_matheus_95@hotmail.com"
   },
@@ -4422,7 +5016,9 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "d2643be90f4b0a5a119ed2d71487880e5678cdddf906600c2d82759e80c01432"
+      "d2643be90f4b0a5a119ed2d71487880e5678cdddf906600c2d82759e80c01432",
+      "617145ce62301e92ab9aadec980940553bce73994b3df9d8bcfbc22c4b6474a6",
+      "e70e196d8715271d8691000d7fbd0ec3ac17d80281c43808769892152c3eb8ac"
     ],
     "email": "pms.philippe@gmail.com"
   },
@@ -4460,7 +5056,7 @@
         "level": 311,
         "vocation": "Elite Knight",
         "world": "Luzibra",
-        "guildRank": "Left Guild",
+        "guildRank": "Recruta",
         "groups": []
       }
     ],
@@ -4468,7 +5064,17 @@
     "recoveryTokenExpires": null,
     "sessionTokens": [
       "bacc8b4038463f1c4483f10f0937d974944fa1dc487ac0dca9537f5fe3b3eaa6",
-      "1478b3dff202c2ac3f77fc6a203d0c41ccd9f596e3bcd96c2bdaaef16c33a922"
+      "1478b3dff202c2ac3f77fc6a203d0c41ccd9f596e3bcd96c2bdaaef16c33a922",
+      "9e38f744f7077bae8a67a35d8b99b2aa11135eb68f312ef8b0e1bdfd5ccbc503",
+      "43c029036c47578ac5dd1c722d2a93cfd4722e374f485e7e9ff4a261e97275a0",
+      "ae7a8efdae51e47a59b112a37717a0b3c7a848140385dc31c1e08ab0709dc2af",
+      "0389052baae3943401be06627858b66cbd970c21aaa151d1ebbfc852c564deb6",
+      "b6248db8244e716070d7fa5c00b6560042b09e1a12ab08a1cee50b71d66d83b5",
+      "484ea10dcc12db0d13a76ec08553563f7b6993a65c2435becf70ab6d4a8906d3",
+      "21731c08874840e8ba0202ac521b6b1d7c4a137573177fa815268d24e6ba0b3d",
+      "234021bae5ad6a70af71846e6e26aa99c97700520076d961cbd71c85bf167c36",
+      "805fbbfe35b3e018dde98e8a45eca61bb0d62fd0bccece1589fd0a5744493e73",
+      "662faaff2161be95024f9c4860cb2a09a5375db82d7418544b20cb203001081e"
     ],
     "email": "denison_uneal@hotmail.com"
   },
@@ -4476,12 +5082,26 @@
     "name": "Helio Coelho",
     "phone": "2174101552",
     "passwordHash": "1b83b31ddeb29a0d3e1ad2476e539317:9b18fa6b8573aad5cbbc27df680ccf6b8f27f594285ef000b870017f0aecdd4d49b99db45b6df898ad70d35df693f239f6614065684e611444e845c136fe2b9c",
-    "tibiaCharacters": [],
+    "tibiaCharacters": [
+      {
+        "characterName": "Lucky Sig",
+        "registeredAt": "2025-07-23T17:36:58.540Z",
+        "level": 313,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "d08fa4cbeb895382014b87041183838613aef8907a49efbcddffb89ea60745de"
-    ]
+      "d08fa4cbeb895382014b87041183838613aef8907a49efbcddffb89ea60745de",
+      "062c931573909b301fe53674cb8859a6cee7bceb8aa4127b0ff43193961e7c21",
+      "4fa9666bae9fce3e3dd83c571127c03590af9dff5e6027c6a8268cda5ef70113",
+      "526ac7e82c27adfe4a147695c1b0d33628bf2cda909b318171b8c6b209463fdf"
+    ],
+    "email": "heliocoelhojr@hotmail.com.br"
   },
   "danieu1993@gmail.com": {
     "name": "Daniel Silva",
@@ -4502,7 +5122,8 @@
     "recoveryTokenExpires": null,
     "sessionTokens": [
       "359a768a435dd10696045d9e4b7738137a8ba849a4c380d3bf61568996aaca69",
-      "a258689aa4c8444546c4bfede284ae23759ff349b6ecb96699cc4a001455b7c6"
+      "a258689aa4c8444546c4bfede284ae23759ff349b6ecb96699cc4a001455b7c6",
+      "280b02470a8b87ce03de351b213e576c5cc6578e068d9b0723e2a0bbd345cc0a"
     ],
     "email": "danieu1993@gmail.com"
   },
@@ -4572,7 +5193,17 @@
     "sessionTokens": [
       "598c96af4118919fa8f798d326690c965626766f29bde3dcb6d965032fc83d17",
       "d9e80acee118d9120c8e9bfe26596a200818959b7001d5300348012fce17bd87",
-      "c6ffbcbd420cdda42ad646853690012b960f9e2ed1fe404fcf36eb4d08bbae97"
+      "c6ffbcbd420cdda42ad646853690012b960f9e2ed1fe404fcf36eb4d08bbae97",
+      "872f330f40a5dfba2ce89db0efa6b5a4b54d4712c66806ea381c7ac7d3a3b208",
+      "3113cfb6c227c78649e12f025fd339502e785da7b976407fb0543ae6814da2c5",
+      "4f3fbf3d7de408b8c7c18242dff4ec00e5a7004b1c5acaa6e573eb465e462076",
+      "24966403853c250e4659d1f14019b132541fb849ab62279f00a6fb6ce2d43982",
+      "69b0896252132fb9dcd0641cde216630fd8b1832a3fe38ae98a8e3f121c2b4e0",
+      "58f586755b2dcc4e2b92ad574427c3739c717a5e58dfacab51f2b5bf7e4130b8",
+      "05c4404a89234e8833172f486122013797f1d6d38821b97aa7b898f25cb723b0",
+      "9dbbc52524b6042a04d8bdc3f1bf1717b6519afa5cb1b2465abda48f5477ea54",
+      "2254ffb8ba10091f25c48b1e873700eac6f28a2e02af86879b140eaba5b69cb7",
+      "290592c408530184369cf887640ea72d50126aab4e6a0e924f4bb5bd7870523d"
     ],
     "email": "werlleynegocios@gmail.com"
   },
@@ -4596,7 +5227,11 @@
     "sessionTokens": [
       "053e5f8a0b00b484281aa84c42c6735480ccfb75d5f62d9682eaa8d5ec89aec9",
       "6438424e8d59ee47278757fd06f3d10547a8565085ec67002c3bf94cd50980b8",
-      "ea5006fe352ac6b17441ac0cf64c77c96d6fa04aff73f55ce078b5ca8f0d001c"
+      "ea5006fe352ac6b17441ac0cf64c77c96d6fa04aff73f55ce078b5ca8f0d001c",
+      "18da87b1d6584b14e8d2c7f6a38b83aabfc6c5d35dcff19b6554b987a722a67b",
+      "97e13caa3ce70a36ed38a3360bb3548bc21dba5109acdef663cabf05868cc541",
+      "a364e967af7b827284a829f289e1d53d4f0f322e94512ee837fb5de8d1af3e2a",
+      "b5af169d9fa6ee60bebfb538bf252ebb4ecd91228fb2ea845ab934c090fb2d72"
     ],
     "email": "abernardes2788@gmail.com"
   },
@@ -4618,7 +5253,13 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "3cb9ebfedffa98b510051da9ebf9270d0188e47889d535237504cf7a363180cc"
+      "3cb9ebfedffa98b510051da9ebf9270d0188e47889d535237504cf7a363180cc",
+      "57a2312092bfda19167219628b94bcce33236283aee3ca01ec6420f30384809b",
+      "179cbdc980e55b55e0a22d0f16e619247da175b15afe7f568395ec3388b7559d",
+      "ea2c0756a81a244d39bbed97b14df4706cf77be5e4c93652e99d261a07b81b6d",
+      "eb5b846a076b79c1de46734035555026e260cfcb86c40bd97946c25670604956",
+      "47aca03d9b1a9b2f2152c8902b0e15eb3a7d31fac7bf6ab734a82e8c593e0869",
+      "71a62c4ac4e5d9e1b1bcccc0a33e9703c457ae6b285578b25750306f12a661f4"
     ],
     "email": "glaucoclaus0209@gmail.com"
   },
@@ -4640,7 +5281,10 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "df385c177a2077475c87f2477be4878184e78078f998550f840b76cdc72dc646"
+      "df385c177a2077475c87f2477be4878184e78078f998550f840b76cdc72dc646",
+      "67eaa0ead9a50184f859526890fb704ea7ad6e3f755f5079a18375a49272548a",
+      "aaa00b82f9fcc4e19a97bc166944053e4d665bda456f76b6e170f589d729f12a",
+      "25ac055383df06cc2ec46696565c3fe5703528f4791acce1f9d17e14c631bb6f"
     ],
     "email": "eliseufnascimento@gmail.com"
   },
@@ -4684,7 +5328,9 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "c9a4548697fbb21721c89ae202515955e8aa7145b253faa03a5db0ff3f9d3bcb"
+      "c9a4548697fbb21721c89ae202515955e8aa7145b253faa03a5db0ff3f9d3bcb",
+      "af71fbba0df323476f94611150c197b6e2f7c59fb0776a1340050c06a20d4604",
+      "bb3198be7871c9f5c3c4579535d56f07a542b8ddbdf6dc83d9ab32af64fcd92c"
     ],
     "email": "aggusdev@outlook.com"
   },
@@ -4729,7 +5375,14 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "98efcb024360a0c68a62578ae05c0c703daec9f96139fae57a2d6202d2375921"
+      "98efcb024360a0c68a62578ae05c0c703daec9f96139fae57a2d6202d2375921",
+      "020e869808f8f32dae742cb372ece2727c39f61b3d017d0b7ea7254d6dba7315",
+      "1871335b205f75f942d02ce7e7a13bf7a6d0bf229a7940eba2d688b6b7c70a9f",
+      "534621beeacbe5d7e52539a840843fa109cf1b483ae3306ac14a574d396d967e",
+      "b43aa43d45b73de2df7973630e46ec1a49a17868dc1bf6d7ea2e6e23e4c04013",
+      "46774d9dbda1d2291ca911e1f8892be3923829a86e0d879dcf529d377ac3a28d",
+      "2099f7db4c9c74e70c9968f11a4fc5e8120ceaef3f31af3eb7968d612e2a4954",
+      "0a2d1a832b92da5058b4359c7fc9e346cadd051fb7dceb8756a97823d27488e8"
     ],
     "email": "jgusantana@gmail.com"
   },
@@ -4737,12 +5390,24 @@
     "name": "Gustavo de Melo Souza Franco",
     "phone": "41 997910120",
     "passwordHash": "91aa049bcda71f2ca97ec9bc93ceb70a:5165d5d74ff4fe769f7360519aafdac29d83f5ee32375a85524203c50ef05b90d6a5df49bb73a9f8569a9dba93e348b581b29f745b1cc877f4b84e05a2412e68",
-    "tibiaCharacters": [],
+    "tibiaCharacters": [
+      {
+        "characterName": "Gugah Unstoppable",
+        "registeredAt": "2025-07-21T23:32:39.231Z",
+        "level": 294,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "3308c7e2fb5ff8c0650f4f696a0131e7c90298ab05b5f64283230f50f088464e"
-    ]
+      "3308c7e2fb5ff8c0650f4f696a0131e7c90298ab05b5f64283230f50f088464e",
+      "504a12bd074d4341b4e3f8ee8462cab5738a2bc0bf288424f4e54949b3c5d96c"
+    ],
+    "email": "sfranco.gustavo@gmail.com"
   },
   "ledueloh@gmail.com": {
     "name": "leandro de souza",
@@ -4796,7 +5461,9 @@
     "sessionTokens": [
       "ee1e65ac5d6da8e0a40426b7ed16c230ebfe0cb7f2aae7794688b43fd64fc709",
       "ff5445bdc132455522d0d6b02c85b18ba4a5a089bbb5239d0ff65c68a806d9b4",
-      "4ec164260670953668d6e911b58470bf2dad315fb1be8f563ca871f32b2be58b"
+      "4ec164260670953668d6e911b58470bf2dad315fb1be8f563ca871f32b2be58b",
+      "30aed4f673e74f1b85210ec6ce26f5c1919035ad9b552be682528dd730fde24c",
+      "686ce861fb3c86137559e634e796aa8e10c54efe287433cd3dae243690c56d4f"
     ],
     "email": "rodrigosali@outlook.com"
   },
@@ -4818,14 +5485,20 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "212d0a54341f903866d70fab042c44c4b1c6765335330623d4ceec32bd23ce72"
+      "212d0a54341f903866d70fab042c44c4b1c6765335330623d4ceec32bd23ce72",
+      "f150dde2eecbedd246a0bb2975856e595812fffdd8ece865d81eb6019a73345d",
+      "2896a1ac62ef255759b36f790848e4122fd6f60e56d3f3649b78d64964028bdb",
+      "6ca9948bdd78cf6ef7dda8303506ccb3e8d01b791d396de38315355b0eeb0b61",
+      "260e36f5c84cea4177d7a3accf8b202be53d7d44339780d930f56449cf988463",
+      "96b7e313fcdea19eb9166b77976e37af109c1b4b09e0911b3ce5d0d5de4d109f",
+      "f20eb59fc5d655b59d5e19c1bdab5674710d2d670583d88242afd1d97edb8738"
     ],
     "email": "diego.alessander@gmail.com"
   },
   "caiokazumi106@gmail.com": {
     "name": "Caio Henrique da Silva Antunes",
     "phone": "11 989427525",
-    "passwordHash": "eb7cf92111abc9189c257c855823e034:ab92b6334b25d5a7cd28766d22073d74eeeaba13ac3e2644d340079e67355483a27a343760febc47ea29cceb6f62b6afb09bd1d8c363741cb317cab9ac444f8f",
+    "passwordHash": "c1f0357da947c8b9d0f9f4db2e3b858d:6fa0867692d874703d618ffbb2e17047277fcfa7ef11223645048871c31fc1c32150bab89f7f2ee249e1010081fb1d14a0644558122fc980bbfe53a594575df2",
     "tibiaCharacters": [
       {
         "characterName": "Nightgazing",
@@ -4840,7 +5513,15 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "a6fc1f986c0e23e3528260ccc57a5f621d0826a30f8ea412b68b7ed8686f23a9"
+      "a6fc1f986c0e23e3528260ccc57a5f621d0826a30f8ea412b68b7ed8686f23a9",
+      "85e296fc915c3e0f1698e6a0eaa9d55d573d24877914dc4147c92803c9e2f8a9",
+      "589bfc83becdd2afb534bdc193c5e250a67c608d196376ff3f05db5328f4afc5",
+      "b0b301f067ef0ee070cf35cc21e2b012a6b80f88609f7abed8262d4da595fd63",
+      "07545441718701abdd43531336565838e7c5954622b20846238ce31f5b032354",
+      "38ef65c25978fdd0612714704764ef8f9e56aab1bb4e74a640ff1724af6571b0",
+      "ffd53aa1ae055e9ce2599b48afb08eb0318f725648a42b55ab92a612928edb12",
+      "0f3a46f17d71ebb35c7b06601f9fc9ff0bcfeb2de22a07bf1341e6acaa3071c6",
+      "7af511b42f2233099e5eb657e3e79d4c211d5f7d76a0f875c735b992cf5e5a94"
     ],
     "email": "caiokazumi106@gmail.com"
   },
@@ -4876,7 +5557,8 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "317fa7645dd7f1a7aa17c8cd0b961cd9607fffa4a96d93b7db2fd6f813a27deb"
+      "317fa7645dd7f1a7aa17c8cd0b961cd9607fffa4a96d93b7db2fd6f813a27deb",
+      "3bc64fe1adeb08fe6ba91da6e105d2bb3f6e5de011c1fa3d90ea14b1f2b2562c"
     ],
     "email": "leandrorramos@gmail.com"
   },
@@ -4898,7 +5580,9 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "169e7392384f362e71e978f6cc7c8dd655b0e88cd764d0421b44ac76901199f9"
+      "169e7392384f362e71e978f6cc7c8dd655b0e88cd764d0421b44ac76901199f9",
+      "fc5b323a5c9b37c5f5b36604532c2fb15ffae3b0f806c9c6ef207ba126994d27",
+      "1f588c2c5ecb6024ffeed629140c610393572c591128bc91b82bf1ab1bdf3409"
     ],
     "email": "atilapaladino@gmail.com"
   },
@@ -4920,7 +5604,15 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "166126d6852badcd0005ed9de9f5c51d8ae69e87e65fc408874b5bb891b6325f"
+      "166126d6852badcd0005ed9de9f5c51d8ae69e87e65fc408874b5bb891b6325f",
+      "0f7d8190ce9fa956e2b8ab1151871171097e031510b6866b958a4df22e43169c",
+      "703506c63f6c55fbd3b248d4105506f4be6b580a67856b51313758c7d6ba3f65",
+      "44429434130fff95e42cbce8a1f48de51abc466e1f226ef10d4a4355d9302caa",
+      "2f859679de5d5323db5033004f2aa9758e963b511b319b8814aa1b137d497fca",
+      "49f55667bf09d6053f20eac28f1ad3be709f5c86a6410e37164a9d060b31a974",
+      "1696a7a3831206f2e42bc5ac4f796d83ad95de002b7081349fa571780afe4f5d",
+      "4ec3d29abff5a71826edcce9b0ae31676970d8773e089b5df043b7d743636e15",
+      "0d319ff866a5176a2d4242354e9a540f9795ca180ad5755587324ef779e88180"
     ],
     "email": "gustavo.d.r@hotmail.com"
   },
@@ -4951,9 +5643,11 @@
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "9880ac9bd14ae190bcfc001f856feb8ca1e06418e0163532ce05eb84c43fc4cf"
+      "9880ac9bd14ae190bcfc001f856feb8ca1e06418e0163532ce05eb84c43fc4cf",
+      "7d1f31cae982c48f601d97e765497981b3fe83de01e1d906fdf3983027ca8d15"
     ],
-    "email": "skydavidr@gmail.com"
+    "email": "skydavidr@gmail.com",
+    "activeCharacterName": "Black Sobanha"
   },
   "Operaoldgame@gmail.com": {
     "name": "Fabricio Moura",
@@ -4981,11 +5675,1059 @@
     "name": "Mith Arquerou",
     "phone": "11 958404509",
     "passwordHash": "81e50e5ab905dfb903820c92e8912082:e8c60efebc1473d46f3fd80df4b3f3fc2f48fcedf529ab6f10de90bb623f69a9dfa4ca90a895cdbb70a0e4da0fbfb0917cf3c30a1c86488e2091e87bbac6056f",
+    "tibiaCharacters": [
+      {
+        "characterName": "Mith Arquerou",
+        "registeredAt": "2025-07-18T23:04:43.841Z",
+        "level": 148,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "6b344dcec01e9b2ff82fe94c0699a427517200ec94b6039e0c6496c924a4466f",
+      "372e135b38df8f3e2be801bd7e295a939fb68067c38b87cbe1eab1dac3f8ba8d",
+      "d8313525e49788ffc0f35d4196c37babff455686993d9f7c180042b5ff9b7bc1",
+      "bff490d729ce4325bbb8d0e974d19c455a39fee107ce3be71151c14c46428304",
+      "e94d13d1d4ac566c7147ef02a82e0b6af2f2f38d7a4dbaf525f7db84b044b5ba",
+      "718ce49364c17172d1ef7c911de00401cbab4e56768aa326d575d36d7e861973"
+    ],
+    "email": "tgomes27@hotmail.com"
+  },
+  "rafaelbraga772@gmail.com": {
+    "name": "Rafael Braga",
+    "phone": "11917869090",
+    "passwordHash": "b7d3d63de09954233fe7ddcf5aba69eb:12aaf80f88f270e086f5ecf7cd0008401c1788a3cf2a970782e91a2639728d7c4793c73d062d84a7768b77728a835f79e932686c492f4d4375e1287a9aaf0f55",
+    "tibiaCharacters": [
+      {
+        "characterName": "Rafragaboss True",
+        "registeredAt": "2025-07-18T23:11:35.272Z",
+        "level": 104,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "db1223633e51dc6a857e687c8163773f0ffa305b05d73f2d22b2e8b8e9fafb97"
+    ],
+    "email": "rafaelbraga772@gmail.com"
+  },
+  "parmejani_2011@hotmail.com": {
+    "name": "Guilherme Parmejani",
+    "phone": "19995928771",
+    "passwordHash": "d6fa3b70dbbcad42ad5ba9753fe33851:d127bb37386fe8fa70fedced146e2e96f6f4c15299c66f355ab13610d3753f9dadb6893a7d0c108a8d870340909e43618689e56cc315144cb91ee79e2ac0d66b",
+    "tibiaCharacters": [
+      {
+        "characterName": "Rondaporteiro",
+        "registeredAt": "2025-07-18T23:19:08.492Z",
+        "level": 132,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "4be38e6d009ed28def5551d2b5ecfb00133626bb4613ccfa2cccc9923b5eca33"
+    ],
+    "email": "parmejani_2011@hotmail.com"
+  },
+  "pedro.aalmeida@outlook.com": {
+    "name": "Pedro Augusto",
+    "phone": "41995829093",
+    "passwordHash": "a6547247e3a4f7d2076aa8e1f2f2c0ce:65809b461ac0e6f18e8b9bd2c10d6ea13921ff65d201bd6210873c172deab53b06541818c91e9e476af4772ee26ae7cef861fe05ed3454e8d697fecc28aa6f13",
+    "tibiaCharacters": [
+      {
+        "characterName": "Hekytz",
+        "registeredAt": "2025-07-19T00:27:03.006Z",
+        "level": 240,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "2c8944a8ffba4205e9a7fa958e0f1d28f78ffb0f1810d09e8a8f71657d012f22",
+      "1da1ecb97fbd5117781f90e94cb74460c6231ba68fa83d2f8e63ef26c0ef107a",
+      "8622c02d312c43ede4289d6db6a2432096954ab747b696dbdc280e5cab384878",
+      "9018d2a58ef1ed8682bab713ce989c0338fc595c4a07689fa8560d282121b862",
+      "36c1bfcf3c51bb04468dc38977ff0c7c35f1f42ce73d30e210636e5989cbaab3",
+      "027da7ccd879e4e0057d05da5911ef856e34a1e1498da37b922518f539308fde",
+      "d7301177d2d14627ac3b86ef0055e943b8ea13916dda8c5c3f7a18f1b3f87da2",
+      "e00ac50bdc6bd98201b636cb0e1b02c018b4c1eec6026422e557642b7b878a03"
+    ],
+    "email": "pedro.aalmeida@outlook.com"
+  },
+  "charles.faria.fonseca@gmail.com": {
+    "name": "Charles Da Fonseca Faria",
+    "phone": "24998423433",
+    "passwordHash": "44f125e85df200c6ca6076d3b9e69f01:dcf984b9605050f9332dcbae92e16cb216ad38df421f9a2b21383a8645af6a8dd8481ccd699288b00adca995ef64bdafd95bcad88df38933548c6d1bf1b0318d",
+    "tibiaCharacters": [
+      {
+        "characterName": "Morrendo Everyday",
+        "registeredAt": "2025-07-19T02:06:41.747Z",
+        "level": 276,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "bef205e4b4f8594ca5514db3d3b7213bb39db56ddc152995b9fb7f7744cf5482"
+    ],
+    "email": "charles.faria.fonseca@gmail.com"
+  },
+  "marciodiassantana@gmail.com": {
+    "name": "marcio dias",
+    "phone": "71982085820",
+    "passwordHash": "11c6b6adf6b894e93288fba671d3b9f6:d7ef76073158ec054a469138daba8b7692a155041324963bef3314a08bf3d891b53ee6d3ad7cfff21d3b23ebcf42f09bfb442edd3de51bba005e8517f1a87ed7",
     "tibiaCharacters": [],
     "recoveryToken": null,
     "recoveryTokenExpires": null,
     "sessionTokens": [
-      "6b344dcec01e9b2ff82fe94c0699a427517200ec94b6039e0c6496c924a4466f"
+      "c51da8aac14f78e437e9d6c5a3ea3f3d728b1f3b8db6cd568f66d47b43a7fc81",
+      "3b76eb40942a63c956a00fffb835dea6407f2a688d938589ae7a176fc748b078",
+      "e4fc86648c747b58fa2e57f4b5bc2209153d9695c06c8bd4f0d9a50fc5c813f3",
+      "a8a29ff7e744598e2fca3f3ced00e324472eed0b1d4de96adfcfb99863c0418c",
+      "5f8c4031aa48661539e4f70327905bb43b125b3970ac226dcd09f39e53fb1904",
+      "bb4db57cb523e9209949eed9dd503817011149635ca9bdc66c14c290c0e6f161",
+      "b511ece95b4200b0df83d22caabe63388d8e6863996001879522940762023d98",
+      "6224abb2158f3197e629c5644d62d2db776404c18d23b87d9a655605f692d47c"
+    ],
+    "email": "marciodiassantana@gmail.com"
+  },
+  "heitor_pena@yahoo.com.br": {
+    "name": "Heitor",
+    "phone": "34998800790",
+    "passwordHash": "7bd368f19b22c388ecce0b3376204fe0:d232848376449e1c4ea62551d4372e0a4fd775ad5a135683c1d08f72f99be6edb88d012b8adaba2fde4243c7b32c3d9456a730d3719936a2b41fd84794418956",
+    "tibiaCharacters": [
+      {
+        "characterName": "Rowlek",
+        "registeredAt": "2025-07-19T10:40:18.758Z",
+        "level": 127,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "4c7940642dfaa6dc040a06ed1679513e59f3c774d8996c85d62fe7df7db19ae9"
+    ],
+    "email": "heitor_pena@yahoo.com.br"
+  },
+  "mariokortenhausjr@gmail.com": {
+    "name": "Mario Kortenhaus Junior",
+    "phone": "11992823933",
+    "passwordHash": "5e869b8bc485145386faf8f7f8531870:4593e15baaf49cd1efd8e1349a15b09a7a39993e2d3526baee5a12fac09ba5a08563fb346ccb6c963060578001be40690c95ec0c6027fa3b6c47ecc0f45fb770",
+    "tibiaCharacters": [
+      {
+        "characterName": "Guizzao Firma Forte",
+        "registeredAt": "2025-07-19T13:28:47.103Z",
+        "level": 369,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Vice Leader",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "e24dd38d0912ab3d8e2038b13a0639d6c22c6b20cd1a703d2ee8f48fb9b2bf09",
+      "7daf47041600eaec3387332d823a40ef6ac988d937f9151e137ee523b19f03f5",
+      "e2b9f04d62ae33b0404e6965924d1d0ed5e1d4a9cf3fb25499d93fda72af9609",
+      "c81380605eda8e3f6529a710db0b702cb173bc203cf768a968f21384614e8132"
+    ],
+    "email": "mariokortenhausjr@gmail.com"
+  },
+  "rafael.singhc1@gmail.com": {
+    "name": "Rafael Singh Cardoso",
+    "phone": "17982215799",
+    "passwordHash": "3e8a4a0d5a1cd9bd24bec0496a7f13f4:95f1c0940fe24093926f34ff15a7599af501c73e4e2aa8b438232222a552b70f9a82598c8470eda9c2109f9eca62861ca2b15cb18db1d14a4d19527d32f9cbc9",
+    "tibiaCharacters": [
+      {
+        "characterName": "Greaty",
+        "registeredAt": "2025-07-19T14:43:22.291Z",
+        "level": 321,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "b8e92cf5e67e354dc92499313391e225bb0b1051392ddee960eb1dff532d4f8d",
+      "52cfa14990909dd14807f0484d50fdc31efa4411cba98c1df5f89f744e35281c",
+      "c1af88a99ac6abf714c1c01a7c3bb92113c8efe774ad25b7371b57d8ff836cc1"
+    ],
+    "email": "rafael.singhc1@gmail.com"
+  },
+  "renatofpd@gmail.com": {
+    "name": "Renato Ferreira da Palma Dias",
+    "phone": "31971700719",
+    "passwordHash": "709c3886702a9e9673ae71c1ded316fc:a6ea6f835c55f74d2041f8a6e2f7e4161a021cb9ed839583ed51735cf1010fc270d6353d2ad85af9360d3d935ff65cdcd407f9f22d5f7f208bc4ba9ccc10ab6a",
+    "tibiaCharacters": [
+      {
+        "characterName": "Orange School",
+        "registeredAt": "2025-07-19T20:21:28.615Z",
+        "level": 301,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "fc802d2e40ccdcdf39b199e305f407bb6d12fd026da519537028efaed08dd6a7",
+      "b60a5cad61ab4d1a48e957b28ac89e6cf64ef94967516111123821dcf19a3d84"
+    ],
+    "email": "renatofpd@gmail.com"
+  },
+  "fabio.stark@hotmail.com": {
+    "name": "Fabao do Cachorroquente",
+    "phone": "18575055706",
+    "passwordHash": "a48911afc9d165953cf4b5d0dc89b6eb:e10a3cf00f3aefde0d59639e68002633a5190ff7854a7b83abad6d61ce19c8fb98f1cfbd59ba928e99b3165ecc61544b0cd6796ff8b2064886cb21734775b83b",
+    "tibiaCharacters": [
+      {
+        "characterName": "Faa Bao",
+        "registeredAt": "2025-07-20T07:06:11.671Z",
+        "level": 272,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "956e9c90a1dae70ba6b7a23bc0c5ebc51c5c9b332a0dc4a927f44dc03ed7c50d",
+      "f212f0b9967472742b239353dba1c2a242c3ac5fd4a8a34336dc3233f04a45ae",
+      "58c9899d424038257e0f79e2fe625100b3bba68dd47921d6a99092c7a4585fb3"
+    ],
+    "email": "fabio.stark@hotmail.com"
+  },
+  "alvaro_victor@hotmail.com": {
+    "name": "Alvaro Victor Simões",
+    "phone": "11960147334",
+    "passwordHash": "d3043e322bf4eb57753b4bd6dbf27f5d:2875aeb07bcec79026af5a0c43c2a5017589b491402dd8e4d9cdcb3f70fc565d51bc46f3152be28035613b980544252349d0f780332f5080c75c8863848e0cc7",
+    "tibiaCharacters": [],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "0baa4d316b3ad2c532184447e45f658e19dbc2abbd0edc2a077b509d70cfd2f5",
+      "8bd722b6ccaee3f451ca341a819d74b62866f045cad89ff57b390589bda269a1",
+      "8d159d7e3b6a20b05f517ae0da96d11d1ac3f1eab9e76dd44c226e8455eabc36"
     ]
+  },
+  "andinho.cq@gmail.com": {
+    "name": "Anderson Monteiro Arcanjo",
+    "phone": "81981072320",
+    "passwordHash": "3e3753e68f10cddb8e04f67e65d06609:0c70ee0d20995d0bf8f107019aadc6bf3ad84e21e4d110fee877a95c4b1fd333292207c89b32c6fd5393b1d7bf92ba9482c9c33eed81e18c9d2096ff60dabe60",
+    "tibiaCharacters": [
+      {
+        "characterName": "Hozarking",
+        "registeredAt": "2025-07-21T22:45:46.306Z",
+        "level": 251,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "a9b6228d6d5376ce448030084c1fa1425c5e0016df55d342b7c15e283e7f2c91",
+      "9dab43db96299ebc9d8a792d8c1942bd2274df3581c19648931773319adfa387"
+    ],
+    "email": "andinho.cq@gmail.com"
+  },
+  "kadu.calmon@gmail.com": {
+    "name": "kadu mendonca calmon de almeida",
+    "phone": "11934928188",
+    "passwordHash": "d562f7e3782aa4698d989d821dad0ba0:e463e35e612927dffe0f3742ef2e74379e158bb738a4e53db45ef504eefb732b479eca22ab6196dabc631ce5316a1495590386fae3475a67a2ce9b3ea9727320",
+    "tibiaCharacters": [],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null
+  },
+  "kadu.calmon@hotmail.com": {
+    "name": "Kadu Mendonca Calmon de Almeida",
+    "phone": "11934928188",
+    "passwordHash": "53bdbf53ceb953ea65a38b78155b3b24:544d80a2e0929bc4e7e2c5612ae97fc63124a20c6155dd582f6d51bcb7da20792a49ac0ee4c89a278aff977788802050b36379ef969ac0253b44936657a02eac",
+    "tibiaCharacters": [
+      {
+        "characterName": "Ka Duzerah",
+        "registeredAt": "2025-07-20T15:53:14.812Z",
+        "level": 360,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "4b52ebe5a04a7ca778fd8ec0cff1aae2f205abcbc6ecb7cce2229ef259ed9b57"
+    ],
+    "email": "kadu.calmon@hotmail.com"
+  },
+  "jeferson.jose.rp@gmail.com": {
+    "name": "Jeferson jose de alcantara",
+    "phone": "17 992279511",
+    "passwordHash": "965aea49b16e5474ce9766eab5220060:0642c30b47903364e541bdafc1268260e2488e58c100b7d7824a81708d9236f8f1ff183478cfc34793673f2920cbcbbaa961be4b83e4bb3c2d559270b74e36e5",
+    "tibiaCharacters": [
+      {
+        "characterName": "Albino Oldman",
+        "registeredAt": "2025-07-20T16:10:23.432Z",
+        "level": 259,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "fb5440ce2d1bb23b9137cf8f0c6a05b1ab3941fd436ef71578a24f7acc619bdd",
+      "c96eb48def623cbed773057ef16c00c0bc8d85c14c3f550f5ee35f1485f6514e"
+    ],
+    "email": "jeferson.jose.rp@gmail.com"
+  },
+  "erik.otavio@gmail.com": {
+    "name": "Erik Otávio",
+    "phone": "35987118776",
+    "passwordHash": "341ed31d454ccfead610e35267697fb8:edc21e5f32bcb1aa4c37828b668755628bf772904797b551e5545a484159296b9464ef8c10fd3cfffeccd22ec4a8e7b5180a2cc2432001cf5d4986ec56571c41",
+    "tibiaCharacters": [
+      {
+        "characterName": "Er ikao",
+        "registeredAt": "2025-07-20T23:07:39.359Z",
+        "level": 114,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "5e0512b7247c5ac5f7790c3bec94d1ce0da640257fe67c9e1d9b9e38ca1010ab"
+    ],
+    "email": "erik.otavio@gmail.com"
+  },
+  "ju2melo@hotmail.com": {
+    "name": "Juliano Melo de Freitas",
+    "phone": "16992346937",
+    "passwordHash": "1b6a520a62eec4e1af9002866cc8d498:7eeed5f6e6dfe0da748a62956602c87f192940e3e56d9a450d01dd377ff3b0394342270c022e349e9e428aeb6a427398fa871caf9b45f39edec385f3c150831b",
+    "tibiaCharacters": [
+      {
+        "characterName": "Aiykrot",
+        "registeredAt": "2025-07-21T00:46:32.607Z",
+        "level": 91,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "3cb54b0fecb09485f22d5b94ee01d66859d94fc60d85aa81a58cb8caca8beace"
+    ],
+    "email": "ju2melo@hotmail.com"
+  },
+  "parole.lemes@gmail.com": {
+    "name": "pml",
+    "phone": "12981167271",
+    "passwordHash": "15e9800a9f1999cf0f230fd985845e69:b6876f0eba4e102421b2b66f5f40e72708c85bc7020490f69f4e5b12832aa53e6b70b5985d7f797a685c56336f80258756a95cb901c57c6f65147f6103936f77",
+    "tibiaCharacters": [
+      {
+        "characterName": "Kriskovx",
+        "registeredAt": "2025-07-21T01:42:03.794Z",
+        "level": 120,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "2255b5a0afa98502360fc1d6e321f4326df70a4b0f21dfb70ded949f006f24d4",
+      "22fac24557eaf7be9127048492a76299f928bb411c27bd703500b0f6dad58e9a",
+      "5abb1b18c27f40d7bee78af1d6b2e48a56110e422afe6b374db36fe1cdc7ac79",
+      "76896dfda0535edd5d3c93364dea757a14518ea859ce1dbf7222b099fa817f2e",
+      "8cad0ac0e1344d62845de0d3cecb9bca794fa5b82b495985415a4a87fd2b5171",
+      "43df2a2511ced82a197b3664bba4585ec0c560e803e5b9b0ad27fe2de592183e"
+    ],
+    "email": "parole.lemes@gmail.com",
+    "activeCharacterName": "Kriskovx"
+  },
+  "joaolucasfranca@hotmail.com": {
+    "name": "Guerreiro Jota",
+    "phone": "18996838712",
+    "passwordHash": "9ede4b319ddf1e69c5c2c664d5f6e712:45a9ee5ac39fa1061dd16c84f04d33016bf5a76e19e529343f5df4cdd713830f76113aad7496c3cf855d991b492cab785ad6a1d785d41fd323f27e15de507d4d",
+    "tibiaCharacters": [
+      {
+        "characterName": "Guerreiro Jota",
+        "registeredAt": "2025-07-21T01:29:36.917Z",
+        "level": 121,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "219721744941f35b5d174bd3b5e9284d3b9ed4269160b79a392c81eaf7fdb948",
+      "cf62bd4fecb6fe77a3ca9c992e7d116bfa2d0829c81610413314a7db16a77e72",
+      "82dee9a674f8b78d2747bdbcc1a3d64f680081ac7e233e62821503ea33c7f5cc",
+      "6e00255e2e1596499d43719f09a130f88943e2fa8eadb6a742796f26967f6a01"
+    ],
+    "email": "joaolucasfranca@hotmail.com"
+  },
+  "pedrohfattore@gmail.com": {
+    "name": "Pedro Henrique Balistiero Fattore",
+    "phone": "16992056591",
+    "passwordHash": "6b1f6eb1f1b7c29a8b0204fbe6e9b49c:22a4161ea22197adc28d65174bbf13cd4c9b46c859ecbc35098c9cf0e557c58c620636dbf199a80cbca25eca1b446ef224dcc9ca3701889e837868cb59485088",
+    "tibiaCharacters": [
+      {
+        "characterName": "Trapalux",
+        "registeredAt": "2025-07-21T12:25:19.310Z",
+        "level": 270,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "aabe371ec21d856435f92ac9a7dfe158dc7672862ddb6a21ca7ccc48513bd73c",
+      "5ddd9cb6d31af68849dc035f22a903afaf47c4ea42ca8ec09a6de08b3c3b7626",
+      "668de1a4f1655bb2284dad355d4deb52cfb1796b0ce2c7a70dc2903b5f6d2c11"
+    ],
+    "email": "pedrohfattore@gmail.com",
+    "activeCharacterName": "Trapalux"
+  },
+  "nem11wanderson@gmail.com": {
+    "name": "Wanderson santos soares",
+    "phone": "21974433646",
+    "passwordHash": "8a1c89d91d2e8a667731aec23d80759e:49b3bd60a8448f7b17b331da747e1ed0fdaf7172dae8e691c9c45b6fcad243f8b9f07509241199ca601ce4e74b8195f743b5cb3e2f1a034ef834e4e59f45e469",
+    "tibiaCharacters": [
+      {
+        "characterName": "Wan Derek",
+        "registeredAt": "2025-07-21T23:03:55.142Z",
+        "level": 394,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Hero",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "5d3be355ca89232233cc26244080d30efe561de9b36591aa75ee8fd90edad023",
+      "d6a05a9667fb2456a0027bb744b23998a04e8c09f2b4813bc67680c22f8f3269",
+      "cdd5023930f4972a22abd25cee06e42af159fd8fb0b2e9366e924d8a8997f736"
+    ],
+    "email": "nem11wanderson@gmail.com"
+  },
+  "tomazhenrique6@gmail.com": {
+    "name": "Tomaz Henrique",
+    "phone": "034992064382",
+    "passwordHash": "971e305854ef5d325db16940eb9787a5:f0cd4e1b83dfad7fdc4fa206f5b984e3c1917481c673823c74187ea32c4b79397b7c1dcfd43f033467451d114c35c841074cc66ea081340d0506a2a40db9e2df",
+    "tibiaCharacters": [
+      {
+        "characterName": "Dodo do Tete",
+        "registeredAt": "2025-07-24T04:16:24.370Z",
+        "level": 214,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "14977e7a2fcedad58f232ae148e76319699a374dac91e9a99596c28b263a9936",
+      "23db27d7611530aca86708699ec9df61fec1466206fcb8a77d7c8a68ed2f0cc7"
+    ],
+    "email": "tomazhenrique6@gmail.com"
+  },
+  "RAFAEL_ROCHA_93@HOTMAIL.COM": {
+    "name": "Rafael Rocha",
+    "phone": "19982736668",
+    "passwordHash": "d759dd429392b4163e5ae250c8b16d26:0b2e5511d7e2e4aa5882ccadf9835e04ba5395ff827e5eb62a06eb49b72f92e728b1c543de8e2f36f26a83c0e61c4456f3f72fd8280c1531e382b80361ce6a20",
+    "tibiaCharacters": [],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null
+  },
+  "rafael_rocha_93@hotmail.com": {
+    "name": "Salmon Tadafilado",
+    "phone": "19982736668",
+    "passwordHash": "27e9b651498cdee5d867313cffd44448:f9ef00e102ecaa86b4e932289ecfc2e925c788efb207884dbda4f86925f700c8b4af18286327892343f1e072f06278341f93aef975f6b4f94b589fee7d926def",
+    "tibiaCharacters": [
+      {
+        "characterName": "Salmon Tadafilado",
+        "registeredAt": "2025-07-22T13:46:52.228Z",
+        "level": 242,
+        "vocation": "Exalted Monk",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "9775db8768fcebd5bb4b5f66d83acd0f96d491d94202b56c44e2ed2914e4b233",
+      "9991e577e69a1da43c02a14ab037b2c1b33ca407db91b3a10725497baa3d9c11",
+      "7f268bbca4692c10206affa01ab8f798230699514b6a44dbdfa14abcba4ead6a",
+      "9afff9b76199e52cb9945bc738703735506137f69658f0fae180475727f57f08",
+      "74b0538aa5fa06fe8976c4399a978aa99b8b78f5383870aed87cfc9d0d2cd5f3",
+      "9cdcad09c7599eb064920f4fb0450c01e5a03f27e0ebcb868d7946cca64dbd0a"
+    ],
+    "email": "rafael_rocha_93@hotmail.com"
+  },
+  "tiago.sntscv@gmail.com": {
+    "name": "Tiago Santos",
+    "phone": "61 996127275",
+    "passwordHash": "e4c3b89bcb0180c7007b60fc58af52f1:657f1a0cd394db7565e535bab864eb2647d1ce9afa928a3d0d109a721a660e74a528462fb4d73845bd72784fd9f26c5f75713f00d448895d4cdc2224ef529685",
+    "tibiaCharacters": [
+      {
+        "characterName": "Zlaped",
+        "registeredAt": "2025-07-22T16:51:34.138Z",
+        "level": 211,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "2f68a7c44bdb884ec2ed1fb2cc3819006e7a462f0e7a76ac3a3e0991a593a883",
+      "252fab6b555b73570e2af65c398fbbd0a81b58476fb563415e8b31a246e3c8ad",
+      "b52050595e5d12df43a372b2f87707b15dc1e453fd59abb19e6b2199aff223f3",
+      "bd3f6607ccd434cca4bba3f9711fad3a360a12e5262cc33376b925f8f92ab8ae",
+      "94e180f63d134f54e34843011b564fc97f53fa4779c67f8777fef003f21745e9",
+      "1417b55e82cc4728d81ed3a6768309b3be8d5d252d0ae344f656ff3d414bc3a4",
+      "f2770d464c1daafbfe40ee722cca01daee8c1f0881fb71e8b5e526a83c24e10d",
+      "f25799963ce191884b6cda95ccec9176085003e9b83de3342d9d20af99b22044",
+      "57a75e4a9b005b716cab7c72457d93f0f3294a5d81137386e1c048b5de5b4991",
+      "4e80d98b0e5cc6b58473f7963293342771c7500975b2907a07eeea2d3299866a"
+    ],
+    "email": "tiago.sntscv@gmail.com"
+  },
+  "felipe@5quatro.com.br": {
+    "name": "luiz felipe gomes",
+    "phone": "016981490141",
+    "passwordHash": "7d6048bb98e5021b9a9f33d806c52272:18a0f71ce15d50d1d6f6d9fd579b437ecbb4c0ca5a129d191d53e77b1f8409c16af6b8d3c64d82e7921936767dfc5620855dad9a093b0be6a46e5e4013d7d6d1",
+    "tibiaCharacters": [
+      {
+        "characterName": "Ninfao Dropa Nada",
+        "registeredAt": "2025-07-22T18:31:29.065Z",
+        "level": 380,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "4a0149d0db3f9ec7e09b2c69eb9b4c48031341d534cf828dd29976c28da5b0b8"
+    ],
+    "email": "felipe@5quatro.com.br"
+  },
+  "guilherme.leite.verginio@gmail.com": {
+    "name": "Guilherme",
+    "phone": "12 981031790",
+    "passwordHash": "0b0ab4ef900349e8cc7a2169b5bceeb3:6b004e4f6a8d11f8b639df1b8b10cc0254a074a043fcc60bd25479cc02af1bcda5f72940c92f9867f39a8b60b58b8e4119dd0bd491eb661d1e4e518b58a6f6d0",
+    "tibiaCharacters": [
+      {
+        "characterName": "Ekzao Zord",
+        "registeredAt": "2025-07-22T19:59:08.266Z",
+        "level": 111,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "2f196eee908089a8c0ea98774cf9a0c4aed781e67ee64f58b57cf01b6a7f53e3",
+      "81165c9bc657262457991027c5030db40397f6a3d17862588ce44e62d687b545"
+    ],
+    "email": "guilherme.leite.verginio@gmail.com",
+    "activeCharacterName": "Ekzao Zord"
+  },
+  "nycolasoliveira79@gmail.com": {
+    "name": "Nycolas Oliveira",
+    "phone": "12997752689",
+    "passwordHash": "b94a57a4ebb1afe4fd3a9373ef868edb:1995b77a17717bdb1c82e5c244c18534d0082373dfffe3ee19a8006fff9cdb10032557ef468bad69c12133caec4cec0ad0957e67c96b7c9d15591add55afeec2",
+    "tibiaCharacters": [
+      {
+        "characterName": "Old Loku",
+        "registeredAt": "2025-07-22T23:07:12.778Z",
+        "level": 202,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "f17c8b0ec0b30fea2f8b405293c97c18c22823eb7ac625d30a7bc68a1c82304b"
+    ],
+    "email": "nycolasoliveira79@gmail.com"
+  },
+  "vinicyus.imoveis@gmail.com": {
+    "name": "Vinicyus",
+    "phone": "665998075422",
+    "passwordHash": "89a4c992f2a988443f127edb03503bda:bcd1a390f8f0abfcedda448cf70afec73bb1a5ed2c784b648875abf287a47f14bc0dc98f62c32d87a6161aa911701f900ae1b6af0a8ad05d40d759a35628558b",
+    "tibiaCharacters": [
+      {
+        "characterName": "Old Vine",
+        "registeredAt": "2025-07-22T23:59:46.017Z",
+        "level": 159,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "48e5630adec8b8c0b782021ef59359c9638b2f6cd9e6d26189985bcc69c140dd",
+      "ae8b4e47ca4a7faece512b23ee615ede96a006facb6fd9fabf218c7b806ac38f"
+    ],
+    "email": "vinicyus.imoveis@gmail.com"
+  },
+  "barbosagabsantos@gmail.com": {
+    "name": "Gabriel",
+    "phone": "37999431617",
+    "passwordHash": "4aa616bcce4e1541b4440d7c74521ece:9334c273aa95e82c1c307e5f672cf74e9746cdde9480c35125ffbcae7516905e435cad5b994a4c924856bd922cf23b0e860abe286b6b658c3ffdcc7e3d16185d",
+    "tibiaCharacters": [],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "ae09cd09347305cbdf9942424f36e10ade0fa90e60b2871c0ee04bb5c88e158a",
+      "bb4eff33ce39dc5f7e548aea72d92490146b98df832662d12f655cec927b7d97"
+    ]
+  },
+  "marcomoyacarvajal@gmail.com": {
+    "name": "Marco",
+    "phone": "+56991279561",
+    "passwordHash": "35f95a4b1ced07434f827fb42686c409:be8d65f2c31323f16be462dad7aa80889257a71f402294eda32c545693f3e1178ca9a29d355786ff6a8ab2141dee55b768417939b7dcdb9780c156d0c8166e4f",
+    "tibiaCharacters": [
+      {
+        "characterName": "Markito Zoldyck",
+        "registeredAt": "2025-07-23T19:33:52.555Z",
+        "level": 264,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "3a9ccab108560fb30f41547ae03b7ba6eaa6980ea2932ce03d93c759d0fc8f3e",
+      "cabe477274137a907758e367d2d285b07dee9c540dd390bd930f6f8812e6f612"
+    ],
+    "email": "marcomoyacarvajal@gmail.com"
+  },
+  "marraiso@hotmail.com": {
+    "name": "Juan Carlos Marraiso Junior",
+    "phone": "12981301533",
+    "passwordHash": "bc4a8efb4466f65bb31be8c4fbc3b6eb:b1e4d58977b62132735af199926f25e6a4f2567c91325421be98ad0f89bad0c89af554ddda6926405aab0dd322885247b5b794e901ddee1f545c581e7f771946",
+    "tibiaCharacters": [
+      {
+        "characterName": "Knaxez",
+        "registeredAt": "2025-07-23T20:59:09.711Z",
+        "level": 220,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "4f39ed00c2dcbbae6873940cda4d81e8311a84031b38551bd531f3252da2048a"
+    ],
+    "email": "marraiso@hotmail.com"
+  },
+  "ducalvu@gmail.com": {
+    "name": "Luiz Eduardo",
+    "phone": "47 9 33818532",
+    "passwordHash": "0bbddf617fd9e8c1d47d3708e27e2e84:1214e4407c26310c8f56fedef9690863a4eb5cae2407610e04d329ac3cce1c15f4d40e626a69c341fe88739643da5c1f38a3e9e10bf9efc4311775257b1cf65a",
+    "tibiaCharacters": [
+      {
+        "characterName": "Myrrakath Magus",
+        "registeredAt": "2025-07-23T22:52:13.266Z",
+        "level": 233,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "078be02e94517b143b088abce1052c6e0792e333d7e8461ad12a22df2bef1ca2"
+    ],
+    "email": "ducalvu@gmail.com"
+  },
+  "anderson_welb@hotmail.com": {
+    "name": "Anderson hercilio dos santos",
+    "phone": "47988675314",
+    "passwordHash": "3d2e2c2422e49b948b1e0a3b9dfdd666:7db5fc434adc04c2f011c898139fd5a61e115979b1efe1f52a0f133dbd616bbe32c2a21734d28c61b6fa798aa3afa7283eefc19d326840c46792eba7ea57fa5f",
+    "tibiaCharacters": [],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "43b410d81fc0149c972560241544eebeebe99ac904036c68029b62b2a13c3f93"
+    ]
+  },
+  "pedrohnn4@hotmail.com": {
+    "name": "Pedro Henrique Nascimento Netto",
+    "phone": "81989917591",
+    "passwordHash": "782af06c177e85706e920192756e44fa:9a68bca9f56f36f15a04f628fae388114abe690c91703ce39c265d8d25dcb19627daf06eec1634587533956bbb543def4d83cbf52b263b4f6317b99d633a8783",
+    "tibiaCharacters": [
+      {
+        "characterName": "Foisorte",
+        "registeredAt": "2025-07-24T10:53:28.960Z",
+        "level": 230,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "4fdb17fb453b38552809acf832a3380a1f124bd07d1b3e5f7f9830c5b7204587"
+    ],
+    "email": "pedrohnn4@hotmail.com"
+  },
+  "antonio.pauli@hotmail.com": {
+    "name": "Antonio de Paoli",
+    "phone": "19981733257",
+    "passwordHash": "5ab9596990fd81d708bfcadaeaabb6a3:0b6f786a107a847b4c2f840cf999fbf87acb77215e471ceed0bd2e7e5105980794bd44a254f782fa1d031c25a5c73797f94f3cd5a06db972578302b82739e974",
+    "tibiaCharacters": [
+      {
+        "characterName": "Tunilux",
+        "registeredAt": "2025-07-25T22:06:00.079Z",
+        "level": 295,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "7e00df01801ce57dbdd8af0257792e2da9b451bd84e0de0252e55cb7b8d8e159"
+    ],
+    "email": "antonio.pauli@hotmail.com"
+  },
+  "mathias2466@gmail.com": {
+    "name": "Mathias Sagardia",
+    "phone": "+56997658257",
+    "passwordHash": "88f9624a9c896c9db2538355773a93ea:110b6a12ea66c7111921e453cf3cdbf0fcb79e4d2f90b1b5158e88a2e41f432e30303f5567578cf79cce49c6beb345f9ff30a3096bf88c3d5145555e9eddc4ae",
+    "tibiaCharacters": [
+      {
+        "characterName": "Mathi Amoroso",
+        "registeredAt": "2025-07-25T21:29:33.950Z",
+        "level": 273,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "11a85a89b6f99e3e471ab801788457fa65efe045864d7db477211b82e0421104"
+    ],
+    "email": "mathias2466@gmail.com"
+  },
+  "adelsonaves@gmail.com": {
+    "name": "Adelso Naves dos Reis Junior",
+    "phone": "34992539529",
+    "passwordHash": "9a9253f82fd13343916e2547ec32a75e:83c75cfd78c14343b21ba19aab5d13bf08d9db5c14015ab9fad6a127fc00412eee96cd1f7753914d45ff4e162876f68bfd79e3868c577e60723b82f9944bbe49",
+    "tibiaCharacters": [
+      {
+        "characterName": "Buum de Kabum",
+        "registeredAt": "2025-07-26T01:40:20.144Z",
+        "level": 191,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "f35b92965b565aa0cb696714f6c616ec213f428e59c5073fab6f74775e47e28b",
+      "5c9922b7cdd6778b43bf67cee3a6e8e0db2e04aa431db680b2973a532e05a4b1"
+    ],
+    "email": "adelsonaves@gmail.com"
+  },
+  "menezesmat@gmail.com": {
+    "name": "Matheus Henrique Menezes Vianna de Sousa",
+    "phone": "85996476189",
+    "passwordHash": "42e4c54d1d3f0de34e8f6e66258651e3:88a7bbdbf65c15c47c32d19452d0391d230bb216259942c4dc2da6f1a734d71df89f74b662b6d3728e2562bb59d7b8d7034ac1d12eb3322dd9c6c0e4138fe313",
+    "tibiaCharacters": [
+      {
+        "characterName": "Jogaizi",
+        "registeredAt": "2025-07-26T05:38:55.626Z",
+        "level": 194,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "b706bfa8db2b9ecb02080e2e2619b5e8c40db3d61d167b8408abb6588c06dfad"
+    ],
+    "email": "menezesmat@gmail.com"
+  },
+  "joao.felipe.goes.aranha@gmail.com": {
+    "name": "Bolaum Ice",
+    "phone": "14997199700",
+    "passwordHash": "5b95e1738bf7aae3e035c5ea63f545ed:ebbaa674d48aecb411128d2942336fb20c5eef87e8e73a8bac9bc2c273cc3c4d2a61ff8933f3417dc819af4a1e516c9c820ef0b6abcb97d3190472ac6eb0c50e",
+    "tibiaCharacters": [
+      {
+        "characterName": "Bolaum Ice",
+        "registeredAt": "2025-07-26T09:44:14.724Z",
+        "level": 104,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "2c654aae82ce001c01518db4a7bcbd0f6161e7325e55eef7d2cd0c4044da392f",
+      "931cc2c4965961385c83fb8249fdb0f4a3d73df30081ca83184372061f635851"
+    ],
+    "email": "joao.felipe.goes.aranha@gmail.com"
+  },
+  "oushmake@gmail.com": {
+    "name": "Jailton Souza",
+    "phone": "81984183355",
+    "passwordHash": "546f88c903c533af4fad5cf151c41ca9:c2c611bf27acc0f89e0a1f3e360297baa2731d2ee5ff104c94d132aca845a55ee2275d310a97b8ce6a9fb1c7368d4c1d9eda409572834e0b56f31b215e48fbdc",
+    "tibiaCharacters": [
+      {
+        "characterName": "Lu Zi",
+        "registeredAt": "2025-07-26T14:50:40.218Z",
+        "level": 264,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "d09a00954b1021252796db075acd20a4a105210c10c94f44f5a3eb697517e9dd"
+    ],
+    "email": "oushmake@gmail.com"
+  },
+  "croninho2018@outlook.com": {
+    "name": "Mario Silva",
+    "phone": "87991008887",
+    "passwordHash": "72fd9843474707cd508f20fc8c618d49:b0b5601d5f7aa3b840f2b63742fd2a63cf2265dc7485490059e4a16928ab4dc4c0755b582dea0f810a104641bf2c4c8a743c429be82594651bf743503f1a4034",
+    "tibiaCharacters": [
+      {
+        "characterName": "Falreen",
+        "registeredAt": "2025-07-26T15:12:37.129Z",
+        "level": 188,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "9795e439b60921010018e692efe7a95ee45dec480978f292d1d89d5f80122d76",
+      "6c2ac5534a353006af848b0d5c4dd1e156ef9c97fd75a23d4e8f32efa67a24ee",
+      "d6cf3b6d695767e542f39cfd432a7302b45b95209f2da11732641a864fa8c597",
+      "46c96779b95a332b047f33cc8835aec665c35d6b19f97939df4f92529681c069",
+      "345e9edcd6f658549d6654424e8a83be5c0f01f3255c876fe62f088fa21360b1"
+    ],
+    "email": "croninho2018@outlook.com"
+  },
+  "xjuliano@hotmail.com": {
+    "name": "Juliano Henrique",
+    "phone": "(48)99680-7796",
+    "passwordHash": "5850b8dd7317d76322aeff6984b2a675:c78a254461d65ff40a2373e9cab324549e10455764ae6c5155176de6da696b58341c6e7806d17d4ad5b8c030e546875ee54341714b3a0e6b62d83453f2b1df31",
+    "tibiaCharacters": [
+      {
+        "characterName": "Robinavitch",
+        "registeredAt": "2025-07-26T17:44:08.486Z",
+        "level": 188,
+        "vocation": "Master Sorcerer",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "6cb9d51b4b2cb777c2e32142cd0a410c94b158c5bb39e865d9c997eca8d658fc"
+    ],
+    "email": "xjuliano@hotmail.com"
+  },
+  "acrentoxgui@gmail.com": {
+    "name": "Guilherme",
+    "phone": "12 99113-3622",
+    "passwordHash": "0e7bbadc76f2af3fdc15c45abc17d148:f02567e1eabaaa50f045db60406e7bbed246225b714c5431dce899376a3cc5d0d6f09a0762fa5aef19b13462245af4d43bff7cce9f2d948d376e85be24668dc2",
+    "tibiaCharacters": [
+      {
+        "characterName": "Fellzorl",
+        "registeredAt": "2025-07-27T08:45:12.034Z",
+        "level": 243,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "a145220fd0a7792692a90af911aeeb69717ad52765ca44363a275b1d51696e1b",
+      "4e4b1a426819e0ae6d8eef3630c9302d82c9de6e792e7c070f86456e55722775",
+      "b485fde9865142e091baa2be1f0f56c439564739a416b65fd9494ec0abae654a"
+    ],
+    "email": "acrentoxgui@gmail.com",
+    "activeCharacterName": "Fellzorl"
+  },
+  "felipe.caovilla@gmail.com": {
+    "name": "felipe francisco",
+    "phone": "41984608059",
+    "passwordHash": "4ad37ec401bdc3447ca346fa826221d0:56d0753f25e58054c746eaf85abfa0a5c6e7fd0fa7e5cecff7ab413c962fd222265aed83acdb0b148d72078aef2b1dbce9f95c28701621d3a40742def65efc88",
+    "tibiaCharacters": [
+      {
+        "characterName": "Felfras Unstopable",
+        "registeredAt": "2025-07-28T13:18:56.392Z",
+        "level": 289,
+        "vocation": "Royal Paladin",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "63b88acb6682de3ce794084956ca2a79ac5319bdd151994c1236e0d14eb486a2"
+    ],
+    "email": "felipe.caovilla@gmail.com"
+  },
+  "Robertomigani404@gmail.com": {
+    "name": "Roberto Gomide migani",
+    "phone": "16994244881",
+    "passwordHash": "66d96edaefb7794d70c0084424fba399:6800c849580b6f13b5671b02ac51c313b1eded01178da7a25e05d298d7604555aa00135a2ae4b9c75aa6c3a9e9a0049d35ccc2a85d1c3afac978c978c053a760",
+    "tibiaCharacters": [
+      {
+        "characterName": "Miigani",
+        "registeredAt": "2025-07-28T22:41:38.011Z",
+        "level": 362,
+        "vocation": "Elder Druid",
+        "world": "Luzibra",
+        "guildRank": "Membro Novo",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "71ffad970b48eacb0770f3b15cff1005ed6cf9fece2f45e15a2a96152cc304da"
+    ],
+    "email": "Robertomigani404@gmail.com"
+  },
+  "thayde27@hotmail.com": {
+    "name": "rafael",
+    "phone": "51992147697",
+    "passwordHash": "883b4e044876bd7adb1dbfcff1564cc4:4997a76926d95d994c9a115db26535589a808d5919c629fb1109b8014912df0ad547c066ce1776a349ec2f341b65d1a17c7b39088a7bb7930bfd94900cc387cf",
+    "tibiaCharacters": [
+      {
+        "characterName": "Ra Faoo",
+        "registeredAt": "2025-07-28T23:11:53.038Z",
+        "level": 277,
+        "vocation": "Elite Knight",
+        "world": "Luzibra",
+        "guildRank": "Recruta",
+        "groups": []
+      }
+    ],
+    "recoveryToken": null,
+    "recoveryTokenExpires": null,
+    "sessionTokens": [
+      "45d57f1c7804a18d99afb3ace1f4a61cb2aa3579782443ad161f0a1ab93f18cd"
+    ],
+    "email": "thayde27@hotmail.com"
   }
 }

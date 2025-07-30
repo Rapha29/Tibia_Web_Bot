@@ -1,0 +1,38 @@
+{
+  "305a": {
+    "current": {
+      "clid": "102",
+      "clientNickname": "Luizibra",
+      "clientUniqueIdentifier": "jPPBWcWTaClgSgFz/5FWCPOnGTU=",
+      "customTime": null
+    },
+    "queue": [
+      {
+        "clid": "22",
+        "clientNickname": "Raulzin",
+        "clientUniqueIdentifier": "ZrZ5J/zgUxwy6NlpD9JGm4+pfQc=",
+        "customTime": null
+      }
+    ],
+    "waitingForAccept": false,
+    "acceptanceTime": 9,
+    "startTime": "2025-07-15T05:35:25.233Z",
+    "endTime": "2025-07-15T08:35:25.233Z",
+    "lastReminderSentAtMinute": -1,
+    "time": 65
+  },
+  "505a": {
+    "current": {
+      "clid": "34",
+      "clientNickname": "Astronautatcp",
+      "clientUniqueIdentifier": "lwa6F9PsKqc5xH2PN9BtZcQRLbI=",
+      "customTime": null
+    },
+    "queue": [],
+    "time": 33,
+    "waitingForAccept": false,
+    "acceptanceTime": 10,
+    "startTime": "2025-07-15T05:31:37.213Z",
+    "endTime": "2025-07-15T08:03:37.213Z"
+  }
+}
