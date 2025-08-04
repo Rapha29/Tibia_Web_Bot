@@ -1,0 +1,34 @@
+{
+  "Ra nyx": {
+    "details": {
+      "Eventos": [
+        {
+          "id": "3dv6i2j4w",
+          "points": 10,
+          "reason": "Participou 1x",
+          "date": "2025-08-03T00:58:53.459Z"
+        },
+        {
+          "id": "pgfvnqjry",
+          "points": 10,
+          "reason": "Participou 1x",
+          "date": "2025-08-03T15:49:15.495Z"
+        }
+      ],
+      "Hive": [],
+      "KS": [],
+      "MountainPiece": [],
+      "Services": []
+    }
+  },
+  "Lemon Blan": {
+    "details": {
+      "Eventos": []
+    }
+  },
+  "Nykia": {
+    "details": {
+      "Eventos": []
+    }
+  }
+}

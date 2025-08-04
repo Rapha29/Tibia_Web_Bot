@@ -68,6 +68,49 @@ async function logUnderAttack(data) {
 
 let cachedData = {};
 
+//Adicionar ou remover grupos em massa
+
+/**
+ * Adiciona ou remove grupos de uma lista de personagens.
+ * @param {object} data - Contém characterNames, groupIds e a ação ('add' ou 'remove').
+ */
+async function adminBatchUpdateUserGroups({ characterNames, groupIds, action }) {
+    if (!characterNames || !groupIds || !action) return;
+
+    const clientAccounts = await loadJsonFile(DATA_FILES.clientAccounts, {});
+    let changesMade = false;
+
+    // Loop por cada personagem da lista de entrada
+    for (const charName of characterNames) {
+        let accountFound = false;
+        // Encontra o personagem em clientAccounts
+        for (const email in clientAccounts) {
+            const account = clientAccounts[email];
+            if (account?.tibiaCharacters) {
+                const char = account.tibiaCharacters.find(c => c && c.characterName && c.characterName.toLowerCase() === charName.toLowerCase());
+                if (char) {
+                    let userGroups = new Set(char.groups || []);
+                    if (action === 'add') {
+                        groupIds.forEach(gId => userGroups.add(gId));
+                    } else if (action === 'remove') {
+                        groupIds.forEach(gId => userGroups.delete(gId));
+                    }
+                    char.groups = Array.from(userGroups);
+                    changesMade = true;
+                    accountFound = true;
+                    break; // Sai do loop interno de emails para o próximo personagem
+                }
+            }
+        }
+        if (!accountFound) {
+            console.warn(`[BATCH UPDATE] Personagem não encontrado: ${charName}`);
+        }
+    }
+
+    if (changesMade) {
+        await saveJsonFile(DATA_FILES.clientAccounts, clientAccounts);
+    }
+}
 
 async function adminRemoveUserFromGroup({ characterName, groupId }) {
     if (!characterName || !groupId) return { success: false };
@@ -1913,5 +1956,6 @@ module.exports = {
     removeFromPlanilha,
     adminUpdatePlanilhadoRespawns,
     adminUpdateRespawnRankRestrictions,
-    logUnderAttack
+    logUnderAttack,
+    adminBatchUpdateUserGroups,
 };

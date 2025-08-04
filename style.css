@@ -853,3 +853,38 @@ tr.user-highlight { outline: 2px solid #FFD700; } /* Mantido dourado */
     .filter-group { min-width: unset; width: 100%; }
     .qeq-container { grid-template-columns: 1fr; }
 }
+
+/* ========================================================== */
+/* INÍCIO DO CÓDIGO DO BOTÃO RESPONSIVO             */
+/* ========================================================== */
+
+/* PASSO 1: Esconde o botão em ecrãs grandes (desktop) por defeito. */
+#toggle-chat-btn {
+    display: none;
+}
+
+/* PASSO 2: Define uma regra especial APENAS para ecrãs com largura máxima de 768px. */
+@media (max-width: 768px) {
+
+    /* Mostra o botão de toggle APENAS dentro desta regra de ecrã pequeno. */
+    #toggle-chat-btn {
+        display: flex; /* ou 'inline-flex' */
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Esconde o painel de chat por defeito em ecrãs pequenos. */
+    .chat-section {
+        display: none;
+    }
+
+    /* Mostra o painel de chat quando ele tiver a classe 'visible'. */
+    .chat-section.visible {
+        display: flex !important; /* Usamos !important para garantir que se sobreponha a outras regras */
+    }
+    
+    /* Outras regras para ajustar o layout no telemóvel... */
+    .container {
+        flex-direction: column;
+    }
+}

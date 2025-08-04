@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Issobra Web</title>
+    <title>Issobra Web 2.9.04</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
@@ -24,59 +24,65 @@
 <nav class="main-nav">
     <button class="nav-link active" data-page="respawns">
         <i class="fas fa-list-ul"></i> Respawns
-    </button>
-    <button class="nav-link" data-page="friends">
-        <i class="fas fa-users"></i> Friends/Enemies
-    </button>
-    <button class="nav-link" data-page="planilhado">
-        <i class="fas fa-calendar-alt"></i> Planilhado
-    </button>
-    
-    <div class="nav-dropdown-container">
-        <button class="nav-link" id="tools-dropdown-btn">
-            <i class="fas fa-tools"></i> Ferramentas <i class="fas fa-caret-down"></i>
+        <button class="nav-link" data-page="friends">
+            <i class="fas fa-users"></i> <span id="friends-nav-text">Friends / Enemies</span>
         </button>
-        <div class="nav-dropdown-menu" id="tools-dropdown-menu">
-            <a href="#" class="nav-dropdown-item" data-page="calc_exp">Calculadora de XP</a>
-            <a href="#" class="nav-dropdown-item" data-page="calc_loot">Split Loot</a>
-            <a href="#" class="nav-dropdown-item" data-page="calc_valor">Conversor de Valores</a>
-            <a href="#" class="nav-dropdown-item" data-page="quem_e_quem">Quem é Quem?</a>
+        <button class="nav-link" data-page="planilhado">
+            <i class="fas fa-calendar-alt"></i> Planilhado
+        </button>
+        
+        <div class="nav-dropdown-container">
+            <button class="nav-link" id="tools-dropdown-btn">
+                <i class="fas fa-tools"></i> Ferramentas <i class="fas fa-caret-down"></i>
+            </button>
+            <div class="nav-dropdown-menu" id="tools-dropdown-menu">
+                <a href="#" class="nav-dropdown-item" data-page="calc_exp">Calculadora de XP</a>
+                <a href="#" class="nav-dropdown-item" data-page="calc_loot">Split Loot</a>
+                <a href="#" class="nav-dropdown-item" data-page="calc_valor">Conversor de Valores</a>
+                <a href="#" class="nav-dropdown-item" data-page="quem_e_quem">Quem é Quem?</a>
+            </div>
         </div>
-    </div>
+        <button class="nav-link" data-page="ranking">
+    <i class="fas fa-trophy"></i> Ranking
+</button>
+        
+        <div class="navbar-left" id="top-navbar">
+            <span>| </span> 
+            <span id="nav-user-account">Carregando...</span> 
+            <span>></span>
+            <span id="nav-user-char">Nenhum personagem</span> 
+        </div>
+        
+        <div class="navbar-right" style="margin-left: auto; display: flex; justify-content: flex-end;">
+            <button id="change-name-btn">Trocar Personagem</button> 
+            <span id="active-char-display">  </span> 
+            <button id="logout-btn" class="action-btn danger-btn">Sair</button> 
+        </div>
+    </nav>
+    </button>
+            <button id="toggle-chat-btn" class="nav-link">
+        <i class="fas fa-comment"></i> Chat
+    </button>
     
-    <div class="navbar-left" id="top-navbar">
-        <span>| </span> 
-        <span id="nav-user-account">Carregando...</span> 
-        <span>></span>
-        <span id="nav-user-char">Nenhum personagem</span> 
-    </div>
-    
-    <div class="navbar-right" style="margin-left: auto; display: flex; justify-content: flex-end;">
-        <button id="change-name-btn">Trocar Personagem</button> 
-        <span id="active-char-display">  </span> 
-        <button id="logout-btn" class="action-btn danger-btn">Sair</button> 
-    </div>
-</nav>
-
     <div id="hunted-alert-container"></div>
     
     <div class="container">
         <div id="main-content-panel" class="panel">
         </div>
-
+        
         <div class="chat-section panel"> 
             <div >
-
+                
             </div>
             <h2>Chat com o Bot</h2> 
             <div class="chat-options">
-                    <div class="checkbox-wrapper">
-                        <input type="checkbox" id="sound-enabled-checkbox">
-                        <label for="sound-enabled-checkbox">🔊 Som</label>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="sound-enabled-checkbox">
+                    <label for="sound-enabled-checkbox">🔊 Som</label>
                 </div>
                 <div class="checkbox-wrapper">
-                       <input type="checkbox" id="alert-enabled-checkbox">
-                        <label for="alert-enabled-checkbox">🔔 Alerta</label>
+                    <input type="checkbox" id="alert-enabled-checkbox">
+                    <label for="alert-enabled-checkbox">🔔 Alerta</label>
                 </div>
             </div>
             <div id="chat-log"></div> 
@@ -169,8 +175,16 @@
                             <input type="number" id="group-time-input" placeholder="Tempo Extra (minutos)" required> 
                             <button type="submit">Salvar Grupo</button> 
                             <button type="button" id="clear-group-form-btn">Limpar</button> 
+                            <hr style="margin: 20px 0;">
+                        
+                            <h3>Gerenciamento de Grupos em Massa</h3>
+                            <div id="admin-batch-group-management" style="display: flex; gap: 20px;">
+                                </div>
+                        </div>
                         </form>
+                        <div id="tab-content-members" class="tab-content active">
                     </div>
+                    
                     <div class="admin-panel">
                         <div id="admin-selected-group-panel" style="display:none;">
                             <h2>Membros e Respawns de: <span id="selected-group-name-details"></span></h2>
@@ -305,6 +319,31 @@
             </div>
     </div>
 </div>
+<script>
+    // Este script espera que todo o conteúdo da página HTML seja carregado antes de ser executado.
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // 1. Encontra os elementos na página: o botão de chat e o painel de chat.
+        const toggleChatBtn = document.getElementById('toggle-chat-btn');
+        const chatPanel = document.querySelector('.chat-section');
+
+        // 2. Verifica se ambos os elementos realmente existem na página para evitar erros.
+        if (toggleChatBtn && chatPanel) {
+        
+            // 3. Adiciona uma função que será executada sempre que o botão for clicado.
+            toggleChatBtn.addEventListener('click', () => {
+                // 4. Alterna a classe 'visible' no painel de chat.
+                // Se a classe não existir, ela é adicionada.
+                // Se a classe já existir, ela é removida.
+                chatPanel.classList.toggle('visible');
+            });
+
+        } else {
+            // Se um dos elementos não for encontrado, exibe uma mensagem no console para depuração.
+            console.error('Botão de chat ou painel de chat não encontrado. Verifique os IDs no HTML.');
+        }
+    });
+</script>
 <script src="/socket.io/socket.io.js"></script> 
     <script src="client.js"></script> 
 </body>

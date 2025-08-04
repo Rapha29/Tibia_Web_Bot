@@ -6,6 +6,7 @@ const { Server } = require("socket.io");
 const fetch = require('node-fetch');
 const bot = require('./bot_logic.js');
 const activeUsers = new Map();
+const pointsLogic = require('./points_logic.js');
 
 const app = express();
 app.set('trust proxy', 'loopback'); 
@@ -17,8 +18,8 @@ app.use((req, res, next) => {
     res.setHeader('Permissions-Policy', 'geolocation=(), microphone=(), camera=()');
     res.setHeader('Content-Security-Policy', 
         "default-src 'self'; " +
-        "script-src 'self' 'unsafe-inline' /socket.io/socket.io.js; " + // Adicionado 'unsafe-inline'
-        "style-src 'self' 'unsafe-inline' cdnjs.cloudflare.com; " +  // Adicionado 'unsafe-inline'
+        "script-src 'self' 'unsafe-inline'; " +
+        "style-src 'self' 'unsafe-inline' cdnjs.cloudflare.com; " + 
         "font-src 'self' cdnjs.cloudflare.com; " +
         "connect-src 'self'; " +
         "img-src 'self' data:; " +
@@ -201,7 +202,6 @@ async function sendHuntedAlert(onlinePlayers) {
                     io.emit('bot:hunted_online', hunted);
                     
                     huntedLastAlert.set(hunted.name, now);
-                    console.log(`[ALERTA] Hunted online: ${hunted.name}`);
                 }
             }
         });
@@ -219,6 +219,39 @@ function cleanupAlertMap(alertMap, relationList) {
         }
     }
 }
+
+/**
+ * Agenda a sincronização de XP para as 5h da manhã e, depois, repete a cada 24h.
+ */
+function scheduleXpSync() {
+    const now = new Date();
+    const nextSync = new Date();
+    
+    // Define a hora da próxima execução para 5:00:00
+    nextSync.setHours(5, 0, 0, 0);
+
+    // Se a hora atual já passou das 5h, agenda para o dia seguinte
+    if (now > nextSync) {
+        nextSync.setDate(nextSync.getDate() + 1);
+    }
+
+    const timeToNextSync = nextSync.getTime() - now.getTime();
+
+    console.log(`[XP SYNC] Próxima sincronização de XP agendada para ${nextSync.toLocaleString('pt-BR')}.`);
+
+    setTimeout(() => {
+        // Executa a primeira vez
+        pointsLogic.fetchAndProcessXP();
+        
+        // Depois, agenda para repetir a cada 24 horas
+        setInterval(() => {
+            pointsLogic.fetchAndProcessXP();
+        }, 24 * 60 * 60 * 1000);
+    }, timeToNextSync);
+}
+
+// Inicia o agendador da tarefa de XP quando o servidor arranca
+scheduleXpSync();
 
 io.on('connection', (socket) => {
     // --- LÓGICA DE DETECÇÃO DE IP ---
@@ -278,13 +311,227 @@ io.on('connection', (socket) => {
         commandTimestamps: [],
         isMutedUntil: 0,
         rateLimitTimestamps: {},
-        clientTimeInfo: null 
-
+        clientTimeInfo: null, 
+        welcomeTimeout: null
     };
+
     webUsers.set(socket.id, userSession);
 
     broadcastRespawnUpdates(socket);
 
+        //-----------------------------------------------//
+    //----------- LISTENERS DO SISTEMA DE PONTOS -----------//
+    //-----------------------------------------------//
+
+    //Adicionar/Remover grupos em massa
+    socket.on('admin:updateMultipleUserGroups', async (data) => {
+        const user = webUsers.get(socket.id);
+        if (user && user.character && adminRanks.includes(user.character.guildRank?.toLowerCase())) {
+            await bot.adminBatchUpdateUserGroups(data);
+
+            // Dispara uma atualização global para que todos os painéis de admin reflitam a mudança
+            await updateCaches();
+            const usersForDisplay = await bot.adminGetUsersForDisplay();
+            const adminData = await bot.adminGetFullData();
+
+            io.emit('admin:usersUpdate', usersForDisplay);
+            io.emit('admin:dataUpdate', adminData);
+            socket.emit('bot:success_notification', { message: `Alteração em massa de grupos realizada com sucesso.` });
+        } else {
+            console.warn(`[SECURITY] Tentativa não autorizada de 'admin:updateMultipleUserGroups' pelo socket ${socket.id}`);
+            socket.emit('bot:response', { type: 'error', text: 'Acesso negado.' });
+        }
+});
+    // Envia os dados de pontos quando a página é carregada
+    socket.on('points:getData', async () => {
+        try {
+            const data = await pointsLogic.getPointsData();
+            socket.emit('points:dataUpdated', data);
+        } catch (error) {
+            console.error('[POINTS_SYSTEM] Erro ao obter dados de pontos:', error);
+            socket.emit('bot:response', { type: 'error', text: 'Ocorreu um erro ao carregar os dados de ranking.' });
+        }
+    });
+
+    // Adiciona presença na Warzone a partir do log
+    socket.on('points:addWarzone', async (logText) => {
+        const user = webUsers.get(socket.id);
+        if (user && user.character && adminRanks.includes(user.character.guildRank?.toLowerCase())) {
+            const result = await pointsLogic.addWarzoneAttendance(logText);
+            socket.emit('bot:response', { type: result.success ? 'success' : 'error', text: result.message });
+            if (result.success) {
+                const data = await pointsLogic.getPointsData();
+                io.emit('points:dataUpdated', data); // Atualiza todos os clientes
+            }
+        }
+    });
+
+    socket.on('points:saveWarzoneChanges', async (changes) => {
+        const result = await pointsLogic.saveWarzoneChanges(changes);
+        if (result.success) {
+            // Avisa o cliente que salvou com sucesso
+            socket.emit('points:saveChangesConfirmed', result.message);
+            // Envia os dados atualizados para TODOS os clientes conectados
+            io.emit('points:dataUpdated', await pointsLogic.getPointsData());
+        }
+    });
+
+    // Adiciona pontos de Eventos
+    socket.on('points:addEvent', async ({ playerName, participations }) => {
+        const user = webUsers.get(socket.id);
+        if (user && user.character && adminRanks.includes(user.character.guildRank?.toLowerCase())) {
+            const result = await pointsLogic.addEventPoints(playerName, participations);
+            socket.emit('bot:response', { type: 'success', text: `Pontos de evento para ${playerName} atualizados.` });
+            if (result.success) {
+                const data = await pointsLogic.getPointsData();
+                io.emit('points:dataUpdated', data);
+            }
+        }
+    });
+
+    // Adiciona pontos de Hive
+    socket.on('points:addHive', async ({ playerName, tasks }) => {
+        const user = webUsers.get(socket.id);
+        if (user && user.character && adminRanks.includes(user.character.guildRank?.toLowerCase())) {
+            const result = await pointsLogic.addHivePoints(playerName, tasks);
+             socket.emit('bot:response', { type: 'success', text: `Pontos de Hive para ${playerName} atualizados.` });
+            if (result.success) {
+                const data = await pointsLogic.getPointsData();
+                io.emit('points:dataUpdated', data);
+            }
+        }
+    });
+
+    // Adiciona pontos de Services
+    socket.on('points:addService', async ({ players, serviceName }) => {
+        const user = webUsers.get(socket.id);
+        if (user && user.character && adminRanks.includes(user.character.guildRank?.toLowerCase())) {
+            await pointsLogic.addPoints('Services', 1, players, serviceName);
+            socket.emit('bot:response', { type: 'success', text: 'Pontos de Service adicionados com sucesso.'});
+            const data = await pointsLogic.getPointsData();
+            io.emit('points:dataUpdated', data);
+        }
+    });
+
+    // Adiciona pontos de KS (atrapalhar inimigo)
+    socket.on('points:addKS', async ({ playerName, hours }) => {
+        const user = webUsers.get(socket.id);
+        if (user && user.character && adminRanks.includes(user.character.guildRank?.toLowerCase())) {
+            const result = await pointsLogic.addKSPoints(playerName, hours);
+            socket.emit('bot:response', { type: 'success', text: `Pontos de KS para ${playerName} atualizados.` });
+            if (result.success) {
+                const data = await pointsLogic.getPointsData();
+                io.emit('points:dataUpdated', data);
+            }
+        }
+    });
+    
+    // Adiciona pontos de Mountain Piece
+    socket.on('points:addMountainPiece', async ({ players, pieces }) => {
+        const user = webUsers.get(socket.id);
+        if (user && user.character && adminRanks.includes(user.character.guildRank?.toLowerCase())) {
+            
+            const piecesPerBackpack = 20; // 20 peças por backpack
+            const backpacksNeeded = 4; // precisa de 4 backpacks
+            const piecesRequired = piecesPerBackpack * backpacksNeeded; // 80 peças
+            
+            // Cada conjunto de 80 peças dá 2 pontos
+            const pointsPerSet = 2;
+
+            // Calcula quantos conjuntos completos existem
+            const fullSets = Math.floor(pieces / piecesRequired);
+            const totalPoints = fullSets * pointsPerSet;
+            
+            const reason = `${pieces} peça(s) entregue(s) (${fullSets} conjunto(s) válido(s))`;
+
+            if (players && players.length > 0 && totalPoints > 0) {
+                await pointsLogic.addPoints('MountainPiece', totalPoints, players, reason);
+                socket.emit('bot:response', { type: 'success', text: 'Pontos de Mountain Piece adicionados com sucesso.'});
+                const data = await pointsLogic.getPointsData();
+                io.emit('points:dataUpdated', data);
+            } else {
+                socket.emit('bot:response', { type: 'error', text: 'Quantidade insuficiente para gerar pontos (mínimo 4 backpacks).' });
+            }
+        }
+    });
+
+    // Listener para o líder editar um registo de pontos
+    socket.on('points:editEntry', async ({ player, category, entryId, newData }) => {
+        const user = webUsers.get(socket.id);
+        if (user && user.character && adminRanks.includes(user.character.guildRank?.toLowerCase())) {
+            const result = await pointsLogic.editPointEntry(player, category, entryId, newData);
+            socket.emit('bot:response', { type: result.success ? 'success' : 'error', text: result.message });
+            if (result.success) {
+                const data = await pointsLogic.getPointsData();
+                io.emit('points:dataUpdated', data);
+            }
+        }
+    });
+    
+    // Listener para o líder remover um registo de pontos
+    socket.on('points:removeEntry', async ({ player, category, entryId }) => {
+        const user = webUsers.get(socket.id);
+        if (user && user.character && adminRanks.includes(user.character.guildRank?.toLowerCase())) {
+            const result = await pointsLogic.removePointEntry(player, category, entryId);
+            socket.emit('bot:response', { type: result.success ? 'success' : 'error', text: result.message });
+            if (result.success) {
+                const data = await pointsLogic.getPointsData();
+                io.emit('points:dataUpdated', data);
+            }
+        }
+    });
+
+    // Listener para arquivar o mês atual e zerar os pontos
+    socket.on('points:archiveAndReset', async () => {
+        const user = webUsers.get(socket.id);
+        if (user && user.character && adminRanks.includes(user.character.guildRank?.toLowerCase())) {
+            const result = await pointsLogic.archiveCurrentMonth();
+            socket.emit('bot:response', { type: result.success ? 'success' : 'error', text: result.message });
+            if (result.success) {
+                const data = await pointsLogic.getPointsData();
+                io.emit('points:dataUpdated', data);
+            }
+        }
+    });
+
+    // Listener para obter o histórico de um mês específico
+    socket.on('points:getHistory', async ({ month }) => { // ex: month = '2025-07'
+        const data = await pointsLogic.getHistoryData(month);
+        socket.emit('points:historyDataUpdated', data);
+    });
+ // Listener para o líder forçar a atualização do XP
+    socket.on('points:forceXpSync', async () => {
+        const user = webUsers.get(socket.id);
+        if (user && user.character && adminRanks.includes(user.character.guildRank?.toLowerCase())) {
+            await pointsLogic.fetchAndProcessXP();
+            socket.emit('bot:response', { type: 'success', text: 'Sincronização de XP iniciada.' });
+            // Dá um tempo para o cálculo e atualiza todos
+            setTimeout(async () => {
+                const data = await pointsLogic.getPointsData();
+                io.emit('points:dataUpdated', data);
+            }, 2000);
+        }
+    });
+
+    // Listener para o líder atualizar o URL do CSV
+    socket.on('points:updateXpUrl', async (newUrl) => {
+        const user = webUsers.get(socket.id);
+        if (user && user.character && adminRanks.includes(user.character.guildRank?.toLowerCase())) {
+            const result = await pointsLogic.updateXpCsvUrl(newUrl);
+            socket.emit('bot:response', { type: 'success', text: result.message });
+        }
+    });
+
+    // Historico de ranking
+    socket.on('history:getAvailableMonths', async () => {
+        const months = await pointsLogic.getAvailableHistory();
+        socket.emit('history:availableMonths', months);
+    });
+
+    socket.on('history:getMonthData', async (monthStr) => {
+        const result = await pointsLogic.getHistoryData(monthStr);
+        socket.emit('history:monthData', result);
+    });
 
     socket.on('user:time_info', (data) => {
         const user = webUsers.get(socket.id);
@@ -309,11 +556,12 @@ io.on('connection', (socket) => {
             }
         }
         if (foundUser && foundAccount) {
+            clearTimeout(foundUser.welcomeTimeout);
+    
             // --- INÍCIO DA LÓGICA DE SESSÃO ÚNICA ---
             const oldSocketId = activeUsers.get(userEmail);
             if (oldSocketId && oldSocketId !== socket.id) {
                 console.log(`[SECURITY] Desconectando sessão antiga para ${userEmail} do socket ${oldSocketId}.`);
-                // Emite um aviso para a aba antiga antes de desconectar
                 io.to(oldSocketId).emit('system:force_disconnect', 'Você se conectou em um novo local. Esta sessão foi encerrada.');
                 io.sockets.sockets.get(oldSocketId)?.disconnect(true);
             }
@@ -338,14 +586,14 @@ io.on('connection', (socket) => {
         }
     });
 
-    setTimeout(() => {
+    userSession.welcomeTimeout = setTimeout(() => {
         const user = webUsers.get(socket.id);
+        // A condição continua a mesma
         if (user && !user.account) {
             socket.emit('bot:response', "👋 Bem-vindo! Digite !help para ver a lista de comandos disponíveis.");
             const welcomeMessage = { type: 'actionable_message', text: 'Você não está logado.\n\nPor favor, faça login ou crie uma nova conta para continuar.', actions: [{ buttonText: 'Entrar (Login)', command_to_run: '!showlogin' }, { buttonText: 'Criar Conta', command_to_run: '!showregistration' }, { buttonText: 'Recuperar Conta', command_to_run: '!recover' }] };
             socket.emit('bot:response', welcomeMessage);
- 
-       }
+        }
     }, 1500);
 
     socket.on('admin:updateRespawnRankRestrictions', async (data) => {
@@ -1089,6 +1337,65 @@ server.listen(PORT, async () => {
     }
 });
 
+/**
+ * Adiciona ou remove grupos de uma lista de personagens.
+ * @param {object} data - Contém characterNames, groupIds e a ação ('add' ou 'remove').
+ */
+async function adminBatchUpdateUserGroups({ characterNames, groupIds, action }) {
+    if (!characterNames || !groupIds || !action) return;
+
+    const clientAccounts = await loadJsonFile(DATA_FILES.clientAccounts, {});
+    let changesMade = false;
+    const characterNameMap = new Map();
+
+    // Cria um mapa para busca rápida de personagens
+    for (const email in clientAccounts) {
+        const account = clientAccounts[email];
+        if (account?.tibiaCharacters) {
+            account.tibiaCharacters.forEach(char => {
+                if (char && char.characterName) {
+                    characterNameMap.set(char.characterName.toLowerCase(), char);
+                }
+            });
+        }
+    }
+
+    // Loop por cada personagem da lista de entrada
+    for (const charName of characterNames) {
+        const char = characterNameMap.get(charName.toLowerCase());
+        if (char) {
+            let userGroups = new Set(char.groups || []);
+            let charChanges = false;
+            
+            if (action === 'add') {
+                groupIds.forEach(gId => {
+                    if (!userGroups.has(gId)) {
+                        userGroups.add(gId);
+                        charChanges = true;
+                    }
+                });
+            } else if (action === 'remove') {
+                groupIds.forEach(gId => {
+                    if (userGroups.has(gId)) {
+                        userGroups.delete(gId);
+                        charChanges = true;
+                    }
+                });
+            }
+            
+            if (charChanges) {
+                char.groups = Array.from(userGroups);
+                changesMade = true;
+            }
+        } else {
+            console.warn(`[BATCH UPDATE] Personagem não encontrado: ${charName}`);
+        }
+    }
+
+    if (changesMade) {
+        await saveJsonFile(DATA_FILES.clientAccounts, clientAccounts);
+    }
+}
 const MEMORY_LIMIT_MB = 200;
 
 setInterval(() => {

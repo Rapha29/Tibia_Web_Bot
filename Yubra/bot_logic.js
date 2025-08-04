@@ -68,6 +68,49 @@ async function logUnderAttack(data) {
 
 let cachedData = {};
 
+//Adicionar ou remover grupos em massa
+
+/**
+ * Adiciona ou remove grupos de uma lista de personagens.
+ * @param {object} data - Contém characterNames, groupIds e a ação ('add' ou 'remove').
+ */
+async function adminBatchUpdateUserGroups({ characterNames, groupIds, action }) {
+    if (!characterNames || !groupIds || !action) return;
+
+    const clientAccounts = await loadJsonFile(DATA_FILES.clientAccounts, {});
+    let changesMade = false;
+
+    // Loop por cada personagem da lista de entrada
+    for (const charName of characterNames) {
+        let accountFound = false;
+        // Encontra o personagem em clientAccounts
+        for (const email in clientAccounts) {
+            const account = clientAccounts[email];
+            if (account?.tibiaCharacters) {
+                const char = account.tibiaCharacters.find(c => c && c.characterName && c.characterName.toLowerCase() === charName.toLowerCase());
+                if (char) {
+                    let userGroups = new Set(char.groups || []);
+                    if (action === 'add') {
+                        groupIds.forEach(gId => userGroups.add(gId));
+                    } else if (action === 'remove') {
+                        groupIds.forEach(gId => userGroups.delete(gId));
+                    }
+                    char.groups = Array.from(userGroups);
+                    changesMade = true;
+                    accountFound = true;
+                    break; // Sai do loop interno de emails para o próximo personagem
+                }
+            }
+        }
+        if (!accountFound) {
+            console.warn(`[BATCH UPDATE] Personagem não encontrado: ${charName}`);
+        }
+    }
+
+    if (changesMade) {
+        await saveJsonFile(DATA_FILES.clientAccounts, clientAccounts);
+    }
+}
 
 async function adminRemoveUserFromGroup({ characterName, groupId }) {
     if (!characterName || !groupId) return { success: false };
@@ -1637,33 +1680,76 @@ async function processExpiredPlusMembers() {
 }
 
 async function verifyUserGuildStatus(user) {
-    if(!user || !user.account) return;
+    if (!user || !user.account) return;
     const clientAccounts = await loadJsonFile(DATA_FILES.clientAccounts);
     const account = clientAccounts[user.account.email];
-    if(!account || !account.tibiaCharacters) return;
+    if (!account || !account.tibiaCharacters) return;
 
     let changesMade = false;
     for (const char of account.tibiaCharacters) {
-        const guildMember = await checkTibiaCharacterInGuild(char.characterName);
-        if (guildMember) {
-            if (char.guildRank !== guildMember.rank) {
-                console.log(`[SYNC LOGIN] Rank de ${char.characterName} atualizado para ${guildMember.rank}`);
-                char.guildRank = guildMember.rank;
+        // Obter informações mais recentes do personagem
+        const charInfoFromApi = await getTibiaCharacterInfo(char.characterName);
+
+        if (charInfoFromApi) {
+            // 1. Atualizar Guild Rank
+            const guildMember = await checkTibiaCharacterInGuild(charInfoFromApi.name);
+            if (guildMember) {
+                if (char.guildRank !== guildMember.rank) {
+                    console.log(`[SYNC LOGIN] Rank de ${char.characterName} atualizado para ${guildMember.rank}`);
+                    char.guildRank = guildMember.rank;
+                    changesMade = true;
+                }
+            } else {
+                // Se não está mais na guilda, remove privilégios
+                if (char.guildRank !== 'Left Guild') {
+                    console.log(`[SYNC LOGIN] ${char.characterName} não está mais na guilda. Removendo privilégios.`);
+                    char.guildRank = 'Left Guild';
+                    changesMade = true;
+                }
+            }
+
+            // 2. Atualizar Level do Personagem
+            if (char.level !== charInfoFromApi.level) {
+                console.log(`[SYNC LOGIN] Level de ${char.characterName} atualizado de ${char.level} para ${charInfoFromApi.level}`);
+                char.level = charInfoFromApi.level;
                 changesMade = true;
             }
+
+            // 3. (Opcional) Atualizar Vocação, Mundo, etc., se desejar
+            if (char.vocation !== charInfoFromApi.vocation) {
+                console.log(`[SYNC LOGIN] Vocação de ${char.characterName} atualizada para ${charInfoFromApi.vocation}`);
+                char.vocation = charInfoFromApi.vocation;
+                changesMade = true;
+            }
+            if (char.world !== charInfoFromApi.world) {
+                console.log(`[SYNC LOGIN] Mundo de ${char.characterName} atualizado para ${charInfoFromApi.world}`);
+                char.world = charInfoFromApi.world;
+                changesMade = true;
+            }
+
         } else {
-            console.log(`[SYNC LOGIN] ${char.characterName} não está mais na guilda. Removendo privilégios.`);
-            char.guildRank = 'Left Guild';
-            changesMade = true;
+            // Se não for possível obter informações da API, marcar como "Desconhecido" ou "Não encontrado"
+            // Isso pode ser útil para identificar personagens que foram deletados ou renomeados
+            if (char.guildRank !== 'Not Found' || char.level !== 'N/A') { // Adicionado check para N/A
+                console.log(`[SYNC LOGIN] ${char.characterName} não encontrado na API. Marcando como 'Not Found'.`);
+                char.guildRank = 'Not Found';
+                char.level = 'N/A'; // N/A ou 0, dependendo de como você quer exibir
+                char.vocation = 'N/A';
+                char.world = 'N/A';
+                changesMade = true;
+            }
         }
     }
 
-    if(changesMade) {
+    if (changesMade) {
         await saveJsonFile(DATA_FILES.clientAccounts, clientAccounts);
+        // Se a conta foi atualizada, atualize o objeto 'user' na sessão
         user.account = account;
+        // Certifique-se de que user.character aponta para o objeto atualizado
         user.character = account.tibiaCharacters.find(c => c.characterName === user.character.characterName) || account.tibiaCharacters[0];
     }
 }
+
 
 async function getPlanilhadoData(type = 'normal') {
     const respawnsFile = type === 'double' ? DATA_FILES.planilhadoDoubleRespawns : DATA_FILES.planilhadoRespawns;
@@ -1870,5 +1956,6 @@ module.exports = {
     removeFromPlanilha,
     adminUpdatePlanilhadoRespawns,
     adminUpdateRespawnRankRestrictions,
-    logUnderAttack
+    logUnderAttack,
+    adminBatchUpdateUserGroups,
 };

@@ -68,6 +68,49 @@ async function logUnderAttack(data) {
 
 let cachedData = {};
 
+//Adicionar ou remover grupos em massa
+
+/**
+ * Adiciona ou remove grupos de uma lista de personagens.
+ * @param {object} data - Contém characterNames, groupIds e a ação ('add' ou 'remove').
+ */
+async function adminBatchUpdateUserGroups({ characterNames, groupIds, action }) {
+    if (!characterNames || !groupIds || !action) return;
+
+    const clientAccounts = await loadJsonFile(DATA_FILES.clientAccounts, {});
+    let changesMade = false;
+
+    // Loop por cada personagem da lista de entrada
+    for (const charName of characterNames) {
+        let accountFound = false;
+        // Encontra o personagem em clientAccounts
+        for (const email in clientAccounts) {
+            const account = clientAccounts[email];
+            if (account?.tibiaCharacters) {
+                const char = account.tibiaCharacters.find(c => c && c.characterName && c.characterName.toLowerCase() === charName.toLowerCase());
+                if (char) {
+                    let userGroups = new Set(char.groups || []);
+                    if (action === 'add') {
+                        groupIds.forEach(gId => userGroups.add(gId));
+                    } else if (action === 'remove') {
+                        groupIds.forEach(gId => userGroups.delete(gId));
+                    }
+                    char.groups = Array.from(userGroups);
+                    changesMade = true;
+                    accountFound = true;
+                    break; // Sai do loop interno de emails para o próximo personagem
+                }
+            }
+        }
+        if (!accountFound) {
+            console.warn(`[BATCH UPDATE] Personagem não encontrado: ${charName}`);
+        }
+    }
+
+    if (changesMade) {
+        await saveJsonFile(DATA_FILES.clientAccounts, clientAccounts);
+    }
+}
 
 async function adminRemoveUserFromGroup({ characterName, groupId }) {
     if (!characterName || !groupId) return { success: false };
@@ -306,44 +349,71 @@ async function processCommand(command, args, user, onlinePlayers) {
     let cooldowns = await loadJsonFile(DATA_FILES.cooldowns, {});
     const respawnGroups = await loadJsonFile(DATA_FILES.respawnGroups, {});
     let result = { responseText: "", needsBroadcast: false, broadcastType: null, broadcastPayload: {}, adminDataUpdate: false };
-    const loggedInAccount = user.account;
+    const loggedInAccount = user.account; // This can be null for non-logged-in users
     const activeCharacter = user.character;
 
     const superAdmins = ['rapha2929@gmail.com'];
     const isSuperAdmin = loggedInAccount && superAdmins.includes(loggedInAccount.email);
 
-    if (!loggedInAccount) {
-        result.responseText = { type: 'actionable_message', text: "Você precisa fazer login para usar este comando.", actions: [{ buttonText: 'Fazer Login', command_to_run: '!showlogin' }] };
+    // Comandos que NÃO exigem que o usuário esteja logado
+    const publicCommands = ['showlogin', 'showregistration', 'recover', 'help'];
+
+    // Se o usuário NÃO está logado E o comando NÃO é um dos comandos públicos, então exige login
+    if (!loggedInAccount && !publicCommands.includes(command)) {
+        result.responseText = {
+            type: 'actionable_message',
+            text: "Você precisa fazer login para usar este comando.",
+            actions: [{ buttonText: 'Fazer Login', command_to_run: '!showlogin' }]
+        };
         return result;
     }
 
-    if (!activeCharacter && !isSuperAdmin && !['register', 'confirmregister', 'startchangechar', 'stream', 'removestream', 'plan'].includes(command)) {
-        result.responseText = { type: 'actionable_message', text: "Você precisa registrar um personagem para usar este comando.", actions: [{ buttonText: 'Registrar Personagem', command_to_run: '!startcharregister' }] };
-        return result;
-    }
+    // Define userIdentifier only if loggedInAccount exists
+    const userIdentifier = loggedInAccount ? loggedInAccount.email : null; // Added conditional assignment
 
-    const charName = activeCharacter?.characterName || (isSuperAdmin ? loggedInAccount.name : 'Visitante');
-    const registration = { ...loggedInAccount, ...activeCharacter };
-    const userIdentifier = loggedInAccount.email;
+    const charName = activeCharacter?.characterName || (isSuperAdmin ? loggedInAccount?.name : 'Visitante'); // Added ?. for loggedInAccount.name
+    const registration = { ...loggedInAccount, ...activeCharacter }; // loggedInAccount might be null here, so registration will be {null, ...activeCharacter}
 
     switch (command) {
-        case "help": result.responseText = `Comandos disponíveis:\n!register -> Inicia o registro.\n!resp [código] [tempo] -> Reserva um respawn.\n!respmaker [código] -> Reserva um respawn para caçar com maker.\n!maker [nome] -> Define o nome do seu maker.\n!respdel [código] -> Libera um respawn.\n!aceitar -> Confirma sua reserva.\n!mp [msg] -> Envia mensagem em massa (líderes).\n!shared [lvl] -> Calcula faixa de XP.\n!stream -> Adiciona/atualiza sua live.\n!removestream -> Remove sua live.\n!recover -> Recupera sua conta.\n!plan [código] -> Assume um respawn planilhado.`;
-        return result;
-        case "showlogin": if (loggedInAccount) { result.responseText = `Você já está conectado como ${loggedInAccount.name}.`; return result;
-        } user.conversationState = 'awaiting_login_email';
-        result.responseText = "Para fazer o login, por favor, digite seu e-mail:"; return result;
-        case "showregistration": if (loggedInAccount) { result.responseText = `Você já está conectado como ${loggedInAccount.name}.`; return result; } user.conversationState = 'awaiting_reg_name';
-        result.responseText = "Ok, vamos criar sua conta. Primeiro, qual o seu nome completo?"; return result;
-        case "recover": user.conversationState = 'awaiting_recovery_email';
-        result.responseText = "Ok, vamos iniciar a recuperação. Por favor, digite o e-mail da sua conta:"; return result;
-        case "resetpassword": return result;
-        case "stream":
+        case "help":
+            result.responseText = `Comandos disponíveis:\n!register -> Inicia o registro.\n!resp [código] [tempo] -> Reserva um respawn.\n!respmaker [código] -> Reserva um respawn para caçar com maker.\n!maker [nome] -> Define o nome do seu maker.\n!respdel [código] -> Libera um respawn.\n!aceitar -> Confirma sua reserva.\n!mp [msg] -> Envia mensagem em massa (líderes).\n!shared [lvl] -> Calcula faixa de XP.\n!stream -> Adiciona/atualiza sua live.\n!removestream -> Remove sua live.\n!recover -> Recupera sua conta.\n!plan [código] -> Assume um respawn planilhado.\n!planilhadoremove [código] [líder] -> Remove um grupo planilhado do respawn.\n!showlogin -> Exibe o formulário de login.\n!showregistration -> Exibe o formulário de registro.`;
+            return result;
+        case "showlogin":
+            if (loggedInAccount) {
+                result.responseText = `Você já está conectado como ${loggedInAccount.name}.`;
+                return result;
+            }
+            user.conversationState = 'awaiting_login_email';
+            result.responseText = "Para fazer o login, por favor, digite seu e-mail:";
+            return result;
+        case "showregistration":
+            if (loggedInAccount) {
+                result.responseText = `Você já está conectado como ${loggedInAccount.name}.`;
+                return result;
+            }
+            user.conversationState = 'awaiting_reg_name';
+            result.responseText = "Ok, vamos criar sua conta. Primeiro, qual o seu nome completo?";
+            return result;
+        case "recover":
+            user.conversationState = 'awaiting_recovery_email';
+            result.responseText = "Ok, vamos iniciar a recuperação. Por favor, digite o e-mail da sua conta:";
+            return result;
+        case "resetpassword":
+            return result;
+        case "stream": // This command requires login, so loggedInAccount should exist here
+            // This command assumes `loggedInAccount` is NOT null.
+            // If it's a public command, it would need alternative identifier source.
+            // For safety, ensure this command is not in `publicCommands` if `loggedInAccount` is required.
+            if (!loggedInAccount) { // Defensive check, should be caught by earlier logic, but good for clarity
+                result.responseText = "Erro: Login necessário para usar este comando."; return result;
+            }
             user.conversationState = 'awaiting_stream_link';
             result.responseText = "Por favor, cole o link da sua stream (ex: https://twitch.tv/seu_canal):";
             break;
-        case "removestream": {
+        case "removestream": { // This command requires login
+            if (!loggedInAccount) { result.responseText = "Erro: Login necessário para usar este comando."; return result; }
             const allClientAccounts = await loadJsonFile(DATA_FILES.clientAccounts);
-            const userAccount = allClientAccounts[userIdentifier];
+            const userAccount = allClientAccounts[userIdentifier]; // userIdentifier will be valid here
             const charIndex = userAccount.tibiaCharacters.findIndex(c => c && c.characterName === charName);
             if (charIndex > -1 && userAccount.tibiaCharacters[charIndex].streamLink) {
                 delete userAccount.tibiaCharacters[charIndex].streamLink;
@@ -355,11 +425,13 @@ async function processCommand(command, args, user, onlinePlayers) {
             }
             break;
         }
-        case "startchangechar":
+        case "startchangechar": // This command requires login
+            if (!loggedInAccount) { result.responseText = "Erro: Login necessário para usar este comando."; return result; }
             user.conversationState = 'awaiting_change_char_name';
             result.responseText = "Qual o nome do personagem para o qual você deseja trocar?";
             break;
-        case "register": {
+        case "register": { // This command requires loggedInAccount to get userIdentifier for verificationCodes
+            if (!loggedInAccount) { result.responseText = "Erro: Login necessário para registrar um personagem."; return result; }
             const characterName = args.join(" ");
             if (!characterName) {
                 user.conversationState = 'awaiting_char_name';
@@ -367,7 +439,7 @@ async function processCommand(command, args, user, onlinePlayers) {
             } else {
                 const verificationCodes = await loadJsonFile(DATA_FILES.verificationCodes);
                 const codeToUse = crypto.randomBytes(6).toString('hex').toUpperCase().substring(0, 12);
-                verificationCodes[userIdentifier] = codeToUse;
+                verificationCodes[userIdentifier] = codeToUse; // userIdentifier is valid here because of loggedInAccount check
                 await saveJsonFile(DATA_FILES.verificationCodes, verificationCodes);
                 result.responseText = {
                     type: 'actionable_message',
@@ -377,12 +449,13 @@ async function processCommand(command, args, user, onlinePlayers) {
             }
             break;
         }
-        case "confirmregister": {
+        case "confirmregister": { // This command requires loggedInAccount and valid userIdentifier
+            if (!loggedInAccount) { result.responseText = "Erro: Login necessário para confirmar o registro."; return result; }
             const characterNameToConfirm = args.join(" ");
             if (!characterNameToConfirm) { result.responseText = "Especifique o nome do personagem."; break;
             }
             const verificationCodes = await loadJsonFile(DATA_FILES.verificationCodes);
-            const code = verificationCodes[userIdentifier];
+            const code = verificationCodes[userIdentifier]; // userIdentifier is valid here
             if (!code) { result.responseText = "Nenhum código de verificação ativo. Use !register."; break;
             }
             const charInfo = await getTibiaCharacterInfo(characterNameToConfirm);
@@ -424,6 +497,8 @@ async function processCommand(command, args, user, onlinePlayers) {
             break;
         }
         case "mp": {
+            // Apenas para membros com ranks de admin
+            if (!loggedInAccount) { result.responseText = "Erro: Login necessário para usar este comando."; return result; }
             const allowedRanks = ["leader alliance", "leader", "prodigy"];
             if (!allowedRanks.includes((registration.guildRank || "").toLowerCase())) {
                 result.responseText = "Sem permissão.";
@@ -440,6 +515,9 @@ async function processCommand(command, args, user, onlinePlayers) {
             break;
         }
         case "respinfo": {
+            // Does not necessarily require login, but if it relies on activeCharacter, then yes.
+            // For simplicity, let's assume it can be used by anyone, but provides less info if not logged in.
+            // Or, if it uses 'charName' (which can be 'Visitante'), it's okay.
             const userInput = args.join(" ");
             if (!userInput) { result.responseText = "Uso: !respinfo [nome ou código]"; break;
             }
@@ -462,6 +540,7 @@ async function processCommand(command, args, user, onlinePlayers) {
             break;
         }
         case "plan": {
+            if (!loggedInAccount) { result.responseText = "Erro: Login necessário para usar este comando."; return result; }
             if (!activeCharacter) {
                 result.responseText = "Você precisa ter um personagem ativo para usar este comando.";
                 return result;
@@ -485,15 +564,19 @@ async function processCommand(command, args, user, onlinePlayers) {
             let isLeaderInPlanilhado = false;
             let planilhadoType = null;
             let scheduledLeader = null;
+            let scheduledDuration = 210;
 
             const checkScheduleForLeader = (schedule, type) => {
                 if (schedule[respawnCode]) {
                     for (const timeSlot in schedule[respawnCode]) {
-                        const leader = schedule[respawnCode][timeSlot];
-                        if (leader.toLowerCase() === charName.toLowerCase()) {
+                        const scheduleEntry = schedule[respawnCode][timeSlot];
+                        const leaderToCheck = typeof scheduleEntry === 'object' ? scheduleEntry.leader : scheduleEntry;
+
+                        if (leaderToCheck.toLowerCase() === charName.toLowerCase()) {
                             isLeaderInPlanilhado = true;
                             planilhadoType = type;
-                            scheduledLeader = leader;
+                            scheduledLeader = leaderToCheck;
+                            scheduledDuration = typeof scheduleEntry === 'object' && scheduleEntry.duration ? scheduleEntry.duration : 210;
                             return true;
                         }
                     }
@@ -519,11 +602,6 @@ async function processCommand(command, args, user, onlinePlayers) {
             if (actualRespawnKey && filaRespawns[actualRespawnKey].current) {
                 const kickedUser = filaRespawns[actualRespawnKey].current.clientNickname;
                 await logActivity(actualRespawnKey, kickedUser, `Removido por ${charName} (Planilhado)`);
-                notifications.push({
-                    recipientEmail: filaRespawns[actualRespawnKey].current.clientUniqueIdentifier,
-                    type: 'private_message',
-                    message: `❌ Você foi removido do respawn ${actualRespawnKey.toUpperCase()} pois o grupo planilhado de ${charName} assumiu.`
-                });
             }
             
             if (actualRespawnKey && filaRespawns[actualRespawnKey].queue.length > 0) {
@@ -533,39 +611,99 @@ async function processCommand(command, args, user, onlinePlayers) {
             const allPlanilhadoGroups = await loadJsonFile(DATA_FILES.planilhadoGroups, {});
             const currentGroup = allPlanilhadoGroups.find(g => g.leader.toLowerCase() === charName.toLowerCase());
             
-            // Simplifica o groupMembersDetails para apenas nomes.
-            // O enriquecimento completo será feito em broadcastRespawnUpdates no server.js.
             const groupMembersNames = currentGroup ? currentGroup.members.map(name => ({ name: name })) : [];
             
             const planilhadoUserData = {
                 clientNickname: charName,
                 clientUniqueIdentifier: userIdentifier,
-                allocatedTime: 210,
+                allocatedTime: scheduledDuration,
                 isPlanilhado: true,
                 planilhadoType: planilhadoType,
                 groupLeader: scheduledLeader,
-                groupMembers: groupMembersNames // Agora apenas nomes dos membros
+                groupMembers: groupMembersNames
             };
 
             const now = new Date();
             filaRespawns[respawnCode] = {
                 current: planilhadoUserData,
                 queue: [],
-                time: 210,
+                time: scheduledDuration,
                 waitingForAccept: false,
                 acceptanceTime: 0,
                 startTime: now.toISOString(),
-                endTime: new Date(now.getTime() + (210 * 60 * 1000)).toISOString(),
+                endTime: new Date(now.getTime() + (scheduledDuration * 60 * 1000)).toISOString(),
                 planilhadoGroup: currentGroup
             };
             await logActivity(respawnCode, charName, `Assumiu (Planilhado)`);
-            result.responseText = `✅ O respawn ${respawnCode.toUpperCase()} foi assumido pelo seu grupo planilhado por 3 horas e 30 minutos.`;
+            result.responseText = `✅ O respawn ${respawnCode.toUpperCase()} foi assumido pelo seu grupo planilhado por ${formatMinutesToHHMM(scheduledDuration)}.`;
             result.needsBroadcast = true;
             await saveJsonFile(DATA_FILES.respawnQueue, filaRespawns);
             break;
         }
+        case "planilhadoremove": { // Comando para remover grupo planilhado do respawn (kick)
+            if (!loggedInAccount) { result.responseText = "Erro: Login necessário para usar este comando."; return result; }
+            const respawnCodeInput = args[0];
+            const groupLeaderToRemove = args[1];
+
+            if (!respawnCodeInput || !groupLeaderToRemove) {
+                result.responseText = "Uso: !planilhadoremove [código do respawn] [nome do líder do grupo]";
+                return result;
+            }
+
+            const userIsAdminCommand = user.character && adminRanks.includes(user.character.guildRank?.toLowerCase()); // Check for admin rank for the command
+            const isGroupLeaderCommand = user.character && user.character.characterName.toLowerCase() === groupLeaderToRemove.toLowerCase(); // Check if user is the leader being targeted
+
+            if (!userIsAdminCommand && !isGroupLeaderCommand) { // Only allow if admin or the actual leader
+                result.responseText = "❌ Você não tem permissão para remover este grupo planilhado do respawn.";
+                return result;
+            }
+
+            const respawnCode = await findRespawnCode(respawnCodeInput);
+            if (!respawnCode) {
+                result.responseText = `Respawn "${respawnCodeInput}" não encontrado.`;
+                return result;
+            }
+
+            const key = Object.keys(filaRespawns).find(k => k.toLowerCase() === respawnCode.toLowerCase());
+            if (!key) {
+                result.responseText = `Respawn ${respawnCode.toUpperCase()} não está ativo.`;
+                return result;
+            }
+
+            const respawn = filaRespawns[key];
+
+            // Condição para permitir a remoção: é admin OU o líder do grupo planilhado que está no respawn corresponde
+            const currentOccupantIsPlanilhadoLeader = respawn.current?.groupLeader?.toLowerCase() === groupLeaderToRemove.toLowerCase() ||
+                                                      (respawn.current && !respawn.current.groupLeader && respawn.current.clientNickname.toLowerCase() === groupLeaderToRemove.toLowerCase());
+
+            if (userIsAdminCommand || currentOccupantIsPlanilhadoLeader) { // Allow removal if admin or matching leader
+                await logActivity(key, respawn.current?.clientNickname || 'N/A', `Grupo Planilhado removido por ${user.character?.characterName || 'Admin'}`);
+
+                if (respawn.queue.length > 0) {
+                    const nextUser = respawn.queue.shift();
+                    respawn.current = nextUser;
+                    respawn.time = nextUser.allocatedTime;
+                    respawn.waitingForAccept = true;
+                    respawn.acceptanceTime = 10;
+                    respawn.startTime = new Date().toISOString();
+                    respawn.endTime = null;
+                    await logActivity(key, nextUser.clientNickname, `Assumiu (fila)`);
+                } else {
+                    delete filaRespawns[key];
+                }
+
+                result.responseText = `✅ O grupo planilhado de ${groupLeaderToRemove} foi removido do respawn ${respawnCode.toUpperCase()}.`;
+                result.needsBroadcast = true;
+                await saveJsonFile(DATA_FILES.respawnQueue, filaRespawns);
+
+            } else {
+                result.responseText = `❌ O respawn ${respawnCode.toUpperCase()} não está ocupado por um grupo planilhado de ${groupLeaderToRemove}, ou você não tem permissão.`;
+            }
+            break;
+        }
         case "respmaker":
         case "resp": {
+            if (!loggedInAccount) { result.responseText = "Erro: Login necessário para usar este comando."; return result; }
             if (!isSuperAdmin) {
                 const guildMemberCheck = await checkTibiaCharacterInGuild(charName);
                 if (!guildMemberCheck) {
@@ -695,6 +833,7 @@ async function processCommand(command, args, user, onlinePlayers) {
             break;
         }
         case "maker": {
+            if (!loggedInAccount) { result.responseText = "Erro: Login necessário para usar este comando."; return result; }
             const makerName = args.join(" ");
             if (!makerName) {
                 result.responseText = "Uso: !maker nome_do_maker";
@@ -727,6 +866,7 @@ async function processCommand(command, args, user, onlinePlayers) {
             break;
         }
         case "aceitar": {
+            if (!loggedInAccount) { result.responseText = "Erro: Login necessário para usar este comando."; return result; }
             if (cooldowns[userIdentifier] && cooldowns[userIdentifier] > Date.now()) {
                 const remaining = Math.ceil((cooldowns[userIdentifier] - Date.now()) / 60000);
                 result.responseText = `Você está em cooldown. Espere mais ${remaining} minuto(s).`;
@@ -770,6 +910,7 @@ async function processCommand(command, args, user, onlinePlayers) {
             break;
         }
         case "respdel": {
+            if (!loggedInAccount) { result.responseText = "Erro: Login necessário para usar este comando."; return result; }
             const userInput = args.join(" ");
             if (!userInput) { result.responseText = "Uso: !respdel [nome ou código]"; break;
             }
@@ -858,72 +999,8 @@ async function processCommand(command, args, user, onlinePlayers) {
             }
             break;
         }
-
-                case "planilhadoremove": { // Comando para remover grupo planilhado do respawn (kick)
-            const respawnCodeInput = args[0];
-            const groupLeaderToRemove = args[1]; // Quem é o líder do grupo a ser removido
-
-            if (!respawnCodeInput || !groupLeaderToRemove) {
-                result.responseText = "Uso: !planilhadoremove [código do respawn] [nome do líder do grupo]";
-                return result;
-            }
-
-            const userIsAdmin = user.character && adminRanks.includes(user.character.guildRank?.toLowerCase());
-            const isGroupLeader = user.character && user.character.characterName.toLowerCase() === groupLeaderToRemove.toLowerCase();
-
-            if (!userIsAdmin && !isGroupLeader) {
-                result.responseText = "❌ Você não tem permissão para remover este grupo planilhado do respawn.";
-                return result;
-            }
-
-            const respawnCode = await findRespawnCode(respawnCodeInput);
-            if (!respawnCode) {
-                result.responseText = `Respawn "${respawnCodeInput}" não encontrado.`;
-                return result;
-            }
-
-            const key = Object.keys(filaRespawns).find(k => k.toLowerCase() === respawnCode.toLowerCase());
-            if (!key) {
-                result.responseText = `Respawn ${respawnCode.toUpperCase()} não está ativo.`;
-                return result;
-            }
-
-            const respawn = filaRespawns[key];
-
-            // VERIFICAÇÃO ALTERADA: Apenas se o respawn estiver ativo E o líder corresponder (ou se for admin).
-            // A flag 'isPlanilhado' não é mais o principal critério para a remoção FORÇADA por comando,
-            // mas é relevante para o log e a mensagem de feedback.
-            const currentOccupantIsPlanilhadoLeader = respawn.current?.groupLeader?.toLowerCase() === groupLeaderToRemove.toLowerCase() ||
-                                                      respawn.current?.clientNickname?.toLowerCase() === groupLeaderToRemove.toLowerCase(); // Incluir o nickname caso o groupLeader não esteja definido
-
-            if (currentOccupantIsPlanilhadoLeader || userIsAdmin) { // Se o líder corresponde ou é admin
-                await logActivity(key, respawn.current?.clientNickname || 'N/A', `Grupo Planilhado removido por ${user.character?.characterName || 'Admin'}`); 
-
-                if (respawn.queue.length > 0) {
-                    const nextUser = respawn.queue.shift(); 
-                    respawn.current = nextUser; 
-                    respawn.time = nextUser.allocatedTime; 
-                    respawn.waitingForAccept = true; 
-                    respawn.acceptanceTime = 10; 
-                    respawn.startTime = new Date().toISOString(); 
-                    respawn.endTime = null; 
-                    await logActivity(key, nextUser.clientNickname, `Assumiu (fila)`); 
-                } else {
-                    delete filaRespawns[key]; // Remove completamente se não houver fila 
-                }
-
-                result.responseText = `✅ O grupo planilhado de ${groupLeaderToRemove} foi removido do respawn ${respawnCode.toUpperCase()}.`;
-                result.needsBroadcast = true;
-                await saveJsonFile(DATA_FILES.respawnQueue, filaRespawns);
-
-            } else {
-                result.responseText = `❌ O respawn ${respawnCode.toUpperCase()} não está ocupado por um grupo planilhado de ${groupLeaderToRemove}, ou você não tem permissão.`;
-            }
-            break;
-        }
-
-
         case "logout": {
+            if (!loggedInAccount) { result.responseText = "Erro: Você não está logado."; return result; }
             const token = args[0];
             if (token && loggedInAccount.sessionTokens) {
                 const allClientAccounts = await loadJsonFile(DATA_FILES.clientAccounts);
@@ -1603,33 +1680,76 @@ async function processExpiredPlusMembers() {
 }
 
 async function verifyUserGuildStatus(user) {
-    if(!user || !user.account) return;
+    if (!user || !user.account) return;
     const clientAccounts = await loadJsonFile(DATA_FILES.clientAccounts);
     const account = clientAccounts[user.account.email];
-    if(!account || !account.tibiaCharacters) return;
+    if (!account || !account.tibiaCharacters) return;
 
     let changesMade = false;
     for (const char of account.tibiaCharacters) {
-        const guildMember = await checkTibiaCharacterInGuild(char.characterName);
-        if (guildMember) {
-            if (char.guildRank !== guildMember.rank) {
-                console.log(`[SYNC LOGIN] Rank de ${char.characterName} atualizado para ${guildMember.rank}`);
-                char.guildRank = guildMember.rank;
+        // Obter informações mais recentes do personagem
+        const charInfoFromApi = await getTibiaCharacterInfo(char.characterName);
+
+        if (charInfoFromApi) {
+            // 1. Atualizar Guild Rank
+            const guildMember = await checkTibiaCharacterInGuild(charInfoFromApi.name);
+            if (guildMember) {
+                if (char.guildRank !== guildMember.rank) {
+                    console.log(`[SYNC LOGIN] Rank de ${char.characterName} atualizado para ${guildMember.rank}`);
+                    char.guildRank = guildMember.rank;
+                    changesMade = true;
+                }
+            } else {
+                // Se não está mais na guilda, remove privilégios
+                if (char.guildRank !== 'Left Guild') {
+                    console.log(`[SYNC LOGIN] ${char.characterName} não está mais na guilda. Removendo privilégios.`);
+                    char.guildRank = 'Left Guild';
+                    changesMade = true;
+                }
+            }
+
+            // 2. Atualizar Level do Personagem
+            if (char.level !== charInfoFromApi.level) {
+                console.log(`[SYNC LOGIN] Level de ${char.characterName} atualizado de ${char.level} para ${charInfoFromApi.level}`);
+                char.level = charInfoFromApi.level;
                 changesMade = true;
             }
+
+            // 3. (Opcional) Atualizar Vocação, Mundo, etc., se desejar
+            if (char.vocation !== charInfoFromApi.vocation) {
+                console.log(`[SYNC LOGIN] Vocação de ${char.characterName} atualizada para ${charInfoFromApi.vocation}`);
+                char.vocation = charInfoFromApi.vocation;
+                changesMade = true;
+            }
+            if (char.world !== charInfoFromApi.world) {
+                console.log(`[SYNC LOGIN] Mundo de ${char.characterName} atualizado para ${charInfoFromApi.world}`);
+                char.world = charInfoFromApi.world;
+                changesMade = true;
+            }
+
         } else {
-            console.log(`[SYNC LOGIN] ${char.characterName} não está mais na guilda. Removendo privilégios.`);
-            char.guildRank = 'Left Guild';
-            changesMade = true;
+            // Se não for possível obter informações da API, marcar como "Desconhecido" ou "Não encontrado"
+            // Isso pode ser útil para identificar personagens que foram deletados ou renomeados
+            if (char.guildRank !== 'Not Found' || char.level !== 'N/A') { // Adicionado check para N/A
+                console.log(`[SYNC LOGIN] ${char.characterName} não encontrado na API. Marcando como 'Not Found'.`);
+                char.guildRank = 'Not Found';
+                char.level = 'N/A'; // N/A ou 0, dependendo de como você quer exibir
+                char.vocation = 'N/A';
+                char.world = 'N/A';
+                changesMade = true;
+            }
         }
     }
 
-    if(changesMade) {
+    if (changesMade) {
         await saveJsonFile(DATA_FILES.clientAccounts, clientAccounts);
+        // Se a conta foi atualizada, atualize o objeto 'user' na sessão
         user.account = account;
+        // Certifique-se de que user.character aponta para o objeto atualizado
         user.character = account.tibiaCharacters.find(c => c.characterName === user.character.characterName) || account.tibiaCharacters[0];
     }
 }
+
 
 async function getPlanilhadoData(type = 'normal') {
     const respawnsFile = type === 'double' ? DATA_FILES.planilhadoDoubleRespawns : DATA_FILES.planilhadoRespawns;
@@ -1836,5 +1956,6 @@ module.exports = {
     removeFromPlanilha,
     adminUpdatePlanilhadoRespawns,
     adminUpdateRespawnRankRestrictions,
-    logUnderAttack
+    logUnderAttack,
+    adminBatchUpdateUserGroups,
 };

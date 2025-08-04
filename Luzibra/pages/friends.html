@@ -24,7 +24,7 @@
     <h1><i class="fas fa-users"></i> Friends & Enemies</h1>
     <div class="header-actions">
         <span id="sync-status" style="font-size: 0.8em; color: var(--text-muted-color);"></span>
-        <button id="toggle-admin-panel-btn" class="action-btn" style="display: none; background-color: var(--gold-accent); color: #111;">Gerenciar</button>
+        <button id="toggle-admin-panel-btn" class="action-btn" style="display: none; background-color: #3675ff; color: #ffffff;">Gerenciar</button>
     </div>
 </div>
 
@@ -96,6 +96,8 @@
                 adminPanel.style.display = isHidden ? 'block' : 'none';
             }
         });
+
+        // Este estilo define a aparência das bolinhas de status
         const style = document.createElement('style');
         style.textContent = `
             .status-indicator { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 8px; }
@@ -106,10 +108,11 @@
         `;
         document.head.appendChild(style);
         
+        // Listener para receber os dados e atualizar o conteúdo da página
         socket.on('friends:dataUpdated', (data) => {
             renderGroupedList(alliesListEl, data.players_allies, 'allies-online-count');
             renderGroupedList(enemiesListEl, data.players_enemies, 'enemies-online-count');
-            renderGroupedList(huntedsListEl, data.players_hunteds, 'hunteds-online-count'); // Passando 'hunteds' como tipo
+            renderGroupedList(huntedsListEl, data.players_hunteds, 'hunteds-online-count');
             if (syncStatusEl && data.last_sync) {
                 syncStatusEl.textContent = `Última sincronização: ${new Date(data.last_sync).toLocaleString('pt-BR')}`;
             }
@@ -118,21 +121,17 @@
             }
         });
         
+        // Pede os dados uma única vez quando a página é carregada
         socket.emit('friends:getData');
 
-        if (window.friendsUpdateInterval) clearInterval(window.friendsUpdateInterval);
-        window.friendsUpdateInterval = setInterval(() => {
-            socket.emit('friends:getData');
-        }, 4 * 60 * 1000);
+        // As linhas de setInterval e clearInterval foram removidas para evitar conflitos
         
         if (window.isAdmin && adminPanel) {
             setupAdminControls(socket, adminPanel);
         }
     }
 
-    // INÍCIO DA ALTERAÇÃO: A função agora aceita um 'type' para identificar a lista
-    function renderGroupedList(container, players, countId, type) {
-    // FIM DA ALTERAÇÃO
+    function renderGroupedList(container, players, countId) {
         if (!container) return;
         container.innerHTML = '';
         if (!players) players = [];
@@ -140,6 +139,7 @@
         const online = players.filter(p => p.online);
         const offline = players.filter(p => !p.online);
         const vocOrder = ['Knight', 'Druid', 'Sorcerer', 'Paladin', 'Monk', 'Outros'];
+        
         const createVocationGroups = (playerList) => {
             const groups = { Knight: [], Druid: [], Sorcerer: [], Paladin: [], Monk: [], Outros: [] };
             playerList.forEach(p => {
@@ -152,7 +152,7 @@
                     }
                 }
                 if(!assigned) groups.Outros.push(p);
-             });
+            });
             return groups;
         };
         
@@ -165,16 +165,15 @@
                     list.sort((a, b) => b.level - a.level || a.name.localeCompare(b.name));
                     html += `<div class="voc-section"><strong>${voc}s (${list.length})</strong><ul class="list-unstyled">`;
                     list.forEach(p => {
-                        // INÍCIO DA ALTERAÇÃO: Adiciona o motivo se for da lista de hunteds
                         let reasonHtml = '';
                         if (countId.startsWith('hunteds') && p.reason) {
                             reasonHtml = `<span class="hunted-reason-display">Motivo: ${p.reason}</span>`;
                         }
+                        // Esta linha cria a bolinha e adiciona a classe 'online' ou 'offline'
                         html += `<li><div><span class="status-indicator ${p.online ? 'online' : 'offline'}"></span>${p.name} (${p.level})</div>${reasonHtml}</li>`;
-                        // FIM DA ALTERAÇÃO
                     });
                     html += `</ul></div>`;
-                 }
+                }
             });
             return html;
         };
@@ -212,7 +211,7 @@
                 const name = e.target.hunted_name.value.trim();
                 const reason = e.target.hunted_reason.value.trim();
                 if (name && reason) socket.emit('admin:addRelation', { type: 'source_hunteds', name, reason });
-                 e.target.reset();
+                e.target.reset();
             });
         }
         const sourceListsContainer = adminPanel.querySelector('.source-lists');
@@ -226,7 +225,7 @@
                         socket.emit('admin:removeRelation', { type, name });
                     }
                 }
-             });
+            });
         }
         const syncBtn = document.getElementById('manual-sync-btn');
         if (syncBtn) {
@@ -241,7 +240,11 @@
     if (typeof initializeFriendsPage === 'function' && window.appSocket) {
         initializeFriendsPage(window.appSocket);
     } else {
-        console.error("Falha ao inicializar a página Friends: a função ou o socket principal não foi encontrado.");
+        document.addEventListener('socketReady', () => {
+             if (typeof initializeFriendsPage === 'function' && window.appSocket) {
+                initializeFriendsPage(window.appSocket);
+             }
+        }, { once: true });
     }
 })();
 </script>

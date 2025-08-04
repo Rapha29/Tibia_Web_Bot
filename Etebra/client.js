@@ -39,10 +39,6 @@ window.loadPage = async function(pageName) {
 async function loadPage(pageName) {
     const contentPanel = document.getElementById('main-content-panel');
     if (!contentPanel) return;
-    if (window.friendsUpdateInterval) {
-        clearInterval(window.friendsUpdateInterval);
-        window.friendsUpdateInterval = null;
-    }
 
     try {
         const response = await fetch(`pages/${pageName}.html`);
@@ -53,11 +49,9 @@ async function loadPage(pageName) {
         contentPanel.innerHTML = '';
         const parser = new DOMParser();
         const doc = parser.parseFromString(htmlText, 'text/html');
-
         const styles = Array.from(doc.querySelectorAll('style'));
         const scripts = Array.from(doc.querySelectorAll('script'));
         const contentNodes = Array.from(doc.body.childNodes);
-
         contentNodes.forEach(node => {
              if (node.tagName !== 'SCRIPT' && node.tagName !== 'STYLE') {
                  contentPanel.appendChild(node.cloneNode(true));
@@ -76,7 +70,6 @@ async function loadPage(pageName) {
         if (pageName === 'respawns' && window.cachedRespawnData) {
             updateRespawnTable(window.cachedRespawnData.fila, window.cachedRespawnData.respawns);
         }
-
         if (pageName === 'friends') {
             setTimeout(() => {
                 if (typeof initializeFriendsPage === 'function') {
@@ -84,7 +77,6 @@ async function loadPage(pageName) {
                 }
             }, 50);
         }
-
         document.querySelectorAll('.main-nav .nav-link.active').forEach(link => {
             link.classList.remove('active');
         });
@@ -97,7 +89,6 @@ async function loadPage(pageName) {
                 toolsBtn.classList.add('active');
             }
         }
-
     } catch (error) {
         console.error("Erro ao carregar a página:", error);
         contentPanel.innerHTML = `<div style="text-align: center; padding: 50px;"><h2 style="color: var(--danger-color);">Erro ao Carregar</h2><p>${error.message}</p></div>`;
@@ -219,7 +210,7 @@ function updateRespawnTable(fila, allRespawnNames) {
             
             nextsContent = `
                 <div class="nexts-container">
-                    <button class="queue-expand-button" title="Clique para expandir/recolher a fila">Fila (${queue.length}):</button>
+                    <button class="queue-expand-button" title="Clique para expandir/recolher a fila">Next (${queue.length})</button>
                     <div class="full-queue-list">
                         ${fullQueueItems}
                     </div>
@@ -527,15 +518,66 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // 1. O temporizador, dentro do 'login:success'
     window.appSocket.on('login:success', (data) => {
         if (data.token) {
             localStorage.setItem('sessionToken', data.token);
         }
         window.currentUser = data; 
-        
         window.appSocket.emit('user:get_initial_data');
         setupLoggedInUI(data.account, data.character);
+
+        // Inicia o temporizador global
+        window.appSocket.emit('friends:getData');
+        if (window.friendsUpdateInterval) {
+            clearInterval(window.friendsUpdateInterval);
+        }
+        window.friendsUpdateInterval = setInterval(() => {
+            if (window.appSocket.connected) {
+                window.appSocket.emit('friends:getData');
+            }
+        }, 60000); // 60 segundos
     });
+
+    // 2. O listener que atualiza a navbar
+   window.appSocket.on('friends:dataUpdated', (data) => {
+        const navTextElement = document.getElementById('friends-nav-text');
+        if (!navTextElement) {
+            return;
+        }
+
+        const validData = data || {};
+
+        // --- Contagem de Amigos (Allies) ---
+        const onlineFriends = (Array.isArray(validData.players_allies))
+            ? validData.players_allies.filter(p => p.online).length
+            : 0;
+
+        // --- Contagem TOTAL de Inimigos (Enemies + Hunteds) ---
+        const onlineGuildEnemies = (Array.isArray(validData.players_enemies))
+            ? validData.players_enemies.filter(p => p.online).length
+            : 0;
+            
+        const onlineHunteds = (Array.isArray(validData.players_hunteds))
+            ? validData.players_hunteds.filter(p => p.online).length
+            : 0;
+        
+        const onlineEnemies = onlineGuildEnemies + onlineHunteds;
+
+        if (onlineFriends > 0 || onlineEnemies > 0) {
+            navTextElement.textContent = `Friends (${onlineFriends}) / Enemies (${onlineEnemies})`;
+            navTextElement.style.color = '#ffc107'; 
+        } else {
+            navTextElement.textContent = 'Friends / Enemies';
+            navTextElement.style.color = '';
+        }
+
+        const friendsPageButton = document.querySelector('.main-nav .nav-link[data-page="friends"]');
+        if (friendsPageButton && friendsPageButton.classList.contains('active') && typeof window.renderFriendsPageContent === 'function') {
+            window.renderFriendsPageContent(data);
+        }
+    });
+
     window.appSocket.on('user:status', (status) => {
         window.isAdmin = status.isAdmin;
         if(openAdminModalBtn) openAdminModalBtn.style.display = window.isAdmin ? 'flex' : 'none';
@@ -734,6 +776,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if(window.cachedRespawnData) {
             updateRespawnTable(window.cachedRespawnData.fila, window.cachedRespawnData.respawns);
         }
+    }
+    const toggleChatBtn = document.getElementById('toggle-chat-btn');
+    const chatPanel = document.querySelector('.chat-section');
+
+    if (toggleChatBtn && chatPanel) {
+        toggleChatBtn.addEventListener('click', () => {
+            chatPanel.classList.toggle('visible');
+        });
     }
 });
 
@@ -1217,55 +1267,121 @@ function renderAllUsersTab() {
         });
 }
 
-    function renderCooldownsTab() {
-        const cooldownsListDiv = document.getElementById('admin-cooldowns-list');
-        if (!cooldownsListDiv) return;
+function renderCooldownsTab() {
+    const cooldownsListDiv = document.getElementById('admin-cooldowns-list');
+    if (!cooldownsListDiv) return;
 
-        cooldownsListDiv.innerHTML = '';
-        const now = Date.now();
-        const cooldownEntries = Object.entries(allCooldowns);
+    cooldownsListDiv.innerHTML = '';
+    const now = Date.now();
+    const cooldownEntries = Object.entries(allCooldowns);
 
-        if (cooldownEntries.length === 0) {
-            cooldownsListDiv.innerHTML = '<p>Nenhum usuário em cooldown.</p>';
-            return;
-        }
-
-        cooldownEntries.forEach(([userIdentifier, expiryTimestamp]) => {
-            const remaining = Math.ceil((expiryTimestamp - now) / 60000);
-            if (remaining <= 0) return;
-
-            // --- LÓGICA CORRIGIDA AQUI ---
-            let accountName = userIdentifier;
-            let charName = 'N/A'; // Valor padrão
-            
-            const account = allUsers[userIdentifier];
-            if (account) {
-                accountName = account.name;
-                // CORREÇÃO: Usar a propriedade 'characterName' que já existe,
-                // em vez de tentar acessar 'tibiaCharacters'.
-                charName = account.characterName || 'N/A'; 
-            }
-            // --- FIM DA CORREÇÃO ---
-
-            const item = document.createElement('div');
-            item.className = 'cooldown-item';
-            item.innerHTML = `<div class="cooldown-info"><span><strong>${charName}</strong> (${accountName})</span><span class="cooldown-time"> Restam: ${remaining} minuto(s)</span></div><button class="action-btn danger-btn remove-cooldown-btn" data-user-identifier="${userIdentifier}">Remover</button>`;
-            cooldownsListDiv.appendChild(item);
-        });
+    if (cooldownEntries.length === 0) {
+        cooldownsListDiv.innerHTML = '<p>Nenhum usuário em cooldown.</p>';
+        return;
     }
 
-    function renderAdminPanel() {
-        if (!adminModal || !adminModal.classList.contains('show')) return;
-        renderUserList();
-        renderGroupList();
-        renderSelectedUserPanel();
-        renderRespawnManagementPanel();
-        renderSelectedRespawnPanel();
-        renderTimesManagementPanel();
-        renderAllUsersTab();
-        renderCooldownsTab();
-        renderSelectedGroupPanel();
+    cooldownEntries.forEach(([userIdentifier, expiryTimestamp]) => {
+        const remaining = Math.ceil((expiryTimestamp - now) / 60000);
+        if (remaining <= 0) return;
+
+        // --- LÓGICA CORRIGIDA AQUI ---
+        let accountName = userIdentifier;
+        let charName = 'N/A'; // Valor padrão
+        
+        const account = allUsers[userIdentifier];
+        if (account) {
+            accountName = account.name;
+            // CORREÇÃO: Usar a propriedade 'characterName' que já existe,
+            // em vez de tentar acessar 'tibiaCharacters'.
+            charName = account.characterName || 'N/A'; 
         }
+        // --- FIM DA CORREÇÃO ---
+
+        const item = document.createElement('div');
+        item.className = 'cooldown-item';
+        item.innerHTML = `<div class="cooldown-info"><span><strong>${charName}</strong> (${accountName})</span><span class="cooldown-time"> Restam: ${remaining} minuto(s)</span></div><button class="action-btn danger-btn remove-cooldown-btn" data-user-identifier="${userIdentifier}">Remover</button>`;
+        cooldownsListDiv.appendChild(item);
+    });
+}
+
+function renderAdminPanel() {
+    if (!adminModal || !adminModal.classList.contains('show')) return;
+    renderUserList();
+    renderGroupList();
+    renderSelectedUserPanel();
+    renderRespawnManagementPanel();
+    renderSelectedRespawnPanel();
+    renderTimesManagementPanel();
+    renderAllUsersTab();
+    renderCooldownsTab();
+    renderSelectedGroupPanel();
+    renderBatchGroupManagement();
+}
+
+function renderBatchGroupManagement() {
+    const batchManagementDiv = document.getElementById('admin-batch-group-management');
+    if (!batchManagementDiv) return;
+
+    // Constrói a lista de grupos com checkboxes
+    const groupListHtml = allGroups.map(group => `
+        <div class="batch-group-item">
+            <input type="checkbox" id="batch-group-chk-${group.id}" value="${group.id}">
+            <label for="batch-group-chk-${group.id}">${group.name}</label>
+        </div>
+    `).join('');
+
+    batchManagementDiv.innerHTML = `
+        <div class="batch-panel">
+            <h4>1. Digite a lista de Jogadores</h4>
+            <p>Separe os nomes por vírgula ou por linha.</p>
+            <textarea id="batch-player-list" rows="10" placeholder="Nome do Jogador 1, Nome do Jogador 2, ..."></textarea>
+        </div>
+        <div class="batch-panel">
+            <h4>2. Selecione os Grupos</h4>
+            <div id="batch-group-list" class="admin-list">
+                ${groupListHtml}
+            </div>
+            <div class="batch-actions">
+                <button class="action-btn success-btn" id="batch-add-groups-btn">Adicionar Grupos</button>
+                <button class="action-btn danger-btn" id="batch-remove-groups-btn">Remover Grupos</button>
+            </div>
+        </div>
+    `;
+
+    // Adiciona listeners para os botões de ação
+    document.getElementById('batch-add-groups-btn').addEventListener('click', () => handleBatchGroupUpdate('add'));
+    document.getElementById('batch-remove-groups-btn').addEventListener('click', () => handleBatchGroupUpdate('remove'));
+}
+
+function handleBatchGroupUpdate(action) {
+    const playerListText = document.getElementById('batch-player-list').value;
+    // Processa a string de nomes, removendo espaços em branco e filtrando vazios
+    const selectedUsers = playerListText.split(/,|\n/).map(name => name.trim()).filter(name => name.length > 0);
+
+    const selectedGroups = Array.from(document.querySelectorAll('#batch-group-list input[type="checkbox"]:checked'))
+        .map(input => input.value);
+
+    if (selectedUsers.length === 0 || selectedGroups.length === 0) {
+        alert('Por favor, digite os nomes dos jogadores e selecione pelo menos um grupo.');
+        return;
+    }
+
+    const confirmMessage = action === 'add'
+        ? `Tem certeza que deseja ADICIONAR os grupos selecionados a ${selectedUsers.length} jogador(es)?`
+        : `Tem certeza que deseja REMOVER os grupos selecionados de ${selectedUsers.length} jogador(es)?`;
+
+    if (confirm(confirmMessage)) {
+        window.appSocket.emit('admin:updateMultipleUserGroups', {
+            characterNames: selectedUsers,
+            groupIds: selectedGroups,
+            action: action
+        });
+        // Feedback visual e limpa a seleção
+        alert('Solicitação enviada. As alterações serão aplicadas em breve.');
+        document.getElementById('batch-player-list').value = '';
+        document.querySelectorAll('#admin-batch-group-management input[type="checkbox"]').forEach(chk => chk.checked = false);
+    }
+}
 
 function renderUserList() {
     const adminUserList = document.getElementById('admin-user-list');
@@ -1298,110 +1414,110 @@ function renderUserList() {
         });
 }
 
-    function renderGroupList() {
-        const adminGroupList = document.getElementById('admin-group-list');
-        const adminGroupForm = document.getElementById('admin-group-form');
-        if (!adminGroupList || !adminGroupForm) return;
-        const groupIdInput = adminGroupForm.querySelector('#group-id-input');
-        const groupNameInput = adminGroupForm.querySelector('#group-name-input');
-        const groupTimeInput = adminGroupForm.querySelector('#group-time-input');
-        adminGroupList.innerHTML = '';
-        allGroups.sort((a, b) => a.name.localeCompare(b.name)).forEach(group => {
-            const item = document.createElement('div');
-            item.className = 'group-item';
-            item.dataset.groupId = group.id;
-            if (group.id === selectedGroupId) {
-                item.classList.add('selected');
+function renderGroupList() {
+    const adminGroupList = document.getElementById('admin-group-list');
+    const adminGroupForm = document.getElementById('admin-group-form');
+    if (!adminGroupList || !adminGroupForm) return;
+    const groupIdInput = adminGroupForm.querySelector('#group-id-input');
+    const groupNameInput = adminGroupForm.querySelector('#group-name-input');
+    const groupTimeInput = adminGroupForm.querySelector('#group-time-input');
+    adminGroupList.innerHTML = '';
+    allGroups.sort((a, b) => a.name.localeCompare(b.name)).forEach(group => {
+        const item = document.createElement('div');
+        item.className = 'group-item';
+        item.dataset.groupId = group.id;
+        if (group.id === selectedGroupId) {
+            item.classList.add('selected');
+        }
+        item.innerHTML = `
+            <span>${group.name} (+${group.extraTime} min)</span>
+            <div>
+                <button class="admin-action-btn edit" title="Editar">✏️</button>
+                <button class="admin-action-btn delete" title="Deletar">🗑️</button>
+            </div>
+        `;
+        item.querySelector('.edit').addEventListener('click', () => {
+            groupIdInput.value = group.id;
+            groupNameInput.value = group.name;
+            groupTimeInput.value = group.extraTime;
+        });
+        item.querySelector('.delete').addEventListener('click', () => {
+            if (confirm(`Deletar o grupo "${group.name}"?`)) {
+                window.appSocket.emit('admin:deleteGroup', group.id);
             }
+        });
+        adminGroupList.appendChild(item);
+    });
+}
+
+
+function renderSelectedGroupPanel() {
+    const selectedPanel = document.getElementById('admin-selected-group-panel');
+    if (!selectedPanel) return;
+
+    if (!selectedGroupId) {
+        selectedPanel.style.display = 'none';
+        return;
+    }
+
+    const selectedGroup = allGroups.find(g => g.id === selectedGroupId);
+    if (!selectedGroup) {
+        selectedPanel.style.display = 'none';
+        return;
+    }
+
+    selectedPanel.style.display = 'block';
+
+    const groupNameEl = document.getElementById('selected-group-name-details');
+    const usersListEl = document.getElementById('admin-group-users-list');
+    const respawnsListEl = document.getElementById('admin-group-respawns-list');
+
+    if (!groupNameEl || !usersListEl || !respawnsListEl) return;
+
+    groupNameEl.textContent = selectedGroup.name;
+
+    usersListEl.innerHTML = '';
+    const usersInGroup = Object.values(allUsers).filter(user =>
+        user.groups && user.groups.includes(selectedGroupId)
+    ).sort((a, b) => (a.characterName || '').localeCompare(b.characterName));
+
+    if (usersInGroup.length === 0) {
+        usersListEl.innerHTML = '<p>Nenhum usuário neste grupo.</p>';
+    } else {
+        usersInGroup.forEach(user => {
+            const item = document.createElement('div');
+            item.className = 'group-member-item'; 
             item.innerHTML = `
-                <span>${group.name} (+${group.extraTime} min)</span>
-                <div>
-                    <button class="admin-action-btn edit" title="Editar">✏️</button>
-                    <button class="admin-action-btn delete" title="Deletar">🗑️</button>
-                </div>
+                <span>${user.characterName} (${user.name})</span>
+                <button class="action-btn.success-btn danger-btn remove-user-from-group-btn" data-character-name="${user.characterName}" data-group-id="${selectedGroupId}">Remover</button>
             `;
-            item.querySelector('.edit').addEventListener('click', () => {
-                groupIdInput.value = group.id;
-                groupNameInput.value = group.name;
-                groupTimeInput.value = group.extraTime;
-            });
-            item.querySelector('.delete').addEventListener('click', () => {
-                if (confirm(`Deletar o grupo "${group.name}"?`)) {
-                    window.appSocket.emit('admin:deleteGroup', group.id);
-                }
-            });
-            adminGroupList.appendChild(item);
+            usersListEl.appendChild(item);
         });
     }
 
-
-    function renderSelectedGroupPanel() {
-        const selectedPanel = document.getElementById('admin-selected-group-panel');
-        if (!selectedPanel) return;
-
-        if (!selectedGroupId) {
-            selectedPanel.style.display = 'none';
-            return;
-        }
-
-        const selectedGroup = allGroups.find(g => g.id === selectedGroupId);
-        if (!selectedGroup) {
-            selectedPanel.style.display = 'none';
-            return;
-        }
-
-        selectedPanel.style.display = 'block';
-
-        const groupNameEl = document.getElementById('selected-group-name-details');
-        const usersListEl = document.getElementById('admin-group-users-list');
-        const respawnsListEl = document.getElementById('admin-group-respawns-list');
-
-        if (!groupNameEl || !usersListEl || !respawnsListEl) return;
-
-        groupNameEl.textContent = selectedGroup.name;
-
-        usersListEl.innerHTML = '';
-        const usersInGroup = Object.values(allUsers).filter(user =>
-            user.groups && user.groups.includes(selectedGroupId)
-        ).sort((a, b) => (a.characterName || '').localeCompare(b.characterName));
-
-        if (usersInGroup.length === 0) {
-            usersListEl.innerHTML = '<p>Nenhum usuário neste grupo.</p>';
-        } else {
-            usersInGroup.forEach(user => {
-                const item = document.createElement('div');
-                item.className = 'group-member-item'; 
-                item.innerHTML = `
-                    <span>${user.characterName} (${user.name})</span>
-                    <button class="admin-action-btn danger-btn remove-user-from-group-btn" data-character-name="${user.characterName}" data-group-id="${selectedGroupId}">Remover</button>
-                `;
-                usersListEl.appendChild(item);
-            });
-        }
-
-        respawnsListEl.innerHTML = '';
-        const allRespawnsFlat = [];
-        for (const region in allRespawns) {
-            for (const code in allRespawns[region]) {
-                allRespawnsFlat.push({ code, name: allRespawns[region][code], region });
-            }
-        }
-
-        const respawnsInGroup = allRespawnsFlat.filter(r =>
-            allRespawnGroups[r.code] && allRespawnGroups[r.code].includes(selectedGroupId)
-        ).sort((a, b) => a.name.localeCompare(b.name));
-
-        if (respawnsInGroup.length === 0) {
-            respawnsListEl.innerHTML = '<p>Nenhum respawn requer este grupo.</p>';
-        } else {
-            respawnsInGroup.forEach(respawn => {
-                const item = document.createElement('div');
-                item.className = 'group-respawn-item'; // Classe para estilização
-                item.innerHTML = `<span>${respawn.name} [${respawn.code}]</span>`;
-                respawnsListEl.appendChild(item);
-            });
+    respawnsListEl.innerHTML = '';
+    const allRespawnsFlat = [];
+    for (const region in allRespawns) {
+        for (const code in allRespawns[region]) {
+            allRespawnsFlat.push({ code, name: allRespawns[region][code], region });
         }
     }
+
+    const respawnsInGroup = allRespawnsFlat.filter(r =>
+        allRespawnGroups[r.code] && allRespawnGroups[r.code].includes(selectedGroupId)
+    ).sort((a, b) => a.name.localeCompare(b.name));
+
+    if (respawnsInGroup.length === 0) {
+        respawnsListEl.innerHTML = '<p>Nenhum respawn requer este grupo.</p>';
+    } else {
+        respawnsInGroup.forEach(respawn => {
+            const item = document.createElement('div');
+            item.className = 'group-respawn-item'; // Classe para estilização
+            item.innerHTML = `<span>${respawn.name} [${respawn.code}]</span>`;
+            respawnsListEl.appendChild(item);
+        });
+    }
+}
 
 
  function renderTimesManagementPanel() {
@@ -1802,3 +1918,4 @@ if (timeBreakdownModal) {
         }
     });
 }
+

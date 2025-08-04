@@ -67,7 +67,8 @@
       "15e21260e6f5c818e9ceb7ebdeb073d2e202e206c129354677f54b91c4ff34f0",
       "1cd94538c8443625b6ba2a5aa39c286d49e33476a4c6db2f9d312b54b3ce3ad1",
       "b3825a8b6c1bcb2a1ccb541e60628ba3eb6544e35a97a2269b765cd9534283de",
-      "1afd874dc4d087d7779c0d955f1e4b30145118f5607b0f529d3c334624ffdcdb"
+      "1afd874dc4d087d7779c0d955f1e4b30145118f5607b0f529d3c334624ffdcdb",
+      "fbc63159cf615d3669f031889833c6e71f4b41323c9955166dc1af7c42c83797"
     ],
     "email": "rapha2929@gmail.com"
   },
@@ -9055,7 +9056,9 @@
         "vocation": "Elite Knight",
         "world": "Issobra",
         "guildRank": "Recruta",
-        "groups": []
+        "groups": [
+          "resp-block"
+        ]
       }
     ],
     "recoveryToken": null,
@@ -9581,7 +9584,9 @@
         "vocation": "Exalted Monk",
         "world": "Issobra",
         "guildRank": "Recruta",
-        "groups": []
+        "groups": [
+          "resp-block"
+        ]
       }
     ],
     "recoveryToken": null,
@@ -10372,7 +10377,9 @@
         "vocation": "Royal Paladin",
         "world": "Issobra",
         "guildRank": "Membro Novo",
-        "groups": []
+        "groups": [
+          "resp-block"
+        ]
       },
       {
         "characterName": "Lipinho Cbum",
@@ -10438,7 +10445,9 @@
         "vocation": "Royal Paladin",
         "world": "Issobra",
         "guildRank": "Recruta",
-        "groups": []
+        "groups": [
+          "resp-block"
+        ]
       }
     ],
     "recoveryToken": null,
