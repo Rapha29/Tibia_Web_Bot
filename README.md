@@ -1,6 +1,6 @@
 ## Tibia Web - Sistema de Claimed, Planilhado, Bosses, Ranking e Ferramentas.
 
-**Crédito e Direitos Autorais** — Consta na página inicial deste sistema o devido crédito ao seu autor intelectual,  **Raphael Olimpio – Ra nyx** . O presente sistema é disponibilizado de forma  **gratuita** , sendo expressamente vedada a remoção, ocultação ou alteração do referido crédito autoral. A supressão indevida do crédito caracteriza violação aos direitos do autor, nos termos da  **Lei nº 9.610/1998 (Lei de Direitos Autorais)** , sujeitando o infrator às sanções legais cabíveis, incluindo  **indenização por perdas e danos, cessação do uso indevido da obra** , bem como às  **penalidades previstas no artigo 184 do Código Penal** , sem prejuízo das demais medidas judiciais aplicáveis.
+**Crédito e Direitos Autorais** — Consta na página inicial deste sistema o devido crédito ao seu autor intelectual,  **Raphael Olimpio – Ra nyx** . O presente sistema é disponibilizado de forma  **gratuita** , sendo expressamente vedada a venda do sistema, remoção, ocultação ou alteração do referido crédito autoral. A supressão indevida do crédito caracteriza violação aos direitos do autor, nos termos da  **Lei nº 9.610/1998 (Lei de Direitos Autorais)** , sujeitando o infrator às sanções legais cabíveis, incluindo  **indenização por perdas e danos, cessação do uso indevido da obra** , bem como às  **penalidades previstas no artigo 184 do Código Penal** , sem prejuízo das demais medidas judiciais aplicáveis.
 
 ## Tutorial Completo: WebBot - Preparação, Instalação e Uso
 
