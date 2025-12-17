@@ -1,0 +1,280 @@
+{
+  "bosses": [
+    {
+      "name": "Albino Dragon",
+      "tokens": 1
+    },
+    {
+      "name": "Arachnir the Ancient One",
+      "tokens": 5
+    },
+    {
+      "name": "Arthom the Hunter",
+      "tokens": 1
+    },
+    {
+      "name": "Barbaria",
+      "tokens": 3
+    },
+    {
+      "name": "Battlemaster Zunzu",
+      "tokens": 5
+    },
+    {
+      "name": "Big Boss Trolliver",
+      "tokens": 3
+    },
+    {
+      "name": "Burster",
+      "tokens": 20
+    },
+    {
+      "name": "Captain Jones",
+      "tokens": 7
+    },
+    {
+      "name": "Countess Sorrow",
+      "tokens": 10
+    },
+    {
+      "name": "Crustacea Gigantica",
+      "tokens": 3
+    },
+    {
+      "name": "Dharalion",
+      "tokens": 3
+    },
+    {
+      "name": "Diblis the Fair",
+      "tokens": 5
+    },
+    {
+      "name": "Dire Penguim",
+      "tokens": 1
+    },
+    {
+      "name": "Dracola",
+      "tokens": 10
+    },
+    {
+      "name": "Draptor",
+      "tokens": 2
+    },
+    {
+      "name": "Dreadful Disruptor",
+      "tokens": 20
+    },
+    {
+      "name": "Dreadmaw",
+      "tokens": 5
+    },
+    {
+      "name": "Elvira (Kazz)",
+      "tokens": 10
+    },
+    {
+      "name": "Flamecaller Zazrak",
+      "tokens": 7
+    },
+    {
+      "name": "Fleabringer",
+      "tokens": 7
+    },
+    {
+      "name": "Foreman Kneebiter",
+      "tokens": 7
+    },
+    {
+      "name": "Furyosa",
+      "tokens": 25
+    },
+    {
+      "name": "General Murius",
+      "tokens": 3
+    },
+    {
+      "name": "Gravelord Oshuran",
+      "tokens": 5
+    },
+    {
+      "name": "Groam (Coal)",
+      "tokens": 5
+    },
+    {
+      "name": "Grorlam",
+      "tokens": 1
+    },
+    {
+      "name": "Hairman the Huge",
+      "tokens": 5
+    },
+    {
+      "name": "Hatebreeder",
+      "tokens": 10
+    },
+    {
+      "name": "High Templar Cobrass",
+      "tokens": 5
+    },
+    {
+      "name": "Hirintor",
+      "tokens": 7
+    },
+    {
+      "name": "Jesse (Thaís)",
+      "tokens": 10
+    },
+    {
+      "name": "Mahatheb",
+      "tokens": 20
+    },
+    {
+      "name": "Man in the Cave",
+      "tokens": 5
+    },
+    {
+      "name": "Massacre",
+      "tokens": 10
+    },
+    {
+      "name": "Midnight Panther",
+      "tokens": 7
+    },
+    {
+      "name": "Morneion (Venore)",
+      "tokens": 10
+    },
+    {
+      "name": "Mr. Punish",
+      "tokens": 10
+    },
+    {
+      "name": "Ocyakao",
+      "tokens": 5
+    },
+    {
+      "name": "Oodok Witchmaster",
+      "tokens": 1
+    },
+    {
+      "name": "Robby (Carlin)",
+      "tokens": 10
+    },
+    {
+      "name": "Rotworm Queen",
+      "tokens": 3
+    },
+    {
+      "name": "Rukor Zad",
+      "tokens": 10
+    },
+    {
+      "name": "Shlorg",
+      "tokens": 7
+    },
+    {
+      "name": "Sir Valorcrest",
+      "tokens": 3
+    },
+    {
+      "name": "Smuggler Baron Silvertoe",
+      "tokens": 5
+    },
+    {
+      "name": "The Big Bad One",
+      "tokens": 3
+    },
+    {
+      "name": "The Evil Eye",
+      "tokens": 5
+    },
+    {
+      "name": "The Frog Prince",
+      "tokens": 3
+    },
+    {
+      "name": "The Handmaiden",
+      "tokens": 10
+    },
+    {
+      "name": "The Hungerer",
+      "tokens": 20
+    },
+    {
+      "name": "The Imperor",
+      "tokens": 10
+    },
+    {
+      "name": "The Manhunter",
+      "tokens": 20
+    },
+    {
+      "name": "The Meanmasher",
+      "tokens": 20
+    },
+    {
+      "name": "The Old Whopper",
+      "tokens": 3
+    },
+    {
+      "name": "The Plasmother",
+      "tokens": 20
+    },
+    {
+      "name": "The Voice of Ruin",
+      "tokens": 10
+    },
+    {
+      "name": "The Welter",
+      "tokens": 7
+    },
+    {
+      "name": "Tyrn",
+      "tokens": 5
+    },
+    {
+      "name": "Tzumrah the Dazzler",
+      "tokens": 10
+    },
+    {
+      "name": "Undead Cavebear",
+      "tokens": 1
+    },
+    {
+      "name": "Warlord Ruzad",
+      "tokens": 7
+    },
+    {
+      "name": "White Pale",
+      "tokens": 5
+    },
+    {
+      "name": "Xenia",
+      "tokens": 5
+    },
+    {
+      "name": "Yaga the Crone",
+      "tokens": 3
+    },
+    {
+      "name": "Yakchal",
+      "tokens": 1
+    },
+    {
+      "name": "Yeti",
+      "tokens": 10
+    },
+    {
+      "name": "Zarabustor",
+      "tokens": 10
+    },
+    {
+      "name": "Zavelon Duskbringer",
+      "tokens": 3
+    },
+    {
+      "name": "Zushuka",
+      "tokens": 7
+    }
+  ]
+}

@@ -1,3 +1,5 @@
+<!-- index.html  -->
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -17,10 +19,142 @@
             max-height: 200px;
             overflow-y: auto;
         }
+                .boss-history-link {
+            color: white;
+            text-decoration: none; /* Remove o sublinhado padrão */
+        }
+        .boss-history-link:hover {
+            color: #ffc107; /* Opcional: Cor amarela ao passar o mouse */
+            text-decoration: underline;
+        }
+            .boss-history-link,
+    .checker-history-link { /* Adicione a nova classe aqui */
+        color: white;
+        text-decoration: none;
+    }
+    .boss-history-link:hover,
+    .checker-history-link:hover { /* Adicione a nova classe aqui */
+        color: #ffc107;
+        text-decoration: underline;
+    }
+    .boss-list-item.found-today {
+    background-color: #dc354533; /* Vermelho com transparência */
+    border-left: 3px solid #dc3545;
+}
+    .boss-history-link,
+    .checker-history-link,
+    .finder-history-link { /* Adicione a nova classe aqui */
+        color: white;
+        text-decoration: none;
+    }
+    .boss-history-link:hover,
+    .checker-history-link:hover,
+    .finder-history-link:hover { /* Adicione a nova classe aqui */
+        color: #ffc107;
+        text-decoration: underline;
+    }
+            /* Estilos comuns para ambos os botões para garantir tamanho igual */
+        .check-btn,
+        .found-btn {
+            color: white;
+            border: none;
+            padding: 8px 12px; /* Garante altura e largura consistentes */
+            border-radius: 5px;
+            margin-left: 5px;  /* Adiciona um pequeno espaço entre eles */
+            cursor: pointer;   /* Muda o cursor para indicar que é clicável */
+            font-size: 0.9em;  /* Ajusta o tamanho da fonte */
+            line-height: 1;    /* Garante alinhamento vertical do texto */
+        }
+
+        /* Cor específica para o botão de Check */
+        .check-btn {
+            background-color: #0d6efd; /* Azul */
+        }
+        .check-btn:hover {
+            background-color: #0b5ed7; /* Azul mais escuro */
+        }
+
+        /* Cor específica para o botão Encontrado */
+        .found-btn {
+            background-color: #198754; /* Verde */
+        }
+        .found-btn:hover {
+            background-color: #157347; /* Verde mais escuro */
+        }
+        .details-link {
+    color: #aaa; /* Cor cinza claro */
+    font-size: 0.8em;
+    margin-left: 8px;
+    text-decoration: none; /* Remove o sublinhado */
+}
+.details-link:hover {
+    color: #ffc107; /* Cor amarela ao passar o mouse */
+    text-decoration: underline;
+}
+.predicted-date {
+    font-size: 0.9em;
+    color: #ffc107; /* Cor amarela para destaque */
+    margin: 2px 0 0 0; /* Remove margem excessiva */
+}
+/* Cor verde para toda a linha de log de level up de aliado */
+    .log-entry.broadcast.levelup-ally {
+        color: #28a745; /* Verde sucesso */
+        border-left: 3px solid #28a745; /* Adiciona uma borda esquerda verde */
+        background-color: rgba(40, 167, 69, 0.1); /* Fundo verde bem claro */
+    }
+
+    /* Opcional: Cor vermelha/amarela para level up de inimigos/hunteds */
+    .log-entry.broadcast.levelup-other {
+        color: #dc3545; /* Vermelho perigo */
+        border-left: 3px solid #dc3545;
+        background-color: rgba(220, 53, 69, 0.1);
+        /* ou use #ffc107 para amarelo */
+    }
+#page-loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Cor de fundo semi-transparente */
+    background-color: rgba(22, 22, 25, 0.85); 
+    z-index: 9998; /* Alto, mas abaixo de modais (se houver) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    transition: opacity 0.3s ease;
+    opacity: 1;
+    /* Começa visível por padrão se a classe 'loader-hidden' não estiver lá */
+}
+
+/* Classe para esconder o loader suavemente */
+#page-loader-overlay.loader-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* O spinner de carregamento */
+.loader-spinner {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3675ff; /* Cor do spinner */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
     </style>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚔️</text></svg>">
 </head>
 <body>
+    <div id="page-loader-overlay" class="loader-hidden">
+    <div class="loader-spinner"></div>
+</div>
 <nav class="main-nav">
     <button class="nav-link active" data-page="respawns">
         <i class="fas fa-list-ul"></i> Respawns
@@ -30,7 +164,16 @@
         <button class="nav-link" data-page="planilhado">
             <i class="fas fa-calendar-alt"></i> Planilhado
         </button>
-        
+        <button class="nav-link" data-page="bosses">
+        <i class="fas fa-skull"></i> Bosses
+    </button>
+
+
+        <button class="nav-link" data-page="warpanel">
+    <i class="fas fa-shield-halved"></i>⚔️ War Painel 
+        </button>
+
+
         <div class="nav-dropdown-container">
             <button class="nav-link" id="tools-dropdown-btn">
                 <i class="fas fa-tools"></i> Ferramentas <i class="fas fa-caret-down"></i>
@@ -39,7 +182,7 @@
                 <a href="#" class="nav-dropdown-item" data-page="calc_exp">Calculadora de XP</a>
                 <a href="#" class="nav-dropdown-item" data-page="calc_loot">Split Loot</a>
                 <a href="#" class="nav-dropdown-item" data-page="calc_valor">Conversor de Valores</a>
-                <a href="#" class="nav-dropdown-item" data-page="quem_e_quem">Quem é Quem?</a>
+                <!-- <a href="#" class="nav-dropdown-item" data-page="quem_e_quem">Quem é Quem?</a> -->
             </div>
         </div>
         <button class="nav-link" data-page="ranking">
@@ -53,15 +196,13 @@
             <span id="nav-user-char">Nenhum personagem</span> 
         </div>
         
-        <div class="navbar-right" style="margin-left: auto; display: flex; justify-content: flex-end;">
+<div class="navbar-right" style="margin-left: auto; display: flex; justify-content: flex-end;">
             <button id="change-name-btn">Trocar Personagem</button> 
-            <span id="active-char-display">  </span> 
-            <button id="logout-btn" class="action-btn danger-btn">Sair</button> 
+            
+             <span id="active-char-display">  </span> 
+            <button id="toggle-chat-btn" class="nav-link">Chat</button> <button id="logout-btn" class="action-btn danger-btn">Sair</button> 
         </div>
     </nav>
-    </button>
-            <button id="toggle-chat-btn" class="nav-link">
-        <i class="fas fa-comment"></i> Chat
     </button>
     
     <div id="hunted-alert-container"></div>
@@ -77,13 +218,25 @@
             <h2>Chat com o Bot</h2> 
             <div class="chat-options">
                 <div class="checkbox-wrapper">
-                    <input type="checkbox" id="sound-enabled-checkbox">
+                    <input type="checkbox" id="sound-enabled-checkbox" checked>
                     <label for="sound-enabled-checkbox">🔊 Som</label>
                 </div>
                 <div class="checkbox-wrapper">
                     <input type="checkbox" id="alert-enabled-checkbox">
                     <label for="alert-enabled-checkbox">🔔 Alerta</label>
                 </div>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="boss-alert-checkbox">
+                    <label for="boss-alert-checkbox">🚨 Boss</label>
+                </div>
+
+
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="toggle-war-module">
+                    <label for="toggle-war-module">⚔️ Up/Deaths</label>
+                </div>
+
+
             </div>
             <div id="chat-log"></div> 
             <div id="quick-actions">
@@ -97,6 +250,34 @@
             </form>
         </div>
     </div>
+
+<div id="boss-found-modal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="boss-found-title">Registrar Boss Encontrado</h2>
+            <button class="modal-close-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+            <form id="boss-found-form">
+                <div id="anonymous-char-wrapper" style="display: none;">
+                    <label for="anonymous-char-input">Seu Personagem:</label>
+                    <input type="text" id="anonymous-char-input" class="form-control" required>
+                </div>
+
+                <label for="death-time-input">Hora da Morte (opcional):</label>
+                <input type="time" id="death-time-input" class="form-control">
+
+                <label for="tokens-input">Qt. de Tokens (opcional):</label>
+                <input type="number" id="tokens-input" class="form-control" min="0">
+
+                <label for="observation-input">Observação (opcional):</label>
+                <textarea id="observation-input" class="form-control" rows="3"></textarea>
+
+                <button type="submit" class="action-btn success-btn" style="margin-top: 15px;">Enviar Registro</button>
+            </form>
+         </div>
+    </div>
+</div>
 
     <div id="respawn-finder-modal" class="modal-overlay"> 
         <div class="modal-content"> 
@@ -226,7 +407,7 @@
                             </div>
                             <div class="group-checklist-item" style="background-color: transparent; padding: 10px 0;">
                                 <input type="checkbox" id="respawn-planilhado-double-chk">
-                                <label for="respawn-planilhado-double-chk">Disponível no Planilhado Double</label>
+                                <label for="respawn-planilhado-double-chk">Disponível no Planilhado Next</label>
                             </div>
                             <hr>
                             <h4>Grupos de Acesso</h4>
@@ -262,15 +443,23 @@
                 </div>
             </div>
 
-            <div id="tab-content-usuarios" class="tab-content">
-                <div class="admin-container solo-panel">
-                    <div class="admin-panel">
-                           <h2>Todos os Usuários e Personagens Registrados</h2>
-                         <input type="text" id="admin-all-users-search" placeholder="Buscar por nome, e-mail ou personagem...">
-                        <div id="admin-all-users-list" class="admin-list"></div>
-                   </div>
-                </div>
-            </div>
+<div id="tab-content-usuarios" class="tab-content">
+    <div class="admin-container solo-panel">
+        <div class="admin-panel">
+            <h2>Todos os Usuários e Personagens Registrados</h2>
+            
+<div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <input type="text" id="admin-all-users-search" placeholder="Buscar por nome, e-mail ou personagem..." style="flex: 2;">
+    
+    <select id="admin-all-users-rank-filter" class="form-control" style="flex: 1; padding: 8px; background-color: #2a2a2e; color: #f0f0f0; border: 1px solid #555; border-radius: 4px;">
+        <option value="" style="background-color: #2a2a2e;">Todos os Ranks</option>
+    </select>
+</div>
+
+            <div id="admin-all-users-list" class="admin-list"></div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -294,6 +483,32 @@
         </div>
     </div>
 
+    <div id="edit-user-modal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Editar Usuário</h2>
+            <button class="modal-close-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+            <form id="edit-user-form">
+                <input type="hidden" id="edit-original-email">
+                
+                <label for="edit-user-name">Nome Completo:</label>
+                <input type="text" id="edit-user-name" class="form-control" required>
+                
+                <label for="edit-user-email">E-mail (Login):</label>
+                <input type="email" id="edit-user-email" class="form-control" required>
+                
+                <label for="edit-user-phone">Telefone:</label>
+                <input type="text" id="edit-user-phone" class="form-control">
+                
+                <div style="margin-top: 15px; text-align: right;">
+                    <button type="submit" class="action-btn success-btn">Salvar Alterações</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
     <div id="time-breakdown-modal" class="modal-overlay">
         <div class="modal-content">
             <button class="modal-close-btn">&times;</button>
@@ -311,11 +526,33 @@
     </div>
 </div>
 
+<div id="boss-history-modal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="boss-history-title">Histórico de Checks</h2>
+            <button class="modal-close-btn">&times;</button>
+        </div>
+        <div id="boss-history-body" class="modal-body">
+            </div>
+    </div>
+</div>
+
 <div id="planilhado-group-modal" class="modal-overlay">
     <div class="modal-content">
         <span class="modal-close-btn">&times;</span>
         <h2 id="planilhado-group-title">Membros do Grupo Planilhado</h2>
         <div id="planilhado-group-body">
+        </div>
+    </div>
+</div>
+
+<div id="boss-history-modal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="boss-history-title">Histórico de Checks</h2>
+            <button class="modal-close-btn">&times;</button>
+        </div>
+        <div id="boss-history-body" class="modal-body">
             </div>
     </div>
 </div>

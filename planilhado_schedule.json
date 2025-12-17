@@ -1,4 +1,813 @@
 {
+  "D40": {},
+  "Z20": {
+    "20:30": {
+      "leader": "Pernambucano Nukenin",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG-SEX"
+    },
+    "21:00": {
+      "leader": "Pernambucano Nukenin",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG-SEX"
+    },
+    "21:30": {
+      "leader": "Pernambucano Nukenin",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG-SEX"
+    },
+    "22:00": {
+      "leader": "Pernambucano Nukenin",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG-SEX"
+    },
+    "22:30": {
+      "leader": "Pernambucano Nukenin",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG-SEX"
+    }
+  },
   "P17": {},
-  "Z20": {}
+  "Z21": {},
+  "C5": {
+    "07:30": {
+      "leader": "Drig Corporation",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG A SEX"
+    },
+    "08:00": {
+      "leader": "Drig Corporation",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG A SEX"
+    },
+    "08:30": {
+      "leader": "Drig Corporation",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG A SEX"
+    },
+    "09:00": {
+      "leader": "Drig Corporation",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG A SEX"
+    },
+    "09:30": {
+      "leader": "Drig Corporation",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG A SEX"
+    },
+    "10:00": {
+      "leader": "Drig Corporation",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG A SEX"
+    },
+    "21:30": {
+      "leader": "Macadamia Firma Forte",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Terça a sexta"
+    },
+    "22:00": {
+      "leader": "Macadamia Firma Forte",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Terça a sexta"
+    },
+    "22:30": {
+      "leader": "Macadamia Firma Forte",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Terça a sexta"
+    },
+    "23:00": {
+      "leader": "Macadamia Firma Forte",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Terça a sexta"
+    },
+    "23:30": {
+      "leader": "Macadamia Firma Forte",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Terça a sexta"
+    }
+  },
+  "E40": {
+    "19:00": {
+      "leader": "Tejow Corporation",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "seg a seg"
+    },
+    "19:30": {
+      "leader": "Tejow Corporation",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "seg a seg"
+    },
+    "20:00": {
+      "leader": "Tejow Corporation",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "seg a seg"
+    },
+    "20:30": {
+      "leader": "Tejow Corporation",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "seg a seg"
+    },
+    "21:00": {
+      "leader": "Tejow Corporation",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "seg a seg"
+    },
+    "21:30": {
+      "leader": "Tejow Corporation",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "seg a seg"
+    },
+    "22:00": {
+      "leader": "Japaa Corporation",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Dom a Sex"
+    },
+    "22:30": {
+      "leader": "Japaa Corporation",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Dom a Sex"
+    },
+    "23:00": {
+      "leader": "Japaa Corporation",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Dom a Sex"
+    },
+    "23:30": {
+      "leader": "Japaa Corporation",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Dom a Sex"
+    },
+    "00:00": {
+      "leader": "Japaa Corporation",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Dom a Sex"
+    }
+  },
+  "C6": {
+    "07:30": {
+      "leader": "Ded in",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Seg a sexta"
+    },
+    "08:00": {
+      "leader": "Ded in",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Seg a sexta"
+    },
+    "08:30": {
+      "leader": "Ded in",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Seg a sexta"
+    },
+    "09:00": {
+      "leader": "Ded in",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Seg a sexta"
+    },
+    "09:30": {
+      "leader": "Ded in",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Seg a sexta"
+    },
+    "10:00": {
+      "leader": "Ded in",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Seg a sexta"
+    },
+    "17:30": {
+      "leader": "Luciana Burks",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "segunda a sexta"
+    },
+    "18:00": {
+      "leader": "Luciana Burks",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "segunda a sexta"
+    },
+    "18:30": {
+      "leader": "Luciana Burks",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "segunda a sexta"
+    },
+    "19:00": {
+      "leader": "Luciana Burks",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "segunda a sexta"
+    },
+    "19:30": {
+      "leader": "Luciana Burks",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "segunda a sexta"
+    },
+    "20:00": {
+      "leader": "Luciana Burks",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "segunda a sexta"
+    },
+    "20:30": {
+      "leader": "Luciana Burks",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "segunda a sexta"
+    },
+    "21:00": {
+      "leader": "Noffikz",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "21:30": {
+      "leader": "Noffikz",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "22:00": {
+      "leader": "Noffikz",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "22:30": {
+      "leader": "Noffikz",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "23:00": {
+      "leader": "Noffikz",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "23:30": {
+      "leader": "Noffikz",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "00:00": {
+      "leader": "Noffikz",
+      "isAbsence": false,
+      "isDouble": false
+    }
+  },
+  "E35": {
+    "09:30": {
+      "leader": "Iceez",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Seg a Sex"
+    },
+    "10:00": {
+      "leader": "Iceez",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Seg a Sex"
+    },
+    "10:30": {
+      "leader": "Iceez",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Seg a Sex"
+    },
+    "11:00": {
+      "leader": "Iceez",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Seg a Sex"
+    },
+    "11:30": {
+      "leader": "Iceez",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Seg a Sex"
+    },
+    "12:00": {
+      "leader": "Iceez",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Seg a Sex"
+    },
+    "12:30": {
+      "leader": "Iceez",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Seg a Sex"
+    },
+    "14:30": {
+      "leader": "Ghzzord Corporation",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "15:00": {
+      "leader": "Ghzzord Corporation",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "15:30": {
+      "leader": "Ghzzord Corporation",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "16:00": {
+      "leader": "Ghzzord Corporation",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "16:30": {
+      "leader": "Ghzzord Corporation",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "17:00": {
+      "leader": "Ghzzord Corporation",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "17:30": {
+      "leader": "Ghzzord Corporation",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "20:00": {
+      "leader": "Psiconauta Corporation",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "20:30": {
+      "leader": "Psiconauta Corporation",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "21:00": {
+      "leader": "Psiconauta Corporation",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "21:30": {
+      "leader": "Psiconauta Corporation",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "22:00": {
+      "leader": "Psiconauta Corporation",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "22:30": {
+      "leader": "Psiconauta Corporation",
+      "isAbsence": false,
+      "isDouble": false
+    }
+  },
+  "E39": {},
+  "W1": {},
+  "C7": {
+    "20:00": {
+      "leader": "Szlowsk Malkai",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Seg a Seg"
+    },
+    "20:30": {
+      "leader": "Szlowsk Malkai",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Seg a Seg"
+    },
+    "21:00": {
+      "leader": "Szlowsk Malkai",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Seg a Seg"
+    },
+    "21:30": {
+      "leader": "Szlowsk Malkai",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Seg a Seg"
+    },
+    "22:00": {
+      "leader": "Szlowsk Malkai",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Seg a Seg"
+    },
+    "22:30": {
+      "leader": "Szlowsk Malkai",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Seg a Seg"
+    },
+    "23:00": {
+      "leader": "Szlowsk Malkai",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Seg a Seg"
+    },
+    "06:00": {
+      "leader": "Ruffigan The One",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG - SEX"
+    },
+    "06:30": {
+      "leader": "Ruffigan The One",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG - SEX"
+    },
+    "07:00": {
+      "leader": "Ruffigan The One",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG - SEX"
+    },
+    "07:30": {
+      "leader": "Ruffigan The One",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG - SEX"
+    },
+    "08:00": {
+      "leader": "Ruffigan The One",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG - SEX"
+    },
+    "08:30": {
+      "leader": "Ruffigan The One",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG - SEX"
+    }
+  },
+  "T29": {
+    "21:00": {
+      "leader": "Xompa Corporation",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "21:30": {
+      "leader": "Xompa Corporation",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "22:00": {
+      "leader": "Xompa Corporation",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "22:30": {
+      "leader": "Xompa Corporation",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "23:00": {
+      "leader": "Xompa Corporation",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "23:30": {
+      "leader": "Xompa Corporation",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "00:00": {
+      "leader": "Xompa Corporation",
+      "isAbsence": false,
+      "isDouble": false
+    }
+  },
+  "Y1": {},
+  "K4": {},
+  "D34": {},
+  "E36": {
+    "15:00": {
+      "leader": "Pollemiicoo",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG A SABADO"
+    },
+    "15:30": {
+      "leader": "Pollemiicoo",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG A SABADO"
+    },
+    "16:00": {
+      "leader": "Pollemiicoo",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG A SABADO"
+    },
+    "16:30": {
+      "leader": "Pollemiicoo",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG A SABADO"
+    },
+    "17:00": {
+      "leader": "Pollemiicoo",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG A SABADO"
+    },
+    "17:30": {
+      "leader": "Pollemiicoo",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG A SABADO"
+    },
+    "18:00": {
+      "leader": "Pollemiicoo",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG A SABADO"
+    },
+    "11:30": {
+      "leader": "Ruthless Volfrick",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "12:00": {
+      "leader": "Ruthless Volfrick",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "12:30": {
+      "leader": "Ruthless Volfrick",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "13:00": {
+      "leader": "Ruthless Volfrick",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "13:30": {
+      "leader": "Ruthless Volfrick",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "14:00": {
+      "leader": "Ruthless Volfrick",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "14:30": {
+      "leader": "Ruthless Volfrick",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "19:00": {
+      "leader": "Bamandua",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "19:30": {
+      "leader": "Bamandua",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "20:00": {
+      "leader": "Bamandua",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "20:30": {
+      "leader": "Bamandua",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "21:00": {
+      "leader": "Bamandua",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "21:30": {
+      "leader": "Bamandua",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "22:00": {
+      "leader": "Bamandua",
+      "isAbsence": false,
+      "isDouble": false
+    }
+  },
+  "T13": {},
+  "E34": {
+    "20:00": {
+      "leader": "Meziolsky",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Todos os dias"
+    },
+    "20:30": {
+      "leader": "Meziolsky",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Todos os dias"
+    },
+    "21:00": {
+      "leader": "Meziolsky",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Todos os dias"
+    },
+    "21:30": {
+      "leader": "Meziolsky",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Todos os dias"
+    },
+    "22:00": {
+      "leader": "Meziolsky",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Todos os dias"
+    },
+    "22:30": {
+      "leader": "Meziolsky",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Todos os dias"
+    }
+  },
+  "B17": {},
+  "K15": {},
+  "Z23": {},
+  "T16": {},
+  "G11": {},
+  "N22": {
+    "19:30": {
+      "leader": "Aborath Unknown",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Seg a Sex"
+    },
+    "20:00": {
+      "leader": "Aborath Unknown",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Seg a Sex"
+    },
+    "20:30": {
+      "leader": "Aborath Unknown",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Seg a Sex"
+    },
+    "21:00": {
+      "leader": "Aborath Unknown",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Seg a Sex"
+    },
+    "21:30": {
+      "leader": "Aborath Unknown",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Seg a Sex"
+    },
+    "22:00": {
+      "leader": "Aborath Unknown",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Seg a Sex"
+    },
+    "22:30": {
+      "leader": "Aborath Unknown",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "Seg a Sex"
+    }
+  },
+  "W4": {},
+  "Z1": {},
+  "W2": {},
+  "D33": {
+    "07:00": {
+      "leader": "Ross Urie",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG - SEG"
+    },
+    "07:30": {
+      "leader": "Ross Urie",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG - SEG"
+    },
+    "08:00": {
+      "leader": "Ross Urie",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG - SEG"
+    },
+    "08:30": {
+      "leader": "Ross Urie",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG - SEG"
+    },
+    "09:00": {
+      "leader": "Ross Urie",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG - SEG"
+    },
+    "09:30": {
+      "leader": "Ross Urie",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG - SEG"
+    },
+    "10:00": {
+      "leader": "Ross Urie",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG - SEG"
+    }
+  },
+  "E37": {},
+  "N21": {
+    "19:00": {
+      "leader": "Sserkas",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG A SEX"
+    },
+    "19:30": {
+      "leader": "Sserkas",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG A SEX"
+    },
+    "20:00": {
+      "leader": "Sserkas",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG A SEX"
+    },
+    "20:30": {
+      "leader": "Sserkas",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG A SEX"
+    },
+    "21:00": {
+      "leader": "Sserkas",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG A SEX"
+    },
+    "21:30": {
+      "leader": "Sserkas",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG A SEX"
+    },
+    "22:00": {
+      "leader": "Sserkas",
+      "isAbsence": false,
+      "isDouble": false,
+      "observation": "SEG A SEX"
+    }
+  }
 }

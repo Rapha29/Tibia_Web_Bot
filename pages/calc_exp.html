@@ -38,9 +38,10 @@
         <div id="hourSelection" style="margin-top: 12px;"></div>
         <div class="action-buttons" style="margin: 15px 0;">
             <div class="event-options">
-                <div class="event-checkbox"><input type="checkbox" id="doubleExperience"><label for="doubleExperience">Double XP</label></div>
                 <div class="event-checkbox"><input type="checkbox" id="event30"><label for="event30">Evento 30%</label></div>
+                <div class="event-checkbox"><input type="checkbox" id="prey40"><label for="event50">Prey 40%</label></div>
                 <div class="event-checkbox"><input type="checkbox" id="event50"><label for="event50">Evento 50%</label></div>
+                <div class="event-checkbox"><input type="checkbox" id="doubleExperience"><label for="doubleExperience">Double XP</label></div>
             </div>
             <button id="calculateButton" class="calc-button">Calcular</button>
         </div>
@@ -101,6 +102,7 @@
         const rawExperience = parseFormattedNumber(document.getElementById('rawExperience').value) || 1000000;
         const doubleXP = document.getElementById('doubleExperience').checked;
         const event30 = document.getElementById('event30').checked;
+        const prey40 = document.getElementById('prey40').checked;
         const event50 = document.getElementById('event50').checked;
         const numHours = parseInt(document.getElementById('numHours').value) || 1;
 
@@ -124,6 +126,7 @@
             if (stamina === 'green') percentage *= 1.5;
             if (boost) percentage *= 1.5;
             if (event30) percentage *= 1.3;
+            if (prey40) percentage *= 1.4;
             if (event50) percentage *= 1.5;
             if (doubleXP) percentage *= 2;
             return { total: rawExperience * (percentage / 100), finalPercentage: Math.round(percentage) };

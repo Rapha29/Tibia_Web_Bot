@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>War Panel</title>
+<style>
+    /* Estilos CSS (Incluindo os anteriores e as novas modificações) */
+    body { font-family: Arial, sans-serif; background-color: var(--panel-bg-color-darker); color: var(--text-color); margin: 0; padding: 0; }
+    .war-panel-container { padding: 20px; color: var(--text-color); }
+    .war-panel-header { text-align: center; margin-bottom: 25px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }
+    .war-panel-header h1 { margin-bottom: 5px; color: var(--primary-color); }
+    #war-last-update { font-size: 0.85em; color: var(--text-color-secondary); font-style: italic; }
+    .stats-section { margin-bottom: 30px; background-color: var(--panel-bg-color-darker); padding: 15px; border-radius: 8px; border: 1px solid var(--border-color); }
+    .stats-section h2 { text-align: center; margin-top: 0; margin-bottom: 15px; color: var(--secondary-color); border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+
+    /* Filtro de Data, Toggles e Filtro Global - Container Principal */
+    .filter-toggle-section {
+        margin-bottom: 20px;
+        padding: 15px;
+        background-color: var(--panel-bg-color);
+        border-radius: 5px;
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        flex-wrap: wrap; /* Permite quebrar linha em telas menores */
+    }
+
+    /* Coluna dos Toggles */
+    .war-toggle-buttons { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; flex-shrink: 0; /* Impede que os botões encolham */ }
+    .war-toggle-buttons button { padding: 8px 15px; font-size: 1em; font-weight: bold; border: 2px solid var(--border-color); background-color: var(--panel-bg-color); color: var(--text-color-secondary); cursor: pointer; border-radius: 5px; transition: background-color 0.2s, color 0.2s, border-color 0.2s; width: 100%; text-align: left; }
+    #war-toggle-deaths-kills-btn { background-color: #6a2a35; border-color: #8a3a45; }
+    #war-toggle-deaths-kills-btn:hover { background-color: #8a3a45; }
+    #war-toggle-levelups-btn { background-color: #2a6a35; border-color: #3a8a45; }
+    #war-toggle-levelups-btn:hover { background-color: #3a8a45; }
+    .war-toggle-buttons button.active { background-color: var(--primary-color); color: white; border-color: var(--primary-color); }
+
+    /* Container para Opções de Data e Filtro Global */
+    .date-filter-options-container {
+        display: flex;
+        flex-direction: column; /* Empilha data e filtro */
+        flex-grow: 1; /* Ocupa o espaço restante */
+        gap: 10px; /* Espaço entre data e filtro */
+    }
+
+    /* Opções de Data */
+    .date-options-container { display: flex; flex-direction: column; align-items: center; }
+    .date-options { margin-bottom: 10px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 15px; }
+    .date-options label { margin: 0; cursor: pointer; color: var(--text-color-secondary); }
+    .date-options input[type="radio"] { margin-right: 5px; cursor: pointer; vertical-align: middle; }
+    .date-options input[type="radio"]:checked + span { color: var(--primary-color); font-weight: bold; }
+    #war-selected-range { display: block; font-style: italic; color: var(--text-color-secondary); font-size: 0.9em; text-align: center; margin-top: 5px; }
+
+    /* Filtro Global por Nome */
+    .global-filter-container { width: 100%; /* Ocupa a largura da coluna */ }
+    #global-war-filter-input {
+        width: 100%; /* Faz o input ocupar toda a largura */
+        padding: 8px 10px;
+        font-size: 1em;
+        background-color: whitesmoke;
+        border: 1px solid goldenrod;
+        color: var(--text-color);
+        border-radius: 5px;
+        box-sizing: border-box; /* Garante que padding não aumente a largura total */
+    }
+
+
+    /* --- Restante dos estilos (Resumo, Tabelas, etc.) - Sem alterações --- */
+    .summary-box { display: flex; justify-content: space-around; text-align: center; flex-wrap: wrap; gap: 15px; margin-bottom: 20px; padding: 15px 0; }
+    .summary-item { font-size: 1.1em; padding: 10px; border-radius: 5px; background-color: var(--panel-bg-color); min-width: 120px; }
+    .summary-item strong { display: block; font-size: 1.5em; margin-top: 5px; }
+    .ally-deaths-count, .ally-levelup-count { color: var(--success-color, #198754); }
+    .enemy-deaths-count, .enemy-levelup-count { color: var(--danger-color, #dc3545); }
+    .hunted-deaths-count, .hunted-levelup-count { color: var(--warning-color, #ffc107); }
+    .ranking-columns { display: flex; flex-wrap: wrap; gap: 20px; }
+    .ranking-column { flex: 1; min-width: 300px; background-color: var(--panel-bg-color); padding: 10px; border-radius: 5px; }
+    .ranking-column h3 { text-align: center; margin-top: 5px; margin-bottom: 10px; font-size: 1.2em; color: #ccc; }
+    .ranking-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9em; }
+    .ranking-table th, .ranking-table td { border: 1px solid var(--border-color); padding: 6px 8px; text-align: left; vertical-align: middle; }
+    .ranking-table th { background-color: var(--primary-color); color: white; text-align: center; white-space: nowrap; }
+    .ranking-table tbody tr:nth-child(odd) { background-color: var(--panel-bg-color-darker); }
+    #death-ranking-ally td:nth-child(1), #death-ranking-enemy td:nth-child(1), #death-ranking-hunted td:nth-child(1) { font-weight: bold; text-align: left; }
+    #death-ranking-ally td:nth-child(2), #death-ranking-enemy td:nth-child(2), #death-ranking-hunted td:nth-child(2) { text-align: center; width: 60px; }
+    #death-ranking-ally td:nth-child(3), #death-ranking-enemy td:nth-child(3), #death-ranking-hunted td:nth-child(3) { font-size: 0.85em; color: var(--text-color-secondary); white-space: normal; word-break: break-word; text-align: left; }
+    #levelup-ranking-ally td:nth-child(1) a, #levelup-ranking-enemy td:nth-child(1) a, #levelup-ranking-hunted td:nth-child(1) a { color: white; text-decoration: none; font-weight: bold;}
+    #levelup-ranking-ally td:nth-child(1) a:hover, #levelup-ranking-enemy td:nth-child(1) a:hover, #levelup-ranking-hunted td:nth-child(1) a:hover { text-decoration: underline; color: #ffc107;}
+    #levelup-ranking-ally td:nth-child(2), #levelup-ranking-enemy td:nth-child(2), #levelup-ranking-hunted td:nth-child(2) { text-align: center; width: 100px; font-weight: bold; color: #a0ffa0; }
+    #levelup-ranking-ally td:nth-child(3), #levelup-ranking-enemy td:nth-child(3), #levelup-ranking-hunted td:nth-child(3) { font-size: 0.85em; color: var(--text-color-secondary); width: 140px; text-align: center; }
+    #death-ranking-ally th, #levelup-ranking-ally th { background-color: var(--success-color, #198754); }
+    #death-ranking-enemy th, #death-ranking-hunted th, #levelup-ranking-enemy th, #levelup-ranking-hunted th { background-color: var(--danger-color, #dc3545); }
+    #kill-ranking-player-ally th { background-color: #0dcaf0; }
+    #kill-ranking-player-enemy th { background-color: #fd7e14; }
+    #kill-ranking-creature th { background-color: #6c757d; }
+    #vocation-stats th { background-color: var(--secondary-color); }
+    .placeholder-text { color: var(--text-color-secondary); font-style: italic; text-align: center; }
+    #kill-ranking-player-ally td:nth-child(1), #kill-ranking-player-enemy td:nth-child(1), #kill-ranking-creature td:nth-child(1) { text-align: center; width: 30px; font-weight: bold; }
+    #kill-ranking-player-ally td:nth-child(2), #kill-ranking-player-enemy td:nth-child(2), #kill-ranking-creature td:nth-child(2) { text-align: left; }
+    #kill-ranking-player-ally td:nth-child(3), #kill-ranking-player-enemy td:nth-child(3), #kill-ranking-creature td:nth-child(3) { text-align: center; width: 50px; }
+    #kill-ranking-player-ally td:nth-child(4), #kill-ranking-player-enemy td:nth-child(4) { font-size: 0.8em; max-width: 250px; text-align: left; word-break: break-word; white-space: normal; }
+    /*.war-search-container { margin-bottom: 20px; } /* Removido */
+    /* #war-search-input { ... } /* Removido */
+    .war-summary-section { margin-top: 25px; border-top: 1px solid var(--primary-color); padding-top: 15px; }
+    .war-summary-section h2 { text-align: center; color: var(--primary-color); margin-bottom: 20px; }
+    .war-ranking-table { width: 100%; }
+    .placeholder-text-cell { text-align: center; font-style: italic; color: var(--text-color-secondary); }
+    #vocation-stats th, #vocation-stats td { text-align: center; }
+    #vocation-stats th:nth-child(1), #vocation-stats td:nth-child(1) { text-align: left; }
+    #vocation-stats th:nth-child(4), #vocation-stats td:nth-child(4) { color: #28a745; font-weight: bold; }
+     #vocation-stats th:nth-child(4) { color: #a0ffa0; }
+
+    /* ... (Estilos CSS existentes) ... */
+
+    /* Ajustes no Container do Filtro Global */
+    .global-filter-container {
+        width: 100%;
+        border: 1px solid goldenrod;
+        display: flex; /* Alinha input e botões na horizontal */
+        gap: 8px; /* Espaço entre input e botões */
+        align-items: center; /* Alinha verticalmente */
+    }
+    #global-war-filter-input {
+        flex-grow: 1; /* Faz o input ocupar o espaço restante */
+        padding: 8px 10px;
+        font-size: 1em;
+        background-color: var(--panel-bg-color-darker);
+        border: 1px solid var(--border-color);
+        color: var(--text-color);
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    /* Estilo básico para os botões de filtro (pode usar classes existentes se preferir) */
+    #apply-war-filter-btn,
+    #clear-war-filter-btn {
+        padding: 8px 15px;
+        font-size: 0.9em;
+        cursor: pointer;
+        flex-shrink: 0; /* Impede que os botões encolham */
+    }
+ 
+</style>
+
+</style>
+</head>
+<body>
+
+<div class="war-panel-container">
+
+    <section class="stats-section filter-toggle-section">
+        <div class="war-toggle-buttons">
+            <button id="war-toggle-deaths-kills-btn" class="active">Mortes & Kills</button>
+            <button id="war-toggle-levelups-btn">Level Ups</button>
+        </div>
+        <div class="date-filter-options-container">
+             <div class="date-options-container">
+                <div class="date-options">
+                    <label><input type="radio" name="warDateRange" value="today" checked><span>Hoje</span></label>
+                    <label><input type="radio" name="warDateRange" value="week"><span>Semana Atual</span></label>
+                    <label><input type="radio" name="warDateRange" value="month"><span>Mês Atual</span></label>
+                    <label><input type="radio" name="warDateRange" value="all"><span>Sempre</span></label>
+                </div>
+            </div>
+
+            <div class="global-filter-container">
+                <input type="text" id="global-war-filter-input" placeholder="Digite o nome para filtrar...">
+                <button id="apply-war-filter-btn" class="action-btn">Filtrar</button>
+                <button id="clear-war-filter-btn" class="action-btn danger-btn">Limpar</button>
+            </div>
+        </div>
+    </section>
+
+    <div id="war-panel-deaths-kills">
+        <section class="stats-section">
+            <h2>Resumo de Mortes</h2>
+            <div id="war-summary" class="summary-box">
+                <div class="summary-item"> Aliados Mortos <strong id="ally-deaths-count" class="ally-deaths-count placeholder-text">...</strong> </div>
+                <div class="summary-item"> Inimigos Mortos <strong id="enemy-deaths-count" class="enemy-deaths-count placeholder-text">...</strong> </div>
+                <div class="summary-item"> Hunteds Mortos <strong id="hunted-deaths-count" class="hunted-deaths-count placeholder-text">...</strong> </div>
+            </div>
+        </section>
+
+        <section class="stats-section">
+            <h2>Últimas Mortes Sofridas</h2>
+            <div class="ranking-columns">
+                <div class="ranking-column"> <h3>Aliados</h3> <table id="death-ranking-ally" class="ranking-table war-ranking-table"> <thead><tr><th>Nome</th><th>Level</th><th>Causa Morte</th></tr></thead> <tbody><tr><td colspan="3" class="placeholder-text-cell">Carregando...</td></tr></tbody> </table> </div>
+                <div class="ranking-column"> <h3>Inimigos</h3> <table id="death-ranking-enemy" class="ranking-table war-ranking-table"> <thead><tr><th>Nome</th><th>Level</th><th>Causa Morte</th></tr></thead> <tbody><tr><td colspan="3" class="placeholder-text-cell">Carregando...</td></tr></tbody> </table> </div>
+                <div class="ranking-column"> <h3>Hunteds</h3> <table id="death-ranking-hunted" class="ranking-table war-ranking-table"> <thead><tr><th>Nome</th><th>Level</th><th>Causa Morte</th></tr></thead> <tbody><tr><td colspan="3" class="placeholder-text-cell">Carregando...</td></tr></tbody> </table> </div>
+            </div>
+        </section>
+
+        <section class="stats-section">
+            <h2>Ranking de Kills (Quem Matou Mais)</h2>
+             <div class="ranking-columns">
+                 <div class="ranking-column"> <h3>Aliados Matando</h3> <table id="kill-ranking-player-ally" class="ranking-table war-ranking-table"> <thead><tr><th>Pos</th><th>Nome</th><th>Kills</th><th>Vítimas</th></tr></thead> <tbody><tr><td colspan="4" class="placeholder-text-cell">Carregando...</td></tr></tbody> </table> </div>
+                <div class="ranking-column"> <h3>Inimigos Matando</h3> <table id="kill-ranking-player-enemy" class="ranking-table war-ranking-table"> <thead><tr><th>Pos</th><th>Nome</th><th>Kills</th><th>Vítimas</th></tr></thead> <tbody><tr><td colspan="4" class="placeholder-text-cell">Carregando...</td></tr></tbody> </table> </div>
+            </div>
+         </section>
+
+        <section class="stats-section">
+            <h2>Ranking de Kills por Criatura</h2>
+            <table id="kill-ranking-creature" class="ranking-table war-ranking-table"> <thead><tr><th>Pos</th><th>Criatura</th><th>Kills</th></tr></thead> <tbody><tr><td colspan="3" class="placeholder-text-cell">Carregando...</td></tr></tbody> </table>
+        </section>
+    </div>
+
+    <div id="war-panel-levelups" style="display: none;">
+        <section class="stats-section">
+            <h2>Resumo de Level Ups</h2>
+            <div class="summary-box">
+                <div class="summary-item"> Aliados (Level Up) <strong id="ally-levelup-count" class="ally-levelup-count placeholder-text">...</strong> </div>
+                <div class="summary-item"> Inimigos (Level Up) <strong id="enemy-levelup-count" class="enemy-levelup-count placeholder-text">...</strong> </div>
+                <div class="summary-item"> Hunteds (Level Up) <strong id="hunted-levelup-count" class="hunted-levelup-count placeholder-text">...</strong> </div>
+            </div>
+        </section>
+
+        <section class="stats-section">
+<h5 style="text-align: center;">Clique no nome do jogador para acompanhar a XP Diária do personagem</h5>
+            <div class="ranking-columns">
+                <div class="ranking-column"> <h3>Aliados</h3> <table id="levelup-ranking-ally" class="ranking-table war-ranking-table"> <thead><tr><th>Nome</th><th>Level</th><th>Horário</th></tr></thead> <tbody><tr><td colspan="3" class="placeholder-text-cell">Carregando...</td></tr></tbody> </table> </div>
+                <div class="ranking-column"> <h3>Inimigos</h3> <table id="levelup-ranking-enemy" class="ranking-table war-ranking-table"> <thead><tr><th>Nome</th><th>Level</th><th>Horário</th></tr></thead> <tbody><tr><td colspan="3" class="placeholder-text-cell">Carregando...</td></tr></tbody> </table> </div>
+                <div class="ranking-column"> <h3>Hunteds</h3> <table id="levelup-ranking-hunted" class="ranking-table war-ranking-table"> <thead><tr><th>Nome</th><th>Level</th><th>Horário</th></tr></thead> <tbody><tr><td colspan="3" class="placeholder-text-cell">Carregando...</td></tr></tbody> </table> </div>
+            </div>
+        </section>
+    </div>
+
+    <section class="stats-section">
+        <h2>Estatísticas por Vocação</h2>
+        <table id="vocation-stats" class="ranking-table war-ranking-table"> <thead> <tr> <th>Vocação</th> <th>Mortes Sofridas</th> <th>Kills Realizados (Players)</th> <th>Level Ups</th> </tr> </thead> <tbody> <tr><td colspan="4" class="placeholder-text-cell">Carregando...</td></tr> </tbody> </table>
+    </section>
+
+</div>
+
+<script>
+    try {
+        const deathsKillsBtn = document.getElementById('war-toggle-deaths-kills-btn');
+        const levelupsBtn = document.getElementById('war-toggle-levelups-btn');
+        const deathsKillsPanel = document.getElementById('war-panel-deaths-kills');
+        const levelupsPanel = document.getElementById('war-panel-levelups');
+
+        if (deathsKillsBtn && levelupsBtn && deathsKillsPanel && levelupsPanel) {
+            deathsKillsBtn.addEventListener('click', () => {
+                deathsKillsPanel.style.display = 'block';
+                levelupsPanel.style.display = 'none';
+                deathsKillsBtn.classList.add('active');
+                levelupsBtn.classList.remove('active');
+                if (typeof filterWarPanelContent === 'function') filterWarPanelContent(); // <<< Chama a NOVA função
+            });
+
+            levelupsBtn.addEventListener('click', () => {
+                deathsKillsPanel.style.display = 'none';
+                levelupsPanel.style.display = 'block';
+                deathsKillsBtn.classList.remove('active');
+                levelupsBtn.classList.add('active');
+                if (typeof filterWarPanelContent === 'function') filterWarPanelContent(); // <<< Chama a NOVA função
+            });
+        } else {
+             console.error("Erro: Um ou mais elementos do toggle do War Panel não foram encontrados.");
+        }
+    } catch (e) {
+        console.error("Erro ao inicializar toggles do War Panel:", e);
+    }
+</script>
+
+</body>
+</html>

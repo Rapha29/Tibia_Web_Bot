@@ -32,7 +32,8 @@
     "D34": "Rotten Blood (Darklight Core)",
     "D36": "Rotten Blood (Gloom Pilars)",
     "D35": "Rotten Blood (Jaded Roots)",
-    "D33": "Rotten Blood (Putrefactory)"
+    "D33": "Rotten Blood (Putrefactory)",
+    "Z26": "Ferumbras Undead Seal"
   },
   "Edron": {
     "E32": "Ingol -1",
@@ -47,15 +48,18 @@
     "E37": "Crystal Enigma Carrinho 2 (Norte)",
     "E38": "Crystal Enigma Carrinho 2 (Sul)",
     "E40": "Sparkling Pools Carrinho 3 (Dir)",
-    "E39": "Sparkling Pools Carrinho 3 (Esq)"
+    "E39": "Sparkling Pools Carrinho 3 (Esq)",
+    "Z22": "Book World -2 \"Hawk Bramble\"",
+    "Z23": "Book World -3 \"Lion Hydra\"",
+    "Z24": "Book World -4 \"Crusaders\""
   },
   "Farmine": {
     "F33": "Gold Token (ZAO)",
     "E29": "Falcon Underground (Aguia)",
     "E30": "Falcon Bastion (Castelo)",
-    "W1": "Mega Dragon",
     "F30": "Draken Walls (Norte)",
-    "F31": "Draken Walls (Sul)"
+    "F31": "Draken Walls (Sul)",
+    "W1": "Mega Dragon"
   },
   "Feyrist": {
     "G13": "Boquinha Feyrist",
@@ -71,13 +75,13 @@
   "Issavi": {
     "K3": "Sphinx Cave -1",
     "K4": "Sphinx Cave -2",
-    "Z51": "Exotic Cave -2",
     "K13": "Salt Caves (Bashmu)",
     "K14": "Ruins Of Nuur (Bilu)",
     "K15": "Goanna (Esq e Dir)",
     "K88": "Pirat (Inferior)",
     "K89": "Pirat (Superior)",
-    "K16": "Bueiro Issavi"
+    "K16": "Bueiro Issavi",
+    "Z51": "Exotic Cave"
   },
   "Oramond": {
     "U21": "Catacombs Oramond (Dir)",
@@ -85,11 +89,11 @@
     "U28": "Glooth Bandit (East)",
     "U27": "Glooth Bandit (Sul)",
     "U29": "Glooth Bandit (West)",
-    "U26": "Glooth Tower",
     "U25": "Raid East (Oramond)",
     "U24": "Raid South (Oramond)",
     "U23": "Raid West (Oramond)",
-    "U20": "Catacombs Oramond (Esq)"
+    "U20": "Catacombs Oramond (Esq)",
+    "U26": "Fury Oramond"
   },
   "Roshamuul": {
     "Q3": "Guzzlewaw Valley (Bones)",
@@ -104,11 +108,12 @@
     "U22": "Gold Token (Svar)"
   },
   "Venore": {
-    "W2": "Bulltaur Lair",
     "T14": "Buried Cathedral -1",
     "T15": "Buried Cathedral -2",
     "T16": "Buried Cathedral -3",
-    "T13": "Flimsy (Venore)"
+    "T13": "Flimsy (Venore)",
+    "W7": "Bulltaur (-1)",
+    "W8": "Bulltaur (-2)"
   },
   "Warzone": {
     "Z11": "Warzone 3",
@@ -128,7 +133,10 @@
     "Z5": "Furious Crater",
     "Z6": "Mirrored Nightmare",
     "T12": "Grim Reaper",
-    "T29": "Cloak of Terror"
+    "T29": "Cloak of Terror",
+    "N20": "Norcferatus Castelo",
+    "N21": "Norcferatus Dungeons -1- 2",
+    "N22": "Norcferatus Dungeons -3 - 4"
   },
   "Marapur": {
     "Y2": "Naga -1",
@@ -143,19 +151,18 @@
     "P18": "True Asura (All)",
     "P17": "Asura Mirror",
     "P16": "Asura Palace",
-    "Z23": "Gazer",
     "Z50": "Banuta -4",
     "Z58": "Carnivora Rock -2 -3",
     "H10": "Deathling Port Hope",
     "Z09": "Mitmah Iksupan",
-    "Z59": "Flimsy (Port Hope)"
+    "Z59": "Flimsy (Port Hope)",
+    "Z10": "Iksupan Sanctuary"
   },
   "Extra": {
     "W5": "New Quaras",
     "W4": "Rootthing (All)",
     "W6": "Nightmare Isles",
     "V15": "Carnisylvan",
-    "Z24": "Grounds of undeath (Ashfalor)",
     "X10": "Criatura Boostada"
   }
 }

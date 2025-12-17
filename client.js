@@ -1,3 +1,5 @@
+// client.js
+
 function loadScript(src, callback) {
     const oldScript = document.querySelector(`script[src="${src}"]`);
     if (oldScript) {
@@ -26,72 +28,196 @@ function addSlot() {
 
 window.currentUser = null;
 
-const originalLoadPage = window.loadPage;
-window.loadPage = async function(pageName) {
-    if (typeof originalLoadPage === 'function' && originalLoadPage !== window.loadPage) {
-        await originalLoadPage(pageName);
+function formatFullTimestamp(isoString) {
+    if (!isoString) return 'N/A';
+    try {
+        const date = new Date(isoString);
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = date.getFullYear();
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        const seconds = String(date.getSeconds()).padStart(2, '0');
+        return `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
+    } catch (e) {
+        return isoString; // Retorna o original em caso de erro
     }
+}
+
+function timeAgo(dateString) {
+    if (!dateString || !dateString.includes('-')) return '';
+
+    const datePart = dateString.split(' ')[0];
+    const parts = datePart.split('-');
     
-    if (pageName === 'bosses') {
+    if (parts.length !== 3) return '';
+
+    const day = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10);
+    const year = parseInt(parts[2], 10);
+
+    if (isNaN(day) || isNaN(month) || isNaN(year)) return '';
+
+    const pastDate = new Date(year, month - 1, day);
+    const now = new Date();
+    
+    now.setHours(0, 0, 0, 0);
+    pastDate.setHours(0, 0, 0, 0);
+
+    if (isNaN(pastDate.getTime())) return '';
+
+    const diffTime = now - pastDate;
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+    if (diffDays <= 0) {
+        return ''; // Não mostra nada se for hoje ou no futuro.
+    } else if (diffDays === 1) {
+        return `(1 dia atrás)`;
+    } else {
+        return `(${diffDays} dias atrás)`;
     }
-};
+}
+
+function initializeWarPanelListeners() {
+    console.log("DEBUG: Tentando inicializar listeners do War Panel..."); // Log
+
+    const globalFilterInput = document.getElementById('global-war-filter-input');
+    const applyFilterBtn = document.getElementById('apply-war-filter-btn');
+    const clearFilterBtn = document.getElementById('clear-war-filter-btn');
+
+    // Listener para o botão "Filtrar"
+    if (applyFilterBtn) {
+        // Remove listener antigo para evitar duplicação se loadPage for chamado de novo
+        applyFilterBtn.removeEventListener('click', applyWarFilter);
+        applyFilterBtn.addEventListener('click', applyWarFilter);
+        console.log("DEBUG: Listener anexado ao botão Filtrar.");
+    } else {
+        console.error("ERRO: Botão Filtrar (#apply-war-filter-btn) não encontrado após carregar warpanel.");
+    }
+
+    // Listener para o botão "Limpar"
+    if (clearFilterBtn && globalFilterInput) {
+        clearFilterBtn.removeEventListener('click', clearWarFilter);
+        clearFilterBtn.addEventListener('click', clearWarFilter);
+        console.log("DEBUG: Listener anexado ao botão Limpar.");
+    } else {
+        if(!clearFilterBtn) console.error("ERRO: Botão Limpar (#clear-war-filter-btn) não encontrado após carregar warpanel.");
+        if(!globalFilterInput) console.error("ERRO: Input Global (#global-war-filter-input) não encontrado para o botão Limpar após carregar warpanel.");
+    }
+
+    // Listener Opcional de 'Enter'
+    if (globalFilterInput) {
+        globalFilterInput.removeEventListener('keypress', handleWarFilterEnter);
+        globalFilterInput.addEventListener('keypress', handleWarFilterEnter);
+        console.log("DEBUG: Listener 'keypress' anexado ao input global.");
+    }
+
+    // Funções auxiliares para os listeners (para evitar duplicação de código)
+    function applyWarFilter() {
+        console.log("DEBUG: Botão Filtrar CLICADO ou Enter pressionado.");
+        if (typeof filterWarPanelContent === 'function') {
+            filterWarPanelContent();
+        } else {
+            console.error("ERRO: Função filterWarPanelContent não definida.");
+        }
+    }
+    function clearWarFilter() {
+         console.log("DEBUG: Botão Limpar CLICADO.");
+         if(globalFilterInput) globalFilterInput.value = '';
+         applyWarFilter(); // Chama a mesma função de filtro após limpar
+    }
+    function handleWarFilterEnter(event) {
+         if (event.key === 'Enter') {
+             event.preventDefault();
+             applyWarFilter();
+         }
+    }
+}
 
 async function loadPage(pageName) {
     const contentPanel = document.getElementById('main-content-panel');
     if (!contentPanel) return;
 
-    try {
-        const response = await fetch(`pages/${pageName}.html`);
-        if (!response.ok) {
-            throw new Error(`Página não encontrada: pages/${pageName}.html`);
-        }
-        const htmlText = await response.text();
-        contentPanel.innerHTML = '';
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(htmlText, 'text/html');
-        const styles = Array.from(doc.querySelectorAll('style'));
-        const scripts = Array.from(doc.querySelectorAll('script'));
-        const contentNodes = Array.from(doc.body.childNodes);
-        contentNodes.forEach(node => {
-             if (node.tagName !== 'SCRIPT' && node.tagName !== 'STYLE') {
-                 contentPanel.appendChild(node.cloneNode(true));
-             }
-        });
-        styles.forEach(style => {
-            const newStyle = document.createElement('style');
-            newStyle.textContent = style.textContent;
-            document.head.appendChild(newStyle);
-        });
-        scripts.forEach(script => {
-            const newScript = document.createElement('script');
-            newScript.textContent = script.textContent;
-            document.body.appendChild(newScript);
-        });
-        if (pageName === 'respawns' && window.cachedRespawnData) {
-            updateRespawnTable(window.cachedRespawnData.fila, window.cachedRespawnData.respawns);
-        }
-        if (pageName === 'friends') {
-            setTimeout(() => {
-                if (typeof initializeFriendsPage === 'function') {
-                    initializeFriendsPage(window.appSocket);
-                }
-            }, 50);
-        }
-        document.querySelectorAll('.main-nav .nav-link.active').forEach(link => {
-            link.classList.remove('active');
-        });
-        const activeLink = document.querySelector(`.main-nav .nav-link[data-page="${pageName}"]`);
-        if (activeLink) {
-            activeLink.classList.add('active');
-        } else {
-            const toolsBtn = document.getElementById('tools-dropdown-btn');
-            if (toolsBtn) {
-                toolsBtn.classList.add('active');
+    const loader = document.getElementById('page-loader-overlay');
+    if (loader) {
+        loader.classList.remove('loader-hidden'); 
+    }
+    const minDelay = new Promise(resolve => setTimeout(resolve, 1500));
+
+    const maxRetries = 5;
+    let lastError = null;
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+        try {
+            const response = await fetch(`pages/${pageName}.html`);
+            if (!response.ok) {
+                throw new Error(`Erro ao carregar ${pageName}.html (Status: ${response.status})`);
             }
+
+            const htmlText = await response.text();
+            contentPanel.innerHTML = ''; // Limpa antes de adicionar
+
+            // --- Lógica de Inserção do Conteúdo (sem alterações) ---
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(htmlText, 'text/html');
+            const styles = Array.from(doc.querySelectorAll('style'));
+            const scripts = Array.from(doc.querySelectorAll('script'));
+            const contentNodes = Array.from(doc.body.childNodes);
+            contentNodes.forEach(node => {
+                 if (node.tagName !== 'SCRIPT' && node.tagName !== 'STYLE') {
+                     contentPanel.appendChild(node.cloneNode(true));
+                 }
+            });
+            styles.forEach(style => { 
+                 const newStyle = document.createElement('style');
+                 newStyle.textContent = style.textContent;
+                 document.head.appendChild(newStyle);
+             });
+            scripts.forEach(script => { 
+
+                 const newScript = document.createElement('script');
+                 newScript.textContent = script.textContent; 
+                 document.body.appendChild(newScript); 
+             });
+
+            if (pageName === 'warpanel') {
+                initializeWarPanelListeners(); 
+                if(window.appSocket) window.appSocket.emit('war:getData', { dateRange: 'today' });
+            }
+
+            if (pageName === 'bosses') { 
+                 if(window.appSocket) window.appSocket.emit('bosses:getData');
+             }
+            if (pageName === 'respawns' && window.cachedRespawnData) { 
+                 updateRespawnTable(window.cachedRespawnData.fila, window.cachedRespawnData.respawns);
+             }
+            if (pageName === 'friends') { 
+                 setTimeout(() => { if (typeof initializeFriendsPage === 'function') { initializeFriendsPage(window.appSocket); } }, 50);
+             }
+
+            document.querySelectorAll('.main-nav .nav-link.active').forEach(link => link.classList.remove('active'));
+            const activeLink = document.querySelector(`.main-nav .nav-link[data-page="${pageName}"]`);
+            if (activeLink) { activeLink.classList.add('active'); }
+            else { const toolsBtn = document.getElementById('tools-dropdown-btn'); if (toolsBtn) toolsBtn.classList.add('active'); }
+
+            await minDelay;
+            if (loader) {
+                loader.classList.add('loader-hidden');
+            }
+
+            return; 
+
+        } catch (error) {
+            lastError = error;
+            console.warn(`Tentativa ${attempt} falhou para ${pageName}.`, error);
+            if (attempt < maxRetries) await new Promise(resolve => setTimeout(resolve, 1500));
         }
-    } catch (error) {
-        console.error("Erro ao carregar a página:", error);
-        contentPanel.innerHTML = `<div style="text-align: center; padding: 50px;"><h2 style="color: var(--danger-color);">Erro ao Carregar</h2><p>${error.message}</p></div>`;
+    }
+
+    console.error(`Erro ao carregar ${pageName} após ${maxRetries} tentativas:`, lastError);
+    contentPanel.innerHTML = `<div style="text-align: center; padding: 50px;"><h2 style="color: var(--danger-color);">Erro ao Carregar</h2><p>${lastError.message}</p><button onclick="loadPage('${pageName}')" class="action-btn">Tentar Novamente</button></div>`;
+    await minDelay;
+    if (loader) {
+        loader.classList.add('loader-hidden');
     }
 }
 
@@ -240,9 +366,23 @@ function updateRespawnTable(fila, allRespawnNames) {
     if (updateTimeEl) updateTimeEl.innerText = `Atualizado: ${now.toLocaleTimeString()}`;
 }
 
+document.addEventListener('change', (e) => {
+    // Verifica se o evento veio dos botões de rádio do painel de guerra
+    if (e.target.name === 'warDateRange') {
+        const selectedRange = e.target.value;
+        console.log(`[WAR PANEL] Filtro de data alterado para: ${selectedRange}`);
+        // Exibe "Carregando..." enquanto os novos dados são buscados
+        const rangeDisplay = document.getElementById('war-selected-range');
+        if(rangeDisplay) rangeDisplay.textContent = 'Carregando...';
+        // Solicita os dados filtrados ao servidor
+        window.appSocket.emit('war:getData', { dateRange: selectedRange });
+    }
+});
 
 
 document.addEventListener('DOMContentLoaded', () => {
+    let isFirstConnect = true; // Variável de controle
+
     window.appSocket = io({
         reconnection: true,
         reconnectionAttempts: Infinity,
@@ -252,14 +392,155 @@ document.addEventListener('DOMContentLoaded', () => {
     document.dispatchEvent(new Event('socketReady'));
 
     window.appSocket.on('connect', () => {
-        const now = new Date();
-        const clientTime = {
-            // Envia a data completa no padrão ISO (UTC)
-            timestamp: now.toISOString(),
-            // Envia o "offset" do fuso horário em minutos. Ex: -180 para GMT-3
-            timezoneOffset: now.getTimezoneOffset()
-        };
-        window.appSocket.emit('user:time_info', clientTime);
+        if (isFirstConnect) {
+            // Lógica para a primeira conexão
+            isFirstConnect = false;
+            const now = new Date();
+            const clientTime = {
+                timestamp: now.toISOString(),
+                timezoneOffset: now.getTimezoneOffset()
+            };
+            window.appSocket.emit('user:time_info', clientTime);
+        } else {
+            // Se não for a primeira conexão, é uma reconexão.
+            // Força o recarregamento da página.
+            window.location.reload();
+        }
+
+const globalFilterInput = document.getElementById('global-war-filter-input');
+    const applyFilterBtn = document.getElementById('apply-war-filter-btn');
+    const clearFilterBtn = document.getElementById('clear-war-filter-btn');
+    const editUserModal = document.getElementById('edit-user-modal');
+    const editUserForm = document.getElementById('edit-user-form');
+
+    if (editUserModal) {
+        const closeBtn = editUserModal.querySelector('.modal-close-btn');
+        if (closeBtn) closeBtn.addEventListener('click', () => editUserModal.classList.remove('show'));
+        
+        // Listener para o formulário de salvar
+        if (editUserForm) {
+            editUserForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const originalEmail = document.getElementById('edit-original-email').value;
+                const name = document.getElementById('edit-user-name').value;
+                const email = document.getElementById('edit-user-email').value;
+                const phone = document.getElementById('edit-user-phone').value;
+
+                window.appSocket.emit('admin:updateUser', {
+                    originalEmail,
+                    name,
+                    email,
+                    phone
+                });
+                editUserModal.classList.remove('show');
+            });
+        }
+    }
+
+    // Adicionar listener para o botão de editar na delegação de eventos do adminModal
+    if (adminModal) {
+        adminModal.addEventListener('click', (e) => {
+            // ... outros listeners existentes (delete, view details) ...
+
+            // Novo Listener: Editar Usuário
+            const editBtn = e.target.closest('.edit-user-btn');
+            if (editBtn) {
+                const email = editBtn.dataset.email;
+                // Pede os detalhes completos para preencher o formulário
+                window.appSocket.emit('admin:getUserDetails', email);
+                
+                // Precisamos de um listener temporário única vez para receber os dados e abrir o modal
+                // ou usamos o listener global 'admin:userDetailsResponse' e verificamos se o modal de edição deve abrir.
+                // Abordagem simplificada: Vamos interceptar a resposta global.
+                window.isEditingUser = true; // Flag global temporária
+            }
+        });
+    }
+
+    window.appSocket.on('warmode:status', (isActive) => {
+    const warModeIndicator = document.getElementById('war-mode-indicator'); // Crie esse elemento no HTML se quiser visual
+    if (isActive) {
+        addLogMessage('Sistema', '⚠️ MODO DE GUERRA ATIVO. Acesso restrito.', 'warning');
+        // Se estiver em uma página restrita, recarrega para limpar ou redireciona
+        const restrictedPages = ['respawns', 'friends', 'planilhado'];
+        const activePage = document.querySelector('.nav-link.active')?.dataset.page;
+        if (restrictedPages.includes(activePage)) {
+            loadPage('home'); // Redireciona para home ou refresh
+        }
+    } else {
+        addLogMessage('Sistema', 'Modo de Guerra desativado.', 'info');
+    }
+});
+
+    // Modificar o listener existente 'admin:userDetailsResponse' para suportar edição
+    window.appSocket.on('admin:userDetailsResponse', (details) => {
+        if (window.isEditingUser) {
+            // Se a flag estiver ativa, abrimos o modal de edição em vez do de detalhes
+            const modal = document.getElementById('edit-user-modal');
+            if (modal) {
+                document.getElementById('edit-original-email').value = details.email;
+                document.getElementById('edit-user-name').value = details.name;
+                document.getElementById('edit-user-email').value = details.email;
+                document.getElementById('edit-user-phone').value = details.phone !== 'Não cadastrado' ? details.phone : '';
+                
+                modal.classList.add('show');
+            }
+            window.isEditingUser = false; // Reseta a flag
+        } else {
+            // Comportamento padrão (exibir modal de detalhes visualização)
+            const modal = document.getElementById('user-details-modal');
+            // ... (código existente de preencher modal de detalhes) ...
+            if (modal) modal.classList.add('show');
+        }
+    });
+
+    // Listener para o botão "Filtrar"
+    if (applyFilterBtn) {
+        console.log("DEBUG: Anexando listener ao botão Filtrar."); // Log para depuração
+        applyFilterBtn.addEventListener('click', () => {
+            console.log("DEBUG: Botão Filtrar CLICADO."); // Log para depuração
+            if (typeof filterWarPanelContent === 'function') {
+                filterWarPanelContent();
+            } else {
+                console.error("ERRO: Função filterWarPanelContent não definida ao clicar em Filtrar.");
+            }
+        });
+    } else {
+        console.error("ERRO: Botão Filtrar (#apply-war-filter-btn) não encontrado.");
+    }
+
+    // Listener para o botão "Limpar"
+    if (clearFilterBtn && globalFilterInput) {
+        console.log("DEBUG: Anexando listener ao botão Limpar."); // Log para depuração
+        clearFilterBtn.addEventListener('click', () => {
+            console.log("DEBUG: Botão Limpar CLICADO."); // Log para depuração
+            globalFilterInput.value = ''; // Limpa o input
+            if (typeof filterWarPanelContent === 'function') {
+                filterWarPanelContent(); // Chama o filtro com input vazio
+            } else {
+                 console.error("ERRO: Função filterWarPanelContent não definida ao clicar em Limpar.");
+            }
+        });
+    } else {
+        if(!clearFilterBtn) console.error("ERRO: Botão Limpar (#clear-war-filter-btn) não encontrado.");
+        if(!globalFilterInput) console.error("ERRO: Input Global (#global-war-filter-input) não encontrado para o botão Limpar.");
+    }
+
+    // Listener Opcional de 'Enter'
+    if (globalFilterInput) {
+        console.log("DEBUG: Anexando listener 'keypress' ao input global."); // Log para depuração
+        globalFilterInput.addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                console.log("DEBUG: Enter pressionado no filtro."); // Log para depuração
+                event.preventDefault();
+                if (typeof filterWarPanelContent === 'function') {
+                    filterWarPanelContent();
+                } else {
+                     console.error("ERRO: Função filterWarPanelContent não definida ao pressionar Enter.");
+                }
+            }
+        });
+    }
     });
 
     window.isAdmin = false;
@@ -282,10 +563,34 @@ document.addEventListener('DOMContentLoaded', () => {
     let allRankRestrictions = {};
 
 
+    function getCurrentHHMM() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    return `${hours}:${minutes}`;
+    }
+    
     window.cachedRespawnData = { fila: {}, respawns: {} };
 
-    const beepSound = new Audio('beep.mp3');
+    const beepSound = new Audio('beep.mp3'); // Som Padrão (notificações, sucesso)
     beepSound.volume = 1;
+
+    const bossSound = new Audio('boss.mp3'); // Som para Alertas de Boss
+    bossSound.volume = 1;
+
+    const levelupSound = new Audio('levelup.mp3'); // Som para Level Up
+    levelupSound.volume = 1;
+    
+    const respawnSound = new Audio('resp.mp3'); // Som para 'Sua vez no Respawn'
+    respawnSound.volume = 1;
+
+    const alertSound = new Audio('hunted.mp3'); // Som para Hunted, Inimigo Online ou Morte
+    alertSound.volume = 1;
+
+    const expireSound = new Audio('expire.mp3'); // Som para Fim de Tempo do Respawn
+    expireSound.volume = 1;
+
+    window.cachedRespawnData = { fila: {}, respawns: {} };
 
         window.appSocket.on('system:force_disconnect', (message) => {
             alert(message);
@@ -341,6 +646,640 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }
+
+
+    // CACHE PARA OS DADOS DOS BOSSES
+    window.cachedBossesData = null;
+    
+    const alertedBosses = new Set(); // Armazena bosses já alertados para evitar spam
+
+    
+setInterval(() => {
+    const bossAlertCheckbox = document.getElementById('boss-alert-checkbox');
+    const soundEnabledCheckbox = document.getElementById('sound-enabled-checkbox');
+
+    if (!bossAlertCheckbox || !bossAlertCheckbox.checked || !window.cachedBossesData) {
+        return;
+    }
+    
+    const now = new Date();
+    const THIRTY_MINUTES_IN_MS = 1800000;
+
+    // Filtra bosses de ALTA CHANCE que não foram checados nos últimos 30 minutos (ou nunca foram checados)
+    const bossesToAlert = window.cachedBossesData.bossList.filter(boss => {
+        const isHighChance = boss.chance === 'Alta Chance';
+        if (!isHighChance) {
+            return false;
+        }
+        
+        // Retorna true se o boss não tiver um check ou se o último check for mais antigo que 30 minutos
+        const needsCheck = !boss.lastCheck || (now - new Date(boss.lastCheck.timestamp)) > THIRTY_MINUTES_IN_MS;
+        return needsCheck;
+    });
+
+    // Se houver bosses que precisam de atenção, envia a notificação de status
+    if (bossesToAlert.length > 0) {
+        const bossNames = bossesToAlert.map(b => b.name);
+        const message = `[b]STATUS DE BOSSES:[/b] Os seguintes bosses de chance alta precisam ser checados (sem check nos últimos 30 min): [b]${bossNames.join(', ')}[/b].`;
+        addLogMessage('Sistema', message, 'bot');
+        
+        if (soundEnabledCheckbox.checked) {
+            bossSound.play().catch(e => console.error("Erro ao tocar som de alerta de boss:", e)); 
+        }
+    }
+}, 600000); // Executa a verificação a cada 10 minutos
+
+
+// Função para painel de guerra
+
+const warToggle = document.getElementById('toggle-war-module');
+if (warToggle) {
+    warToggle.addEventListener('change', () => {
+        const isChecked = warToggle.checked;
+        window.appSocket.emit('war:toggle', isChecked);
+        
+        if (isChecked) {
+            addLogMessage('Bot', '⚔️ Alerta de Mortes ON. Você será notificado sobre mortes de aliados, inimigos e hunteds.', 'bot');
+        } else {
+            addLogMessage('Bot', '🛡️ Alerta de Mortes OFF. Notificações de mortes desativadas.', 'bot');
+        }
+    });
+}
+
+// Função auxiliar para criar o nome do arquivo a partir do nome do boss (versão corrigida)
+const generateFilename = (bossName) => {
+    if (!bossName) return 'unknown.gif';
+
+    // 1. Extrai o nome base (remove o sufixo de localização, ex: " (Sul Camp)")
+    const match = bossName.match(/^(.*?)\s\(/);
+    const baseName = match ? match[1].trim() : bossName;
+
+    // 2. Aplica a higienização padrão ao nome base
+    return baseName
+        .toLowerCase()
+        // 1. Remove especificamente as entidades HTML para apóstrofo (&#x27; e &apos;)
+        .replace(/&(?:#x27|apos);/g, '')
+        // 2. Remove apóstrofos literais restantes (segurança extra)
+        .replace(/'/g, '')
+        // 3. Substitui outros caracteres inválidos (espaços, hífens, etc.) por underscore
+        .replace(/[^a-z0-9_]+/g, '_')
+        // 4. Remove underscores duplicados
+        .replace(/_+/g, '_')
+        // 5. Adiciona a extensão .gif
+        + '.gif';
+};
+
+    // LISTENER PARA ATUALIZAÇÃO DOS DADOS
+window.appSocket.on('bosses:dataUpdated', (data) => {
+    console.log("[DEBUG] Evento 'bosses:dataUpdated' recebido."); // LOG 1: Confirma recebimento
+
+    // LOG 2: Verifica o objeto de dados completo recebido
+    if (!data) {
+        console.error("[DEBUG] Erro: Objeto 'data' recebido é nulo ou indefinido.");
+        // Opcional: Mostrar uma mensagem de erro na interface
+        const listContainer = document.getElementById('boss-list-container');
+        if (listContainer) listContainer.innerHTML = '<p style="color: red;">Erro: Não foi possível carregar os dados dos bosses do servidor.</p>';
+        return; // Interrompe se não há dados
+    }
+
+    // LOG 3: Verifica especificamente a lista de bosses dentro dos dados
+    if (!data.bossList || !Array.isArray(data.bossList)) {
+        console.error("[DEBUG] Erro: 'data.bossList' não é um array válido ou está ausente.", data.bossList);
+        // Opcional: Mostrar mensagem de erro
+         const listContainer = document.getElementById('boss-list-container');
+         if (listContainer) listContainer.innerHTML = '<p style="color: red;">Erro: Dados da lista de bosses inválidos recebidos do servidor.</p>';
+        return; // Interrompe se a lista é inválida
+    }
+
+    console.log(`[DEBUG] Recebido ${data.bossList.length} bosses na lista.`); // LOG 4: Mostra quantos bosses foram recebidos
+
+    window.cachedBossesData = data; // Armazena no cache (se necessário)
+
+    const mainContent = document.getElementById('main-content-panel');
+    // Verifica se estamos na página correta antes de tentar renderizar
+    if (mainContent && mainContent.querySelector('#boss-list-container')) {
+        console.log("[DEBUG] Chamando renderBossesPage..."); // LOG 5: Confirma que vai tentar renderizar
+        try {
+            renderBossesPage(data); // Chama a função de renderização
+            console.log("[DEBUG] renderBossesPage concluída."); // LOG 6: Confirma que a renderização (aparentemente) terminou sem travar
+        } catch (renderError) {
+            console.error("[DEBUG] Erro CRÍTICO durante a execução de renderBossesPage:", renderError);
+            // Mostra um erro na interface se a renderização falhar
+            const listContainer = document.getElementById('boss-list-container');
+            if(listContainer) listContainer.innerHTML = `<p style="color: red;">Erro fatal ao tentar exibir a lista de bosses: ${renderError.message}</p>`;
+        }
+    } else {
+        console.log("[DEBUG] Não está na página de bosses, renderização adiada."); // LOG 7: Informa se não tentou renderizar
+    }
+});
+
+    // FUNÇÃO PARA CALCULAR TEMPO RELATIVO
+    function timeSince(date) {
+        if (!date) return '';
+        const seconds = Math.floor((new Date() - new Date(date)) / 1000);
+        let interval = seconds / 31536000;
+        if (interval > 1) return Math.floor(interval) + " anos atrás";
+        interval = seconds / 2592000;
+        if (interval > 1) return Math.floor(interval) + " meses atrás";
+        interval = seconds / 86400;
+        if (interval > 1) return Math.floor(interval) + " dias atrás";
+        interval = seconds / 3600;
+        if (interval > 1) return Math.floor(interval) + " horas atrás";
+        interval = seconds / 60;
+        if (interval > 1) return Math.floor(interval) + " min atrás";
+        return Math.floor(seconds) + " seg atrás";
+    }
+
+window.appSocket.on('war:statusUpdate', (isActive) => {
+    const warToggle = document.getElementById('toggle-war-module');
+    if (warToggle) {
+        warToggle.checked = isActive;
+        // Adicionar feedback visual se necessário (ex: mudar cor do label)
+    }
+});
+
+window.appSocket.on('war:dataUpdated', (data) => {
+    console.log('Recebido war:dataUpdated:', JSON.stringify(data, null, 2));
+
+    // Verifica um elemento específico que SÓ existe DEPOIS que warpanel.html for carregado
+    // Por exemplo, a seção de filtros ou a primeira aba
+    const specificWarPanelElement = document.getElementById('filter-toggle-section') || document.getElementById('war-panel-deaths-kills');
+if (specificWarPanelElement) {
+        try {
+            renderWarPanelPage(data);
+            // Aplica o filtro atual aos novos dados
+            if (typeof filterWarPanelContent === 'function') filterWarPanelContent();
+        } catch (renderError){
+             console.error("[WAR PANEL] Erro CRÍTICO durante render/filter:", renderError);
+             // Tenta encontrar o container para exibir o erro
+             const container = document.querySelector('.war-panel-container');
+             if (container) container.innerHTML = `<p style="color: red;">Erro ao renderizar dados: ${renderError.message}</p>`;
+        }
+    } else {
+        // Opcional: Log para indicar que os dados chegaram mas a página não está pronta
+        // console.log("[WAR PANEL] 'war:dataUpdated' recebido, mas conteúdo do warpanel ainda não carregado.");
+    }
+});
+
+
+function renderBossesPage(data) {
+    const killedContainer = document.getElementById('killed-yesterday-container');
+    const listContainer = document.getElementById('boss-list-container');
+    const searchInput = document.getElementById('boss-search-input');
+    const checkRankingBody = document.getElementById('check-ranking-body');
+    const foundRankingBody = document.getElementById('found-ranking-body');
+
+    if (!killedContainer || !listContainer || !checkRankingBody || !foundRankingBody) {
+        console.error("Erro: Um ou mais containers da página de bosses não foram encontrados.");
+        return;
+    }
+
+    if (data && data.checkRanking) {
+        checkRankingBody.innerHTML = data.checkRanking.map((player, index) => `
+        <tr>
+            <td>${index + 1}º</td>
+            <td><a href="#" class="checker-history-link" data-checker="${player.name}">${player.name}</a></td>
+            <td>${player.count}</td>
+        </tr>`).join('');
+    } else {
+        checkRankingBody.innerHTML = '<tr><td colspan="3">Nenhum dado de ranking de checks.</td></tr>';
+    }
+
+    if (data && data.foundRanking) {
+        foundRankingBody.innerHTML = data.foundRanking.map((player, index) => `
+        <tr>
+            <td>${index + 1}º</td>
+            <td><a href="#" class="finder-history-link" data-finder="${player.name}">${player.name}</a></td>
+            <td>${player.count}</td>
+        </tr>`).join('');
+    } else {
+        foundRankingBody.innerHTML = '<tr><td colspan="3">Nenhum dado de ranking de encontrados.</td></tr>';
+    }
+
+
+    const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
+    if (data && data.killedYesterday) {
+        killedContainer.innerHTML = data.killedYesterday.map(boss => {
+            const bossName = boss && boss.name ? boss.name : 'Nome Desconhecido';
+            const filename = generateFilename(bossName); 
+     
+            return `
+                <div class="boss-card">
+                    <img src="https://static.tibia-statistic.com/images/monsters/${filename}" alt="${bossName}">
+                    <p>${bossName}</p>
+                </div>`;
+        }).join('');
+    } else {
+        killedContainer.innerHTML = '<p>Nenhum boss registrado ontem.</p>';
+    }
+
+    const formatDateToDDMMAAAA = (dateString) => {
+        if (!dateString || !dateString.includes('-')) return dateString;
+        const datePart = dateString.split(' ')[0];
+        const [year, month, day] = datePart.split('-');
+        if (year && month && day && year.length === 4) return `${day}-${month}-${year}`;
+        return dateString;
+    };
+    const filteredList = (data && data.bossList ? data.bossList : []).filter(boss => boss && boss.name && typeof boss.name === 'string' && boss.name.toLowerCase().includes(searchTerm));
+    
+const categories = {
+        "Alta Chance": [], "Chance Média": [], "Baixa Chance": [], "Sem Chance": [],
+    };
+
+    filteredList.forEach(boss => {
+        if (!boss || !boss.chance) return; 
+        
+        // Lógica atualizada para capturar "NoChance"
+        if (boss.chance === "NoChance") {
+            categories["Sem Chance"].push(boss);
+        }
+        else if (boss.chance === "Sem Previsão") {
+            categories["Alta Chance"].push(boss);
+        } 
+        else if (categories[boss.chance]) {
+            categories[boss.chance].push(boss);
+        }
+    });
+
+
+    const parseDateForSort = (predictedDate) => {
+        if (!predictedDate) {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            return today;
+        }
+        const datePart = predictedDate.split(' ')[0];
+        const [year, month, day] = datePart.split('-');
+        if (year && month && day && year.length === 4) {
+            return new Date(year, month - 1, day);
+        }
+        return new Date(8640000000000000);
+    };
+
+    const renderBossItem = (boss) => {
+        if (!boss || !boss.name || typeof boss.name !== 'string') {
+             console.error("Tentativa de renderizar um boss inválido:", boss);
+             return '<div class="boss-list-item error">Erro ao carregar dados deste boss.</div>'; 
+        }
+        try {
+            const foundClass = boss.isFoundToday ? 'found-today' : '';
+            const worldChangeClass = boss.chance === 'Sem Previsão' ? 'world-change-boss' : '';
+            const formattedLastSeen = formatDateToDDMMAAAA(boss.lastSeen || '');
+            const bossName = boss.name;
+            const bossFilename = generateFilename(bossName); 
+            const wikiLink = createWikiLink(bossName);
+            const timeAgoText = timeAgo(formattedLastSeen);
+
+            let eventHtml = 'Nenhum check registrado';
+            if (boss.isFoundToday && boss.foundBy && boss.foundAt) {
+                const foundDate = new Date(boss.foundAt);
+                if (!isNaN(foundDate)) {
+                    const hours = String(foundDate.getHours()).padStart(2, '0');
+                    const minutes = String(foundDate.getMinutes()).padStart(2, '0');
+                    eventHtml = `Encontrado por ${boss.foundBy} às ${hours}:${minutes}`;
+                } else {
+                    eventHtml = `Encontrado por ${boss.foundBy} (horário inválido)`;
+                }
+            } else if (boss.lastCheck && boss.lastCheck.timestamp && boss.lastCheck.checker) {
+                try { 
+                    eventHtml = `Último check: ${timeSince(boss.lastCheck.timestamp)} por ${boss.lastCheck.checker}`;
+                } catch (timeSinceError) {
+                    console.error("Erro na função timeSince:", timeSinceError, "Timestamp:", boss.lastCheck.timestamp);
+                    eventHtml = `Último check por ${boss.lastCheck.checker} (tempo N/A)`;
+                }
+            }
+
+            return `
+                <div class="boss-list-item ${foundClass} ${worldChangeClass}">
+                    <img src="https://static.tibia-statistic.com/images/monsters/${bossFilename}" alt="${bossName}">
+                    <div class="boss-list-info">
+     
+                         <div>
+                            <a href="#" class="boss-history-link boss-name" data-boss="${bossName}">${bossName}<a href="${wikiLink}" target="_blank" class="details-link">(Detalhes da Wiki)</a></a>
+                            ${boss.pct > 0 ? `<span class="boss-percentage">(${boss.pct}%)</span>` : ''}
+                        </div>
+                        <p class="last-seen">Última aparição: ${formattedLastSeen} <span style="color: #a9a9a9; font-style: italic;">${timeAgoText}</span></p>
+                        ${boss.predictedDate ? `<p class="predicted-date">Chance de aparecer: ${formatDateToDDMMAAAA(boss.predictedDate)}</p>` : `<p class="predicted-date">Possivél Chance de aparecer Hoje</p>`}
+                    </div>
+                    <div class="last-check-info">
+                        ${eventHtml}
+                    </div>
+     
+                     <button class="action-btn check-btn" data-boss="${bossName}">Check</button>
+                    <button class="action-btn found-btn" data-boss="${bossName}">Encontrado</button>
+                </div>
+            `;
+        } catch (renderError) {
+            console.error("Erro ao renderizar item do boss:", bossName, renderError);
+            return `<div class="boss-list-item error">Erro ao carregar dados para ${bossName || 'boss desconhecido'}.</div>`;
+        }
+    };
+
+    listContainer.innerHTML = Object.entries(categories).map(([categoryName, bosses]) => {
+        if (!bosses || bosses.length === 0) return '';
+
+        bosses.sort((a, b) => {
+             if (!a || !a.name) return 1;
+             if (!b || !b.name) return -1;
+             const dateA = parseDateForSort(a.predictedDate);
+             const dateB = parseDateForSort(b.predictedDate);
+       
+              if (isNaN(dateA) && !isNaN(dateB)) return 1;
+             if (!isNaN(dateA) && isNaN(dateB)) return -1;
+             if (!isNaN(dateA) && !isNaN(dateB) && dateA.getTime() !== dateB.getTime()) {
+                 return dateA - dateB;
+             }
+             return a.name.localeCompare(b.name);
+        });
+
+        let categoryHeader = `<h2 class="category-title">${categoryName}</h2>`;
+        if (categoryName === "Alta Chance") {
+             categoryHeader = `
+                <div class="category-header-flex">
+                    <h2 class="category-title">${categoryName}</h2>
+                    <label class="checkbox-control">
+                     
+                     <input type="checkbox" id="ocultar-wc-bosses-chk">
+                        Ocultar bosses de WorldChange
+                    </label>
+                </div>
+                <p style="font-size: 0.8em; color: var(--text-color-secondary); margin-top: -5px; margin-bottom: 10px; font-style: italic;">Alguns bosses dependem de world change 
+ou podem ser forçados a aparecer, selecione a caixinha acima para ocultar esses bosses.</p>`;
+        }
+
+        return `
+            <div class="boss-category">
+                ${categoryHeader}
+                ${Array.isArray(bosses) ? bosses.map(renderBossItem).join('') : ''}
+            </div>
+        `;
+    }).join('');
+
+    try {
+        const shouldHideWC = localStorage.getItem('bosses_hide_wc') === 'true';
+        const toggleCheckbox = document.getElementById('ocultar-wc-bosses-chk');
+        
+        if (toggleCheckbox) {
+            toggleCheckbox.checked = shouldHideWC;
+            
+            const categoryContainer = toggleCheckbox.closest('.boss-category');
+            if (categoryContainer) {
+                categoryContainer.classList.toggle('hide-wc-bosses', shouldHideWC);
+            }
+        }
+    } catch (err) {
+        console.warn("Não foi possível ler a preferência do localStorage.", err);
+    }
+}
+
+document.getElementById('main-content-panel').addEventListener('change', e => {
+    const toggleCheckbox = e.target.closest('#ocultar-wc-bosses-chk');
+    if (toggleCheckbox) {
+        try {
+            localStorage.setItem('bosses_hide_wc', toggleCheckbox.checked);
+        } catch (err) {
+            console.warn("Não foi possível salvar a preferência no localStorage.", err);
+        }
+
+        const categoryContainer = toggleCheckbox.closest('.boss-category');
+        if (categoryContainer) {
+            categoryContainer.classList.toggle('hide-wc-bosses', toggleCheckbox.checked);
+        }
+    
+    }
+});
+
+document.getElementById('main-content-panel').addEventListener('click', e => {
+    const toggleBtn = e.target.closest('#toggle-rankings-btn');
+    if (toggleBtn) {
+        const rankingsWrapper = document.getElementById('rankings-wrapper');
+        if (rankingsWrapper) {
+            const isHidden = rankingsWrapper.style.display === 'none' || rankingsWrapper.style.display === '';
+            // A classe .ranking-container usa 'flex', então alternamos para 'flex' para exibir
+            rankingsWrapper.style.display = isHidden ? 'flex' : 'none';
+        }
+    }
+    const historyLink = e.target.closest('.boss-history-link');
+    const checkerLink = e.target.closest('.checker-history-link');
+    const finderLink = e.target.closest('.finder-history-link');
+    const bossHistoryModal = document.getElementById('boss-history-modal'); // Certifique-se de que o modal está acessível
+
+    // Se clicou no nome de um BOSS
+    if (historyLink) {
+        e.preventDefault();
+        const bossName = historyLink.dataset.boss;
+        if (bossName) {
+            const modalTitle = document.getElementById('boss-history-title');
+            const modalBody = document.getElementById('boss-history-body');
+            modalTitle.textContent = `Carregando histórico para ${bossName}...`;
+            modalBody.innerHTML = '<p>Buscando dados...</p>';
+            bossHistoryModal.classList.add('show');
+            window.appSocket.emit('bosses:getHistory', { bossName });
+        }
+    } 
+    // Se clicou no nome de um JOGADOR no ranking de CHECKS
+    else if (checkerLink) {
+        e.preventDefault();
+        const characterName = checkerLink.dataset.checker;
+        if (characterName) {
+            const modalTitle = document.getElementById('boss-history-title');
+            const modalBody = document.getElementById('boss-history-body');
+            modalTitle.textContent = `Carregando histórico de checks para ${characterName}...`;
+            modalBody.innerHTML = '<p>Buscando dados...</p>';
+            bossHistoryModal.classList.add('show');
+            window.appSocket.emit('bosses:getCheckerHistory', { characterName });
+        }
+    } 
+    // Se clicou no nome de um JOGADOR no ranking de ENCONTRADOS
+    else if (finderLink) {
+        e.preventDefault();
+        const characterName = finderLink.dataset.finder;
+        if (characterName) {
+            const modalTitle = document.getElementById('boss-history-title');
+            const modalBody = document.getElementById('boss-history-body');
+            modalTitle.textContent = `Carregando bosses encontrados por ${characterName}...`;
+            modalBody.innerHTML = '<p>Buscando dados...</p>';
+            bossHistoryModal.classList.add('show');
+            window.appSocket.emit('bosses:getFinderHistory', { characterName });
+        }
+    }
+});
+
+const createWikiLink = (bossName) => {
+    if (!bossName) return '';
+
+    // 1. Extrai o nome base (remove o sufixo de localização, ex: " (Sul Camp)")
+    const match = bossName.match(/^(.*?)\s\(/);
+    const baseName = match ? match[1].trim() : bossName;
+
+    // 2. Usa o nome base para gerar o link da wiki
+    const urlEncodedName = encodeURIComponent(baseName.replace(/ /g, '_'));
+    return `https://www.tibiawiki.com.br/wiki/${urlEncodedName}`;
+};
+
+// Adicione este novo listener para receber os dados de bosses encontrados
+window.appSocket.on('bosses:finderHistoryData', ({ characterName, history }) => {
+    const modalTitle = document.getElementById('boss-history-title');
+    const modalBody = document.getElementById('boss-history-body');
+
+    modalTitle.textContent = `Bosses Encontrados por: ${characterName}`;
+
+    if (!history || history.length === 0) {
+        modalBody.innerHTML = '<p>Nenhum boss encontrado por este jogador.</p>';
+        return;
+    }
+
+    let tableHtml = `
+        <table class="table">
+            <thead>
+                <tr><th>Boss</th><th>Data</th><th>Detalhes</th></tr>
+            </thead>
+            <tbody>
+                ${history.map(found => {
+                    let details = '';
+                    if (found.deathTime) details += `Hora Morte: ${found.deathTime}<br>`;
+                    if (found.tokens) details += `Tokens: ${found.tokens}<br>`;
+                    if (found.observation) details += `Obs: ${found.observation}`;
+                    return `
+                        <tr>
+                            <td>${found.bossName}</td>
+                            <td>${formatFullTimestamp(found.timestamp)}</td>
+                            <td>${details || '-'}</td>
+                        </tr>
+                    `;
+                }).join('')}
+            </tbody>
+        </table>
+    `;
+    modalBody.innerHTML = tableHtml;
+});
+
+window.appSocket.on('bosses:checkerHistoryData', ({ characterName, history }) => {
+    const modalTitle = document.getElementById('boss-history-title');
+    const modalBody = document.getElementById('boss-history-body');
+
+    modalTitle.textContent = `Histórico de Checks: ${characterName}`;
+
+    if (!history || history.length === 0) {
+        modalBody.innerHTML = '<p>Nenhum check registrado para este jogador.</p>';
+        return;
+    }
+
+    let tableHtml = `
+        <table class="table">
+            <thead>
+                <tr><th>Boss</th><th>Data do Check</th></tr>
+            </thead>
+            <tbody>
+                ${history.map(check => `
+                    <tr>
+                        <td>${check.bossName}</td>
+                        <td>${formatFullTimestamp(check.timestamp)} (${timeSince(check.timestamp)})</td>
+                    </tr>
+                `).join('')}
+            </tbody>
+        </table>
+    `;
+    modalBody.innerHTML = tableHtml;
+});
+
+document.getElementById('main-content-panel').addEventListener('click', e => {
+    const checkButton = e.target.closest('.check-btn');
+    if (checkButton) {
+        const bossName = checkButton.dataset.boss;
+        // Se o usuário ESTÁ logado
+        if (window.currentUser) {
+            window.appSocket.emit('bosses:check', { bossName });
+        } else {
+            // Se o usuário NÃO ESTÁ logado
+            const characterName = prompt("Por favor, digite o nome do seu personagem para registrar o check:");
+            if (characterName && characterName.trim() !== "") {
+                // Envia um evento diferente para o servidor
+                window.appSocket.emit('bosses:anonymousCheck', { bossName, characterName: characterName.trim() });
+            }
+        }
+    }
+});
+
+    const bossHistoryModal = document.getElementById('boss-history-modal');
+const closeHistoryModalBtn = bossHistoryModal.querySelector('.modal-close-btn');
+
+// Listener para fechar o modal
+closeHistoryModalBtn.addEventListener('click', () => bossHistoryModal.classList.remove('show'));
+bossHistoryModal.addEventListener('click', (e) => {
+    if (e.target === bossHistoryModal) {
+        bossHistoryModal.classList.remove('show');
+    }
+});
+
+// Listener para abrir o modal ao clicar no nome do boss
+document.getElementById('main-content-panel').addEventListener('click', e => {
+    const historyLink = e.target.closest('.boss-history-link');
+    if (historyLink) {
+        e.preventDefault();
+        const bossName = historyLink.dataset.boss;
+        if (bossName) {
+            // Mostra um feedback de carregamento
+            const modalTitle = document.getElementById('boss-history-title');
+            const modalBody = document.getElementById('boss-history-body');
+            modalTitle.textContent = `Carregando histórico para ${bossName}...`;
+            modalBody.innerHTML = '<p>Buscando dados...</p>';
+            bossHistoryModal.classList.add('show');
+
+            // Pede os dados ao servidor
+            window.appSocket.emit('bosses:getHistory', { bossName });
+        }
+    }
+});
+
+// Listener para receber os dados do servidor e popular o modal
+window.appSocket.on('bosses:historyData', ({ bossName, history }) => {
+    const modalTitle = document.getElementById('boss-history-title');
+    const modalBody = document.getElementById('boss-history-body');
+    modalTitle.textContent = `Histórico de: ${bossName}`;
+
+    if (!history || history.length === 0) {
+        modalBody.innerHTML = '<p>Nenhum evento registrado para este boss.</p>';
+        return;
+    }
+
+    let tableHtml = `
+        <table class="table">
+            <thead>
+                <tr><th>Evento</th><th>Data</th><th>Jogador</th><th>Detalhes</th></tr>
+            </thead>
+            <tbody>
+                ${history.map(event => {
+                    if (event.type === 'check') {
+                        return `
+                            <tr>
+                                <td><span class="badge bg-secondary">Check</span></td>
+                                <td>${formatFullTimestamp(event.timestamp)}</td>
+                                <td>${event.checker}</td>
+                                <td>-</td>
+                            </tr>
+                        `;
+                    } else if (event.type === 'found') {
+                        let details = '';
+                        if (event.deathTime) details += `Hora Morte: ${event.deathTime}<br>`;
+                        if (event.tokens) details += `Tokens: ${event.tokens}<br>`;
+                        if (event.observation) details += `Obs: ${event.observation}`;
+                        return `
+                            <tr style="background-color: #28a74533;">
+                                <td><span class="badge bg-success">Encontrado</span></td>
+                                <td>${formatFullTimestamp(event.timestamp)}</td>
+                                <td>${event.finder}</td>
+                                <td>${details || '-'}</td>
+                            </tr>
+                        `;
+                    }
+                    return '';
+                }).join('')}
+            </tbody>
+        </table>
+    `;
+    modalBody.innerHTML = tableHtml;
+});
 
     const contentPanel = document.getElementById('main-content-panel');
     const topNavbar = document.getElementById('top-navbar');
@@ -610,33 +1549,98 @@ document.addEventListener('DOMContentLoaded', () => {
     window.appSocket.on('bot:mass_message', ({ sender, message }) => {
         addBroadcastMessage(sender, message);
     });
+
     window.appSocket.on('bot:private_message', ({ sender, message }) => {
         addLogMessage('Bot', message, 'bot'); 
         if (soundEnabledCheckbox.checked) {
-            beepSound.play().catch(e => console.error("Erro ao tocar som de notificação:", e));
+            if (typeof message === 'string' && message.includes('acabou!')) {
+                expireSound.play().catch(e => console.error("Erro ao tocar som de expiração:", e));
+            } else {
+                beepSound.play().catch(e => console.error("Erro ao tocar som de notificação:", e));
+            }
         }
         if (alertEnabledCheckbox.checked) {
-            alert(`MENSAGEM DO BOT:\n\n${message}`);
+            alert(`[${getCurrentHHMM()}] MENSAGEM DO BOT:\n\n${message}`); // [MODIFICADO]
         }
     });
+
+    window.appSocket.on('bot:warning_notification', ({ message }) => {
+        addLogMessage('Bot', message, 'bot');
+        if (soundEnabledCheckbox.checked) {
+            respawnSound.play().catch(e => console.error("Erro ao tocar som de aviso:", e));
+        }
+        if (alertEnabledCheckbox.checked) {
+            alert(`[${getCurrentHHMM()}] AVISO DO BOT:\n\n${message}`); // [MODIFICADO]
+        }
+    });
+
     window.appSocket.on('bot:success_notification', ({ message }) => {
         addLogMessage('Bot', message, 'bot');
         if (soundEnabledCheckbox.checked) {
             beepSound.play().catch(e => console.error("Erro ao tocar som de sucesso:", e));
         }
     });
+
     window.appSocket.on('bot:warning_notification', ({ message }) => {
         addLogMessage('Bot', message, 'bot');
         if (soundEnabledCheckbox.checked) {
-            beepSound.play().catch(e => console.error("Erro ao tocar som de aviso:", e));
+            respawnSound.play().catch(e => console.error("Erro ao tocar som de aviso:", e)); 
         }
         if (alertEnabledCheckbox.checked) {
             alert(`AVISO DO BOT:\n\n${message}`);
         }
     });
+
     window.appSocket.on('bot:broadcast_notification', ({ type, message }) => {
-        addBroadcastMessage('SISTEMA', message, type);
-    });
+
+    const isDeathAlert = message.includes('[MORTE ALLY]') ||
+                         message.includes('[MORTE ENEMY]') ||
+                         message.includes('[MORTE HUNTED]');
+
+    const isLevelUpAlert = message.includes('[LEVEL UP ALLY]') ||
+                           message.includes('[LEVEL UP ENEMY]') ||
+                           message.includes('[LEVEL UP HUNTED]');
+
+    const isBossAlert = message.includes('Boss encontrado por');
+
+    const deathCheckbox = document.getElementById('toggle-war-module');
+    const bossCheckbox = document.getElementById('boss-alert-checkbox');
+    const generalAlertCheckbox = document.getElementById('alert-enabled-checkbox');
+    
+    const soundEnabledCheckbox = document.getElementById('sound-enabled-checkbox');
+    if (soundEnabledCheckbox && soundEnabledCheckbox.checked) {
+        if (isBossAlert) {
+            bossSound.play().catch(e => console.error("Erro ao tocar som de boss:", e));
+        
+        } else if (isLevelUpAlert) {
+            if (deathCheckbox && deathCheckbox.checked) {
+                levelupSound.play().catch(e => console.error("Erro ao tocar som de level up:", e));
+            }
+        
+        } else if (isDeathAlert) { 
+            if (deathCheckbox && deathCheckbox.checked) {
+                alertSound.play().catch(e => console.error("Erro ao tocar som de alerta (morte):", e)); 
+            }
+        } else {
+            if (generalAlertCheckbox && generalAlertCheckbox.checked) {
+                beepSound.play().catch(e => console.error("Erro ao tocar som de notificação:", e));
+            }
+        }
+    }
+
+    if (isDeathAlert || isLevelUpAlert) {
+        if (deathCheckbox && deathCheckbox.checked) {
+            addBroadcastMessage('SISTEMA', message, type);
+        }
+    } else if (isBossAlert) {
+            addBroadcastMessage('SISTEMA', message, type);
+    } else {
+         if (generalAlertCheckbox && generalAlertCheckbox.checked) {
+             addBroadcastMessage('SISTEMA', message, type);
+         }
+    }
+});
+
     window.appSocket.on('admin:showLog', ({title, entries}) => showLogModal(title, entries));
 
     window.appSocket.on('data:initial_data_response', (data) => {
@@ -680,7 +1684,19 @@ document.addEventListener('DOMContentLoaded', () => {
          });
     }
 
+    const bossAlertCheckbox = document.getElementById('boss-alert-checkbox');
+    if(bossAlertCheckbox) {
+        bossAlertCheckbox.addEventListener('change', () => {
+            if (bossAlertCheckbox.checked) {
+                addLogMessage('Bot', "🔔 Alerta de Boss ON. Você será notificado sobre bosses de 'Alta Chance' que precisam ser checados (a cada 10 min).", 'bot');
+            } else {
+                addLogMessage('Bot', "🔕 Alerta de Boss OFF. Você não receberá mais notificações sobre bosses que precisam ser checados. (Alertas de bosses encontrados continuarão aparecendo).", 'bot');
+            }
+        });
+    }
+
     if(commandForm) {
+        
         commandForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const command = commandInput.value.trim();
@@ -777,6 +1793,9 @@ document.addEventListener('DOMContentLoaded', () => {
             updateRespawnTable(window.cachedRespawnData.fila, window.cachedRespawnData.respawns);
         }
     }
+    if (e.target.id === 'boss-search-input' && window.cachedBossesData) {
+            renderBossesPage(window.cachedBossesData); // Chama a renderização/filtragem
+        }
     const toggleChatBtn = document.getElementById('toggle-chat-btn');
     const chatPanel = document.querySelector('.chat-section');
 
@@ -1114,18 +2133,16 @@ function setupLoggedInUI(account, character) {
     }
 }
 
-
 function addLogMessage(sender, message, type) {
-    if(!chatLog) return;
+    if (!chatLog) return;
     const now = new Date();
     const timeString = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
     const timeSpan = document.createElement('span');
     timeSpan.className = 'chat-time';
     timeSpan.textContent = `[${timeString}] `;
-    
     const entry = document.createElement('div');
     entry.classList.add('log-entry', type);
-    
+
     entry.appendChild(timeSpan);
 
     const senderSpan = document.createElement('span');
@@ -1150,54 +2167,94 @@ function addLogMessage(sender, message, type) {
                 actionButton.textContent = action.buttonText;
                 actionButton.setAttribute('data-command', action.command_to_run);
                 buttonContainer.appendChild(actionButton);
-             });
+            });
             entry.appendChild(buttonContainer);
         }
     } else {
         const textSpan = document.createElement('span');
         textSpan.className = 'text';
-        textSpan.textContent = (typeof message === 'object' && message !== null) ? JSON.stringify(message) : String(message);
+        let messageText = (typeof message === 'object' && message !== null) ? JSON.stringify(message) : String(message);
+
+        // Conversão de tags para HTML
+messageText = messageText
+    .replace(/\n/g, '<br>') // Mantém a quebra de linha padrão para outras mensagens
+    .replace(/;/g, ';<br>') // Adiciona a nova regra para quebra de linha com ';'
+    .replace(/\[b\](.*?)\[\/b\]/g, '<strong>$1</strong>')
+    .replace(/\[url=(.*?)\](.*?)\[\/url\]/g, '<a href="$1" target="_blank" rel="noopener noreferrer" style="color: white;">$2</a>');
+
+        textSpan.innerHTML = messageText;
+
         entry.appendChild(textSpan);
         if (sender === 'Bot' && alertEnabledCheckbox.checked) {
-
-            alert(`MENSAGEM DO BOT:\n\n${textSpan.textContent}`);
+            alert(`MENSAGEM DO BOT:\n\n${message}`);
         }
     }
     chatLog.appendChild(entry);
     chatLog.scrollTop = chatLog.scrollHeight;
 }
 
-    function addBroadcastMessage(sender, message, type = 'broadcast') {
-        if(!chatLog) return;
-        const entry = document.createElement('div');
-        entry.classList.add('log-entry', 'broadcast', `broadcast-${type}`);
-        entry.innerHTML = `<span class="sender"><i class="fas fa-bullhorn"></i> ANÚNCIO DE ${sender.toUpperCase()}</span><span class="text">${message}</span>`;
-        chatLog.appendChild(entry);
-        chatLog.scrollTop = chatLog.scrollHeight;
-        if (alertEnabledCheckbox.checked) { 
-            alert(`ANÚNCIO DE ${sender.toUpperCase()}:\n\n${message}`);
-        }
+function addBroadcastMessage(sender, message, type = 'broadcast') {
+    if (!chatLog) return;
+    const timeString = getCurrentHHMM();
+
+    // Formata a mensagem como antes
+    let formattedMessage = String(message)
+        .replace(/\n/g, '<br>')
+        .replace(/\[b\](.*?)\[\/b\]/g, '<strong>$1</strong>')
+        .replace(/\[url=(.*?)\](.*?)\[\/url\]/g, '<a href="$1" target="_blank" rel="noopener noreferrer" style="color: white;">$2</a>');
+
+    const entry = document.createElement('div');
+    entry.classList.add('log-entry', 'broadcast'); // Classes base
+
+    // --- INÍCIO DA MODIFICAÇÃO ---
+    // Adiciona classe específica baseada no conteúdo da mensagem
+    if (message.startsWith('[LEVEL UP ALLY]')) {
+        entry.classList.add('levelup-ally'); // Nova classe para level up de aliado
+    } else if (message.startsWith('[LEVEL UP ENEMY]') || message.startsWith('[LEVEL UP HUNTED]')) {
+        entry.classList.add('levelup-other'); // Classe opcional para outros level ups (vermelho/amarelo)
+    } else {
+        // Mantém a classe original baseada no 'type' para outras notificações broadcast
+        entry.classList.add(`broadcast-${type}`);
     }
+    // --- FIM DA MODIFICAÇÃO ---
+
+    // Define o conteúdo HTML
+entry.innerHTML = `<span class="chat-time">[${timeString}] </span><span class="sender"><i class="fas fa-bullhorn"></i> ANÚNCIO DE ${sender.toUpperCase()}</span><span class="text">${formattedMessage}</span>`;
+    chatLog.appendChild(entry);
+    chatLog.scrollTop = chatLog.scrollHeight;
+
+    const generalAlertCheckbox = document.getElementById('alert-enabled-checkbox');
+    if (generalAlertCheckbox && generalAlertCheckbox.checked) {
+        // Remove tags BBCode para o alerta simples
+        const alertMessage = String(message)
+            .replace(/\[b\]/g, '')
+            .replace(/\[\/b\]/g, '')
+            .replace(/\[url=.*?\]/g, '')
+            .replace(/\[\/url\]/g, '');
+        // Adiciona o horário ao popup
+        alert(`[${timeString}] ANÚNCIO DE ${sender.toUpperCase()}:\n\n${alertMessage}`);
+    }
+}
 
     function showHuntedAlert(hunted) {
         if (alertEnabledCheckbox && alertEnabledCheckbox.checked) {
-            alert(`ALERTA! O hunted ${hunted.name} (level ${hunted.level}) está online!`);
+            alert(`[${getCurrentHHMM()}] ALERTA! O hunted ${hunted.name} (level ${hunted.level}) está online!`); // [MODIFICADO]
         }
         const message = `🚨 ALERTA! Hunted ${hunted.name} (level ${hunted.level}) está online! 🚨`;
         addBroadcastMessage('Sistema de Alerta', message, 'hunted');
         if (soundEnabledCheckbox && soundEnabledCheckbox.checked) {
-            beepSound.play().catch(e => console.error("Erro ao tocar som de alerta:", e));
+            alertSound.play().catch(e => console.error("Erro ao tocar som de alerta:", e));
         }
     }
 
     function showEnemyAlert(enemy) {
         if (alertEnabledCheckbox && alertEnabledCheckbox.checked) {
-            alert(`ALERTA! O inimigo ${enemy.name} (level ${enemy.level}) está online!`);
+            alert(`[${getCurrentHHMM()}] ALERTA! O inimigo ${enemy.name} (level ${enemy.level}) está online!`); // [MODIFICADO]
         }
         const message = `⚔️ ALERTA! Inimigo ${enemy.name} (level ${enemy.level}, ${enemy.vocation}) está online! ⚔️`;
-        addBroadcastMessage('Sistema de Alerta', message, 'enemy'); // Usando um novo tipo 'enemy'
+        addBroadcastMessage('Sistema de Alerta', message, 'enemy');
         if (soundEnabledCheckbox && soundEnabledCheckbox.checked) {
-            beepSound.play().catch(e => console.error("Erro ao tocar som de alerta:", e));
+            alertSound.play().catch(e => console.error("Erro ao tocar som de alerta:", e));
         }
     }
 
@@ -1231,22 +2288,50 @@ function addLogMessage(sender, message, type) {
 function renderAllUsersTab() {
     const usersListDiv = document.getElementById('admin-all-users-list');
     const searchInput = document.getElementById('admin-all-users-search');
-    if (!usersListDiv || !searchInput) return;
+    const rankFilter = document.getElementById('admin-all-users-rank-filter');
+
+    if (!usersListDiv || !searchInput || !rankFilter) return;
     
+    // 1. Popular o filtro de Ranks (apenas se as opções ainda não existirem ou se a lista mudou drasticamente)
+    // Preservamos o valor selecionado atualmente
+    const currentRankFilter = rankFilter.value;
+    const uniqueRanks = new Set();
+    Object.values(allUsers).forEach(acc => {
+        uniqueRanks.add(acc.guildRank || 'N/A');
+    });
+    
+    // Limpa e reconstrói apenas se o número de ranks mudar (simples otimização) ou se estiver vazio
+    if (rankFilter.options.length <= 1) { 
+        rankFilter.innerHTML = '<option value="">Todos os Ranks</option>';
+        Array.from(uniqueRanks).sort().forEach(rank => {
+            const option = document.createElement('option');
+            option.value = rank;
+            option.textContent = rank;
+            rankFilter.appendChild(option);
+        });
+        rankFilter.value = currentRankFilter; // Restaura seleção
+    }
+
     usersListDiv.innerHTML = '';
     const searchTerm = searchInput.value.toLowerCase();
-    
-    const filteredUsers = Object.entries(allUsers).filter(([email, account]) => 
-        account.name.toLowerCase().includes(searchTerm) || 
-        (account.characterName && account.characterName.toLowerCase().includes(searchTerm))
-    );
+    const selectedRank = rankFilter.value;
+
+    const filteredUsers = Object.entries(allUsers).filter(([email, account]) => {
+        const nameMatches = account.name.toLowerCase().includes(searchTerm) || 
+                            (account.characterName && account.characterName.toLowerCase().includes(searchTerm)) ||
+                            email.toLowerCase().includes(searchTerm);
+        
+        const rankMatches = selectedRank === "" || (account.guildRank || 'N/A') === selectedRank;
+
+        return nameMatches && rankMatches;
+    });
 
     if (filteredUsers.length === 0) {
         usersListDiv.innerHTML = '<p>Nenhum usuário encontrado.</p>';
         return;
     }
 
-    filteredUsers
+filteredUsers
         .sort(([, a], [, b]) => a.name.localeCompare(b.name)) 
         .forEach(([email, account]) => {
             const item = document.createElement('div');
@@ -1254,17 +2339,44 @@ function renderAllUsersTab() {
             const charHtml = `<strong>${account.characterName || 'N/A'}</strong> (Rank: ${account.guildRank || 'N/A'})`;
             
             item.innerHTML = `
-                <div class="user-info-full">
-                    <strong>${account.name}</strong>
-                    <button class="action-btn view-details-btn" data-email="${email}">Ver Detalhes</button>
-                </div>
-                <div class="user-chars-list">
-                    <strong>Personagem Principal:</strong>
-                    <div class="char-details">${charHtml}</div>
+                <div class="user-info-full" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                    <div style="flex-grow: 1;">
+                        <strong>${account.name}</strong> <span style="font-size: 0.8em; color: #888;">(${email})</span>
+                        <div class="user-chars-list" style="margin-top: 5px;">
+                            <div class="char-details">${charHtml}</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 5px;">
+                        <button class="action-btn edit-user-btn" data-email="${email}" title="Editar Dados">✏️</button>
+                        <button class="action-btn view-details-btn" data-email="${email}">Detalhes</button>
+                        <button class="action-btn danger-btn delete-user-btn" data-email="${email}" data-name="${account.name}" title="Deletar Usuário">🗑️</button>
+                    </div>
                 </div>
             `;
             usersListDiv.appendChild(item);
         });
+}
+
+// Adicionar listener para o filtro de rank no adminModal event listener
+if (adminModal) {
+    adminModal.addEventListener('change', (e) => { // Alterado de input para change para capturar o select
+        if (e.target.id === 'admin-all-users-rank-filter') {
+            renderAllUsersTab();
+        }
+    });
+    
+    // Listener para o botão de deletar usuário (delegação de evento)
+    adminModal.addEventListener('click', (e) => {
+        const deleteBtn = e.target.closest('.delete-user-btn');
+        if (deleteBtn) {
+            const email = deleteBtn.dataset.email;
+            const name = deleteBtn.dataset.name;
+            
+            if (confirm(`⚠️ PERIGO: Tem certeza que deseja deletar PERMANENTEMENTE o usuário "${name}" (${email})?\n\nIsso removerá a conta e todos os personagens associados. Esta ação não pode ser desfeita.`)) {
+                window.appSocket.emit('admin:deleteUser', email);
+            }
+        }
+    });
 }
 
 function renderCooldownsTab() {
@@ -1557,7 +2669,6 @@ function renderSelectedUserPanel() {
     }
     
     const userEntry = Object.entries(allUsers).find(([, account]) => account.characterName === selectedCharacterName);
-
     if (!userEntry) {
         adminSelectedUserPanel.style.display = 'none';
         return;
@@ -1567,7 +2678,10 @@ function renderSelectedUserPanel() {
 
     adminSelectedUserPanel.style.display = 'block';
     const selectedUserNameEl = document.getElementById('selected-user-name');
-    if(selectedUserNameEl) selectedUserNameEl.textContent = `${userAccount.name} (${userAccount.characterName})`;
+    
+    if(selectedUserNameEl) {
+        selectedUserNameEl.innerHTML = `${userAccount.name} (<a href="#" class="character-log-link" data-character-name="${userAccount.characterName}">${userAccount.characterName}</a>)`;
+    }
 
     const userGroupsChecklist = document.getElementById('user-groups-checklist');
     if(!userGroupsChecklist) return;
@@ -1627,48 +2741,50 @@ function renderRespawnManagementPanel() {
     }
 
     function renderSelectedRespawnPanel() {
-        const adminSelectedRespawnPanel = document.getElementById('admin-selected-respawn-panel');
-        const selectedRespawnNameEl = document.getElementById('selected-respawn-name');
-        const respawnGroupsChecklist = document.getElementById('respawn-groups-checklist');
-        const planilhadoCheckbox = document.getElementById('respawn-planilhado-chk');
-        const planilhadoDoubleCheckbox = document.getElementById('respawn-planilhado-double-chk');
-        const respawnRanksChecklist = document.getElementById('respawn-ranks-checklist');
+    const adminSelectedRespawnPanel = document.getElementById('admin-selected-respawn-panel');
+    const selectedRespawnNameEl = document.getElementById('selected-respawn-name');
+    const respawnGroupsChecklist = document.getElementById('respawn-groups-checklist');
+    const planilhadoCheckbox = document.getElementById('respawn-planilhado-chk');
+    const planilhadoDoubleCheckbox = document.getElementById('respawn-planilhado-double-chk');
+    const respawnRanksChecklist = document.getElementById('respawn-ranks-checklist');
+    if (!selectedRespawnCode || !adminSelectedRespawnPanel) {
+        if (adminSelectedRespawnPanel) adminSelectedRespawnPanel.style.display = 'none';
+        return;
+    }
+    adminSelectedRespawnPanel.style.display = 'block';
     
-        if (!selectedRespawnCode || !adminSelectedRespawnPanel) {
-            if (adminSelectedRespawnPanel) adminSelectedRespawnPanel.style.display = 'none';
-            return;
+    let respawnName = 'Desconhecido';
+    for (const region in allRespawns) {
+        if (allRespawns[region][selectedRespawnCode]) {
+            respawnName = allRespawns[region][selectedRespawnCode];
+            break;
         }
-        adminSelectedRespawnPanel.style.display = 'block';
-        
-        let respawnName = 'Desconhecido';
-        for (const region in allRespawns) {
-            if (allRespawns[region][selectedRespawnCode]) {
-                respawnName = allRespawns[region][selectedRespawnCode];
-                break;
-            }
-        }
-        if (selectedRespawnNameEl) selectedRespawnNameEl.textContent = respawnName;
-        if (!respawnGroupsChecklist || !planilhadoCheckbox || !planilhadoDoubleCheckbox || !respawnRanksChecklist) return;
-        if (!respawnGroupsChecklist || !planilhadoCheckbox || !planilhadoDoubleCheckbox) return;
+    }
     
-        planilhadoCheckbox.checked = allPlanilhadoRespawns.includes(selectedRespawnCode);
-        planilhadoDoubleCheckbox.checked = allPlanilhadoDoubleRespawns.includes(selectedRespawnCode);
-    
-        const currentRespawnGroupIds = new Set(allRespawnGroups[selectedRespawnCode] || []);
-        respawnGroupsChecklist.innerHTML = '';
-        
-        if (allGroups.length === 0) {
-            respawnGroupsChecklist.innerHTML = '<p>Nenhum grupo global criado.</p>';
-        } else {
-            allGroups.forEach(group => {
-                const isChecked = currentRespawnGroupIds.has(group.id);
-                const checkItem = document.createElement('div');
-                checkItem.className = 'group-checklist-item';
-                checkItem.innerHTML = `<input type="checkbox" id="respawn-group-chk-${group.id}" data-group-id="${group.id}" ${isChecked ? 'checked' : ''}><label for="respawn-group-chk-${group.id}">${group.name}</label>`;
-                respawnGroupsChecklist.appendChild(checkItem);
-            });
-        }
-        respawnRanksChecklist.innerHTML = '';
+    if (selectedRespawnNameEl) {
+        selectedRespawnNameEl.innerHTML = `${respawnName} <a href="#" class="respawn-log-link" data-respawn-code="${selectedRespawnCode}" title="Ver Log do Respawn"><i class="fas fa-history"></i></a>`;
+    }
+
+    if (!respawnGroupsChecklist || !planilhadoCheckbox || !planilhadoDoubleCheckbox || !respawnRanksChecklist) return;
+    if (!respawnGroupsChecklist || !planilhadoCheckbox || !planilhadoDoubleCheckbox) return;
+
+    planilhadoCheckbox.checked = allPlanilhadoRespawns.includes(selectedRespawnCode);
+    planilhadoDoubleCheckbox.checked = allPlanilhadoDoubleRespawns.includes(selectedRespawnCode);
+
+    const currentRespawnGroupIds = new Set(allRespawnGroups[selectedRespawnCode] || []);
+    respawnGroupsChecklist.innerHTML = '';
+    if (allGroups.length === 0) {
+        respawnGroupsChecklist.innerHTML = '<p>Nenhum grupo global criado.</p>';
+    } else {
+        allGroups.forEach(group => {
+            const isChecked = currentRespawnGroupIds.has(group.id);
+            const checkItem = document.createElement('div');
+            checkItem.className = 'group-checklist-item';
+            checkItem.innerHTML = `<input type="checkbox" id="respawn-group-chk-${group.id}" data-group-id="${group.id}" ${isChecked ? 'checked' : ''}><label for="respawn-group-chk-${group.id}">${group.name}</label>`;
+            respawnGroupsChecklist.appendChild(checkItem);
+        });
+    }
+    respawnRanksChecklist.innerHTML = '';
     const allRanks = Object.keys(respawnTimes).sort((a, b) => (a === 'default') ? 1 : (b === 'default') ? -1 : a.localeCompare(b));
     const currentRestrictedRanks = new Set(allRankRestrictions[selectedRespawnCode] || []);
 
@@ -1676,15 +2792,15 @@ function renderRespawnManagementPanel() {
         respawnRanksChecklist.innerHTML = '<p>Nenhum rank encontrado.</p>';
     } else {
         allRanks.forEach(rank => {
-            if (rank === 'default') return; // Não faz sentido restringir o rank 'default'
+            if (rank === 'default') return;
             const isChecked = currentRestrictedRanks.has(rank);
             const checkItem = document.createElement('div');
-            checkItem.className = 'group-checklist-item'; // Reutilizando a classe
+            checkItem.className = 'group-checklist-item';
             checkItem.innerHTML = `<input type="checkbox" id="respawn-rank-chk-${rank}" data-rank-name="${rank}" ${isChecked ? 'checked' : ''}><label for="respawn-rank-chk-${rank}">${rank}</label>`;
             respawnRanksChecklist.appendChild(checkItem);
         });
     }
-    }
+}
 
     function initializeRespawnFinder() {
         if(!respawnFinderModal) return;
@@ -1826,6 +2942,25 @@ function renderRespawnManagementPanel() {
                     }
                     return;
                 }
+                if (adminModal) {
+                    adminModal.addEventListener('click', (e) => {
+                        // Lógica para o novo link de log do respawn no painel de admin
+                        const respawnLogLink = e.target.closest('.respawn-log-link');
+                        if (respawnLogLink) {
+                            e.preventDefault();
+                            const respawnCode = respawnLogLink.dataset.respawnCode;
+                            window.appSocket.emit('admin:getRespawnLog', respawnCode);
+                        }
+
+                        // Lógica para o novo link de log do personagem no painel de admin
+                        const charLogLink = e.target.closest('.character-log-link');
+                        if (charLogLink) {
+                            e.preventDefault();
+                            const characterName = charLogLink.dataset.characterName;
+                            window.appSocket.emit('admin:getCharacterLog', characterName);
+                        }
+                    });
+                }
             });
     
             const respawnForm = document.getElementById('admin-respawn-form');
@@ -1919,3 +3054,393 @@ if (timeBreakdownModal) {
     });
 }
 
+const bossFoundModal = document.getElementById('boss-found-modal');
+const closeFoundModalBtn = bossFoundModal.querySelector('.modal-close-btn');
+const bossFoundForm = document.getElementById('boss-found-form');
+let currentBossToFind = null;
+
+closeFoundModalBtn.addEventListener('click', () => bossFoundModal.classList.remove('show'));
+
+document.getElementById('main-content-panel').addEventListener('click', e => {
+    const foundBtn = e.target.closest('.found-btn');
+    if (foundBtn) {
+        e.preventDefault();
+        currentBossToFind = foundBtn.dataset.boss;
+        document.getElementById('boss-found-title').textContent = `Registrar "${currentBossToFind}"`;
+        bossFoundForm.reset();
+
+const anonymousWrapper = document.getElementById('anonymous-char-wrapper');
+const anonymousInput = document.getElementById('anonymous-char-input'); // Adicionar esta linha
+
+if (!window.currentUser) {
+    // Se for anônimo, mostra e habilita o campo
+    anonymousWrapper.style.display = 'block';
+    anonymousInput.disabled = false;
+} else {
+    // Se estiver logado, esconde e desabilita o campo
+    anonymousWrapper.style.display = 'none';
+    anonymousInput.disabled = true;
+}
+
+bossFoundModal.classList.add('show');
+    }
+});
+
+bossFoundForm.addEventListener('submit', e => {
+    e.preventDefault();
+    console.log('Botão "Enviar Registro" clicado.'); // LOG 1
+
+    const data = {
+        bossName: currentBossToFind,
+        deathTime: document.getElementById('death-time-input').value,
+        tokens: document.getElementById('tokens-input').value,
+        observation: document.getElementById('observation-input').value,
+        characterName: null
+    };
+
+    console.log('Estado do usuário (window.currentUser):', window.currentUser); // LOG 2
+
+    if (window.currentUser && window.currentUser.character && window.currentUser.character.characterName) {
+        // Usuário logado com personagem
+        data.characterName = window.currentUser.character.characterName;
+        console.log('Usuário logado identificado. Personagem:', data.characterName); // LOG 3
+
+    } else if (window.currentUser) {
+        // Usuário logado sem personagem
+        console.error('Falha: Usuário logado, mas sem personagem registrado.'); // LOG 4
+        alert('Você precisa registrar um personagem em sua conta para usar esta função. Use o comando !register [nome].');
+        return;
+
+    } else {
+        // Usuário anônimo
+        const anonName = document.getElementById('anonymous-char-input').value.trim();
+        if (!anonName) {
+            alert('O nome do personagem é obrigatório.');
+            return;
+        }
+        data.characterName = anonName;
+        console.log('Usuário anônimo identificado. Personagem:', data.characterName); // LOG 5
+    }
+
+    console.log('Enviando dados para o servidor:', data); // LOG 6
+    window.appSocket.emit('bosses:recordFound', data);
+
+    bossFoundModal.classList.remove('show');
+});
+
+function renderWarPanelPage(data) {
+    console.log("[WAR PANEL] Recebido para renderizar:", data); // Log para depuração
+
+    // Garante que 'data' seja um objeto, mesmo que vazio, para evitar erros
+    const safeData = data || { summary: {}, rankings: {}, statsByVocation: {} };
+
+    // --- 1. Lógica do Filtro (deve funcionar como antes) ---
+    const searchInput = document.getElementById('war-search-input');
+    if (searchInput) {
+        searchInput.removeEventListener('input', filterWarPanelTables); // Evita duplicar listener
+        searchInput.addEventListener('input', filterWarPanelTables);
+    }
+
+    // --- 2. Renderização Padrão (Cabeçalho e Filtro de Data) ---
+    const rangeDisplay = document.getElementById('war-selected-range');
+    if (rangeDisplay) {
+        rangeDisplay.textContent = `Exibindo dados de: ${safeData.filterRangeDescription || 'Período não especificado'}`;
+    }
+
+    const lastUpdateEl = document.getElementById('war-last-update');
+    // Não temos 'lastUpdate' no HTML fornecido, então esta parte pode ser removida ou comentada
+    // if (lastUpdateEl) { ... }
+
+    // --- 3. Renderização dos Resumos (Mortes E Level Ups) ---
+    const summary = safeData.summary || {}; // Garante que summary exista
+
+    // Seleciona os elementos pelos IDs CORRETOS e ÚNICOS
+    const allyDeathsEl = document.getElementById('ally-deaths-count');
+    const enemyDeathsEl = document.getElementById('enemy-deaths-count');
+    const huntedDeathsEl = document.getElementById('hunted-deaths-count');
+    const allyLevelUpsEl = document.getElementById('ally-levelup-count');
+    const enemyLevelUpsEl = document.getElementById('enemy-levelup-count');
+    const huntedLevelUpsEl = document.getElementById('hunted-levelup-count');
+
+    // Preenche contadores de Morte
+    if(allyDeathsEl) allyDeathsEl.textContent = summary.allyDeaths || 0;
+    if(enemyDeathsEl) enemyDeathsEl.textContent = summary.enemyDeaths || 0;
+    if(huntedDeathsEl) huntedDeathsEl.textContent = summary.huntedDeaths || 0;
+    // Remove placeholder (se houver)
+    [allyDeathsEl, enemyDeathsEl, huntedDeathsEl].forEach(el => el?.classList.remove('placeholder-text'));
+
+    // Preenche contadores de Level Up
+    if(allyLevelUpsEl) allyLevelUpsEl.textContent = summary.allyLevelUps || 0;
+    if(enemyLevelUpsEl) enemyLevelUpsEl.textContent = summary.enemyLevelUps || 0;
+    if(huntedLevelUpsEl) huntedLevelUpsEl.textContent = summary.huntedLevelUps || 0;
+    // Remove placeholder (se houver)
+    [allyLevelUpsEl, enemyLevelUpsEl, huntedLevelUpsEl].forEach(el => el?.classList.remove('placeholder-text'));
+
+
+    // --- 4. Função Auxiliar de Renderização de Tabela (Mais Robusta) ---
+    const renderRankingTable = (tableId, rankingData, type = 'kill') => { // type: 'kill', 'death', 'levelup'
+        const tableBody = document.querySelector(`#${tableId} tbody`);
+        if (!tableBody) {
+             console.error(`[WAR PANEL] Tabela não encontrada: #${tableId}`);
+             return;
+        }
+
+        tableBody.innerHTML = ''; // Limpa o conteúdo antigo
+        const safeRankingData = rankingData || []; // Garante que seja um array
+
+        if (safeRankingData.length > 0) {
+            tableBody.innerHTML = safeRankingData.map((item, index) => {
+                if (!item || typeof item !== 'object') return ''; // Pula itens inválidos
+
+                try {
+                    if (type === 'death') {
+                        const name = item.name || 'Desconhecido';
+                        const timeStr = item.time || null; // Vem como ISO string
+                        const shortReason = item.reason && typeof item.reason === 'string'
+                            ? (item.reason.length > 50 ? item.reason.substring(0, 47) + '...' : item.reason)
+                            : 'Desconhecida';
+                        const level = item.level || '?';
+                        // Opcional: Formatar 'timeStr' se necessário antes de exibir
+                        return `
+                              <tr>
+                                <td>${name}</td>
+                                <td>${level}</td>
+                                <td>${shortReason}</td>
+                            </tr>
+                        `;
+                    } else if (type === 'levelup') {
+                    // Verifica se 'item' e 'item.name' existem
+                    if (!item || typeof item.name === 'undefined' || typeof item.newLevel === 'undefined') {
+                        return ''; // Pula item inválido
+                    }
+
+                    const name = item.name;
+                    const timeStr = item.time || null;
+                    const newLevel = item.newLevel || '?';
+                    const oldLevel = item.oldLevel || (typeof newLevel === 'number' ? newLevel - 1 : '?');
+
+                    // --- INÍCIO DA MODIFICAÇÃO ---
+                    // 1. Codifica o nome para a URL
+                    const encodedName = encodeURIComponent(name);
+                    // 2. Cria o URL do GuildStats
+                    const guildStatsUrl = `https://guildstats.eu/character?nick=${encodedName}&tab=9`;
+                    // 3. Cria o HTML do link
+                    const nameHtml = `<a href="${guildStatsUrl}" target="_blank" style="color: white; text-decoration: none;">${name}</a>`;
+                    // --- FIM DA MODIFICAÇÃO ---
+
+                    return `
+                        <tr>
+                            <td>${nameHtml}</td> <td>${oldLevel} ➔ ${newLevel}</td>
+                            <td>${timeStr ? formatFullTimestamp(timeStr) : 'N/A'}</td>
+                        </tr>
+                    `;
+                    } else { // type === 'kill' (padrão)
+                        const name = item.name || 'Desconhecido';
+                        const count = item.count || 0;
+                        const isPlayerKillTable = (tableId === 'kill-ranking-player-ally' || tableId === 'kill-ranking-player-enemy');
+                        let victimsColumnHtml = '';
+                        if (isPlayerKillTable) {
+                            // Ordena vítimas pela hora (mais recente primeiro) se 'time' existir
+                            const sortedVictims = (item.details || []).sort((a, b) => (b.time || 0) - (a.time || 0));
+                            const victimsList = sortedVictims.map(detail => detail.victim || '?').join(', ');
+                            const shortVictimsList = victimsList.length > 150 ?
+                                victimsList.substring(0, 147) + '...' : (victimsList || '-');
+                            victimsColumnHtml = `<td>${shortVictimsList}</td>`;
+                        }
+                        return `
+                            <tr>
+                                <td>${index + 1}</td>
+                                <td>${name}</td>
+                                <td>${count}</td>
+                                ${victimsColumnHtml}
+                            </tr>
+                        `;
+                    }
+                } catch (rowError) {
+                    console.error(`[WAR PANEL] Erro ao renderizar linha para ${tableId}:`, item, rowError);
+                    // Determina colspan correto baseado no tipo
+                    let colspan = (type === 'kill' && (tableId === 'kill-ranking-player-ally' || tableId === 'kill-ranking-player-enemy')) ? 4 : 3;
+                    return `<tr><td colspan="${colspan}" class="placeholder-text-cell">Erro ao renderizar linha</td></tr>`;
+                }
+            }).join('');
+        } else {
+            // Determina colspan correto baseado no tipo/ID para a mensagem "Nenhum dado"
+             let colspan = 3; // Padrão para death, levelup, creature kill
+             if (tableId === 'kill-ranking-player-ally' || tableId === 'kill-ranking-player-enemy') {
+                 colspan = 4; // Para kill de player
+             }
+            tableBody.innerHTML = `<tr><td colspan="${colspan}" class="placeholder-text-cell">Nenhum dado neste período.</td></tr>`;
+        }
+    };
+
+    // --- 5. Renderização das Tabelas (usando 'safeData') ---
+    const rankings = safeData.rankings || {}; // Garante que rankings exista
+
+    // Mortes (Renderiza na aba 'Mortes & Kills')
+    renderRankingTable('death-ranking-ally', rankings.deathAlly, 'death');
+    renderRankingTable('death-ranking-enemy', rankings.deathEnemy, 'death');
+    renderRankingTable('death-ranking-hunted', rankings.deathHunted, 'death');
+
+    // Level Ups (Renderiza na aba 'Level Ups')
+    renderRankingTable('levelup-ranking-ally', rankings.levelUpAlly, 'levelup');
+    renderRankingTable('levelup-ranking-enemy', rankings.levelUpEnemy, 'levelup');
+    renderRankingTable('levelup-ranking-hunted', rankings.levelUpHunted, 'levelup');
+
+    // Kills (Renderiza na aba 'Mortes & Kills')
+    renderRankingTable('kill-ranking-player-ally', rankings.killPlayerAlly, 'kill');
+    renderRankingTable('kill-ranking-player-enemy', rankings.killPlayerEnemy, 'kill');
+    renderRankingTable('kill-ranking-creature', rankings.killCreature, 'kill');
+
+    // --- 6. Renderização de Vocações (Atualizada para 4 colunas) ---
+    const vocationTableBody = document.querySelector('#vocation-stats tbody');
+    if (vocationTableBody) {
+        const vocationStats = safeData.statsByVocation || {};
+        const sortedVocations = Object.entries(vocationStats)
+            .sort(([, statsA], [, statsB]) =>
+                ((statsB.deaths || 0) + (statsB.kills || 0) + (statsB.levelUps || 0)) -
+                ((statsA.deaths || 0) + (statsA.kills || 0) + (statsA.levelUps || 0))
+            );
+
+        if (sortedVocations.length > 0) {
+             vocationTableBody.innerHTML = sortedVocations.map(([vocation, stats]) => {
+                 // Usa || 0 para garantir que é um número
+                 const deaths = stats?.deaths || 0;
+                 const kills = stats?.kills || 0;
+                 const levelUps = stats?.levelUps || 0;
+                 return `
+                     <tr>
+                        <td>${vocation || 'Desconhecida'}</td>
+                        <td>${deaths}</td>
+                        <td>${kills}</td>
+                        <td>${levelUps}</td>
+                    </tr>
+                 `;
+             }).join('');
+        } else {
+            vocationTableBody.innerHTML = '<tr><td colspan="4" class="placeholder-text-cell">Nenhum dado neste período.</td></tr>'; // Colspan 4
+        }
+    } else {
+        console.error("[WAR PANEL] Tabela de vocações não encontrada: #vocation-stats tbody");
+    }
+
+}
+
+function filterWarPanelContent() {
+const searchInput = document.getElementById('global-war-filter-input');
+    if (!searchInput) {
+        console.error("Filtro global '#global-war-filter-input' não encontrado.");
+        return;
+    }
+
+    const searchTerm = searchInput.value.toLowerCase().trim();
+
+    // Determina qual painel (aba) está visível
+    const deathsKillsPanel = document.getElementById('war-panel-deaths-kills');
+    const levelupsPanel = document.getElementById('war-panel-levelups');
+    // Assume deathsKillsPanel como padrão se levelupsPanel não estiver explicitamente visível
+    const visiblePanel = levelupsPanel?.style.display === 'block' ? levelupsPanel : deathsKillsPanel;
+
+    // Sai se nenhum painel estiver visível (improvável, mas seguro)
+    if (!visiblePanel) {
+        console.error("Nenhum painel de conteúdo do War Panel está visível.");
+        return;
+    }
+
+    // Seleciona todas as tabelas de ranking DENTRO do painel visível
+    const tablesToFilter = visiblePanel.querySelectorAll('.war-ranking-table');
+
+    tablesToFilter.forEach(table => {
+        const tableBody = table.querySelector('tbody');
+        if (!tableBody) return; // Pula se a tabela não tiver tbody
+
+        const rows = tableBody.querySelectorAll('tr');
+        let hasVisibleRows = false;
+        let placeholderRow = null; // Para guardar a linha de "Nenhum dado"
+        let nameCellIndex = 0; // Índice da coluna com o nome (0-based)
+
+        // Determina qual coluna contém o nome/identificador a ser filtrado
+        const tableId = table.id;
+        if (tableId.startsWith('kill-ranking-player-') || tableId === 'kill-ranking-creature') {
+            // Tabelas de Kill: Pos | Nome/Criatura | Kills | Vítimas?
+            nameCellIndex = 1; // Segunda coluna
+        } else if (tableId.startsWith('death-ranking-') || tableId.startsWith('levelup-ranking-') || tableId === 'vocation-stats') {
+            // Tabelas de Morte, Level Up, Vocação: Nome/Vocação | ...
+            nameCellIndex = 0; // Primeira coluna
+        } else {
+            console.warn(`Tabela com ID desconhecido encontrada: ${tableId}. Não será filtrada.`);
+            return; // Não filtra tabelas não reconhecidas
+        }
+
+        // Itera sobre as linhas da tabela
+        rows.forEach(row => {
+            const placeholderCell = row.querySelector('.placeholder-text-cell');
+            if (placeholderCell) {
+                placeholderRow = row; // Armazena a linha do placeholder
+                row.style.display = 'none'; // Oculta temporariamente
+                return; // Não filtra a linha do placeholder em si
+            }
+
+            // Encontra a célula correta que contém o nome
+            const nameCell = row.querySelector(`td:nth-child(${nameCellIndex + 1})`); // nth-child é 1-based
+
+            if (nameCell) {
+                // Pega o texto, considerando se está dentro de um link <a>
+                const linkInside = nameCell.querySelector('a');
+                const cellText = (linkInside ? linkInside.textContent : nameCell.textContent).toLowerCase();
+
+                // Aplica a lógica do filtro
+                if (searchTerm === '' || cellText.includes(searchTerm)) {
+                    // Se o filtro está vazio OU o texto da célula contém o termo de busca
+                    row.style.display = ''; // Mostra a linha
+                    hasVisibleRows = true; // Marca que pelo menos uma linha está visível
+                } else {
+                    // Se o filtro não está vazio E o texto não contém o termo
+                    row.style.display = 'none'; // Oculta a linha
+                }
+            } else {
+                 // Oculta linhas que não têm a célula esperada (pode ocorrer durante carregamento)
+                 row.style.display = 'none';
+            }
+        });
+
+        // Após verificar todas as linhas, decide o que fazer com a linha do placeholder
+        if (placeholderRow) {
+             const tdContent = placeholderRow.querySelector('td');
+             if(tdContent){
+                 if (!hasVisibleRows) {
+                     // Se nenhuma linha de dados ficou visível
+                     if (searchTerm === '') {
+                         // Filtro está vazio, mostra mensagem padrão
+                         tdContent.textContent = 'Nenhum dado neste período.';
+                     } else {
+                         // Filtro tem texto, mostra mensagem de "nenhum resultado"
+                         tdContent.textContent = `Nenhum resultado para "${searchTerm}"`;
+                     }
+                     placeholderRow.style.display = ''; // Mostra a linha do placeholder
+                 } else {
+                     // Se há linhas de dados visíveis, oculta a linha do placeholder
+                     placeholderRow.style.display = 'none';
+                 }
+             }
+        }
+        // Se não existia uma linha de placeholder e nenhuma linha de dados é visível,
+        // a tabela simplesmente ficará vazia (sem linhas no tbody).
+    });
+}
+
+// O listener que chama renderWarPanelPage deve estar assim:
+window.appSocket.on('war:dataUpdated', (data) => {
+    // Adicione este log para verificar os dados recebidos no console do navegador
+    console.log('Recebido war:dataUpdated:', JSON.stringify(data, null, 2));
+
+    const warPanelContent = document.getElementById('war-panel-deaths-kills'); // Ou qualquer elemento principal da página
+    if (warPanelContent) { // Verifica se estamos na página do warpanel
+        try { // Adiciona try...catch em volta da renderização
+            renderWarPanelPage(data);
+        } catch (renderError) {
+             console.error("[WAR PANEL] Erro CRÍTICO durante renderWarPanelPage:", renderError);
+             // Opcional: Mostrar erro na interface
+             if (warPanelContent) warPanelContent.innerHTML = `<p style="color: red;">Erro ao renderizar dados do painel: ${renderError.message}</p>`;
+        }
+    }
+});

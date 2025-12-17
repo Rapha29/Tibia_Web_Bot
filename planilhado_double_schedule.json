@@ -1,1 +1,151 @@
-{}
+{
+  "E39": {
+    "19:00": {
+      "leader": "Trouble Moh Paz",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "19:30": {
+      "leader": "Trouble Moh Paz",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "20:00": {
+      "leader": "Trouble Moh Paz",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "20:30": {
+      "leader": "Trouble Moh Paz",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "21:00": {
+      "leader": "Trouble Moh Paz",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "21:30": {
+      "leader": "Trouble Moh Paz",
+      "isAbsence": false,
+      "isDouble": false
+    }
+  },
+  "C6": {},
+  "C7": {
+    "20:30": {
+      "leader": "Pernambucano Nukenin",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "21:00": {
+      "leader": "Pernambucano Nukenin",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "21:30": {
+      "leader": "Pernambucano Nukenin",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "22:00": {
+      "leader": "Pernambucano Nukenin",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "22:30": {
+      "leader": "Pernambucano Nukenin",
+      "isAbsence": false,
+      "isDouble": false
+    }
+  },
+  "C5": {
+    "06:00": {
+      "leader": "Ruffigan The One",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "06:30": {
+      "leader": "Ruffigan The One",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "07:00": {
+      "leader": "Ruffigan The One",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "07:30": {
+      "leader": "Ruffigan The One",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "08:00": {
+      "leader": "Ruffigan The One",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "08:30": {
+      "leader": "Ruffigan The One",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "20:30": {
+      "leader": "Noffikz",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "21:00": {
+      "leader": "Noffikz",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "21:30": {
+      "leader": "Noffikz",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "22:00": {
+      "leader": "Noffikz",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "22:30": {
+      "leader": "Noffikz",
+      "isAbsence": false,
+      "isDouble": false
+    }
+  },
+  "E40": {
+    "08:00": {
+      "leader": "Overknightao",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "08:30": {
+      "leader": "Overknightao",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "09:00": {
+      "leader": "Overknightao",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "09:30": {
+      "leader": "Overknightao",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "10:00": {
+      "leader": "Overknightao",
+      "isAbsence": false,
+      "isDouble": false
+    },
+    "10:30": {
+      "leader": "Overknightao",
+      "isAbsence": false,
+      "isDouble": false
+    }
+  }
+}

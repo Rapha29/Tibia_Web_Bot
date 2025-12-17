@@ -1,39 +1,75 @@
 const express = require('express');
 const httpProxy = require('http-proxy');
 const http = require('http');
+const path = require('path');
 
 const app = express();
 app.use(express.json({ limit: '1mb' }));
 
+// ======================
+// CONFIGURAÇÕES
+// ======================
+const OFFLINE_TIMEOUT = 30 * 1000; // 30 segundos
+
+// ======================
+// ROTAS DE PROXY
+// ======================
 const routes = {
-    'issobra.newcorporation.com.br': 'http://localhost:3001',
-    'newcorporation.com.br': 'http://localhost:3001',
+    'issobra.jowbot.com.br': 'http://localhost:3001',
     'etebra.jowbot.com.br': 'http://localhost:3000',
     'yubra.jowbot.com.br': 'http://localhost:3003',
-    'ustebra.jowbot.com.br': 'http://localhost:3004',
     'luzibra.jowbot.com.br': 'http://localhost:3005',
+    'ustebra.jowbot.com.br': 'http://localhost:3004',
+    'issobra.jowtibia.com.br': 'http://localhost:3001',
+    'etebra.jowtibia.com.br': 'http://localhost:3000',
+    'yubra.jowtibia.com.br': 'http://localhost:3003',
+    'luzibra.jowtibia.com.br': 'http://localhost:3005',
+    'ustebra.jowtibia.com.br': 'http://localhost:3004',
     'bkhealth.claimed.com.br': 'http://localhost:5000',
-    'localhost': 'http://localhost:3001',
-    '127.0.0.1': 'http://localhost:3001'
+    'ironalliance.com.br': 'http://localhost:3006'
 };
 
+// ======================
+// SITES ESTÁTICOS
+// ======================
+const staticSites = {
+    'npeletrica.com.br': '/home/npeletrica/index.html',
+    'www.npeletrica.com.br': '/home/npeletrica/index.html',
+    'fcmixconcreto.com.br': '/home/fcmix/index.html',
+    'www.fcmixconcreto.com.br': '/home/fcmix/index.html',
+};
+
+// ======================
+// HELPERS
+// ======================
+function normalizeHost(req) {
+    return req.headers.host
+        ?.split(':')[0]
+        ?.toLowerCase()
+        ?.replace(/\.$/, '');
+}
+
+// ======================
+// PROXIES E STATUS
+// ======================
 const proxies = {};
 const serverStatus = {};
-const OFFLINE_TIMEOUT = 30 * 1000; // 30s cooldown
 
-for (const host in routes) {
-    const proxy = httpProxy.createProxyServer({ ws: true });
+for (const host of Object.keys(routes)) {
+    const proxy = httpProxy.createProxyServer({
+        ws: true,
+        changeOrigin: true
+    });
 
     proxy.on('error', (err, req, res) => {
-        const hostname = req?.headers?.host?.split(':')[0] || host;
-        console.error(`[PROXY ERRO] ${hostname}:`, err.message);
+        console.error(`[PROXY ERRO] ${host}: ${err.message}`);
 
-        serverStatus[hostname] = {
+        serverStatus[host] = {
             online: false,
             lastCheck: Date.now()
         };
 
-        if (res && res.writeHead && !res.headersSent) {
+        if (res && !res.headersSent) {
             res.writeHead(502, { 'Content-Type': 'text/plain' });
             res.end('Erro: O backend está indisponível.');
         } else if (res?.destroy) {
@@ -45,16 +81,44 @@ for (const host in routes) {
     serverStatus[host] = { online: true, lastCheck: 0 };
 }
 
-// Middleware principal
+// ======================
+// MIDDLEWARE – SITES ESTÁTICOS
+// ======================
+app.use((req, res, next) => {
+    const hostname = normalizeHost(req);
+
+    if (staticSites[hostname]) {
+        const staticFilePath = staticSites[hostname];
+        const staticDir = path.dirname(staticFilePath);
+
+        if (req.path === '/' || req.path === '/index.html') {
+            return res.sendFile(staticFilePath);
+        }
+
+        return express.static(staticDir)(req, res, next);
+    }
+
+    next();
+});
+
+// ======================
+// MIDDLEWARE PRINCIPAL – PROXY HTTP
+// ======================
 app.use((req, res) => {
-    let hostname = req.headers.host?.split(':')[0];
+    const hostname = normalizeHost(req);
+
+    if (!routes[hostname]) {
+        console.warn(`[PROXY] Host sem rota configurada: ${hostname}`);
+        return res.status(404).send('Host não configurado no gateway.');
+    }
+
     const target = routes[hostname];
     const proxy = proxies[hostname];
     const status = serverStatus[hostname];
 
-    if (!target || !proxy) {
-        console.warn(`[PROXY] Host desconhecido: ${hostname}`);
-        return res.status(404).send('Host não encontrado');
+    if (!proxy || !target) {
+        console.error(`[PROXY] Configuração inválida para: ${hostname}`);
+        return res.status(500).send('Erro interno do gateway.');
     }
 
     if (status && !status.online) {
@@ -71,17 +135,27 @@ app.use((req, res) => {
     proxy.web(req, res, { target });
 });
 
-// WebSocket (upgrade)
+// ======================
+// SERVIDOR HTTP
+// ======================
 const server = http.createServer(app);
 
+// ======================
+// WEBSOCKET
+// ======================
 server.on('upgrade', (req, socket, head) => {
-    let hostname = req.headers.host?.split(':')[0];
+    const hostname = normalizeHost(req);
+
+    if (!routes[hostname]) {
+        console.warn(`[WS] Host sem rota configurada: ${hostname}`);
+        return socket.destroy();
+    }
+
     const target = routes[hostname];
     const proxy = proxies[hostname];
     const status = serverStatus[hostname];
 
-    if (!target || !proxy) {
-        console.warn(`[WS] Host desconhecido: ${hostname}`);
+    if (!proxy || !target) {
         return socket.destroy();
     }
 
@@ -99,8 +173,10 @@ server.on('upgrade', (req, socket, head) => {
     proxy.ws(req, socket, head, { target });
 });
 
-// Inicia o servidor na porta 80
+// ======================
+// START
+// ======================
 const PORT = 80;
 server.listen(PORT, () => {
-    console.log(`🔁 Gateway iniciado na porta ${PORT} com circuit breaker de 30s.`);
+    console.log(`🔁 Gateway iniciado na porta ${PORT}`);
 });

@@ -1,13 +1,23 @@
-// Ver sistema de planilhado, gerenciar tempo para planilha ativa
-// opção de horario menor para planilhado
+// bot_logic.js
 
 const fs = require('fs').promises;
 const fsSync = require('fs');
 const path = require('path');
 const fetch = require('node-fetch');
 const crypto = require('crypto');
+const pointsLogic = require('./points_logic.js');
+
 
 const adminRanks = ["leader alliance", "leader", "vice leader"];
+const ADMIN_GROUP_ID = 'suporte'; // ID do seu grupo
+
+function hasAdminAccess(user) {
+    if (!user || !user.character) return false;
+    const hasRank = adminRanks.includes(user.character.guildRank?.toLowerCase());
+    if (hasRank) return true;
+    const userGroups = user.character.groups || [];
+    return userGroups.includes(ADMIN_GROUP_ID);
+}
 
 const DATA_FILES = {
     clientAccounts: path.join(__dirname, 'clientaccount.json'),
@@ -29,12 +39,307 @@ const DATA_FILES = {
     planilhadoDoubleRespawns: path.join(__dirname, 'planilhado_double_respawns.json'),
     planilhadoDoubleSchedule: path.join(__dirname, 'planilhado_double_schedule.json'),
     underattack: path.join(__dirname, 'underattack.json'),
+    bosses: path.join(__dirname, 'bosses.json'),
+    bossData: path.join(__dirname, 'boss_data_local.json'),
+    bossDataGlobal: path.join(__dirname, 'boss_data.json'),
+    bossImagesDir: path.join(__dirname, 'boss_images'), 
+    bossChecks: path.join(__dirname, 'boss_checks.json'),
+    bossCheckHistory: path.join(__dirname, 'boss_check_history.json'),
+    bossFoundHistory: path.join(__dirname, 'boss_found_history.json'),
+    bossFoundToday: path.join(__dirname, 'boss_found_today.json'),
+    bossLocations: path.join(__dirname, 'boss_locations.json'),
+    news: path.join(__dirname, 'news.json'),
+    bossTokens: path.join(__dirname, 'bosstokens.json'), 
 };
 
 let moduleWorldName;
 
 function init(worldName) {
     moduleWorldName = worldName;
+}
+
+function createWikiLink(bossName) {
+    if (!bossName) return '';
+    const urlEncodedName = encodeURIComponent(bossName.replace(/ /g, '_'));
+    return `https://www.tibiawiki.com.br/wiki/${urlEncodedName}`;
+}
+
+
+async function getBossTokens() {
+    return await loadJsonFile(DATA_FILES.bossTokens, { bosses: [] });
+}
+
+async function updateBossTokens(newTokensData) {
+    // newTokensData deve ser um array: [{name: "Boss", tokens: 1}, ...]
+    await saveJsonFile(DATA_FILES.bossTokens, { bosses: newTokensData });
+    return { success: true };
+}
+
+/**
+ * Atualiza o status de um agendamento no planilhado (falta, double).
+ * @param {object} data - Contém type, respawnCode, groupLeader, isAbsence, isDouble.
+ */
+async function updatePlanilhadoAssignmentStatus({ type, respawnCode, groupLeader, isAbsence, isDouble, observation }) { // 1. Adicionado "observation"
+    const scheduleFile = type === 'double' ?
+        DATA_FILES.planilhadoDoubleSchedule : DATA_FILES.planilhadoSchedule;
+    const schedule = await loadJsonFile(scheduleFile, {});
+
+    let assignmentFound = false;
+    if (schedule[respawnCode]) {
+        for (const timeSlot in schedule[respawnCode]) {
+            const assignment = schedule[respawnCode][timeSlot];
+            if (assignment && typeof assignment === 'object' && assignment.leader === groupLeader) {
+                assignment.isAbsence = !!isAbsence;
+                assignment.isDouble = !!isDouble;
+
+                // 2. Adiciona a lógica para atualizar ou remover a observação
+                if (type === 'normal') {
+                    if (observation !== undefined && observation.trim() !== '') {
+                        assignment.observation = observation.trim();
+                    } else {
+                        delete assignment.observation; // Remove o campo se a observação for vazia
+                    }
+                }
+                
+                assignmentFound = true;
+            }
+        }
+    }
+
+    if (assignmentFound) {
+        await saveJsonFile(scheduleFile, schedule);
+        return { success: true };
+    } else {
+        return { success: false, message: 'Agendamento não encontrado.' };
+    }
+}
+
+async function updateLocalBossData() {
+    try {
+        if (!fsSync.existsSync(DATA_FILES.bossImagesDir)) {
+            await fs.mkdir(DATA_FILES.bossImagesDir);
+        }
+
+        const worldConfig = await loadJsonFile(DATA_FILES.worldConfig, { world: 'issobra' });
+        const worldName = (worldConfig.world || 'issobra').toLowerCase();
+        const url = `https://www.tibia-statistic.com/bosshunter/details/${worldName}`;
+        
+        // Headers para simular um navegador real e evitar bloqueios simples
+        const response = await fetch(url, { 
+            headers: { 
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+                'Accept-Language': 'pt-BR,pt;q=0.9' 
+            } 
+        });
+
+        if (!response.ok) {
+            console.error(`[BOSS SYNC] Falha ao buscar dados para o mundo: ${worldConfig.world}. Status: ${response.status}`);
+            return { success: false };
+        }
+        const html = await response.text();
+
+        const generateFilename = (bossName) => {
+             if (!bossName) return 'unknown.gif';
+             return bossName.toLowerCase()
+                .replace(/[^a-z0-9_]+/g, '_')
+                .replace(/_+/g, '_') + '.gif';
+        };
+
+        // 1. Extrair "Chefes Mortos Ontem"
+        // A nova estrutura usa a classe 'killed-boss-card'
+        let killedYesterdayData = [];
+        const killedBlockRegex = /<div class="yesterday-kills-compact[\s\S]*?<\/div>\s*<\/div>/;
+        const killedMatch = html.match(killedBlockRegex);
+        
+        if (killedMatch) {
+            const killedHtml = killedMatch[0];
+            // Regex para capturar cada card dentro do bloco
+            const bossCardRegex = /<a [^>]*class="killed-boss-card" title="([^"]+)">[\s\S]*?<img src="([^"]+)"/g;
+            let match;
+            while ((match = bossCardRegex.exec(killedHtml)) !== null) {
+                const bossName = match[1].trim();
+                const imageUrl = match[2];
+                const filename = generateFilename(bossName);
+                killedYesterdayData.push({ 
+                    name: bossName, 
+                    imageUrl: imageUrl, 
+                    localImage: `boss_images/${filename}` 
+                });
+            }
+        }
+
+        let bossesData = [];
+
+        // 2. Extrair TODOS os bosses (Tabela Principal + Tabela Sem Previsão)
+        // A nova estrutura usa <tr id="boss-nome" ...> para todos os bosses
+        const rowRegex = /<tr id="boss-[^"]+"[\s\S]*?<\/tr>/g;
+        let rowMatch;
+
+        while ((rowMatch = rowRegex.exec(html)) !== null) {
+            const rowHtml = rowMatch[0];
+
+            // -- Extração do Nome --
+            const nameMatch = rowHtml.match(/class="boss-name-link">\s*(.*?)\s*<\/a>/);
+            if (!nameMatch) continue;
+            let bossName = nameMatch[1].trim();
+            // Corrige caracteres HTML encoded se houver (ex: Gaz'haragoth)
+            bossName = bossName.replace(/&#x27;/g, "'").replace(/&amp;/g, "&");
+
+            // -- Extração da Imagem --
+            const imgMatch = rowHtml.match(/class="boss-thumbnail"[\s\S]*?src="([^"]+)"/);
+            const imageUrl = imgMatch ? imgMatch[1] : null;
+
+            // -- Extração da Última Aparição --
+            // Procura pelo texto "X dias atrás" dentro do span days-text
+            const lastSeenMatch = rowHtml.match(/class="days-text">\s*(.*?)\s*<\/span>/);
+            // Ou pega a data bruta antes do span se necessário, mas o texto relativo é útil
+            let lastSeen = lastSeenMatch ? lastSeenMatch[1].trim() : "N/A";
+            // Limpa texto extra se houver
+            lastSeen = lastSeen.replace(' dias atrás', '').replace(' dia atrás', '');
+            if (lastSeen !== "N/A") lastSeen += " dias atrás";
+
+            // -- Extração da Previsão (Data ou "Hoje") --
+            let predictedDate = null;
+            const predictionContainerMatch = rowHtml.match(/class="predicted-date-cell">([\s\S]*?)<\/div>/);
+            
+            if (predictionContainerMatch) {
+                const predContent = predictionContainerMatch[1];
+                // Verifica se tem "Hoje" (highlight-text)
+                if (predContent.includes('highlight-text">Hoje')) {
+                    predictedDate = "Hoje";
+                } else {
+                    // Tenta pegar a data no formato YYYY-MM-DD ou texto dentro de um span simples
+                    const dateMatch = predContent.match(/<span>\s*(\d{4}-\d{2}-\d{2})[^\d<]*<\/span>/);
+                    if (dateMatch) {
+                        predictedDate = dateMatch[1];
+                    }
+                }
+            }
+
+            // -- Extração da Chance e Porcentagem --
+            let chance = "Sem Previsão";
+            let pct = 0;
+
+            const chanceTextMatch = rowHtml.match(/class="chance-text[^"]*">\s*(.*?)\s*<\/span>/);
+            if (chanceTextMatch) {
+                chance = chanceTextMatch[1].trim();
+                // Corrige encoding comum em PT
+                chance = chance.replace(/&#xE9;/g, 'é').replace(/&#xE3;/g, 'ã');
+            }
+
+            const pctMatch = rowHtml.match(/class="chance-percentage[^"]*">\(([^%]+)%\)<\/span>/);
+            if (pctMatch) {
+                pct = parseInt(pctMatch[1], 10);
+            }
+
+            // Se a chance for "Alta probabilidade", normaliza para o padrão do seu sistema
+            if (chance === "Alta probabilidade" || chance === "Alta Chance") chance = "Alta Chance";
+            if (chance === "Probabilidade média" || chance === "Chance Média") chance = "Chance Média";
+            if (chance === "Baixa probabilidade" || chance === "Baixa Chance") chance = "Baixa Chance";
+            if (chance === "Sem chance") chance = "Sem Chance";
+
+            // Se não achou previsão nenhuma, verifica se é da tabela "sem previsão" (chance será Sem Previsão)
+            if (!chanceTextMatch && !pctMatch) {
+                // Verifica se tem data-chance="nochance" no TR
+                if (rowHtml.includes('data-chance="nochance"') || rowHtml.includes('data-chance="lowchance"')) {
+                   // Mantém como Sem Previsão ou ajusta conforme lógica
+                   if(chance === "Sem Previsão" && rowHtml.includes('data-chance="lowchance"')) chance = "Baixa Chance";
+                }
+            }
+
+            const filename = generateFilename(bossName);
+
+            bossesData.push({
+                name: bossName,
+                chance: chance,
+                pct: pct,
+                lastSeen: lastSeen,
+                predictedDate: predictedDate,
+                imageUrl: imageUrl,
+                localImage: `boss_images/${filename}`
+            });
+        }
+
+        // Salva os dados
+        const finalData = {
+            lastUpdated: new Date().toISOString(),
+            killedYesterday: killedYesterdayData,
+            bossList: bossesData
+        };
+
+        await saveJsonFile(DATA_FILES.bossData, finalData);
+        await saveJsonFile(DATA_FILES.bossDataGlobal, finalData);
+        await saveJsonFile(DATA_FILES.bosses, bossesData);
+
+        // Opcional: Baixar imagens novas em background
+        // downloadMissingImages(bossesData).catch(err => console.error("[IMG SYNC] Erro:", err));
+
+        return { success: true };
+
+    } catch (error) {
+        console.error('[BOSS SYNC] Erro crítico ao atualizar dados dos bosses:', error);
+        return { success: false };
+    }
+}
+
+
+// async function downloadMissingImages(bossesData) {
+//     console.log('[IMG SYNC] Verificando e baixando imagens faltantes em segundo plano...');
+//     for (const boss of bossesData) {
+//         // Constrói o caminho completo para a imagem local
+//         const localPath = path.join(__dirname, boss.localImage);
+        
+//         // Verifica se a imagem já existe antes de tentar baixar
+//         if (!fsSync.existsSync(localPath)) {
+//             // A função downloadImage já existe no seu código, vamos usá-la.
+//             await downloadImage(boss.imageUrl, localPath);
+//             // Pequena pausa para não sobrecarregar o servidor de origem das imagens
+//             await new Promise(resolve => setTimeout(resolve, 100));
+//         }
+//     }
+//     console.log('[IMG SYNC] Verificação de imagens em segundo plano concluída.');
+// }
+
+async function adminArchivePointsManually(user, io) {
+if (!hasAdminAccess(user)) {
+            return { success: false, message: "❌ Acesso negado. Apenas líderes podem usar este comando." };
+    }
+
+    const now = new Date();
+    const previousMonth = new Date(now.getFullYear(), now.getMonth() - 1);
+    const previousMonthStr = `${previousMonth.getFullYear()}-${String(previousMonth.getMonth() + 1).padStart(2, '0')}`;
+    const histFilePath = path.join(__dirname, 'points_history', `points_${previousMonthStr}.json`);
+
+    try {
+        await fs.access(histFilePath);
+        return { success: false, message: `❌ O histórico para ${previousMonthStr} já existe. Use este comando apenas se o arquivamento automático falhar.` };
+    } catch (error) {
+        if (error.code === 'ENOENT') {
+            const result = await pointsLogic.archiveCurrentMonth();
+            io.emit('bot:broadcast_notification', { type: 'info', message: 'Um novo histórico de pontos foi criado manualmente por um líder. Um novo mês de pontuação foi iniciado!' });
+            return { success: true, message: `✅ Histórico para ${previousMonthStr} criado e arquivado com sucesso. Pontos do novo mês iniciados.` };
+        } else {
+            console.error(`Erro ao verificar histórico:`, error);
+            return { success: false, message: "❌ Ocorreu um erro interno ao tentar arquivar os pontos." };
+        }
+    }
+}
+
+
+async function deletePlanilhadoGroup({ groupLeader }) {
+    const allGroups = await loadJsonFile(DATA_FILES.planilhadoGroups, []);
+    const initialLength = allGroups.length;
+    const updatedGroups = allGroups.filter(g => g.leader.toLowerCase() !== groupLeader.toLowerCase());
+
+    if (updatedGroups.length < initialLength) {
+        await saveJsonFile(DATA_FILES.planilhadoGroups, updatedGroups);
+        
+        await removeFromPlanilha({ type: 'normal', groupLeader });
+        await removeFromPlanilha({ type: 'double', groupLeader });
+
+        return { success: true };
+    }
+    return { success: false, message: 'Grupo não encontrado.' };
 }
 
 /**
@@ -68,7 +373,6 @@ async function logUnderAttack(data) {
 
 let cachedData = {};
 
-//Adicionar ou remover grupos em massa
 
 /**
  * Adiciona ou remove grupos de uma lista de personagens.
@@ -139,12 +443,10 @@ async function adminRemoveUserFromGroup({ characterName, groupId }) {
 }
 
 async function loadAndCacheData() {
-    console.log('[CACHE-BOT] Carregando ou atualizando dados do bot_logic em memória...');
     try {
         cachedData.respawns = await loadJsonFile(DATA_FILES.respawns, {});
         cachedData.respawnTimes = await loadJsonFile(DATA_FILES.respawnTimes, { "default": 150 });
         cachedData.webGroups = await loadJsonFile(DATA_FILES.webGroups, []);
-        console.log('[CACHE-BOT] Dados do bot_logic carregados com sucesso.');
     } catch(err) {
         console.error('Falha ao carregar dados do bot_logic para o cache:', err);
     }
@@ -152,15 +454,70 @@ async function loadAndCacheData() {
 
 loadAndCacheData();
 
-async function loadJsonFile(filePath, defaultData = {}) { try { if (fsSync.existsSync(filePath)) { const data = await fs.readFile(filePath, 'utf8'); return data.trim() === '' ? defaultData : JSON.parse(data); } await fs.writeFile(filePath, JSON.stringify(defaultData, null, 2)); return defaultData; } catch (error) { console.error(`Erro ao carregar ${filePath}:`, error); return defaultData; } }
-async function saveJsonFile(filePath, data) { try { await fs.writeFile(filePath, JSON.stringify(data, null, 2)); } catch (error) { console.error(`Erro ao salvar ${filePath}:`, error); } }
+async function loadJsonFile(filePath, defaultData = {}) {
+    try {
+        if (fsSync.existsSync(filePath)) {
+            const data = await fs.readFile(filePath, 'utf8');
+            // Se o arquivo existe mas está vazio, retorna default. Se tiver conteúdo, faz o parse.
+            return data.trim() === '' ? defaultData : JSON.parse(data);
+        }
+        // Se o arquivo NÃO existe, cria um novo
+        await fs.writeFile(filePath, JSON.stringify(defaultData, null, 2));
+        return defaultData;
+    } catch (error) {
+        console.error(`ERRO CRÍTICO ao carregar ${filePath}:`, error);
+        // CRUCIAL: Lance o erro para parar a execução e não sobrescrever o banco com vazio
+        throw error; 
+    }
+}
+
+async function saveJsonFile(filePath, data) {
+    const tempFilePath = filePath + '.tmp'; // Define um nome para o arquivo temporário
+    try {
+        // 1. Escreve os novos dados no arquivo temporário.
+        await fs.writeFile(tempFilePath, JSON.stringify(data, null, 2));
+        
+        // 2. Renomeia o arquivo temporário para o nome final. Esta operação é instantânea (atômica).
+        await fs.rename(tempFilePath, filePath);
+    } catch (error) {
+        console.error(`Erro ao salvar atomicamente o arquivo ${filePath}:`, error);
+        // Se ocorrer um erro, tenta remover o arquivo temporário para não deixar lixo.
+        try {
+            if (fsSync.existsSync(tempFilePath)) {
+                await fs.unlink(tempFilePath);
+            }
+        } catch (cleanupError) {
+            console.error(`Erro ao limpar o arquivo temporário ${tempFilePath}:`, cleanupError);
+        }
+    }
+}
+
 function hashPassword(password) { const salt = crypto.randomBytes(16).toString('hex'); const hash = crypto.pbkdf2Sync(password, salt, 1000, 64, 'sha512').toString('hex'); return `${salt}:${hash}`; }
 function verifyPassword(storedPassword, providedPassword) { if (!storedPassword || !storedPassword.includes(':')) return false; const [salt, originalHash] = storedPassword.split(':'); const hash = crypto.pbkdf2Sync(providedPassword, salt, 1000, 64, 'sha512').toString('hex'); return hash === originalHash; }
 function parseCustomTime(timeString) { if (!timeString || !/^\d{1,2}:\d{2}$/.test(timeString)) return null; const parts = timeString.split(':'); return (parseInt(parts[0], 10) * 60) + parseInt(parts[1], 10); }
 function formatMinutesToHHMM(minutes) { if (isNaN(minutes)) return "00:00"; const h = Math.floor(minutes / 60); const m = Math.floor(minutes % 60); return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`; }
 async function getTibiaCharacterInfo(charName) { if (!charName) return null; try { const url = `https://api.tibiadata.com/v4/character/${encodeURIComponent(charName)}`; const response = await fetch(url); if (!response.ok) return null; const data = await response.json(); return data.character?.character || null; } catch (error) { console.error(`Erro ao buscar info de ${charName}:`, error); return null; } }
 async function getGuildName() { const setGuild = await loadJsonFile(DATA_FILES.guildConfig, { guild: 'Exalted' }); return setGuild.guild || 'Exalted'; }
-async function checkTibiaCharacterInGuild(charName) { const guildAliada = await getGuildName(); const url = `https://api.tibiadata.com/v4/guild/${encodeURIComponent(guildAliada)}`; try { const response = await fetch(url); if (!response.ok) return null; const data = await response.json(); if (data.guild?.members) { return data.guild.members.find(member => member.name.toLowerCase() === charName.toLowerCase()); } } catch (error) { console.error("Erro ao buscar guilda:", error); } return null; }
+
+async function checkTibiaCharacterInGuild(charName) {
+    const guildAliada = await getGuildName();
+    const url = `https://api.tibiadata.com/v4/guild/${encodeURIComponent(guildAliada)}`;
+    try {
+        const response = await fetch(url);
+        if (!response.ok) return null; // Retorna NULL se a API falhar (Erro 500, 404, etc)
+        
+        const data = await response.json();
+        // Verifica se a estrutura da guilda existe
+        if (data.guild && data.guild.members) {
+            const member = data.guild.members.find(member => member.name.toLowerCase() === charName.toLowerCase());
+            return member || false; // Retorna o membro OU false (não está na guilda)
+        }
+        return null; // JSON inválido ou incompleto = Erro de API
+    } catch (error) {
+        console.error("Erro ao buscar guilda:", error);
+        return null; // Erro de conexão = Erro de API
+    }
+}
 
 async function getUserMaxTime(registrationData) {
     const respawnTimes = cachedData.respawnTimes;
@@ -254,38 +611,108 @@ async function processConversationReply(reply, user) {
         return { responseText: "Não estou aguardando uma resposta." };
     }
     switch (user.conversationState) {
-        case 'awaiting_reg_name': user.registrationData = { name: reply };
-            user.conversationState = 'awaiting_reg_email'; result.responseText = `Obrigado, ${reply}. Agora, digite seu e-mail:`; break;
-        case 'awaiting_reg_email': if (clientAccounts[reply]) { result.responseText = "❌ Este e-mail já está em uso. Por favor, digite outro e-mail válido:";
-        } else { user.registrationData.email = reply; user.conversationState = 'awaiting_reg_phone'; result.responseText = `Ok. Agora, seu telefone (com DDD):`; } break;
-        case 'awaiting_reg_phone': user.registrationData.phone = reply; user.conversationState = 'awaiting_reg_password'; result.responseText = `Perfeito. Para finalizar, crie uma senha:`; break;
-        case 'awaiting_reg_password': const regData = user.registrationData; clientAccounts[regData.email] = { name: regData.name, phone: regData.phone, passwordHash: hashPassword(reply), tibiaCharacters: [], recoveryToken: null, recoveryTokenExpires: null };
-            await saveJsonFile(DATA_FILES.clientAccounts, clientAccounts); result.responseText = { type: 'actionable_message', text: '✅ Conta criada com sucesso!', actions: [{ buttonText: 'Fazer Login Agora', command_to_run: '!showlogin' }] };
-            user.conversationState = null; user.registrationData = {}; break;
-        case 'awaiting_change_char_name': { const newCharName = reply; const account = user.account;
-            const existingChar = account.tibiaCharacters.find(c => c && c.characterName && c.characterName.toLowerCase() === newCharName.toLowerCase()); if (existingChar) {
-                user.character = existingChar;
+        case 'awaiting_reg_name': 
+            user.registrationData = { name: reply };
+            user.conversationState = 'awaiting_reg_email'; 
+            result.responseText = `Obrigado, ${reply}. Agora, digite seu e-mail:`; 
+            break;
+        case 'awaiting_reg_email': 
+            if (clientAccounts[reply]) { 
+                result.responseText = "❌ Este e-mail já está em uso. Por favor, digite outro e-mail válido:";
+            } else { 
+                user.registrationData.email = reply; 
+                user.conversationState = 'awaiting_reg_phone'; 
+                result.responseText = `Ok. Agora, seu telefone (com DDD):`; 
+            } 
+            break;
+        case 'awaiting_reg_phone': 
+            user.registrationData.phone = reply; 
+            user.conversationState = 'awaiting_reg_password'; 
+            result.responseText = `Perfeito. Para finalizar, crie uma senha:`; 
+            break;
+        case 'awaiting_reg_password': 
+            const regData = user.registrationData; 
+            clientAccounts[regData.email] = { name: regData.name, phone: regData.phone, passwordHash: hashPassword(reply), tibiaCharacters: [], recoveryToken: null, recoveryTokenExpires: null };
+            await saveJsonFile(DATA_FILES.clientAccounts, clientAccounts); 
+            result.responseText = { type: 'actionable_message', text: '✅ Conta criada com sucesso!', actions: [{ buttonText: 'Fazer Login Agora', command_to_run: '!showlogin' }] };
+            user.conversationState = null; 
+            user.registrationData = {}; 
+            break;
+        
+        case 'awaiting_change_char_name': { 
+            const newCharName = reply; 
+            const account = user.account;
+            const existingCharIndex = account.tibiaCharacters.findIndex(c => c && c.characterName && c.characterName.toLowerCase() === newCharName.toLowerCase());
+            
+            if (existingCharIndex > -1) {
+                // --- INÍCIO DA NOVA LÓGICA ---
                 const allAccounts = await loadJsonFile(DATA_FILES.clientAccounts);
-                if (allAccounts[account.email]) {
-                    allAccounts[account.email].activeCharacterName = existingChar.characterName;
-                    await saveJsonFile(DATA_FILES.clientAccounts, allAccounts);
-                }
+                const userAccount = allAccounts[account.email];
 
-                result.responseText = `✅ Sucesso! Você agora está usando o personagem ${existingChar.characterName}.`; result.loginSuccess = true;
-                result.loginData = { account: { name: account.name, email: account.email }, character: existingChar, token: null };
-            } else { const verificationCodes = await loadJsonFile(DATA_FILES.verificationCodes); const codeToUse = crypto.randomBytes(6).toString('hex').toUpperCase().substring(0, 12); verificationCodes[account.email] = codeToUse; await saveJsonFile(DATA_FILES.verificationCodes, verificationCodes);
+                if (userAccount) {
+                    // Remove o personagem da sua posição atual
+                    const charToMove = userAccount.tibiaCharacters.splice(existingCharIndex, 1)[0];
+                    // Adiciona o personagem no início da lista
+                    userAccount.tibiaCharacters.unshift(charToMove);
+                    // Define o novo personagem como o ativo
+                    userAccount.activeCharacterName = charToMove.characterName;
+
+                    await saveJsonFile(DATA_FILES.clientAccounts, allAccounts);
+
+                    // Atualiza a sessão do usuário com os novos dados
+                    user.character = charToMove;
+                    user.account = userAccount;
+
+                    result.responseText = `✅ Sucesso! Você agora está usando o personagem ${charToMove.characterName} como principal.`; 
+                    result.loginSuccess = true;
+                    result.loginData = { account: { name: account.name, email: account.email }, character: charToMove, token: null };
+                }
+                // --- FIM DA NOVA LÓGICA ---
+            } else { 
+                const verificationCodes = await loadJsonFile(DATA_FILES.verificationCodes); 
+                const codeToUse = crypto.randomBytes(6).toString('hex').toUpperCase().substring(0, 12); 
+                verificationCodes[account.email] = codeToUse; 
+                await saveJsonFile(DATA_FILES.verificationCodes, verificationCodes);
                 result.responseText = { type: 'actionable_message', text: `O personagem [b]${newCharName}[/b] não está registrado.\nPara registrá-lo, adicione o código [b]${codeToUse}[/b] ao comentário dele no Tibia.com e clique abaixo.`, actions: [{ buttonText: `Verificar e Registrar ${newCharName}`, command_to_run: `!confirmregister ${newCharName}` }] };
-            } user.conversationState = null; break; }
-        case 'awaiting_char_name': { const characterNameToRegister = reply;
-            const userIdentifier = user.account.email; const verificationCodes = await loadJsonFile(DATA_FILES.verificationCodes); const codeToUse = crypto.randomBytes(6).toString('hex').toUpperCase().substring(0, 12); verificationCodes[userIdentifier] = codeToUse; await saveJsonFile(DATA_FILES.verificationCodes, verificationCodes);
+            } 
+            user.conversationState = null; 
+            break; 
+        }
+
+        case 'awaiting_char_name': { 
+            const characterNameToRegister = reply;
+            const userIdentifier = user.account.email; 
+            const verificationCodes = await loadJsonFile(DATA_FILES.verificationCodes); 
+            const codeToUse = crypto.randomBytes(6).toString('hex').toUpperCase().substring(0, 12); 
+            verificationCodes[userIdentifier] = codeToUse; 
+            await saveJsonFile(DATA_FILES.verificationCodes, verificationCodes);
             result.responseText = { type: 'actionable_message', text: `Ok. Para registrar [b]${characterNameToRegister}[/b], adicione o código [b]${codeToUse}[/b] ao comentário dele no Tibia.com e clique no botão.`, actions: [{ buttonText: `Verificar e Registrar ${characterNameToRegister}`, command_to_run: `!confirmregister ${characterNameToRegister}` }] };
-            user.conversationState = null; break; }
-        case 'awaiting_login_email': user.loginData = { email: reply };
-            user.conversationState = 'awaiting_login_password'; result.responseText = `Ok, agora digite a senha para ${reply}:`; break;
-        case 'awaiting_login_password': { const loginEmail = user.loginData.email;
-            const account = clientAccounts[loginEmail]; if (!account || !verifyPassword(account.passwordHash, reply)) { result.responseText = "❌ Senha inválida. Tente novamente:"; user.conversationState = 'awaiting_login_password';
-            } else { const sessionToken = crypto.randomBytes(32).toString('hex'); if (!account.sessionTokens) { account.sessionTokens = []; } account.sessionTokens.push(sessionToken); await saveJsonFile(DATA_FILES.clientAccounts, clientAccounts);
-                user.account = account; user.account.email = loginEmail;
+            user.conversationState = null; 
+            break; 
+        }
+        case 'awaiting_login_email': 
+            user.loginData = { email: reply };
+            user.conversationState = 'awaiting_login_password'; 
+            result.responseText = `Ok, agora digite a senha para ${reply}:`; 
+            break;
+        case 'awaiting_login_password': { 
+            const loginEmail = user.loginData.email;
+            const account = clientAccounts[loginEmail]; 
+            if (!account || !verifyPassword(account.passwordHash, reply)) { 
+                result.responseText = "❌ Senha inválida. Tente novamente:"; 
+                user.conversationState = 'awaiting_login_password';
+            } else { 
+                const sessionToken = crypto.randomBytes(32).toString('hex'); 
+                if (!account.sessionTokens) { account.sessionTokens = []; }
+                account.sessionTokens.push(sessionToken);
+
+                // Se tiver mais de 3 tokens, remove o mais antigo
+                if (account.sessionTokens.length > 2) {
+                    account.sessionTokens.shift(); 
+}
+                await saveJsonFile(DATA_FILES.clientAccounts, clientAccounts);
+                user.account = account; 
+                user.account.email = loginEmail;
                 
                 let activeChar = null;
                 if (account.activeCharacterName) {
@@ -295,27 +722,68 @@ async function processConversationReply(reply, user) {
                     activeChar = account.tibiaCharacters[0];
                 }
                 user.character = activeChar;
-
                 result.loginSuccess = true;
                 result.loginData = { account: { name: user.account.name, email: user.account.email }, character: user.character, token: sessionToken };
-                if (!user.character) { result.responseText = `Login bem-sucedido! Bem-vindo, ${account.name}.\n\nNotei que você não tem nenhum personagem. Qual o nome do seu personagem principal?`; user.conversationState = 'awaiting_char_name'; } else { result.responseText = `Login bem-sucedido! Bem-vindo, ${account.name}.`;
-                    user.conversationState = null; } } if (result.loginSuccess) { user.loginData = {}; } break;
-            }
-        case 'awaiting_recovery_email': { const email = reply.toLowerCase();
-            if (!clientAccounts[email]) { result.responseText = "❌ E-mail não encontrado. Tente novamente ou crie uma nova conta."; user.conversationState = null;
-            } else { user.recoveryData = { email: email }; user.conversationState = 'awaiting_recovery_name'; result.responseText = `Ok. Agora, digite o seu nome completo, como foi cadastrado:`; } break;
-            }
-        case 'awaiting_recovery_name': { const account = clientAccounts[user.recoveryData.email];
-            if (account.name.toLowerCase() !== reply.toLowerCase()) { result.responseText = "❌ Nome não confere com o registrado para este e-mail. Processo cancelado.";
-                user.conversationState = null; user.recoveryData = {}; } else { user.recoveryData.name = reply; user.conversationState = 'awaiting_recovery_phone'; result.responseText = `Nome confirmado. Por favor, digite o seu telefone (com DDD):`; } break;
-            }
-        case 'awaiting_recovery_phone': { const account = clientAccounts[user.recoveryData.email];
-            if (account.phone !== reply) { result.responseText = "❌ Telefone não confere com o registrado. Processo cancelado."; user.conversationState = null;
-                user.recoveryData = {}; } else { user.conversationState = 'awaiting_new_password'; result.responseText = `✅ Verificação concluída com sucesso! Por favor, crie uma nova senha:`; } break; }
-        case 'awaiting_new_password': { const email = user.recoveryData.email;
-            const account = clientAccounts[email]; account.passwordHash = hashPassword(reply); await saveJsonFile(DATA_FILES.clientAccounts, clientAccounts);
+                if (!user.character) { 
+                    result.responseText = `Login bem-sucedido! Bem-vindo, ${account.name}.\n\nNotei que você não tem nenhum personagem. Qual o nome do seu personagem principal?`; 
+                    user.conversationState = 'awaiting_char_name'; 
+                } else { 
+                    result.responseText = `Login bem-sucedido! Bem-vindo, ${account.name}.`;
+                    user.conversationState = null; 
+                } 
+            } 
+            if (result.loginSuccess) { 
+                user.loginData = {}; 
+            } 
+            break;
+        }
+        case 'awaiting_recovery_email': { 
+            const email = reply.toLowerCase();
+            if (!clientAccounts[email]) { 
+                result.responseText = "❌ E-mail não encontrado. Tente novamente ou crie uma nova conta."; 
+                user.conversationState = null;
+            } else { 
+                user.recoveryData = { email: email }; 
+                user.conversationState = 'awaiting_recovery_name'; 
+                result.responseText = `Ok. Agora, digite o seu nome completo, como foi cadastrado:`; 
+            } 
+            break;
+        }
+        case 'awaiting_recovery_name': { 
+            const account = clientAccounts[user.recoveryData.email];
+            if (account.name.toLowerCase() !== reply.toLowerCase()) { 
+                result.responseText = "❌ Nome não confere com o registrado para este e-mail. Processo cancelado.";
+                user.conversationState = null; 
+                user.recoveryData = {}; 
+            } else { 
+                user.recoveryData.name = reply; 
+                user.conversationState = 'awaiting_recovery_phone'; 
+                result.responseText = `Nome confirmado. Por favor, digite o seu telefone (com DDD):`; 
+            } 
+            break;
+        }
+        case 'awaiting_recovery_phone': { 
+            const account = clientAccounts[user.recoveryData.email];
+            if (account.phone !== reply) { 
+                result.responseText = "❌ Telefone não confere com o registrado. Processo cancelado."; 
+                user.conversationState = null; 
+                user.recoveryData = {}; 
+            } else { 
+                user.conversationState = 'awaiting_new_password'; 
+                result.responseText = `✅ Verificação concluída com sucesso! Por favor, crie uma nova senha:`; 
+            } 
+            break; 
+        }
+        case 'awaiting_new_password': { 
+            const email = user.recoveryData.email;
+            const account = clientAccounts[email]; 
+            account.passwordHash = hashPassword(reply); 
+            await saveJsonFile(DATA_FILES.clientAccounts, clientAccounts);
             result.responseText = { type: 'actionable_message', text: '✅ Senha alterada com sucesso!', actions: [{ buttonText: 'Fazer Login Agora', command_to_run: '!showlogin' }] };
-            user.conversationState = null; user.recoveryData = {}; break; }
+            user.conversationState = null; 
+            user.recoveryData = {}; 
+            break; 
+        }
         case 'awaiting_stream_link': { 
             const link = reply.trim();
             if (!link.toLowerCase().startsWith('http')) {
@@ -336,13 +804,33 @@ async function processConversationReply(reply, user) {
             }
             break;
         }
-        default: result.responseText = "Ocorreu um erro na conversa. Tente novamente.";
-            user.conversationState = null; break;
+
+        case 'awaiting_news_message': {
+            const newsData = {
+                message: reply,
+                author: user.character.characterName,
+                date: new Date().toISOString()
+            };
+            await saveJsonFile(DATA_FILES.news, newsData);
+            user.conversationState = null;
+            result.responseText = "✅ Novidades do dia salvas com sucesso!";
+            result.broadcastType = 'broadcast_notification';
+            result.broadcastPayload = { type: 'info', message: `As novidades do dia foram atualizadas por ${user.character.characterName}. Digite !news para ver.` };
+            break;
+        }
+
+        case 'awaiting_stream_link': {
+            const link = reply.trim();
+        }
+
+        default: 
+            result.responseText = "Ocorreu um erro na conversa. Tente novamente.";
+            user.conversationState = null; 
+            break;
     }
     return result;
 }
 
-// bot_logic.js
 
 async function processCommand(command, args, user, onlinePlayers) {
     const filaRespawns = await loadJsonFile(DATA_FILES.respawnQueue, {});
@@ -356,7 +844,7 @@ async function processCommand(command, args, user, onlinePlayers) {
     const isSuperAdmin = loggedInAccount && superAdmins.includes(loggedInAccount.email);
 
     // Comandos que NÃO exigem que o usuário esteja logado
-    const publicCommands = ['showlogin', 'showregistration', 'recover', 'help'];
+    const publicCommands = ['showlogin', 'showregistration', 'recover', 'help', 'news'];
 
     // Se o usuário NÃO está logado E o comando NÃO é um dos comandos públicos, então exige login
     if (!loggedInAccount && !publicCommands.includes(command)) {
@@ -375,9 +863,124 @@ async function processCommand(command, args, user, onlinePlayers) {
     const registration = { ...loggedInAccount, ...activeCharacter }; // loggedInAccount might be null here, so registration will be {null, ...activeCharacter}
 
     switch (command) {
+
+case "addwz": {
+            if (!hasAdminAccess(user)) {
+                result.responseText = "❌ Apenas administradores podem usar este comando.";
+                return result;
+            }
+
+            try {
+                // Garante que está esperando a função assíncrona terminar
+                const updateResult = await pointsLogic.updateAttendanceForMissedWarzoneDays(); 
+
+                // Adiciona uma verificação para o caso de 'updateResult' ainda ser indefinido
+                if (updateResult && updateResult.message) {
+                    result.responseText = updateResult.message;
+                } else {
+                    console.error('[addwz] pointsLogic.updateAttendanceForMissedWarzoneDays não retornou um objeto válido.');
+                    result.responseText = '⚠️ Ocorreu um erro ao processar a Warzone. Verifique os logs do servidor.';
+                }
+                
+                result.broadcastPointsUpdate = true;
+
+            } catch (error) {
+                console.error('[addwz] Erro ao executar updateAttendanceForMissedWarzoneDays:', error);
+                result.responseText = '❌ Erro interno ao executar o comando !addwz.';
+            }
+            break;
+        }
+
+case "novomes": {
+    if (!hasAdminAccess(user)) { // Ou a verificação de permissão apropriada
+        result.responseText = "❌ Apenas administradores podem usar este comando.";
+        return result;
+    }
+    // Chama a função do points_logic
+    const archiveResult = await pointsLogic.archiveCurrentMonth(); // Garanta que 'pointsLogic' é o objeto/módulo importado
+    result.responseText = archiveResult.message;
+    if (archiveResult.success) {
+        result.broadcastType = 'broadcast_notification';
+        result.broadcastPayload = { type: 'info', message: `O histórico mensal (pontos e warzone) foi arquivado por um líder! Um novo mês começou!` };
+        result.broadcastPointsUpdate = true; // Sinaliza para atualizar o frontend
+    }
+    break;
+}
+
+case "ranking": {
+            if (!hasAdminAccess(user)) { 
+                result.responseText = "❌ Acesso negado. Apenas líderes podem usar este comando.";
+                break;
+            }
+            
+            // Retorna uma mensagem imediata e um gatilho para o server.js
+            result.responseText = "Iniciando sincronia completa de ranks em segundo plano... Isso pode levar vários minutos. Você será notificado no chat quando terminar.";
+            result.triggerAdminSync = true;
+            break;
+        }
+
+case 'warmodeon': {
+    if (!hasAdminAccess(user)) { 
+        result.responseText = "❌ Apenas líderes podem ativar o War Mode.";
+        return result; 
+    }
+    result.responseText = "⚔️ WAR MODE ATIVADO! O painel de guerra agora é restrito à guilda.";
+    // CORREÇÃO AQUI: Mudado de warModeStatus para toggleWarMode
+    result.toggleWarMode = true; 
+    result.broadcastType = 'broadcast_notification';
+    result.broadcastPayload = { type: 'warning', message: "⚔️ WAR MODE ATIVADO! Acesso ao painel restrito." };
+    break;
+}
+
+case 'warmodeoff': {
+    if (!hasAdminAccess(user)) { 
+        result.responseText = "❌ Apenas líderes podem desativar o War Mode.";
+        return result; 
+    }
+    result.responseText = "🛡️ War Mode desativado. Painel liberado.";
+    // CORREÇÃO AQUI: Mudado de warModeStatus para toggleWarMode
+    result.toggleWarMode = false;
+    result.broadcastType = 'broadcast_notification';
+    result.broadcastPayload = { type: 'info', message: "🛡️ War Mode desativado. Painel liberado ao público." };
+    break;
+}
+        
         case "help":
-            result.responseText = `Comandos disponíveis:\n!register -> Inicia o registro.\n!resp [código] [tempo] -> Reserva um respawn.\n!respmaker [código] -> Reserva um respawn para caçar com maker.\n!maker [nome] -> Define o nome do seu maker.\n!respdel [código] -> Libera um respawn.\n!aceitar -> Confirma sua reserva.\n!mp [msg] -> Envia mensagem em massa (líderes).\n!shared [lvl] -> Calcula faixa de XP.\n!stream -> Adiciona/atualiza sua live.\n!removestream -> Remove sua live.\n!recover -> Recupera sua conta.\n!plan [código] -> Assume um respawn planilhado.\n!planilhadoremove [código] [líder] -> Remove um grupo planilhado do respawn.\n!showlogin -> Exibe o formulário de login.\n!showregistration -> Exibe o formulário de registro.`;
+            result.responseText = `[b]Comandos Gerais[/b]
+!help -> Mostra esta lista de comandos.
+!news -> Exibe as novidades do dia.
+!shared [nível] -> Calcula a faixa de XP compartilhada.
+!resp [código] -> Reserva um respawn com tempo padrão.
+!resp [código] [tempo] -> Reserva um respawn com tempo definido.
+ex: !resp A1 1:25
+!respmaker [código] -> Reserva um respawn para caçar com maker.
+!respdel [código] -> Libera um respawn ou sai da fila.
+!respinfo [código] -> Mostra informações sobre um respawn.
+!aceitar -> Confirma a posse de um respawn que você reservou.
+!maker [nome] -> Define o nome do seu personagem maker.
+!plan [código] -> Assume um respawn da planilha.
+
+[b]Comandos de Conta[/b]
+!showlogin -> Inicia o processo de login via chat.
+!showregistration -> Inicia o processo de criação de conta.
+!recover -> Inicia a recuperação de conta.
+!logout -> Desconecta sua conta.
+!register [nome] -> Registra um novo personagem na sua conta.
+!startchangechar -> Troca de personagem principal.
+!stream -> Adiciona ou atualiza o link da sua live.
+!removestream -> Remove o link da sua live.
+
+[b]Comandos de Liderança[/b]
+!mp [mensagem] -> Envia uma mensagem em massa para todos online.
+!hoje -> Define as novidades do dia.
+!ranking -> Atualiza todos os rankings.
+!addwz -> Registra a presença da Warzone para dias anteriores no mês.
+    Obs: Esse comando deve ser usado sempre após eventos que a guild nao fez WZ e no ultimo dia do mes após o registro das presenças da WZ
+!novomes -> Arquiva o ranking e inicia um novo mês de pontuação.
+    obs: Esse comando deve ser usado sempre no ultimo dia do mes após o registro das presenças da WZ e sincronização de experiência`;
             return result;
+
+    
         case "showlogin":
             if (loggedInAccount) {
                 result.responseText = `Você já está conectado como ${loggedInAccount.name}.`;
@@ -400,10 +1003,7 @@ async function processCommand(command, args, user, onlinePlayers) {
             return result;
         case "resetpassword":
             return result;
-        case "stream": // This command requires login, so loggedInAccount should exist here
-            // This command assumes `loggedInAccount` is NOT null.
-            // If it's a public command, it would need alternative identifier source.
-            // For safety, ensure this command is not in `publicCommands` if `loggedInAccount` is required.
+        case "stream": 
             if (!loggedInAccount) { // Defensive check, should be caught by earlier logic, but good for clarity
                 result.responseText = "Erro: Login necessário para usar este comando."; return result;
             }
@@ -515,9 +1115,6 @@ async function processCommand(command, args, user, onlinePlayers) {
             break;
         }
         case "respinfo": {
-            // Does not necessarily require login, but if it relies on activeCharacter, then yes.
-            // For simplicity, let's assume it can be used by anyone, but provides less info if not logged in.
-            // Or, if it uses 'charName' (which can be 'Visitante'), it's okay.
             const userInput = args.join(" ");
             if (!userInput) { result.responseText = "Uso: !respinfo [nome ou código]"; break;
             }
@@ -640,6 +1237,54 @@ async function processCommand(command, args, user, onlinePlayers) {
             await saveJsonFile(DATA_FILES.respawnQueue, filaRespawns);
             break;
         }
+case "phodeuwz": {
+if (!hasAdminAccess(user)) {
+            result.responseText = "❌ Acesso negado. Apenas líderes podem usar este comando.";
+        break;
+    }
+
+    const playersToMark = args.join(" ").split(',').map(name => name.trim()).filter(Boolean);
+
+    let updateResult;
+    if (playersToMark.length === 0) {
+        // Se nenhum nome for fornecido, marca falta para todos
+        updateResult = await pointsLogic.markAllAsAbsentForWarzone();
+    } else {
+        // Se nomes forem fornecidos, marca falta para os específicos
+        updateResult = await pointsLogic.markWarzoneAbsence(playersToMark);
+    }
+
+    result.responseText = updateResult.message;
+    
+    if (updateResult.success) {
+        result.pointsDataUpdate = true;
+    }
+    break;
+}
+
+        case "hoje": {
+            const allowedRanksForNews = ["leader alliance", "leader", "vice leader", "hero"];
+            if (!user.character || !allowedRanksForNews.includes(user.character.guildRank?.toLowerCase())) {
+                result.responseText = "❌ Acesso negado. Apenas Líderes e Heros podem usar este comando.";
+                break;
+            }
+            user.conversationState = 'awaiting_news_message';
+            result.responseText = "Por favor, insira a mensagem com as novidades de hoje:";
+            break;
+        }
+
+        case "news": {
+            const newsData = await loadJsonFile(DATA_FILES.news, {});
+            if (newsData && newsData.message) {
+                const newsDate = new Date(newsData.date);
+                const formattedDate = `${newsDate.toLocaleDateString('pt-BR')} às ${newsDate.toLocaleTimeString('pt-BR')}`;
+                result.responseText = `--- NOVIDADES ---\n\n${newsData.message}\n\nPostado por: ${newsData.author} em ${formattedDate}`;
+            } else {
+                result.responseText = "Nenhuma novidade foi postada hoje.";
+            }
+            break;
+        }
+
         case "planilhadoremove": { // Comando para remover grupo planilhado do respawn (kick)
             if (!loggedInAccount) { result.responseText = "Erro: Login necessário para usar este comando."; return result; }
             const respawnCodeInput = args[0];
@@ -777,9 +1422,9 @@ async function processCommand(command, args, user, onlinePlayers) {
                     break;
                 }
             }
-
-            if (Object.values(filaRespawns).reduce((c, r) => c + (r.current?.clientUniqueIdentifier === userIdentifier) + r.queue.some(u => u.clientUniqueIdentifier === userIdentifier), 0) >= 2 && !isSuperAdmin) {
-                result.responseText += "Limite de 2 respawns atingido.";
+            // Numero de claimeds simultanoes e nexts
+            if (Object.values(filaRespawns).reduce((c, r) => c + (r.current?.clientUniqueIdentifier === userIdentifier) + r.queue.some(u => u.clientUniqueIdentifier === userIdentifier), 0) >= 1 && !isSuperAdmin) {
+                result.responseText += "Limite de 1 respawns atingido.";
                 break;
             }
 
@@ -1142,7 +1787,6 @@ async function adminRemoveCooldown(userIdentifier) {
     if (cooldowns[userIdentifier]) {
         delete cooldowns[userIdentifier];
         await saveJsonFile(DATA_FILES.cooldowns, cooldowns);
-        console.log(`[ADMIN] Cooldown removido para: ${userIdentifier}`);
         return true;
     }
     return false;
@@ -1221,32 +1865,35 @@ async function adminPauseRespawn(respawnCode, isPaused) {
 
     const respawn = fila[key];
     const characterName = respawn.current?.clientNickname || 'N/A';
+    const now = Date.now();
 
     if (isPaused) {
         if (respawn.paused) return; 
         respawn.paused = true;
-        
+        respawn.pausedAt = now; 
+
         if (respawn.waitingForAccept) {
             const acceptanceDeadline = new Date(respawn.startTime).getTime() + (respawn.acceptanceTime * 60 * 1000);
-            const remainingMs = acceptanceDeadline - Date.now();
+            const remainingMs = acceptanceDeadline - now;
             respawn.remainingAcceptanceTimeOnPause = remainingMs > 0 ? remainingMs : 0;
             await logActivity(key, characterName, `PAUSADO (ACEITE)`);
         } else if (respawn.endTime) {
-            const remainingMs = new Date(respawn.endTime).getTime() - Date.now();
+            const remainingMs = new Date(respawn.endTime).getTime() - now;
             respawn.remainingTimeOnPause = remainingMs > 0 ? remainingMs : 0;
             await logActivity(key, characterName, `PAUSOU`);
         }
     } else { 
-        if (!respawn.paused) return; 
+        if (!respawn.paused) return;
         respawn.paused = false;
+        delete respawn.pausedAt; 
 
         if (respawn.hasOwnProperty('remainingAcceptanceTimeOnPause')) {
-            const newStartTime = new Date(Date.now() + respawn.remainingAcceptanceTimeOnPause - (respawn.acceptanceTime * 60 * 1000));
+            const newStartTime = new Date(now + respawn.remainingAcceptanceTimeOnPause - (respawn.acceptanceTime * 60 * 1000));
             respawn.startTime = newStartTime.toISOString();
             delete respawn.remainingAcceptanceTimeOnPause;
             await logActivity(key, characterName, `DESPAUSADO (ACEITE)`);
         } else if (respawn.hasOwnProperty('remainingTimeOnPause')) {
-            const newEndTime = Date.now() + (respawn.remainingTimeOnPause || 0);
+            const newEndTime = now + (respawn.remainingTimeOnPause || 0);
             respawn.endTime = new Date(newEndTime).toISOString();
             delete respawn.remainingTimeOnPause;
             await logActivity(key, characterName, `DESPAUSOU`);
@@ -1257,20 +1904,24 @@ async function adminPauseRespawn(respawnCode, isPaused) {
 
 async function adminPauseAll(isPaused) {
     const fila = await loadJsonFile(DATA_FILES.respawnQueue, {});
+    const now = Date.now();
     for (const key in fila) {
         const respawn = fila[key];
         if (!respawn.current || respawn.waitingForAccept) continue;
+
         if (isPaused) {
             if (respawn.paused) continue;
             respawn.paused = true;
-            const remainingMs = new Date(respawn.endTime).getTime() - Date.now();
+            respawn.pausedAt = now;
+            const remainingMs = new Date(respawn.endTime).getTime() - now;
             respawn.remainingTimeOnPause = remainingMs > 0 ? remainingMs : 0;
         } else {
             if (!respawn.paused) continue;
             respawn.paused = false;
-            const newEndTime = Date.now() + (respawn.remainingTimeOnPause || 0);
+            delete respawn.pausedAt; 
+            const newEndTime = now + (respawn.remainingTimeOnPause || 0);
             respawn.endTime = new Date(newEndTime).toISOString();
-            respawn.remainingTimeOnPause = null;
+            delete respawn.remainingTimeOnPause;
         }
     }
     await saveJsonFile(DATA_FILES.respawnQueue, fila);
@@ -1306,22 +1957,17 @@ async function adminGetCharacterLog(characterName) {
     return { title: `Log para Personagem: ${characterName}`, entries: filteredEntries };
 }
 
-// bot_logic.js
-
 async function adminKickUser({ respawnCode, userToKick, adminName }) {
     const fila = await loadJsonFile(DATA_FILES.respawnQueue, {});
     const key = Object.keys(fila).find(k => k.toLowerCase() === respawnCode.toLowerCase());
     if (!key) return;
     const respawn = fila[key];
 
-    // Caso especial: o usuário a ser kickado é o 'current' e o respawn é planilhado
     if (respawn.current?.clientNickname === userToKick) {
         if (respawn.current.isPlanilhado) {
-            // Se for um respawn planilhado, o "kick" remove o grupo inteiro
             await logActivity(key, userToKick, `Grupo Planilhado removido por ${adminName}`);
-            delete fila[key]; // Remove o respawn planilhado completamente
+            delete fila[key]; 
         } else {
-            // Lógica existente para respawns normais
             await logActivity(key, userToKick, `Removido por ${adminName}`);
             if (respawn.queue.length > 0) {
                 const nextUser = respawn.queue.shift();
@@ -1337,7 +1983,6 @@ async function adminKickUser({ respawnCode, userToKick, adminName }) {
             }
         }
     } else {
-        // Lógica para remover da fila (não muda para planilhados, pois o grupo é "atômico" no current)
         const originalLength = respawn.queue.length;
         respawn.queue = respawn.queue.filter(u => u.clientNickname !== userToKick);
         if (respawn.queue.length < originalLength) {
@@ -1353,6 +1998,7 @@ async function processExpiredRespawns(onlinePlayers) {
     let hasChanges = false; 
     const notifications = [];
     const now = Date.now();
+    const PAUSE_TIME_LIMIT = 15 * 60 * 1000; // 15 minutos em milissegundos
 
     if (!onlinePlayers) {
         console.error("[processExpiredRespawns] Lista de jogadores online não recebida.");
@@ -1361,19 +2007,44 @@ async function processExpiredRespawns(onlinePlayers) {
 
     for (const key in fila) {
         const respawn = fila[key];
+        
+        // Lógica de despausa automática para qualquer respawn pausado
+        if (respawn.paused && respawn.pausedAt) {
+            if (now - respawn.pausedAt > PAUSE_TIME_LIMIT) {
+                respawn.paused = false;
+                delete respawn.pausedAt;
+                
+                // Restaura o tempo
+                if (respawn.hasOwnProperty('remainingAcceptanceTimeOnPause')) {
+                    const newStartTime = new Date(now + respawn.remainingAcceptanceTimeOnPause - (respawn.acceptanceTime * 60 * 1000));
+                    respawn.startTime = newStartTime.toISOString();
+                    delete respawn.remainingAcceptanceTimeOnPause;
+                    respawn.waitingForAccept = true;
+                    respawn.acceptanceTime = 10;
+                } else if (respawn.hasOwnProperty('remainingTimeOnPause')) {
+                    const newEndTime = now + (respawn.remainingTimeOnPause || 0);
+                    respawn.endTime = new Date(newEndTime).toISOString();
+                    delete respawn.remainingTimeOnPause;
+                    respawn.waitingForAccept = false;
+                    respawn.time = respawn.current.allocatedTime;
+                }
+                
+                hasChanges = true;
+                await logActivity(key, respawn.current?.clientNickname || 'N/A', `Despausado automaticamente`);
+            }
+        }
+
         if (!respawn || respawn.paused) continue; 
 
         let needsUpdate = false;
 
         if (respawn.current && !respawn.waitingForAccept) {
-            
             let userIsOnline = false;
-            let characterToCheckForInactivity = respawn.current.clientNickname; // Padrão
+            let characterToCheckForInactivity = respawn.current.clientNickname;
 
             if (respawn.current.isPlanilhado && respawn.current.groupMembers) {
-                // Para respawns planilhados, verifica se algum membro do grupo está online
                 userIsOnline = respawn.current.groupMembers.some(member => onlinePlayers.has(member.name));
-                characterToCheckForInactivity = respawn.current.groupLeader; // Para fins de log de inatividade, o líder é o principal
+                characterToCheckForInactivity = respawn.current.groupLeader;
             } else if (respawn.current.isMakerHunt && respawn.current.makerName) {
                 userIsOnline = onlinePlayers.has(respawn.current.makerName);
                 characterToCheckForInactivity = respawn.current.makerName;
@@ -1382,7 +2053,6 @@ async function processExpiredRespawns(onlinePlayers) {
             }
 
             const offlineTimeLimit = (respawn.current.acceptedOffline ? 16 : 15) * 60 * 1000;
-
             if (!userIsOnline) {
                 if (!respawn.current.offlineSince) {
                     respawn.current.offlineSince = now;
@@ -1390,11 +2060,7 @@ async function processExpiredRespawns(onlinePlayers) {
                 } else if (now - respawn.current.offlineSince > offlineTimeLimit) {
                     const reason = respawn.current.isPlanilhado ? `inatividade do grupo planilhado (${characterToCheckForInactivity})` : (respawn.current.isMakerHunt ? `inatividade do maker (${characterToCheckForInactivity})` : 'inatividade');
                     await logActivity(key, respawn.current.clientNickname, `Removido por ${reason}`);
-                    notifications.push({ 
-                        recipientEmail: respawn.current.clientUniqueIdentifier, 
-                        type: 'private_message', 
-                        message: `❌ Você foi removido do respawn ${key.toUpperCase()} por inatividade.` 
-                    });
+                    notifications.push({ recipientEmail: respawn.current.clientUniqueIdentifier, type: 'private_message', message: `❌ Você foi removido do respawn ${key.toUpperCase()} por inatividade.` });
                     needsUpdate = true;
                 }
             } else {
@@ -1410,11 +2076,7 @@ async function processExpiredRespawns(onlinePlayers) {
             const acceptanceDeadline = new Date(respawn.startTime).getTime() + (respawn.acceptanceTime * 60 * 1000);
             if (now > acceptanceDeadline) { 
                 await logActivity(key, respawn.current.clientNickname, `Não aceitou`);
-                notifications.push({ 
-                    recipientEmail: respawn.current.clientUniqueIdentifier, 
-                    type: 'private_message', 
-                    message: `❌ Você não aceitou o respawn ${key.toUpperCase()} a tempo e foi removido.` 
-                });
+                notifications.push({ recipientEmail: respawn.current.clientUniqueIdentifier, type: 'private_message', message: `❌ Você não aceitou o respawn ${key.toUpperCase()} a tempo e foi removido.` });
                 needsUpdate = true; 
             } else {
                 const minutesRemaining = Math.ceil((acceptanceDeadline - now) / (60 * 1000));
@@ -1436,14 +2098,9 @@ async function processExpiredRespawns(onlinePlayers) {
         else if (respawn.endTime && now > new Date(respawn.endTime).getTime()) {
             if (respawn.current) {
                 await logActivity(key, respawn.current.clientNickname, `Tempo finalizado`);
-                notifications.push({ 
-                    recipientEmail: respawn.current.clientUniqueIdentifier, 
-                    type: 'private_message', 
-                    message: `Seu tempo no respawn ${key.toUpperCase()} acabou!` 
-                });
-                // Aplica cooldown apenas se não for um respawn planilhado (planilhados não têm cooldown de saída)
+                notifications.push({ recipientEmail: respawn.current.clientUniqueIdentifier, type: 'private_message', message: `Seu tempo no respawn ${key.toUpperCase()} acabou!` });
                 if (!respawn.current.isPlanilhado) {
-                    cooldowns[respawn.current.clientUniqueIdentifier] = Date.now() + 10 * 60 * 1000; 
+                    cooldowns[respawn.current.clientUniqueIdentifier] = Date.now() + 10 * 60 * 1000;
                 }
             }
             needsUpdate = true;
@@ -1574,7 +2231,6 @@ async function adminRemoveRelation({ type, name }) {
 }
 
 async function syncAllRelations() {
-    console.log('[SYNC] Iniciando sincronização de relações...');
     const relations = await getRelationsData(); 
     let newPlayersAllies = [], newPlayersEnemies = [], newPlayersHunteds = []; 
     const processedNames = new Set(); 
@@ -1607,7 +2263,6 @@ async function syncAllRelations() {
     relations.players_hunteds = newPlayersHunteds; 
     relations.last_sync = new Date().toISOString(); 
     await saveJsonFile(DATA_FILES.relations, relations); 
-    console.log(`[SYNC] Sincronização concluída.`); 
     return relations; 
 }
 
@@ -1658,6 +2313,26 @@ async function adminAddPlusTime({ identifier, durationInDays }) {
     return { success: false, message: "Usuário não encontrado." };
 }
 
+// /**
+//  * Baixa uma imagem de uma URL e a salva localmente.
+//  * @param {string} url A URL da imagem a ser baixada.
+//  * @param {string} filepath O caminho local onde a imagem será salva.
+//  */
+// async function downloadImage(url, filepath) {
+//     try {
+//         const response = await fetch(url);
+//         if (!response.ok) {
+//             console.error(`[IMG SYNC] Falha ao baixar imagem: ${url}. Status: ${response.statusText}`);
+//             return;
+//         }
+//         const buffer = await response.buffer();
+//         await fs.writeFile(filepath, buffer);
+//         console.log(`[IMG SYNC] Imagem baixada: ${path.basename(filepath)}`);
+//     } catch (error) {
+//         console.error(`[IMG SYNC] Erro ao baixar ${url}:`, error);
+//     }
+// }
+
 async function processExpiredPlusMembers() {
     const clientAccounts = await loadJsonFile(DATA_FILES.clientAccounts, {});
     let changesMade = false;
@@ -1667,7 +2342,6 @@ async function processExpiredPlusMembers() {
         if (account.tibiaCharacters && account.tibiaCharacters.length > 0) {
             const char = account.tibiaCharacters[0];
             if (char.plusExpiresAt && new Date(char.plusExpiresAt) < now) {
-                console.log(`[EXPIRAÇÃO] Acesso Plus de ${char.characterName} (${email}) expirou.`);
                 char.plusExpiresAt = null;
                 changesMade = true;
             }
@@ -1687,65 +2361,61 @@ async function verifyUserGuildStatus(user) {
 
     let changesMade = false;
     for (const char of account.tibiaCharacters) {
-        // Obter informações mais recentes do personagem
+        // Tenta buscar dados. Se a API falhar, retorna NULL.
         const charInfoFromApi = await getTibiaCharacterInfo(char.characterName);
 
         if (charInfoFromApi) {
+            // --- SUCESSO NA API DO PERSONAGEM ---
+            
             // 1. Atualizar Guild Rank
+            // A função checkTibiaCharacterInGuild também precisa ser robusta (veja a correção abaixo)
             const guildMember = await checkTibiaCharacterInGuild(charInfoFromApi.name);
-            if (guildMember) {
+
+            if (guildMember === null) {
+                // API da Guilda falhou: NÃO FAZ NADA. Mantém o rank antigo.
+                console.warn(`[SYNC LOGIN] Falha na API de guilda para ${char.characterName}. Mantendo dados antigos.`);
+            } else if (guildMember) {
+                // Jogador ESTÁ na guilda
                 if (char.guildRank !== guildMember.rank) {
-                    console.log(`[SYNC LOGIN] Rank de ${char.characterName} atualizado para ${guildMember.rank}`);
                     char.guildRank = guildMember.rank;
                     changesMade = true;
                 }
             } else {
-                // Se não está mais na guilda, remove privilégios
-                if (char.guildRank !== 'Left Guild') {
-                    console.log(`[SYNC LOGIN] ${char.characterName} não está mais na guilda. Removendo privilégios.`);
+                // Jogador NÃO ESTÁ na guilda (retornou false, não null)
+                // Só altera se ele tinha algum rank antes, para evitar spam de log
+                if (char.guildRank && char.guildRank !== 'Left Guild' && char.guildRank !== 'Not Found' && char.guildRank !== 'N/A') {
                     char.guildRank = 'Left Guild';
                     changesMade = true;
                 }
             }
 
-            // 2. Atualizar Level do Personagem
+            // 2. Atualizar Level
             if (char.level !== charInfoFromApi.level) {
-                console.log(`[SYNC LOGIN] Level de ${char.characterName} atualizado de ${char.level} para ${charInfoFromApi.level}`);
                 char.level = charInfoFromApi.level;
                 changesMade = true;
             }
-
-            // 3. (Opcional) Atualizar Vocação, Mundo, etc., se desejar
+            // 3. Atualizar Vocação
             if (char.vocation !== charInfoFromApi.vocation) {
-                console.log(`[SYNC LOGIN] Vocação de ${char.characterName} atualizada para ${charInfoFromApi.vocation}`);
                 char.vocation = charInfoFromApi.vocation;
-                changesMade = true;
-            }
-            if (char.world !== charInfoFromApi.world) {
-                console.log(`[SYNC LOGIN] Mundo de ${char.characterName} atualizado para ${charInfoFromApi.world}`);
-                char.world = charInfoFromApi.world;
                 changesMade = true;
             }
 
         } else {
-            // Se não for possível obter informações da API, marcar como "Desconhecido" ou "Não encontrado"
-            // Isso pode ser útil para identificar personagens que foram deletados ou renomeados
-            if (char.guildRank !== 'Not Found' || char.level !== 'N/A') { // Adicionado check para N/A
-                console.log(`[SYNC LOGIN] ${char.characterName} não encontrado na API. Marcando como 'Not Found'.`);
-                char.guildRank = 'Not Found';
-                char.level = 'N/A'; // N/A ou 0, dependendo de como você quer exibir
-                char.vocation = 'N/A';
-                char.world = 'N/A';
-                changesMade = true;
-            }
+            // --- FALHA NA API DO PERSONAGEM ---
+            // O código antigo marcava 'Not Found' aqui.
+            // A CORREÇÃO é: Não fazer nada. Se a API caiu, mantemos o último status conhecido.
+            console.warn(`[SYNC LOGIN] Não foi possível buscar dados de ${char.characterName} (API instável?). Mantendo dados antigos.`);
+            
+            // Se quiser marcar 'Not Found' apenas se tiver certeza absoluta (ex: 404), 
+            // precisaria alterar o getTibiaCharacterInfo para retornar status. 
+            // Por segurança, removemos a linha que seta 'Not Found' indiscriminadamente.
         }
     }
 
     if (changesMade) {
         await saveJsonFile(DATA_FILES.clientAccounts, clientAccounts);
-        // Se a conta foi atualizada, atualize o objeto 'user' na sessão
+        // Atualiza a sessão atual em memória
         user.account = account;
-        // Certifique-se de que user.character aponta para o objeto atualizado
         user.character = account.tibiaCharacters.find(c => c.characterName === user.character.characterName) || account.tibiaCharacters[0];
     }
 }
@@ -1843,11 +2513,9 @@ async function createOrUpdatePlanilhadoGroup(leaderName, memberNames) {
     return { success: true, message: 'Grupo de planilhado atualizado com sucesso.' };
 }
 
-
-async function assignToPlanilha({ type = 'normal', respawnCode, groupLeader, startTime, duration }) {
+async function assignToPlanilha({ type = 'normal', respawnCode, groupLeader, startTime, duration, observation }) { // 1. Adicionado 'observation' aqui
     if (!startTime || typeof startTime.split !== 'function' || !duration) {
-        console.error('[ERRO PLANILHA] Tentativa de agendamento com dados inválidos:', { respawnCode, groupLeader, startTime, duration });
-        return { success: false, message: 'Dados inválidos para o agendamento. Hora de início ou duração ausente.' };
+        return { success: false, message: 'Dados inválidos para o agendamento.' };
     }
 
     const scheduleFile = type === 'double' ? DATA_FILES.planilhadoDoubleSchedule : DATA_FILES.planilhadoSchedule;
@@ -1873,13 +2541,25 @@ async function assignToPlanilha({ type = 'normal', respawnCode, groupLeader, sta
     }
 
     for (const slot of timeSlots) {
-        if (schedule[respawnCode][slot] && schedule[respawnCode][slot] !== groupLeader) {
-            return { success: false, message: `Conflito de horário! O slot ${slot} para ${respawnCode} já está ocupado por ${schedule[respawnCode][slot]}.` };
+        if (schedule[respawnCode][slot] && schedule[respawnCode][slot].leader !== groupLeader) {
+            return { success: false, message: `Conflito de horário! O slot ${slot} já está ocupado por ${schedule[respawnCode][slot].leader}.` };
         }
     }
-
+    
     for (const slot of timeSlots) {
-        schedule[respawnCode][slot] = groupLeader;
+        // 2. Criamos o objeto base do agendamento
+        const assignmentData = {
+            leader: groupLeader,
+            isAbsence: false,
+            isDouble: false
+        };
+
+        // 3. Adicionamos a observação APENAS se o tipo for 'normal' e a observação não for vazia
+        if (type === 'normal' && observation) {
+            assignmentData.observation = observation;
+        }
+
+        schedule[respawnCode][slot] = assignmentData;
     }
 
     await saveJsonFile(scheduleFile, schedule);
@@ -1893,7 +2573,9 @@ async function removeFromPlanilha({ type = 'normal', respawnCode, groupLeader })
 
     if (schedule[respawnCode]) {
         for (const timeSlot in schedule[respawnCode]) {
-            if (schedule[respawnCode][timeSlot] === groupLeader) {
+            const assignment = schedule[respawnCode][timeSlot];
+            
+            if (assignment && typeof assignment === 'object' && assignment.leader === groupLeader) {
                 delete schedule[respawnCode][timeSlot];
                 itemsRemoved = true;
             }
@@ -1905,7 +2587,8 @@ async function removeFromPlanilha({ type = 'normal', respawnCode, groupLeader })
         return { success: true };
     }
     
-    return { success: true};
+    // Retorna 'false' se nada foi removido, para um feedback mais preciso.
+    return { success: false, message: 'Nenhum agendamento encontrado para este líder neste respawn.' };
 }
 
 async function adminUpdatePlanilhadoRespawns({ normal, double }) {
@@ -1917,6 +2600,452 @@ async function adminUpdatePlanilhadoRespawns({ normal, double }) {
     }
     return { success: true };
 }
+
+/**
+ * Extrai o nome base de um boss (ex: "Midnight Panther (Sul)" -> "Midnight Panther").
+ * @param {string} locationSpecificName O nome completo do boss.
+ * @returns {string} O nome base do boss.
+ */
+function parseBaseBossName(locationSpecificName) {
+    if (!locationSpecificName) return '';
+    // Tenta encontrar o último " (" que indica uma localização
+    const match = locationSpecificName.match(/^(.*?)\s\(/);
+    // Se encontrar, retorna a parte antes do parêntese (o nome base)
+    // Se não encontrar, retorna o nome original (é um boss sem localização)
+    return match ? match[1].trim() : locationSpecificName;
+}
+
+
+// Substitua a função getBossesData [referência: source 1810] pela seguinte:
+async function getBossesData() {
+    const bossData = await loadJsonFile(DATA_FILES.bossData, { killedYesterday: [], bossList: [] });
+    const bossChecks = await loadJsonFile(DATA_FILES.bossChecks, {});
+    const checkHistory = await loadJsonFile(DATA_FILES.bossCheckHistory, {});
+    const foundHistory = await loadJsonFile(DATA_FILES.bossFoundHistory, {});
+    const foundToday = await loadJsonFile(DATA_FILES.bossFoundToday, {});
+    const bossLocations = await loadJsonFile(DATA_FILES.bossLocations, {}); // Carrega o novo arquivo
+
+    const now = new Date();
+    now.setHours(now.getHours() - 5);
+    const gameDayString = now.toISOString().split('T')[0];
+
+    const mergedBossList = []; // Lista final
+
+    // Processa a lista de bosses vinda do tibia-statistic
+    for (const boss of (bossData.bossList || [])) {
+        const locations = bossLocations[boss.name];
+
+        if (locations && locations.length > 0) {
+            // CASO 1: Boss com MÚLTIPLOS locais (ex: Midnight Panther)
+            for (const loc of locations) {
+                const locationSpecificName = `${boss.name} (${loc.spotName})`;
+                
+                const foundRecord = foundToday[locationSpecificName];
+                let isFoundToday = false;
+                let foundBy = null;
+                let foundAt = null;
+
+                if (foundRecord && foundRecord.timestamp) {
+                    const foundDate = new Date(foundRecord.timestamp);
+                    foundDate.setHours(foundDate.getHours() - 5);
+                    const foundGameDayString = foundDate.toISOString().split('T')[0];
+
+                    if (foundGameDayString === gameDayString) {
+                        isFoundToday = true;
+                        foundBy = foundRecord.finder;
+                        foundAt = foundRecord.timestamp;
+                    }
+                }
+
+                // Cria uma entrada "clone" para este local específico
+                mergedBossList.push({
+                    ...boss, // Copia dados base (chance, pct, lastSeen, etc.)
+                    name: locationSpecificName, // Define o nome completo
+                    baseName: boss.name, // Armazena o nome base
+                    wikiLink: loc.wikiLink, // Usa o link do local
+                    lastCheck: bossChecks[locationSpecificName] || null, // Check é por local
+                    isFoundToday: isFoundToday, // "Found" é por local (mas será sincronizado)
+                    foundBy: foundBy,
+                    foundAt: foundAt
+                });
+            }
+        } else {
+            // CASO 2: Boss normal (sem locais definidos no JSON)
+            const foundRecord = foundToday[boss.name];
+            let isFoundToday = false;
+            let foundBy = null;
+            let foundAt = null;
+
+            if (foundRecord && foundRecord.timestamp) {
+                const foundDate = new Date(foundRecord.timestamp);
+                foundDate.setHours(foundDate.getHours() - 5);
+                const foundGameDayString = foundDate.toISOString().split('T')[0];
+
+                if (foundGameDayString === gameDayString) {
+                    isFoundToday = true;
+                    foundBy = foundRecord.finder;
+                    foundAt = foundRecord.timestamp;
+                }
+            }
+
+            mergedBossList.push({
+                ...boss,
+                baseName: boss.name, // O nome base é ele mesmo
+                wikiLink: createWikiLink(boss.name), // Usa o link padrão
+                lastCheck: bossChecks[boss.name] || null,
+                isFoundToday: isFoundToday,
+                foundBy: foundBy,
+                foundAt: foundAt
+            });
+        }
+    }
+
+    // 1. Ranking de Checks (não precisa de alteração, pois o history já tem os nomes corretos)
+    const checkCounts = {};
+    for (const boss in checkHistory) {
+        for (const check of checkHistory[boss]) {
+            checkCounts[check.checker] = (checkCounts[check.checker] || 0) + 1;
+        }
+    }
+    const checkRanking = Object.entries(checkCounts)
+        .map(([name, count]) => ({ name, count }))
+        .sort((a, b) => b.count - a.count);
+
+    // 2. Ranking de Bosses Encontrados (não precisa de alteração)
+    const foundCounts = {};
+    for (const boss in foundHistory) {
+        for (const found of foundHistory[boss]) {
+            foundCounts[found.finder] = (foundCounts[found.finder] || 0) + 1;
+        }
+    }
+    const foundRanking = Object.entries(foundCounts)
+        .map(([name, count]) => ({ name, count }))
+        .sort((a, b) => b.count - a.count);
+
+    return {
+        lastUpdated: bossData.lastUpdated,
+        killedYesterday: bossData.killedYesterday || [],
+        bossList: mergedBossList, // Retorna a nova lista "explodida"
+        checkRanking: checkRanking,
+        foundRanking: foundRanking
+    };
+}
+
+async function recordBossFound({ bossName, characterName, deathTime, tokens, observation }) {
+    const timestamp = new Date().toISOString();
+    const foundData = {
+        finder: characterName,
+        timestamp,
+        deathTime,
+        tokens,
+        observation
+    };
+
+    const bossLocations = await loadJsonFile(DATA_FILES.bossLocations, {});
+    
+    // 1. Descobrir o nome base do boss
+    const baseName = parseBaseBossName(bossName); // Usa a nova helper
+    
+    const bossesToMarkAsFound = [];
+
+    // 2. Verificar se o nome base está no
+    if (bossLocations[baseName]) {
+        // Se sim, pegar todos os seus locais
+        for (const loc of bossLocations[baseName]) {
+            bossesToMarkAsFound.push(`${baseName} (${loc.spotName})`);
+        }
+    } else {
+        // Se não, é um boss normal, marcar apenas ele
+        bossesToMarkAsFound.push(bossName);
+    }
+
+    // 3. Carregar os arquivos de histórico e "found today"
+    const history = await loadJsonFile(DATA_FILES.bossFoundHistory, {});
+    const foundToday = await loadJsonFile(DATA_FILES.bossFoundToday, {});
+
+    // 4. Iterar sobre a lista de bosses a marcar (pode ser 1 ou vários)
+    for (const nameToMark of bossesToMarkAsFound) {
+        // Adiciona ao histórico geral
+        if (!history[nameToMark]) {
+            history[nameToMark] = [];
+        }
+        history[nameToMark].unshift(foundData);
+        if (history[nameToMark].length > 50) { // Limita o histórico
+            history[nameToMark] = history[nameToMark].slice(0, 50);
+        }
+        
+        // Adiciona ao "found today"
+        foundToday[nameToMark] = { finder: characterName, timestamp: timestamp };
+    }
+
+    // 5. Salvar os arquivos
+    await saveJsonFile(DATA_FILES.bossFoundHistory, history);
+    await saveJsonFile(DATA_FILES.bossFoundToday, foundToday);
+
+    return { success: true };
+}
+
+async function recordBossCheck({ bossName, characterName }) {
+    if (!bossName || !characterName) {
+        return { success: false, message: "Nome do boss ou do personagem ausente." };
+    }
+    const timestamp = new Date().toISOString();
+    const checkData = {
+        checker: characterName,
+        timestamp: timestamp
+    };
+
+    // 1. Atualiza o último check (comportamento atual)
+    const bossChecks = await loadJsonFile(DATA_FILES.bossChecks, {});
+    bossChecks[bossName] = checkData;
+    await saveJsonFile(DATA_FILES.bossChecks, bossChecks);
+
+    // 2. Adiciona ao histórico
+    const history = await loadJsonFile(DATA_FILES.bossCheckHistory, {});
+    if (!history[bossName]) {
+        history[bossName] = [];
+    }
+    history[bossName].unshift(checkData); // Adiciona no início do array
+
+    // Limita o histórico aos últimos 50 checks por boss
+    if (history[bossName].length > 50) {
+        history[bossName] = history[bossName].slice(0, 50);
+    }
+    
+    await saveJsonFile(DATA_FILES.bossCheckHistory, history);
+
+    return { success: true };
+}
+
+async function getBossHistory(bossName) {
+    if (!bossName) return [];
+
+    const checkHistory = await loadJsonFile(DATA_FILES.bossCheckHistory, {});
+    const foundHistory = await loadJsonFile(DATA_FILES.bossFoundHistory, {});
+
+    const checks = (checkHistory[bossName] || []).map(c => ({ ...c, type: 'check' }));
+    const founds = (foundHistory[bossName] || []).map(f => ({ ...f, type: 'found' }));
+
+    const combinedHistory = [...checks, ...founds];
+    combinedHistory.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+    return combinedHistory.slice(0, 100); // Limita o histórico combinado
+}
+
+async function getCheckerHistory(characterName) {
+    if (!characterName) {
+        return [];
+    }
+    const history = await loadJsonFile(DATA_FILES.bossCheckHistory, {});
+    const checkerHistory = [];
+
+    for (const bossName in history) {
+        for (const check of history[bossName]) {
+            if (check.checker.toLowerCase() === characterName.toLowerCase()) {
+                checkerHistory.push({
+                    bossName: bossName,
+                    timestamp: check.timestamp
+                });
+            }
+        }
+    }
+
+    // Ordena os checks do mais recente para o mais antigo
+    checkerHistory.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+    return checkerHistory;
+}
+
+
+async function getFinderHistory(characterName) {
+    if (!characterName) {
+        return [];
+    }
+    const history = await loadJsonFile(DATA_FILES.bossFoundHistory, {});
+    const finderHistory = [];
+
+    for (const bossName in history) {
+        for (const found of history[bossName]) {
+            if (found.finder.toLowerCase() === characterName.toLowerCase()) {
+                finderHistory.push({
+                    bossName: bossName,
+                    ...found // Inclui todos os outros dados do evento (timestamp, tokens, etc)
+                });
+            }
+        }
+    }
+
+    // Ordena os registros do mais recente para o mais antigo
+    finderHistory.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+    return finderHistory;
+}
+
+// bot_logic.js
+
+/**
+ * Sincroniza todos os usuários no clientaccount.json com a API do Tibia.
+ * [MODIFICADO] Envia progresso em tempo real (sem throttling) para o socket do admin.
+ * @param {object} io - A instância do Socket.IO.
+ * @param {string} socketId - O ID do socket do admin que requisitou.
+ */
+async function adminSyncAllUsers(io, socketId) {
+    const clientAccounts = await loadJsonFile(DATA_FILES.clientAccounts, {});
+    let changesMade = false;
+    let updatedCount = 0;
+    let leftCount = 0;
+    let apiErrorCount = 0;
+    const guildName = await getGuildName();
+
+    const totalAccounts = Object.keys(clientAccounts).length;
+    let currentAccountIndex = 0;
+
+    const startMessage = ` Iniciando varredura de ${totalAccounts} contas para a guilda: ${guildName}...`;
+    console.log(startMessage);
+    if (io && socketId) {
+        io.to(socketId).emit('bot:response', startMessage);
+    }
+
+    for (const email in clientAccounts) {
+        currentAccountIndex++; // Incrementa por conta
+        const account = clientAccounts[email];
+        if (!account.tibiaCharacters || account.tibiaCharacters.length === 0) continue;
+
+        // Itera por todos os personagens da conta
+        for (const char of account.tibiaCharacters) {
+            if (!char || !char.characterName) continue;
+
+            const progressMessage = ` ${currentAccountIndex} de ${totalAccounts}... (${char.characterName})`;
+            if (io && socketId) {
+                 io.to(socketId).emit('bot:response', progressMessage);
+            }
+            console.log(progressMessage); // Mantém o log no console
+
+            const charInfoFromApi = await getTibiaCharacterInfo(char.characterName);
+            
+            if (charInfoFromApi) {
+                const guildMember = await checkTibiaCharacterInGuild(charInfoFromApi.name);
+                
+                if (guildMember) {
+                    // CASO 1: Personagem está na guilda
+                    if (char.guildRank !== guildMember.rank) {
+                        const updateMessage = ` Rank de ${char.characterName} atualizado para: ${guildMember.rank}`;
+                        if (io && socketId) io.to(socketId).emit('bot:response', updateMessage); // Envia para o chat
+                        
+                        char.guildRank = guildMember.rank;
+                        changesMade = true;
+                        updatedCount++;
+                    }
+                } else {
+                    // CASO 2: Personagem existe, mas NÃO está na guilda
+                    if (char.guildRank !== 'Left Guild' && char.guildRank !== 'Not Found') {
+                        const leftMessage = ` ${char.characterName} não está mais na guilda. Marcando.`;
+                        console.log(leftMessage);
+                        if (io && socketId) io.to(socketId).emit('bot:response', leftMessage); // Envia para o chat
+
+                        char.guildRank = 'Left Guild';
+                        changesMade = true;
+                        leftCount++;
+                    }
+                }
+            } else {
+                // CASO 3: Personagem NÃO encontrado na API
+                if (char.guildRank !== 'Not Found') {
+                    const notFoundMessage = ` ${char.characterName} não encontrado na API. Marcando.`;
+                    console.log(notFoundMessage);
+                    if (io && socketId) io.to(socketId).emit('bot:response', notFoundMessage); // Envia para o chat
+
+                    char.guildRank = 'Not Found';
+                    changesMade = true;
+                    leftCount++;
+                }
+            }
+            
+            await new Promise(resolve => setTimeout(resolve, 500)); 
+        }
+    }
+
+    if (changesMade) {
+        await saveJsonFile(DATA_FILES.clientAccounts, clientAccounts);
+    }
+
+    const finalReport = ` Sincronia concluída. ${updatedCount} ranks atualizados. ${leftCount} membros marcados como 'Left' ou 'Not Found'.`;
+    console.log(finalReport);
+    
+    return { 
+        responseText: finalReport,
+        adminDataUpdate: true 
+    };
+}
+
+async function cleanupExcessTokens() {
+    const accounts = await loadJsonFile(DATA_FILES.clientAccounts, {});
+    let changes = false;
+    let removedCount = 0;
+
+    for (const email in accounts) {
+        const acc = accounts[email];
+        // Se houver mais de 1 token, mantém apenas o último (o mais recente)
+        if (Array.isArray(acc.sessionTokens) && acc.sessionTokens.length > 1) {
+            const tokensToRemove = acc.sessionTokens.length - 1;
+            // Fatia o array mantendo apenas o último elemento
+            acc.sessionTokens = acc.sessionTokens.slice(-1);
+            removedCount += tokensToRemove;
+            changes = true;
+        }
+    }
+
+    if (changes) {
+        await saveJsonFile(DATA_FILES.clientAccounts, accounts);
+    } else {
+    }
+}
+
+// Adicionar esta função no bot_logic.js
+
+async function adminDeleteUser(email) {
+    const clientAccounts = await loadJsonFile(DATA_FILES.clientAccounts, {});
+    
+    if (clientAccounts[email]) {
+        delete clientAccounts[email];
+        await saveJsonFile(DATA_FILES.clientAccounts, clientAccounts);
+        return { success: true };
+    }
+    return { success: false, message: 'Usuário não encontrado.' };
+}
+
+async function adminUpdateUserData(originalEmail, newData) {
+    const clientAccounts = await loadJsonFile(DATA_FILES.clientAccounts, {});
+    const targetAccount = clientAccounts[originalEmail];
+
+    if (!targetAccount) {
+        return { success: false, message: 'Usuário original não encontrado.' };
+    }
+
+    const newEmail = newData.email ? newData.email.trim() : originalEmail;
+    
+    // Se o e-mail mudou, verifica se o novo já existe
+    if (newEmail !== originalEmail && clientAccounts[newEmail]) {
+        return { success: false, message: 'O novo e-mail já está em uso por outra conta.' };
+    }
+
+    // Atualiza os dados básicos
+    targetAccount.name = newData.name;
+    targetAccount.phone = newData.phone;
+
+    // Se o e-mail mudou, precisamos mover os dados para a nova chave
+    if (newEmail !== originalEmail) {
+        clientAccounts[newEmail] = targetAccount; // Copia para a nova chave
+        delete clientAccounts[originalEmail];     // Remove a chave antiga
+        
+        // Atualiza também os tokens de sessão se necessário (opcional, mas recomendado manter)
+        // A sessão do usuário pode cair, mas é o comportamento esperado ao mudar email
+    }
+
+    await saveJsonFile(DATA_FILES.clientAccounts, clientAccounts);
+    return { success: true };
+}
+
 
 module.exports = {
     init,
@@ -1958,4 +3087,22 @@ module.exports = {
     adminUpdateRespawnRankRestrictions,
     logUnderAttack,
     adminBatchUpdateUserGroups,
+    updatePlanilhadoAssignmentStatus,
+    deletePlanilhadoGroup,
+    adminArchivePointsManually,
+    getBossesData,
+    updateLocalBossData,
+    recordBossCheck,
+    recordBossFound,   
+    getBossHistory, 
+    adminSyncAllUsers,
+    getFinderHistory,
+    getCheckerHistory,
+    createWikiLink, 
+    parseBaseBossName,
+    cleanupExcessTokens,
+    adminDeleteUser,
+    adminUpdateUserData,
+    getBossTokens,
+    updateBossTokens,
 };

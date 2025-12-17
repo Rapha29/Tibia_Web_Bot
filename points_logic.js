@@ -34,9 +34,12 @@ async function readJson(file, defaultValue = {}) {
 }
 
 async function writeJson(file, data) {
-    await fs.writeFile(file, JSON.stringify(data, null, 2));
+    try {
+        await fs.writeFile(file, JSON.stringify(data, null, 2));
+    } catch (error) {
+        console.error(`[CRÍTICO] Falha ao escrever no arquivo JSON: ${file}`, error);
+    }
 }
-
 function generateEntryId() {
     return Math.random().toString(36).substr(2, 9);
 }
@@ -66,92 +69,135 @@ function parseCsvLine(line, delimiter) {
 const pointsLogic = {
 
     async addWarzoneAttendance(logText) {
-        const names = new Set();
-        const lines = logText.split('\n');
-        
-        const sessionDateMatch = lines[0].match(/Session data: From (\d{4}-\d{2}-\d{2})/);
-        if (!sessionDateMatch) {
-            return { success: false, message: 'Data da sessão não encontrada no log.' };
+    const names = new Set();
+    const lines = logText.split('\n');
+    
+    const sessionDateMatch = lines[0].match(/Session data: From (\d{4}-\d{2}-\d{2})/);
+    if (!sessionDateMatch) {
+        return { success: false, message: 'Data da sessão não encontrada no log.' };
+    }
+    const fullDate = sessionDateMatch[1];
+    const logMonthYear = fullDate.substring(0, 7); // Mês do log
+    const day = parseInt(fullDate.substring(8), 10).toString();
+    
+    let playersSectionStarted = false;
+    for (const line of lines) {
+        const trimmedLine = line.trim();
+         
+        if (trimmedLine.startsWith('Balance:')) {
+            playersSectionStarted = true;
+            continue;
         }
-        const fullDate = sessionDateMatch[1];
-        const monthYear = fullDate.substring(0, 7);
-        const day = parseInt(fullDate.substring(8), 10).toString();
-        
-        let playersSectionStarted = false;
-        for (const line of lines) {
-            const trimmedLine = line.trim();
-            
-            if (trimmedLine.startsWith('Balance:')) {
-                playersSectionStarted = true;
-                continue;
-            }
 
-            if (playersSectionStarted && trimmedLine.length > 0 && !line.startsWith('\t')) {
-                 const name = trimmedLine.replace(/:$/, '');
-                if (name && !['Loot Type'].includes(name)) {
-                    names.add(name);
+        if (playersSectionStarted && trimmedLine.length > 0 && !line.startsWith('\t')) {
+              const name = trimmedLine.replace(/:$/, '').replace(/\s*\(Leader\)\s*$/i, '').trim();
+            if (name && !['Loot Type'].includes(name)) {
+                names.add(name);
+            }
+        }
+    }
+
+    if (names.size === 0) {
+        return { success: false, message: 'Nenhum nome de jogador válido encontrado no log.' };
+    }
+
+    const accounts = await readJson(ACCOUNTS_FILE, {});
+    const charToMainMap = {};
+    for (const account of Object.values(accounts)) {
+        if (account.tibiaCharacters && account.tibiaCharacters.length > 0) {
+            const mainCharName = account.tibiaCharacters[0].characterName;
+            for (const char of account.tibiaCharacters) {
+                if (char.characterName) {
+                    charToMainMap[char.characterName.toLowerCase()] = mainCharName;
                 }
             }
         }
+    }
 
-        if (names.size === 0) {
-            return { success: false, message: 'Nenhum nome de jogador válido encontrado no log.' };
+    const attendance = await readJson(WARZONE_FILE, {});
+    const fileMonthYear = Object.keys(attendance)[0];
+    const monthYear = fileMonthYear || logMonthYear; 
+
+    if (fileMonthYear && fileMonthYear !== logMonthYear) {
+        return { success: false, message: `❌ Erro: O log é de (${logMonthYear}), mas o ranking ativo é de (${fileMonthYear}). Rode o comando !novomes primeiro.` };
+    }
+
+    if (!attendance[monthYear]) {
+        attendance[monthYear] = {};
+    }
+
+    const now = new Date();
+    const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+    
+    const creditedNames = new Set();
+
+    for (const name of names) {
+        const targetName = charToMainMap[name.toLowerCase()] || name;
+        creditedNames.add(targetName);
+
+        if (!attendance[monthYear][targetName]) {
+            attendance[monthYear][targetName] = {};
+            for (let i = 1; i <= daysInMonth; i++) {
+                attendance[monthYear][targetName][i.toString()] = false;
+            }
         }
+        attendance[monthYear][targetName][day] = true;
+    }
 
-        const attendance = await readJson(WARZONE_FILE, {});
-        if (!attendance[monthYear]) {
-            attendance[monthYear] = {};
-        }
+    await writeJson(WARZONE_FILE, attendance);
+    return { success: true, message: `${creditedNames.size} jogadores (incluindo principais de makers) marcados na Warzone para o dia ${fullDate}.` };
+},
 
-        const now = new Date();
-        const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
-        
-        for (const name of names) {
-            if (!attendance[monthYear][name]) {
-                attendance[monthYear][name] = {};
-                for (let i = 1; i <= daysInMonth; i++) {
-                    attendance[monthYear][name][i.toString()] = false;
+async addPoints(category, points, players, reason) {
+    const pointsData = await readJson(POINTS_FILE, {});
+    const accounts = await readJson(ACCOUNTS_FILE, {});
+
+    // Cria um mapa para busca rápida: {nomeDoPersonagem: nomeDoPrincipal}
+    const charToMainMap = {};
+    for (const account of Object.values(accounts)) {
+        if (account.tibiaCharacters && account.tibiaCharacters.length > 0) {
+            const mainCharName = account.tibiaCharacters[0].characterName;
+            for (const char of account.tibiaCharacters) {
+                if (char.characterName) {
+                    charToMainMap[char.characterName.toLowerCase()] = mainCharName;
                 }
             }
-            attendance[monthYear][name][day] = true;
         }
+    }
 
-        await writeJson(WARZONE_FILE, attendance);
-        return { success: true, message: `${names.size} jogadores marcados na Warzone para o dia ${fullDate}.` };
-    },
+    for (const playerName of players) {
+        const sanitizedName = playerName.trim();
+        if (!sanitizedName) continue;
 
-    async addPoints(category, points, players, reason) {
-        const pointsData = await readJson(POINTS_FILE, {});
-        for (const playerName of players) {
-            const sanitizedName = playerName.trim();
-            if (!sanitizedName) continue;
+        // Identifica o nome do personagem principal associado, ou usa o próprio nome se não for encontrado
+        const targetName = charToMainMap[sanitizedName.toLowerCase()] || sanitizedName;
 
-            if (!pointsData[sanitizedName]) {
-                pointsData[sanitizedName] = { details: {} };
-            }
-            if (!pointsData[sanitizedName].details[category]) {
-                pointsData[sanitizedName].details[category] = [];
-            }
-            pointsData[sanitizedName].details[category].push({
-                id: generateEntryId(),
-                points,
-                reason,
-                date: new Date().toISOString()
-            });
+        if (!pointsData[targetName]) {
+            pointsData[targetName] = { details: {} };
         }
-        await writeJson(POINTS_FILE, pointsData);
-        return { success: true };
-    },
+        if (!pointsData[targetName].details[category]) {
+            pointsData[targetName].details[category] = [];
+        }
+        pointsData[targetName].details[category].push({
+            id: generateEntryId(),
+            points,
+            reason,
+            date: new Date().toISOString()
+        });
+    }
+    await writeJson(POINTS_FILE, pointsData);
+    return { success: true };
+},
 
-    async addEventPoints(player, participations) {
-        return this.addPoints('Eventos', 10 * participations, [player], `Participou ${participations}x`);
+    async addEventPoints(players, participations) {
+        return this.addPoints('Eventos', 10 * participations, players, `Participou ${participations}x`);
     },
-    async addHivePoints(player, tasks) {
+    async addHivePoints(players, tasks) {
         const points = Math.floor(tasks / 10);
-        return this.addPoints('Hive', points, [player], `${tasks} tasks`);
+        return this.addPoints('Hive', points, players, `${tasks} tasks`);
     },
-    async addKSPoints(player, hours) {
-        return this.addPoints('KS', 3 * hours, [player], `${hours} horas`);
+    async addKSPoints(players, hours) {
+        return this.addPoints('KS', 3 * hours, players, `${hours} horas`);
     },
     async addMountainPiecePoints(players, pieces) {
         const points = pieces * 2;
@@ -161,7 +207,8 @@ const pointsLogic = {
     async saveWarzoneChanges(changes) {
         const attendance = await readJson(WARZONE_FILE, {});
         const now = new Date();
-        const monthYear = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+        const monthYear = Object.keys(attendance)[0] || `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+        
         if (!attendance[monthYear]) {
             attendance[monthYear] = {};
         }
@@ -185,9 +232,13 @@ const pointsLogic = {
     async calculateWarzonePoints() {
         const attendance = await readJson(WARZONE_FILE, {});
         const playerAttendance = {};
-        const now = new Date();
-        const monthYear = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
-        const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+        const monthYear = Object.keys(attendance)[0]; 
+        if (!monthYear) {
+            return {}; 
+        }
+
+        const [year, month] = monthYear.split('-').map(Number);
+        const daysInMonth = new Date(year, month, 0).getDate();
         
         const currentMonthAttendance = attendance[monthYear] || {};
         for (const playerName in currentMonthAttendance) {
@@ -227,107 +278,125 @@ const pointsLogic = {
         return warzonePoints;
     },
 
-    async calculateXpPoints() {
-        const xpDataFile = await readJson(XP_FILE, {});
-        const monthlyXpData = xpDataFile.data || {};
-        const accounts = await readJson(ACCOUNTS_FILE, {});
-        const xpGoals = {
-            100: 100000000, 200: 200000000, 300: 300000000, 400: 400000000,
-            500: 500000000, 600: 600000000, 700: 700000000, 800: 800000000,
-            900: 900000000, 1000: 1000000000, 1100: 1100000000, 1200: 1200000000,
-            1300: 1300000000, 1400: 1400000000, 1500: 1500000000, 1600: 1600000000,
-            1700: 1700000000, 1800: 1800000000, 1900: 1900000000, 2000: 2000000000
-        };
+async calculateXpPoints() {
+    const xpDataFile = await readJson(XP_FILE, {});
+    const monthlyXpData = xpDataFile.data || {};
+    const accounts = await readJson(ACCOUNTS_FILE, {});
 
-        const xpPoints = {};
+    const xpGoals = {
+    100: 100000000, 200: 200000000, 300: 300000000, 400: 400000000,
+    500: 500000000, 600: 600000000, 700: 700000000, 800: 800000000,
+    900: 900000000, 1000: 1000000000, 1100: 1100000000, 1200: 1200000000,
+    1300: 1300000000, 1400: 1400000000, 1500: 1500000000, 1600: 1600000000,
+    1700: 1700000000, 1800: 1800000000, 1900: 1900000000, 2000: 2000000000,
+    2100: 2100000000, 2200: 2200000000, 2300: 2300000000, 2400: 2400000000,
+    2500: 2500000000, 2600: 2600000000, 2700: 2700000000, 2800: 2800000000,
+    2900: 2900000000, 3000: 3000000000
+};
 
-        for (const acc of Object.values(accounts)) {
-            const mainChar = (acc.tibiaCharacters || [])[0];
-            if (!mainChar || !monthlyXpData[mainChar.characterName]) continue;
+// Também ajuste a constante MAX_GOAL_BRACKET se ela existir em outro lugar do código
+const MAX_GOAL_BRACKET = 3000;
 
-            const name = mainChar.characterName;
-            const level = mainChar.level;
-            const xp = monthlyXpData[name];
-            const levelBracket = Math.ceil(level / 100) * 100;
-            const xpGoal = xpGoals[levelBracket] || xpGoals[2000];
-            
-            let points = 0;
-            const perc = (xp / xpGoal) * 100;
+    const xpPoints = {};
 
-            // NOVA REGRA DE XP: Pontos só a partir de 100% da meta
-            if (perc >= 100) {
-                // 1 ponto por atingir 100%, mais 1 ponto a cada 10% acima.
-                const bonusPercentage = perc - 100;
-                points = 1 + Math.floor(bonusPercentage / 10);
-            }
+    for (const acc of Object.values(accounts)) {
+        const mainChar = (acc.tibiaCharacters || [])[0];
+        if (!mainChar || !monthlyXpData[mainChar.characterName] || !mainChar.level) continue; 
 
-            // Garante que a pontuação não ultrapasse o limite de 10 pontos.
-            points = Math.min(points, 10);
+        const name = mainChar.characterName;
+        const level = mainChar.level;
+        const xp = monthlyXpData[name];
+        let levelBracket = Math.floor(level / 100) * 100;
 
-            if (points > 0) {
-                const formattedXp = xp.toLocaleString('pt-BR');
-                const formattedPerc = perc.toFixed(2);
-                xpPoints[name] = {
-                    id: 'xp-monthly',
-                    points,
-                    reason: ` ${formattedXp} de XP este mês (${formattedPerc}% da meta)`,
-                    date: new Date().toISOString()
-                };
-            }
+        if (levelBracket < 100) {
+            levelBracket = 100;
         }
-        return xpPoints;
-    },
+        if (levelBracket > MAX_GOAL_BRACKET) {
+            levelBracket = MAX_GOAL_BRACKET;
+        }
+
+        const xpGoal = xpGoals[levelBracket];
+
+        if (!xpGoal) { 
+             console.warn(`[XP Points] Meta não encontrada para level ${level}, bracket ${levelBracket}. Pulando ${name}.`);
+             continue;
+        }
+
+        let points = 0;
+        const perc = (xp / xpGoal) * 100;
+
+        if (perc >= 100) {
+            const bonusPercentage = perc - 100;
+            points = 1 + Math.floor(bonusPercentage / 10);
+        }
+        points = Math.min(points, 10); 
+
+        const formattedXp = xp.toLocaleString('pt-BR');
+        const formattedGoal = xpGoal.toLocaleString('pt-BR');
+        const formattedPerc = perc.toFixed(2);
+        xpPoints[name] = {
+            id: 'xp-monthly',
+            points: points,
+            reason: `XP: ${formattedXp} (${formattedPerc}% da meta de ${formattedGoal} para Lvl ${levelBracket}+)`,
+            date: new Date().toISOString()
+        };
+    }
+    return xpPoints;
+},
 
 async getPointsData() {
-        await this.updateAttendanceForMissedWarzoneDays();
-        
         const pointsData = await readJson(POINTS_FILE, {});
         const wzPoints = await this.calculateWarzonePoints();
         const xpPoints = await this.calculateXpPoints();
         const warzoneAttendance = await readJson(WARZONE_FILE, {});
         const accounts = await readJson(ACCOUNTS_FILE, {});
-        
-        const guildRankMap = new Map();
+
+        const finalData = {};
+        // 2. Constrói a lista principal APENAS com personagens principais
         for (const account of Object.values(accounts)) {
-            if (account.tibiaCharacters) {
-                account.tibiaCharacters.forEach(char => {
-                    if (char.characterName && char.guildRank) {
-                        guildRankMap.set(char.characterName, char.guildRank);
-                    }
-                });
+            const mainChar = account.tibiaCharacters?.[0];
+            if (mainChar && mainChar.characterName) {
+                const playerName = mainChar.characterName;
+                finalData[playerName] = {
+                    details: {},
+                    total: 0,
+                    rank: 'Recruta',
+                    guildRank: mainChar.guildRank ||
+    'N/A',
+                    categoryTotals: {}
+                };
             }
         }
 
-        const finalData = JSON.parse(JSON.stringify(pointsData));
-
-        for (const p in finalData) {
-            if (p === 'warzone') continue;
-            if (finalData[p].details['Warzone']) {
-                finalData[p].details['Warzone'] = finalData[p].details['Warzone'].filter(e => e.id !== 'warzone-monthly');
+        // 3. Mescla os dados de pontos existentes na lista principal
+        for (const playerName in pointsData) {
+            if (finalData[playerName] && pointsData[playerName].details) {
+                finalData[playerName].details = pointsData[playerName].details;
             }
         }
+
+        // 4. Mescla os dados de Warzone e XP na lista principal
         for (const p in wzPoints) {
-            if (!finalData[p]) finalData[p] = { details: {} };
-            if (!finalData[p].details['Warzone']) finalData[p].details['Warzone'] = [];
-            finalData[p].details['Warzone'].push(wzPoints[p]);
+            if (finalData[p]) {
+                if (!finalData[p].details['Warzone']) finalData[p].details['Warzone'] = [];
+                finalData[p].details['Warzone'].push(wzPoints[p]);
+            }
         }
-        
         for (const p in xpPoints) {
-            if (!finalData[p]) finalData[p] = { details: {} };
-            finalData[p].details['XP Mensal'] = [xpPoints[p]];
+            if (finalData[p]) {
+                if (!finalData[p].details['XP Mensal']) finalData[p].details['XP Mensal'] = [];
+                finalData[p].details['XP Mensal'].push(xpPoints[p]);
+            }
         }
         
+        // 5. Define os limites e recalcula os totais para TODOS os jogadores
         const MAX_POINTS_PER_CATEGORY = {
             'Warzone': 8, 'Eventos': 10, 'MountainPiece': 2, 'KS': 5,
             'Services': 3, 'Hive': 5, 'XP Mensal': 10
         };
-
         for (const playerName in finalData) {
-            if (playerName === 'warzone') continue;
-
             let grandTotal = 0;
             finalData[playerName].categoryTotals = {};
-
             for (const categoryName in MAX_POINTS_PER_CATEGORY) {
                 let categoryRawTotal = 0;
                 if (finalData[playerName].details[categoryName]) {
@@ -340,8 +409,6 @@ async getPointsData() {
             }
             
             finalData[playerName].total = grandTotal;
-            finalData[playerName].guildRank = guildRankMap.get(playerName) || 'N/A';
-
             if (grandTotal >= 18) {
                 finalData[playerName].rank = 'Rising';
             } else if (grandTotal >= 10) {
@@ -351,8 +418,22 @@ async getPointsData() {
             }
         }
         
-        finalData.warzone = warzoneAttendance;
+        // --- INÍCIO DA MODIFICAÇÃO ---
+        // Carrega os dados brutos de XP para o ranking
+        const xpDataFile = await readJson(XP_FILE, {});
+        const monthlyXpData = xpDataFile.data || {};
 
+        // Cria o ranking de XP bruta
+        const rawXpRanking = Object.entries(monthlyXpData)
+            .map(([name, xp]) => ({ name, xp })) // Converte {Nome: 123} para [{name: "Nome", xp: 123}]
+            .sort((a, b) => b.xp - a.xp) // Ordena por XP (maior primeiro)
+            .slice(0, 50); // Pega os top 50
+
+        // Adiciona o novo ranking ao objeto final
+        finalData.xpRanking = rawXpRanking;
+        // --- FIM DA MODIFICAÇÃO ---
+        
+        finalData.warzone = warzoneAttendance;
         return finalData;
     },
 
@@ -387,20 +468,77 @@ async getPointsData() {
 
     async archiveCurrentMonth() {
         const now = new Date();
-        const monthStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
-        const histFile = path.join(HISTORY_DIR, `points_${monthStr}.json`);
+        const previousMonthDate = new Date(now.getFullYear(), now.getMonth(), 0);
+        const monthStr = `${previousMonthDate.getFullYear()}-${String(previousMonthDate.getMonth() + 1).padStart(2, '0')}`;
         
+        const histFile = path.join(HISTORY_DIR, `points_${monthStr}.json`);
+        const warzoneHistFile = path.join(HISTORY_DIR, `warzone_${monthStr}.json`);
+
+        // Verifica se o arquivo de histórico principal já existe
+        try {
+            await fs.access(histFile);
+            // Se fs.access não der erro, o arquivo existe.
+            return { success: false, message: `❌ Arquivamento para ${monthStr} já existe. Nenhuma ação realizada.` };
+        } catch (error) {
+            // Se o erro for 'ENOENT', o arquivo não existe, então podemos continuar.
+            if (error.code !== 'ENOENT') {
+                // Se for outro erro (ex: permissão), retorna erro.
+                console.error(`Erro ao verificar arquivo de histórico ${histFile}:`, error);
+                return { success: false, message: `❌ Erro ao verificar arquivo de histórico para ${monthStr}.` };
+            }
+            // Arquivo não existe, prosseguir com o arquivamento...
+        }
+        
+        // 1. Arquivar pontos principais (do mês anterior)
         const current = await this.getPointsData();
-        if (Object.keys(current).length === 0) {
+        const dataKeys = Object.keys(current).filter(k => k !== 'warzone');
+        if (dataKeys.length === 0) {
             return { success: false, message: 'Nada para arquivar.' };
         }
         await writeJson(histFile, current);
-        
+
+        // 2. Arquivar dados brutos da Warzone (do mês anterior)
+        const currentWarzoneData = await readJson(WARZONE_FILE, {});
+        await writeJson(warzoneHistFile, currentWarzoneData);
+
+        // 3. Limpar arquivos atuais para iniciar o novo mês (SÓ SE O ARQUIVAMENTO FOI FEITO)
         await writeJson(POINTS_FILE, {});
         await writeJson(WARZONE_FILE, {});
         await writeJson(XP_FILE, {});
 
-        return { success: true, message: `Pontos de ${monthStr} arquivados.` };
+        return { success: true, message: `✅ Pontos e Warzone de ${monthStr} arquivados. Novo mês iniciado.` };
+    },
+
+    async markWarzoneAbsence(playerNames) {
+        if (!playerNames || playerNames.length === 0) {
+            return { success: false, message: 'Nenhum jogador fornecido.' };
+        }
+
+    const attendance = await readJson(WARZONE_FILE, {});
+        const now = new Date();
+        const monthYear = Object.keys(attendance)[0] || `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+        const day = now.getDate().toString();
+        
+        if (!attendance[monthYear]) {
+            attendance[monthYear] = {};
+        }
+
+        for (const name of playerNames) {
+            const sanitizedName = name.trim();
+            if (!sanitizedName) continue;
+
+            if (!attendance[monthYear][sanitizedName]) {
+                const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+                attendance[monthYear][sanitizedName] = {};
+                for (let i = 1; i <= daysInMonth; i++) {
+                    attendance[monthYear][sanitizedName][i.toString()] = false;
+                }
+            }
+            attendance[monthYear][sanitizedName][day] = false; // Define a presença como falta
+        }
+
+        await writeJson(WARZONE_FILE, attendance);
+        return { success: true, message: `Falta na Warzone registrada para ${playerNames.length} jogador(es).` };
     },
 
     async updateXpCsvUrl(newUrl) {
@@ -410,16 +548,23 @@ async getPointsData() {
         return { success: true, message: 'URL atualizado.' };
     },
 
-    // (Adicione esta função dentro do objeto 'pointsLogic')
 
-    async updateAttendanceForMissedWarzoneDays() {
+async updateAttendanceForMissedWarzoneDays() {
+    try {
         const now = new Date();
         const year = now.getFullYear();
         const month = now.getMonth();
-        const currentDay = now.getDate();
-        const monthYear = `${year}-${String(month + 1).padStart(2, '0')}`;
+        
+        const currentHour = now.getHours();
+        let effectiveCurrentDay = now.getDate();
+
+        if (currentHour < 4) {
+            effectiveCurrentDay = effectiveCurrentDay - 1;
+        }
 
         const attendanceData = await readJson(WARZONE_FILE, {});
+        const monthYear = Object.keys(attendanceData)[0] || `${year}-${String(month + 1).padStart(2, '0')}`;
+        
         const accounts = await readJson(ACCOUNTS_FILE, {});
         const allPlayers = Object.values(accounts).map(acc => acc.tibiaCharacters?.[0]?.characterName).filter(Boolean);
 
@@ -428,8 +573,6 @@ async getPointsData() {
         }
 
         const currentMonthAttendance = attendanceData[monthYear];
-        
-        // Garante que todos os jogadores estejam no registro de presença do mês
         allPlayers.forEach(player => {
             if (!currentMonthAttendance[player]) {
                 currentMonthAttendance[player] = {};
@@ -446,27 +589,37 @@ async getPointsData() {
         }
 
         let changesMade = false;
-        // Itera sobre os dias do mês que já passaram
-        for (let day = 1; day < currentDay; day++) {
+        for (let day = 1; day < effectiveCurrentDay; day++) {
             const dayStr = day.toString();
-            // Se o dia não teve Warzone registrada...
-            if (!daysWithWarzone.has(dayStr)) {
-                // ...marca presença para todos os jogadores.
+            
+            // Verifica se NÃO houve Warzone neste dia.
+            if (!daysWithWarzone.has(dayStr)) { 
                 allPlayers.forEach(player => {
-                    if (currentMonthAttendance[player][dayStr] !== true) {
-                        currentMonthAttendance[player][dayStr] = true;
+                    // Verifica se o jogador NÃO tem nenhum registro para este dia (nem true, nem false).
+                    if (currentMonthAttendance[player][dayStr] === undefined) { 
+                        // --- ALTERAÇÃO APLICADA AQUI ---
+                        currentMonthAttendance[player][dayStr] = true; // Marca como PRESENTE
+                        // --- FIM DA ALTERAÇÃO ---
                         changesMade = true;
                     }
                 });
             }
         }
 
-        // Se alguma alteração foi feita, salva o arquivo
         if (changesMade) {
             await writeJson(WARZONE_FILE, attendanceData);
+            // Mensagem de sucesso atualizada para refletir a nova lógica.
+            return { success: true, message: "✅ Presenças automáticas da Warzone (dias sem WZ) foram preenchidas como presença." };
+        } else {
+            return { success: true, message: "✅ Verificação da Warzone concluída. Nenhuma atualização automática necessária." };
         }
-    },
     
+    } catch (error) {
+        console.error('[POINTS LOGIC - Warzone] Erro ao atualizar presenças:', error);
+        return { success: false, message: "❌ Ocorreu um erro interno ao processar as presenças da Warzone." };
+    }
+},
+
     async getAvailableHistory() {
         try {
             const files = await fs.readdir(HISTORY_DIR);
@@ -542,8 +695,11 @@ async getPointsData() {
         }
         
     }
+
+    
     
 };
 
 
 module.exports = pointsLogic;
+

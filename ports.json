@@ -18,5 +18,9 @@
   {
     "world": "luzibra",
     "port": 3005
+  },
+  {
+    "world": "ironetebra",
+    "port": 3006
   }
 ]

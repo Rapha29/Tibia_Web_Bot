@@ -10,78 +10,134 @@
 
 <div id="ranking-page-container">
 <style>
-    #ranking-page-container { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #eee; }
-    #ranking-page-container .ranking-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
-    #ranking-page-container .ranking-container { display: grid; grid-template-columns: 1fr 2fr; gap: 20px; }
-    #ranking-page-container .personal-score, #ranking-page-container .leaderboard { background-color: #2e2e33; border: 1px solid #444; border-radius: 8px; padding: 15px; }
-    #ranking-page-container h1, #ranking-page-container h2, #ranking-page-container h4, #ranking-page-container h5 { margin-top: 0; color: #fff; }
-    #ranking-page-container hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
+    #ranking-page-container { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+color: #eee; }
+    #ranking-page-container .ranking-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap;
+gap: 10px; }
+    #ranking-page-container .ranking-container { display: grid; grid-template-columns: 1fr 2fr; gap: 20px;
+}
+    #ranking-page-container .personal-score, #ranking-page-container .leaderboard { background-color: #2e2e33; border: 1px solid #444; border-radius: 8px; padding: 15px;
+}
+    #ranking-page-container h1, #ranking-page-container h2, #ranking-page-container h4, #ranking-page-container h5 { margin-top: 0; color: #fff;
+}
+    #ranking-page-container hr { border: none; border-top: 1px solid #444; margin: 20px 0;
+}
     
-    #ranking-page-container .leaderboard table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.9em; }
-    #ranking-page-container .leaderboard th, #ranking-page-container .leaderboard td { padding: 8px 6px; text-align: center; border-bottom: 1px solid #444; }
-    #ranking-page-container .leaderboard td:nth-child(1) { text-align: left; font-weight: bold; }
-    #ranking-page-container .leaderboard th { color: #d4af37; }
-    #ranking-page-container .leaderboard tbody tr:last-child td { border-bottom: none; }
-    #ranking-page-container .leaderboard tbody tr:hover { background-color: #3a3a40; cursor: pointer; }
-    #ranking-page-container #player-search { width: 100%; box-sizing: border-box; padding: 8px; background-color: #1c1c1f; border: 1px solid #444; color: #fff; border-radius: 4px; }
+    #ranking-page-container .leaderboard table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.9em;
+}
+    #ranking-page-container .leaderboard th, #ranking-page-container .leaderboard td { padding: 8px 6px; text-align: center; border-bottom: 1px solid #444;
+}
+    #ranking-page-container .leaderboard td:nth-child(1) { text-align: left; font-weight: bold;
+}
+    #ranking-page-container .leaderboard th { color: #d4af37;
+}
+    #ranking-page-container .leaderboard tbody tr:last-child td { border-bottom: none;
+}
+    #ranking-page-container .leaderboard tbody tr:hover { background-color: #3a3a40; cursor: pointer;
+}
+    #ranking-page-container #player-search { width: 100%; box-sizing: border-box; padding: 8px; background-color: #1c1c1f; border: 1px solid #444;
+color: #fff; border-radius: 4px; }
     
-    #ranking-page-container .leader-panel { background-color: #1c1c1f; padding: 20px; border-radius: 8px; margin-top: 20px; border: 1px solid #444; display: none; }
-    #ranking-page-container .leader-panel.visible { display: block; }
-    #ranking-page-container .leader-panel h2 { text-align: center; color: #d4af37; }
-    #ranking-page-container .leader-panel-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    #ranking-page-container .leader-panel form { background-color: #2e2e33; padding: 15px; border-radius: 8px; display: flex; flex-direction: column; gap: 10px; }
-    #ranking-page-container .leader-panel h4 { border-bottom: 1px solid #444; padding-bottom: 8px; }
-    #ranking-page-container .leader-panel label { font-size: 0.9em; color: #ccc; }
-    #ranking-page-container .leader-panel input, #ranking-page-container .leader-panel textarea, #ranking-page-container .leader-panel select { width: 100%; padding: 8px; background-color: #1c1c1f; border: 1px solid #444; color: #fff; border-radius: 4px; box-sizing: border-box; }
-    #ranking-page-container .leader-panel textarea { min-height: 120px; resize: vertical; }
-    #ranking-page-container .leader-panel button { background-color: #3675ff; color: white; padding: 10px; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.2s; }
-    #ranking-page-container .leader-panel button:hover { background-color: #2558c7; }
-    #ranking-page-container .leader-panel button:disabled { background-color: #555; cursor: not-allowed; }
+    #ranking-page-container .leader-panel { background-color: #1c1c1f; padding: 20px;
+border-radius: 8px; margin-top: 20px; border: 1px solid #444; display: none; }
+    #ranking-page-container .leader-panel.visible { display: block;
+}
+    #ranking-page-container .leader-panel h2 { text-align: center; color: #d4af37;
+}
+    #ranking-page-container .leader-panel-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+}
+    #ranking-page-container .leader-panel form { background-color: #2e2e33; padding: 15px; border-radius: 8px; display: flex; flex-direction: column; gap: 10px;
+}
+    #ranking-page-container .leader-panel h4 { border-bottom: 1px solid #444; padding-bottom: 8px;
+}
+    #ranking-page-container .leader-panel label { font-size: 0.9em; color: #ccc;
+}
+    #ranking-page-container .leader-panel input, #ranking-page-container .leader-panel textarea, #ranking-page-container .leader-panel select { width: 100%; padding: 8px; background-color: #1c1c1f;
+border: 1px solid #444; color: #fff; border-radius: 4px; box-sizing: border-box; }
+    #ranking-page-container .leader-panel textarea { min-height: 120px;
+resize: vertical; }
+    #ranking-page-container .leader-panel button { background-color: #3675ff; color: white; padding: 10px; border: none; border-radius: 4px;
+cursor: pointer; transition: background-color 0.2s; }
+    #ranking-page-container .leader-panel button:hover { background-color: #2558c7;
+}
+    #ranking-page-container .leader-panel button:disabled { background-color: #555; cursor: not-allowed;
+}
 
-    #ranking-page-container #personal-points-details ul { padding-left: 0; list-style: none; margin:0; }
-    #ranking-page-container #personal-points-details > ul > li { margin-bottom: 5px; background-color: #3a3a40; padding: 10px; border-radius: 4px; }
-    #ranking-page-container .point-header { display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: bold; }
-    #ranking-page-container .point-details { display: none; padding-top: 10px; margin-top: 10px; border-top: 1px solid #555; }
+    #ranking-page-container #personal-points-details ul { padding-left: 0; list-style: none; margin:0;
+}
+    #ranking-page-container #personal-points-details > ul > li { margin-bottom: 5px; background-color: #3a3a40; padding: 10px; border-radius: 4px;
+}
+    #ranking-page-container .point-header { display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: bold;
+}
+    #ranking-page-container .point-details { display: none; padding-top: 10px; margin-top: 10px; border-top: 1px solid #555;
+}
     #ranking-page-container .point-details.visible { display: block; }
-    #ranking-page-container .point-details ul { padding-left: 15px; list-style-type: none; }
-    #ranking-page-container .point-details ul li { margin-bottom: 10px; padding: 8px; background: #2e2e33; border-radius: 3px; }
+    #ranking-page-container .point-details ul { padding-left: 15px;
+list-style-type: none; }
+    #ranking-page-container .point-details ul li { margin-bottom: 10px; padding: 8px; background: #2e2e33; border-radius: 3px;
+}
     
-    #ranking-page-container .point-form { flex-grow: 1; display: grid; grid-template-columns: 1fr; gap: 8px; align-items: center; }
-    #ranking-page-container .point-form-inputs { display: grid; grid-template-columns: 80px 1fr; gap: 8px; }
-    #ranking-page-container .point-form input { padding: 8px; width: 100%; box-sizing: border-box; background-color: #1c1c1f; border: 1px solid #444; color: #fff; border-radius: 4px; }
-    #ranking-page-container .point-form-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 8px; }
+    #ranking-page-container .point-form { flex-grow: 1; display: grid; grid-template-columns: 1fr; gap: 8px;
+align-items: center; }
+    #ranking-page-container .point-form-inputs { display: grid; grid-template-columns: 80px 1fr; gap: 8px;
+}
+    #ranking-page-container .point-form input { padding: 8px; width: 100%; box-sizing: border-box; background-color: #1c1c1f; border: 1px solid #444;
+color: #fff; border-radius: 4px; }
+    #ranking-page-container .point-form-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 8px;
+}
     
-    #ranking-page-container .action-btn, #ranking-page-container .remove-btn { padding: 8px 12px; color: white; border: none; border-radius: 4px; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; }
-    #ranking-page-container .action-btn { background-color: #3675ff; }
+    #ranking-page-container .action-btn, #ranking-page-container .remove-btn { padding: 8px 12px; color: white; border: none;
+border-radius: 4px; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; }
+    #ranking-page-container .action-btn { background-color: #3675ff;
+}
     #ranking-page-container .remove-btn { background-color: #c9302c; }
 
-    #ranking-page-container .warzone-calendar-container { padding: 8px; }
-    #ranking-page-container .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; text-align: center; }
-    #ranking-page-container .calendar-header { font-weight: bold; color: #d4af37; padding-bottom: 5px; font-size: 0.8em; }
-    #ranking-page-container .calendar-day { background-color: #555; padding: 8px 4px; border-radius: 4px; font-size: 0.9em; transition: background-color 0.2s, transform 0.1s; }
-    #ranking-page-container .calendar-day.attended { background-color: #3675ff; color: white; font-weight: bold; }
+    #ranking-page-container .warzone-calendar-container { padding: 8px;
+}
+    #ranking-page-container .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; text-align: center;
+}
+    #ranking-page-container .calendar-header { font-weight: bold; color: #d4af37; padding-bottom: 5px; font-size: 0.8em;
+}
+    #ranking-page-container .calendar-day { background-color: #555; padding: 8px 4px; border-radius: 4px; font-size: 0.9em;
+transition: background-color 0.2s, transform 0.1s; }
+    #ranking-page-container .calendar-day.attended { background-color: #3675ff; color: white; font-weight: bold;
+}
     #ranking-page-container .calendar-day.not-attended { background-color: #555; }
-    #ranking-page-container .calendar-day.future { background-color: #404044; opacity: 0.6; }
-    #ranking-page-container .calendar-day.staged { transform: scale(1.1); box-shadow: 0 0 10px #ff9800; }
+    #ranking-page-container .calendar-day.future { background-color: #404044; opacity: 0.6;
+}
+    #ranking-page-container .calendar-day.staged { transform: scale(1.1); box-shadow: 0 0 10px #ff9800;
+}
     #ranking-page-container .calendar-day.admin-clickable:hover { opacity: 0.8; }
-    #ranking-page-container .calendar-day.admin-clickable { cursor: pointer; }
+    #ranking-page-container .calendar-day.admin-clickable { cursor: pointer;
+}
     #ranking-page-container .calendar-day.empty { background-color: transparent; }
 
-    #ranking-page-container .warzone-summary { margin-top: 15px; padding: 10px; background-color: #242428; border-radius: 4px; text-align: center; }
-    #ranking-page-container .warzone-summary p { margin: 5px 0; font-size: 0.9em; }
+    #ranking-page-container .warzone-summary { margin-top: 15px; padding: 10px;
+background-color: #242428; border-radius: 4px; text-align: center; }
+    #ranking-page-container .warzone-summary p { margin: 5px 0; font-size: 0.9em;
+}
     #ranking-page-container .warzone-summary strong { color: #d4af37; }
-    #ranking-page-container .warzone-summary span { font-weight: bold; }
+    #ranking-page-container .warzone-summary span { font-weight: bold;
+}
 
-    #ranking-page-container #monthly-rankings .ranking-list-item { background-color: #242428; padding: 10px; border-radius: 4px; margin-bottom: 5px; }
-    #ranking-page-container #monthly-rankings .point-header h5 { margin-bottom: 0; }
-    #ranking-page-container #monthly-rankings .point-details ol { padding-left: 20px; margin: 0; }
-    #ranking-page-container #monthly-rankings li { margin-bottom: 4px; padding: 2px 0; }
-    #ranking-page-container #monthly-rankings li.top-10 { font-weight: bold; color: #d4af37; }
-    #ranking-page-container #monthly-rankings strong { color: #d4af37; }
+    #ranking-page-container #monthly-rankings .ranking-list-item { background-color: #242428; padding: 10px; border-radius: 4px; margin-bottom: 5px;
+}
+    #ranking-page-container #monthly-rankings .point-header h5 { margin-bottom: 0;
+}
+    #ranking-page-container #monthly-rankings .point-details ol { padding-left: 20px; margin: 0;
+}
+    #ranking-page-container #monthly-rankings li { margin-bottom: 4px; padding: 2px 0;
+}
+    #ranking-page-container #monthly-rankings li.top-10 { font-weight: bold; color: #d4af37;
+}
+    #ranking-page-container #monthly-rankings strong { color: #d4af37;
+}
 
     @media (max-width: 900px) { 
-        #ranking-page-container .ranking-container, #ranking-page-container .leader-panel-grid { grid-template-columns: 1fr; }
-        #ranking-page-container .leaderboard table { font-size: 0.8em; }
+        #ranking-page-container .ranking-container, #ranking-page-container .leader-panel-grid { grid-template-columns: 1fr;
+}
+        #ranking-page-container .leaderboard table { font-size: 0.8em;
+}
     }
 </style>
 
@@ -101,24 +157,24 @@
         </form>
         <form id="events-form">
             <h4><i class="fas fa-star"></i> Eventos (10 Pontos/Participação)</h4>
-            <label for="event-player">Nome do Jogador:</label>
-            <input type="text" id="event-player" name="playerName" required>
+            <label for="event-players">Nome do(s) Jogador(es) (um por linha):</label>
+            <textarea id="event-players" name="players" required></textarea>
             <label for="event-participations">Nº de Participações:</label>
             <input type="number" id="event-participations" name="participations" min="1" value="1" required>
             <button type="submit">Adicionar Pontos de Evento</button>
         </form>
         <form id="hive-form">
             <h4><i class="fas fa-bug"></i> Hive Tasks</h4>
-            <label for="hive-player">Nome do Jogador:</label>
-            <input type="text" id="hive-player" name="playerName" required>
+            <label for="hive-players">Nome do(s) Jogador(es) (um por linha):</label>
+            <textarea id="hive-players" name="players" required></textarea>
             <label for="hive-tasks">Total de Tasks Feitas (ex: 30):</label>
             <input type="number" id="hive-tasks" name="tasks" min="10" step="10" required>
             <button type="submit">Adicionar Pontos de Hive</button>
         </form>
         <form id="ks-form">
             <h4><i class="fas fa-hourglass-half"></i> KS (3 Pontos)</h4>
-            <label for="ks-player">Nome do Jogador:</label>
-            <input type="text" id="ks-player" name="playerName" required>
+            <label for="ks-players">Nome do(s) Jogador(es) (um por linha):</label>
+            <textarea id="ks-players" name="players" required></textarea>
             <label for="ks-hours">Quantidade de Horas:</label>
             <input type="number" id="ks-hours" name="hours" min="1" required>
             <button type="submit">Adicionar Pontos de KS</button>
@@ -132,8 +188,8 @@
             <button type="submit">Adicionar Pontos de Mountain Piece</button>
         </form>
         <form id="services-form">
-            <h4><i class="fas fa-hands-helping"></i> Services (1 Ponto/Player)</h4>
-            <label for="service-name">Nome do Service:</label>
+            <h4><i class="fas fa-hourglass-half"></i> Services (POI/INQ)</h4>
+            <label for="mountainpiece-pieces">Nome do service (ex: POI, INQUI):</label>
             <input type="text" id="service-name" name="serviceName" required>
             <label for="service-players">Nomes dos jogadores (um por linha):</label>
             <textarea id="service-players" name="players" required></textarea>
@@ -152,59 +208,88 @@
         <div id="monthly-rankings">
             <div class="ranking-list-item">
                 <div class="point-header" onclick="togglePointDetails('xp-ranking-wrapper')">
-                    <h5><i class="fas fa-chart-line"></i> Ranking de XP do Mês</h5>
+                   
+<h5><i class="fas fa-chart-line"></i> Ranking de XP do Mês</h5>
                     <span><i class="fas fa-chevron-down"></i></span>
                 </div>
                 <div id="xp-ranking-wrapper" class="point-details">
                     <div id="xp-ranking-details"><p>Calculando...</p></div>
-                </div>
+               
+</div>
             </div>
             <div class="ranking-list-item">
                 <div class="point-header" onclick="togglePointDetails('event-ranking-wrapper')">
                     <h5><i class="fas fa-star"></i> Ranking de Eventos do Mês</h5>
                     <span><i class="fas fa-chevron-down"></i></span>
-                </div>
+       
+</div>
                 <div id="event-ranking-wrapper" class="point-details">
                     <div id="event-ranking-details"><p>Calculando...</p></div>
                 </div>
             </div>
             <div class="ranking-list-item">
-                <div class="point-header" onclick="togglePointDetails('info-pontuacao-wrapper')">
+           
+<div class="point-header" onclick="togglePointDetails('info-pontuacao-wrapper')">
                     <h5><i class="fas fa-info-circle"></i> Como Pontuar?</h5>
                     <span><i class="fas fa-chevron-down"></i></span>
                 </div>
                 <div id="info-pontuacao-wrapper" class="point-details">
-                    <ul style="list-style-type: disc; padding-left: 20px;">
+             
+<ul style="list-style-type: disc;
+padding-left: 20px;">
                         <li><strong>XP Mensal:</strong> Pontos ganhos com base no seu ganho de XP mensal comparado a uma meta para seu level. a meta é baseada em Level X 1.000.000, exemplo um level 500, tem que fazer pelo menos 500.000.000 de xp no mes para ter 1 ponto de xp mensal a cada 10% acima dessa meta.</li>
-                        <li><strong>Eventos:</strong> Você ganha <strong>10 pontos</strong> para cada participação em eventos da guild.</li>
+                      
+<li><strong>Eventos:</strong> Você ganha <strong>10 pontos</strong> para cada participação em eventos da guild.</li>
                         <li><strong>Warzone:</strong> A pontuação é baseada na sua frequência mensal. Mais de 70% de presença = <strong>8 pontos</strong>; 40% = <strong>5 pontos</strong> >20% = <strong>2 pontos</strong>. Em dias que a Warzone não ocorre, todos os membros recebem a presença registrada para ajudar na meta.</li>
-                        <li><strong>KS:</strong> Você ganha <strong>3 pontos</strong> por ajudar KS no mês.</li>
+                     
+<li><strong>KS:</strong> Você ganha <strong>3 pontos</strong> por ajudar KS no mês.</li>
                         <li><strong>Hive:</strong> Você ganha <strong>1 ponto</strong> a cada 10 tasks de colmeia (Hive) completadas.</li>
                         <li><strong>Mountain Piece:</strong> Você ganha <strong>2 pontos</strong> por peça ao entregar as bps de Montain Piece.</li>
-                        <li><strong>Services:</strong> Você ganha <strong>1 ponto</strong> por participar de um service para outros jogadores.</li>
+              
+<li><strong>Services:</strong> Você ganha <strong>1 ponto</strong> por participar de um service para outros jogadores.</li>
                         <li><strong>Ranks:</strong> Seu rank é definido pela sua pontuação total: <strong>Rising</strong> (18+ pontos),<strong>Membro</strong> (10-17 pontos) e  Abaixo disso, você é <strong>Recruta</strong>.</li>
                     </ul>
-                </div>
+              
+</div>
             </div>
             <div class="ranking-list-item">
                 <div class="point-header" onclick="togglePointDetails('info-historico-wrapper')">
                     <h5><i class="fas fa-history"></i> Histórico Mensal</h5>
                     <span><i class="fas fa-chevron-down"></i></span>
-                </div>
+         
+</div>
                 <div id="info-historico-wrapper" class="point-details">
                     <p>Selecione um mês para ver o ranking final:</p>
                     <select id="history-month-select" class="leader-panel-select">
                         <option value="">Carregando...</option>
-                    </select>
-                    <div id="history-leaderboard-container" style="margin-top: 15px;">
-                        </div>
+ 
+</select>
+                <div id="history-leaderboard-container" style="margin-top: 15px; display: none;">
+                    <table>
+                        <thead>
+                  
+<tr>
+                            <th>Pos.</th>
+                            <th>Jogador</th>
+                            <th>Rank da Guilda</th>
+    
+<th>Rank de Pontos</th>
+                            <th>Total</th>
+                            </tr>
+                  
+</thead>
+        <tbody id="history-table-body">
+            </tbody>
+    </table>
+</div>
                 </div>
             </div>
         </div>
         <hr>
         <h4>Minha Pontuação</h4>
         <div id="personal-points-details">
-            <p>Selecione um jogador na tabela para ver os detalhes.</p>
+       
+<p>Selecione um jogador na tabela para ver os detalhes.</p>
         </div>
         <hr>
         <p><strong>Total:</strong> <span id="personal-total-points">0</span></p>
@@ -214,24 +299,28 @@
         <h4>Tabela de pontuação</h4>
         <input type="text" id="player-search" placeholder="Procurar jogador...">
         <table>
-            <thead>
+           
+<thead>
                 <tr>
                     <th>Jogador</th>
                     <th>XP</th>
                     <th>Eventos</th>
                     <th>Warzone</th>
-                    <th>Mountain</th>
+   
+<th>Mountain</th>
                     <th>KS</th>
                     <th>Services</th>
                     <th>Hive</th>
                     <th>Total</th>
-                    <th>Atual</th>
+   
+<th>Atual</th>
                     <th>Prox.</th>
                 </tr>
             </thead>
             <tbody id="leaderboard-tbody">
                 <tr><td colspan="11" style="text-align: center;">A carregar leaderboard...</td></tr>
-            </tbody>
+ 
+</tbody>
         </table>
     </div>
 </div>
@@ -239,18 +328,14 @@
 
 <script>
     'use strict';
-    var allPointsData = {};
+var allPointsData = {};
     var stagedWarzoneChanges = {};
     var myName = window.activeCharacterName || "Visitante";
     var ALL_CATEGORIES = ['Warzone', 'Eventos', 'XP Mensal', 'MountainPiece', 'KS', 'Services', 'Hive'];
     
-    // Em ranking.html, substitua a função inteira por esta:
-    function initializeRankingPage(socket) {
+function initializeRankingPage(socket) {
         if (window.isAdmin) {
             document.getElementById('leader-panel-toggle-btn').style.display = 'block';
-            document.getElementById('leader-panel-toggle-btn').addEventListener('click', () => {
-                document.getElementById('leader-panel').classList.toggle('visible');
-            });
         }
         setupLeaderForms(socket);
         setupPageListeners(socket);
@@ -267,6 +352,10 @@
         socket.on('history:availableMonths', (months) => {
             const select = document.getElementById('history-month-select');
             select.innerHTML = '<option value="">Selecione um mês</option>';
+            
+            // Adiciona a opção para voltar ao ranking atual
+            select.innerHTML += '<option value="current">Ranking Atual</option>';
+            
             if (months && months.length > 0) {
                 months.forEach(month => {
                     const option = document.createElement('option');
@@ -280,18 +369,21 @@
         });
 
         socket.on('history:monthData', (response) => {
-            const container = document.getElementById('history-leaderboard-container');
             if (response.success) {
-                renderHistoryLeaderboard(response.data);
+                renderLeaderboard(response.data);
+                // Oculta o painel de pontuação pessoal ao exibir o histórico
+                document.getElementById('personal-points-details').innerHTML = '<p>Selecione um jogador na tabela para ver os detalhes.</p>';
+                const titleEl = document.querySelector('.personal-score h4');
+                titleEl.textContent = 'Minha Pontuação';
             } else {
-                container.innerHTML = `<p>${response.message}</p>`;
+                const tbody = document.getElementById('leaderboard-tbody');
+                tbody.innerHTML = `<tr><td colspan="11" style="text-align: center;">${response.message}</td></tr>`;
             }
         });
         
         socket.on('points:saveChangesConfirmed', (message) => {
             alert(message);
         });
-
         socket.emit('points:getData');
     }
     
@@ -304,54 +396,93 @@
         }
     }
 
-    function setupLeaderForms(socket) {
-        document.getElementById('warzone-form')?.addEventListener('submit', (e) => { e.preventDefault(); const d = e.target.log.value; if (d) socket.emit('points:addWarzone', d); e.target.reset(); });
-        document.getElementById('events-form')?.addEventListener('submit', (e) => { e.preventDefault(); const p = e.target.playerName.value.trim(); const a = parseInt(e.target.participations.value, 10); if (p && a > 0) socket.emit('points:addEvent', { playerName: p, participations: a }); e.target.reset(); });
-        document.getElementById('hive-form')?.addEventListener('submit', (e) => { e.preventDefault(); const p = e.target.playerName.value.trim(); const t = parseInt(e.target.tasks.value, 10); if (p && t >= 10) socket.emit('points:addHive', { playerName: p, tasks: t }); e.target.reset(); });
-        document.getElementById('ks-form')?.addEventListener('submit', (e) => { e.preventDefault(); const p = e.target.playerName.value.trim(); const h = parseInt(e.target.hours.value, 10); if (p && h > 0) socket.emit('points:addKS', { playerName: p, hours: h }); e.target.reset(); });
-        document.getElementById('mountainpiece-form')?.addEventListener('submit', (e) => { e.preventDefault(); const p = e.target.players.value.trim().split('\n').filter(Boolean); const pieces = parseInt(e.target.pieces.value, 10); if (p.length > 0 && pieces > 0) socket.emit('points:addMountainPiece', { players: p, pieces: pieces }); e.target.reset(); });
-        document.getElementById('services-form')?.addEventListener('submit', (e) => { e.preventDefault(); const s = e.target.serviceName.value.trim(); const p = e.target.players.value.trim().split('\n').filter(Boolean); if (s && p.length > 0) socket.emit('points:addService', { players: p, serviceName: s }); e.target.reset(); });
-        document.getElementById('force-xp-sync-btn')?.addEventListener('click', () => socket.emit('points:forceXpSync'));
-    }
+function setupLeaderForms(socket) {
+    document.getElementById('leader-panel-toggle-btn').addEventListener('click', () => {
+        document.getElementById('leader-panel').classList.toggle('visible');
+    });
+    document.getElementById('warzone-form')?.addEventListener('submit', (e) => { e.preventDefault(); const d = e.target.log.value; if (d) socket.emit('points:addWarzone', d); e.target.reset(); });
+    document.getElementById('events-form')?.addEventListener('submit', (e) => { e.preventDefault(); const p = e.target.players.value.trim().split('\n').filter(Boolean); const a = parseInt(e.target.participations.value, 10); if (p.length > 0 && a > 0) socket.emit('points:addEvent', { players: p, participations: a }); e.target.reset(); });
+    document.getElementById('hive-form')?.addEventListener('submit', (e) => { e.preventDefault(); const p = e.target.players.value.trim().split('\n').filter(Boolean); const t = parseInt(e.target.tasks.value, 10); if (p.length > 0 && t >= 10) socket.emit('points:addHive', { players: p, tasks: t }); e.target.reset(); });
+    document.getElementById('ks-form')?.addEventListener('submit', (e) => { e.preventDefault(); const p = e.target.players.value.trim().split('\n').filter(Boolean); const h = parseInt(e.target.hours.value, 10); if (p.length > 0 && h > 0) socket.emit('points:addKS', { players: p, hours: h }); e.target.reset(); });
+    document.getElementById('mountainpiece-form')?.addEventListener('submit', (e) => { e.preventDefault(); const p = e.target.players.value.trim().split('\n').filter(Boolean); const pieces = parseInt(e.target.pieces.value, 10); if (p.length > 0 && pieces > 0) socket.emit('points:addMountainPiece', { players: p, pieces: pieces }); e.target.reset(); });
+    document.getElementById('services-form')?.addEventListener('submit', (e) => { e.preventDefault(); const s = e.target.serviceName.value.trim(); const p = e.target.players.value.trim().split('\n').filter(Boolean); if (s && p.length > 0) socket.emit('points:addService', { players: p, serviceName: s }); e.target.reset(); });
+    document.getElementById('force-xp-sync-btn')?.addEventListener('click', () => socket.emit('points:forceXpSync'));
+}
     
-function renderLeaderboard() {
+    // Altera a função renderLeaderboard para aceitar dados opcionais
+    function renderLeaderboard(dataToRender = null) {
         const tbody = document.getElementById('leaderboard-tbody');
         if (!tbody) return;
+        
+        // Usa `dataToRender` se ele existir, caso contrário, usa `allPointsData`
+        const data = dataToRender || allPointsData;
+        
         const searchTerm = document.getElementById('player-search').value.toLowerCase();
         tbody.innerHTML = '';
-        
         const getCategoryPoints = (player, categoryName) => {
-            if (player?.categoryTotals && player.categoryTotals[categoryName] !== undefined) {
-                return player.categoryTotals[categoryName];
-            }
-            return 0;
+            return player?.categoryTotals?.[categoryName] || 0;
         };
-
-        const playersArray = Object.keys(allPointsData)
+        const playersArray = Object.keys(data)
             .filter(key => key !== 'warzone')
-            .map(name => ({ name, ...allPointsData[name] }));
-        const sortedPlayers = playersArray.sort((a, b) => (b.total || 0) - (a.total || 0));
+            .map(name => ({ name, ...data[name] }));
+        
+        const rankPriority = {
+            'Rising': 1,
+            'Member': 2,
+            'Recruta': 3,
+            'Academy': 4,
+            'Membro Novo': 5,
+            'Leader Alliance': 6,
+            'Leader': 7,
+            'Vice Leader': 8,
+            'Major': 9,
+            'Hero': 
+10,
+            'Prodigy': 11,
+            'Reserva': 12,
+            'Left Guild': 13,
+        };
+        const defaultPriority = 99;
+        
+        const sortedPlayers = playersArray.sort((a, b) => {
+            const rankA = a.guildRank || '';
+            const rankB = b.guildRank || '';
+            const priorityA = rankPriority[rankA] !== undefined ? rankPriority[rankA] : defaultPriority;
+            const priorityB = rankPriority[rankB] !== undefined ? rankPriority[rankB] : defaultPriority;
 
-        // Filtra os ranks a serem ignorados AQUI, apenas para esta tabela
-        const ranksToIgnore = new Set([
-            'Leader Alliance', 'Leader', 'Major',
-            'Hero', 'Vice Leader', 'Prodigy'
-        ]);
-        const filteredAndSortedPlayers = sortedPlayers.filter(player => !ranksToIgnore.has(player.guildRank));
+            if (priorityA !== priorityB) {
+                return priorityA - priorityB;
+            }
 
-        if (filteredAndSortedPlayers.length === 0) {
+            return a.name.localeCompare(b.name);
+        });
+        
+        const ranksToLock = new Set(['Leader Alliance', 'Leader', 'Vice Leader', 'Major', 'Hero']);
+        if (sortedPlayers.length === 0) {
             tbody.innerHTML = `<tr><td colspan="11" style="text-align: center;">Nenhum dado de ponto para exibir.</td></tr>`;
             return;
         }
 
-        filteredAndSortedPlayers
+        sortedPlayers
             .filter(p => p.name.toLowerCase().includes(searchTerm))
             .forEach(player => {
                 const tr = document.createElement('tr');
                 tr.dataset.playerName = player.name;
                 
-                const guildRank = player.guildRank || 'N/A';
-                const pointsRank = player.rank || 'Recruta';
+                let guildRank = player.guildRank || 'N/A';
+                let pointsRank = player.rank || 
+'Recruta';
+                let currentRankText;
+                let nextRankText;
+
+                if (ranksToLock.has(guildRank)) {
+                    currentRankText = guildRank;
+                    nextRankText = guildRank;
+                } else {
+              
+currentRankText = guildRank;
+                    nextRankText = pointsRank;
+                }
                 
                 tr.innerHTML = `
                     <td style="text-align: left;">${player.name}</td>
@@ -361,56 +492,42 @@ function renderLeaderboard() {
                     <td>${getCategoryPoints(player, 'MountainPiece')}</td>
                     <td>${getCategoryPoints(player, 'KS')}</td>
                     <td>${getCategoryPoints(player, 'Services')}</td>
-                    <td>${getCategoryPoints(player, 'Hive')}</td>
-                    <td><strong>${player.total || 0}</strong></td>
-                    <td>${guildRank}</td>
-                    <td>${pointsRank}</td>
+                   
+<td>${getCategoryPoints(player, 'Hive')}</td>
+                    <td><strong>${player.total ||
+0}</strong></td>
+                    <td>${currentRankText}</td>
+                    <td>${nextRankText}</td>
                 `;
                 tbody.appendChild(tr);
             });
     }
     
-    function renderHistoryLeaderboard(historyData) {
-        const container = document.getElementById('history-leaderboard-container');
-        if (!historyData || Object.keys(historyData).length === 0) {
-            container.innerHTML = '<p>Não há dados para exibir para este mês.</p>';
+    function renderXpRanking() {
+        const container = document.getElementById('xp-ranking-details');
+        if (!container) return;
+        
+        // --- INÍCIO DA MODIFICAÇÃO ---
+        // Lê diretamente o ranking de XP bruta enviado pelo backend
+        const xpRankList = allPointsData.xpRanking || []; 
+        // --- FIM DA MODIFICAÇÃO ---
+        
+        if (xpRankList.length === 0) {
+            container.innerHTML = '<p>Nenhum dado de XP para classificar este mês.</p>';
             return;
         }
         
-        const playersArray = Object.keys(historyData)
-            .filter(key => key !== 'warzone')
-            .map(name => ({ name, ...historyData[name] }));
-        const sortedPlayers = playersArray.sort((a, b) => (b.total || 0) - (a.total || 0));
-        let tableHtml = `
-            <table>
-                <thead>
-                    <tr>
-                        <th>Pos.</th>
-                        <th>Jogador</th>
-                        <th>Total</th>
-                        <th>Rank</th>
-                    </tr>
-                </thead>
-                <tbody>`;
-        if (sortedPlayers.length === 0) {
-            tableHtml += `<tr><td colspan="4" style="text-align: center;">Nenhum dado de ponto para exibir.</td></tr>`;
-        } else {
-            sortedPlayers.forEach((player, index) => {
-                tableHtml += `
-                    <tr>
-                        <td>${index + 1}</td>
-                        <td style="text-align: left;">${player.name}</td>
-                        <td><strong>${player.total || 0}</strong></td>
-                        <td>${player.rank || 'Recruta'}</td>
-                    </tr>
-                `;
-            });
-        }
-
-        tableHtml += `</tbody></table>`;
-        container.innerHTML = tableHtml;
+        let html = '<ol>';
+        xpRankList.forEach((player, index) => {
+            const highlightClass = index < 10 ? 'class="top-10"' : '';
+            // Formata o valor de XP para melhor leitura
+            const formattedXp = player.xp.toLocaleString('pt-BR'); 
+            html += `<li ${highlightClass}>${player.name} - ${formattedXp} XP</li>`;
+        });
+        html += '</ol>';
+        container.innerHTML = html;
     }
-    
+
     function renderEventRanking() {
         const container = document.getElementById('event-ranking-details');
         if (!container) return;
@@ -439,53 +556,22 @@ function renderLeaderboard() {
         container.innerHTML = html;
     }
 
-function renderXpRanking() {
-        const container = document.getElementById('xp-ranking-details');
-        if (!container) return;
-        const xpRankList = [];
-        
-        for (const playerName in allPointsData) {
-            if (playerName === 'warzone') continue;
-            
-            // AQUI ESTAVA O ERRO: 'allPoints_data' foi corrigido para 'allPointsData'
-            const details = allPointsData[playerName].details; 
-
-            if (details?.['XP Mensal']?.[0]) {
-                const entry = details['XP Mensal'][0];
-                const match = entry.reason.match(/([\d.,]+) de XP/);
-                
-                if (match && match[1]) {
-                    const xpValue = parseInt(match[1].replace(/\./g, '').replace(/,/g, ''), 10);
-                    if (!isNaN(xpValue)) {
-                       xpRankList.push({ name: playerName, xp: xpValue, formattedXp: match[1] });
-                    }
-                }
-            }
-        }
-        
-        xpRankList.sort((a, b) => b.xp - a.xp);
-        
-        if (xpRankList.length === 0) {
-            container.innerHTML = '<p>Nenhum dado de XP para classificar este mês.</p>';
-            return;
-        }
-        
-        let html = '<ol>';
-        xpRankList.forEach((player, index) => {
-            const highlightClass = index < 10 ? 'class="top-10"' : '';
-            html += `<li ${highlightClass}>${player.name} - ${player.formattedXp} XP</li>`;
-        });
-        html += '</ol>';
-        container.innerHTML = html;
-    }
 
     function renderWarzoneCalendar(playerName) {
-        const now = new Date();
-        const year = now.getFullYear();
-        const month = now.getMonth();
+            // [MODIFICADO] Pega o mês ATIVO (o primeiro e único) do objeto de dados.
+            const monthYear = allPointsData.warzone ? Object.keys(allPointsData.warzone)[0] : undefined;
+
+            if (!monthYear) {
+                // Se não há dados de warzone (arquivo vazio), retorna um calendário vazio.
+                return '<div class="warzone-calendar-container"><p>Nenhum dado de Warzone ativo.</p></div>';
+            }
+            
+            // Extrai o ano e mês (base 1) do "monthYear" do arquivo
+            const [year, monthIndex] = monthYear.split('-').map(Number);
+            const month = monthIndex - 1; // Converte (1-12) para (0-11)
+
         const daysInMonth = new Date(year, month + 1, 0).getDate();
         const firstDayOfMonth = new Date(year, month, 1).getDay();
-        const monthYear = `${year}-${String(month + 1).padStart(2, '0')}`;
         const attendanceData = allPointsData.warzone?.[monthYear]?.[playerName] || {};
         let gridHtml = '<div class="warzone-calendar-container"><div class="calendar-grid">';
         ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'].forEach(day => gridHtml += `<div class="calendar-header">${day}</div>`);
@@ -500,33 +586,34 @@ function renderXpRanking() {
             if (window.isAdmin) {
                 classes += ' admin-clickable';
             }
-            classes += isAttended ? ' attended' : ' not-attended';
+            classes += isAttended ?
+' attended' : ' not-attended';
             gridHtml += `<div class="${classes}" data-date="${dayStr}" data-player="${playerName}">${day}</div>`;
         }
         gridHtml += '</div></div>';
         return gridHtml;
     }
     
-    function renderPersonalScore(playerName) {
+   function renderPersonalScore(playerName) {
         const detailsContainer = document.getElementById('personal-points-details');
         const totalEl = document.getElementById('personal-total-points');
         const rankEl = document.getElementById('personal-rank');
         const titleEl = document.querySelector('.personal-score h4');
-        const playerData = allPointsData[playerName] || { details: {}, total: 0, rank: 'Recruta' };
+        const playerData = allPointsData[playerName] ||
+{ details: {}, total: 0, rank: 'Recruta' };
 
         titleEl.textContent = `Pontuação de ${playerName}`;
         detailsContainer.innerHTML = '';
 
         const mainList = document.createElement('ul');
-
         ALL_CATEGORIES.forEach(category => {
             const categoryEntries = playerData.details?.[category] || [];
             const categoryTotal = playerData.categoryTotals?.[category] || 0;
-            if (categoryEntries.length === 0 && category !== 'Warzone') return;
-
+            
             const categoryId = `category-${playerName.replace(/\s+/g, '-')}-${category}`;
 
-            const mainListItem = document.createElement('li');
+            
+const mainListItem = document.createElement('li');
             const headerDiv = document.createElement('div');
             headerDiv.className = 'point-header';
             headerDiv.onclick = () => togglePointDetails(categoryId);
@@ -534,7 +621,8 @@ function renderXpRanking() {
             mainListItem.appendChild(headerDiv);
 
             const detailsDiv = document.createElement('div');
-            detailsDiv.id = categoryId;
+       
+detailsDiv.id = categoryId;
             detailsDiv.className = 'point-details';
 
             if (category === 'Warzone') {
@@ -551,58 +639,70 @@ function renderXpRanking() {
                 }
             } else {
                 const entriesList = document.createElement('ul');
-                categoryEntries.forEach(entry => {
-                    const entryItem = document.createElement('li');
-                    const entryText = document.createElement('p');
-                    entryText.style.margin = '0 0 8px 0';
-                    entryText.textContent = `${entry.points} pts - ${entry.reason}`;
-                    entryItem.appendChild(entryText);
+                if (categoryEntries.length > 0) {
+                    categoryEntries.forEach(entry => {
+                        const entryItem = document.createElement('li');
+                        const entryText = document.createElement('p');
+                    
+                        entryText.style.margin = '0 0 8px 0';
+                        entryText.textContent = `${entry.points} pts - ${entry.reason}`;
+                        entryItem.appendChild(entryText);
 
-                    if (window.isAdmin) {
-                        const form = document.createElement('form');
-                        form.className = 'point-form';
-                        form.onsubmit = (event) => handleEditEntry(event, playerName, category, entry.id);
+                        if (window.isAdmin) {
+            
+                            const form = document.createElement('form');
+                            form.className = 'point-form';
+                            form.onsubmit = (event) => handleEditEntry(event, playerName, category, entry.id);
 
-                        const inputsDiv = document.createElement('div');
-                        inputsDiv.className = 'point-form-inputs';
-                        const pointsInput = document.createElement('input');
-                        pointsInput.type = 'number';
-                        pointsInput.value = entry.points;
-                        pointsInput.name = 'points';
-                        pointsInput.required = true;
-                        const reasonInput = document.createElement('input');
-                        reasonInput.type = 'text';
-                        reasonInput.value = entry.reason;
-                        reasonInput.name = 'reason';
-                        reasonInput.required = true;
-                        inputsDiv.appendChild(pointsInput);
-                        inputsDiv.appendChild(reasonInput);
+                
+                            const inputsDiv = document.createElement('div');
+                            inputsDiv.className = 'point-form-inputs';
+                            const pointsInput = document.createElement('input');
+                        
+                            pointsInput.type = 'number';
+                            pointsInput.value = entry.points;
+                            pointsInput.name = 'points';
+                            pointsInput.required = true;
+                            const reasonInput = document.createElement('input');
+                            reasonInput.type = 'text';
+                            reasonInput.value = entry.reason;
+                            reasonInput.name = 'reason';
+                            reasonInput.required = true;
+                            inputsDiv.appendChild(pointsInput);
+                            inputsDiv.appendChild(reasonInput);
 
-                        const actionsDiv = document.createElement('div');
-                        actionsDiv.className = 'point-form-actions';
+                            const actionsDiv = document.createElement('div');
+                            actionsDiv.className = 'point-form-actions';
 
-                        const saveButton = document.createElement('button');
-                        saveButton.type = 'submit';
-                        saveButton.className = 'action-btn';
-                        saveButton.textContent = 'Salvar';
-                        actionsDiv.appendChild(saveButton);
+                            const saveButton = document.createElement('button');
+                            saveButton.type = 'submit';
+                            saveButton.className = 'action-btn';
+                            saveButton.textContent = 'Salvar';
+                            actionsDiv.appendChild(saveButton);
+                            const deleteButton = document.createElement('button');
+                            deleteButton.type = 'button';
+                            const deleteIcon = document.createElement('i');
+                            deleteIcon.className = 'fas fa-trash';
+                            const deleteText = document.createTextNode(' Delete');
+                            deleteButton.appendChild(deleteIcon);
+                            deleteButton.appendChild(deleteText);
+                            deleteButton.onclick = () => handleDeleteEntry(playerName, category, entry.id);
+                            actionsDiv.appendChild(deleteButton);
 
-                        const deleteButton = document.createElement('button');
-                        deleteButton.type = 'button';
-                        const deleteIcon = document.createElement('i');
-                        deleteIcon.className = 'fas fa-trash';
-                        const deleteText = document.createTextNode(' Delete');
-                        deleteButton.appendChild(deleteIcon);
-                        deleteButton.appendChild(deleteText);
-                        deleteButton.onclick = () => handleDeleteEntry(playerName, category, entry.id);
-                        actionsDiv.appendChild(deleteButton);
-
-                        form.appendChild(inputsDiv);
-                        form.appendChild(actionsDiv);
-                        entryItem.appendChild(form);
-                    }
-                    entriesList.appendChild(entryItem);
-                });
+                            form.appendChild(inputsDiv);
+                            form.appendChild(actionsDiv);
+                            entryItem.appendChild(form);
+                        }
+                        entriesList.appendChild(entryItem);
+                    });
+                } else {
+                    const noPointsMessage = document.createElement('p');
+                    noPointsMessage.textContent = 'Nenhum ponto nesta categoria.';
+                    noPointsMessage.style.paddingLeft = '15px';
+                    noPointsMessage.style.fontStyle = 'italic';
+                    noPointsMessage.style.opacity = '0.7';
+                    entriesList.appendChild(noPointsMessage);
+                }
                 detailsDiv.appendChild(entriesList);
             }
             mainListItem.appendChild(detailsDiv);
@@ -610,42 +710,44 @@ function renderXpRanking() {
         });
 
         detailsContainer.appendChild(mainList);
-        totalEl.textContent = playerData.total || 0;
+        totalEl.textContent = playerData.total ||
+0;
         rankEl.textContent = playerData.rank || 'Recruta';
     }
     
     function setupPageListeners(socket) {
         document.getElementById('player-search')?.addEventListener('input', () => renderLeaderboard());
-        
         document.getElementById('history-month-select')?.addEventListener('change', (e) => {
             const selectedMonth = e.target.value;
-            if (selectedMonth) {
-                document.getElementById('history-leaderboard-container').innerHTML = '<p>Carregando leaderboard...</p>';
+            if (selectedMonth === 'current') {
+                renderLeaderboard(allPointsData);
+            } else if (selectedMonth) {
+                document.getElementById('leaderboard-tbody').innerHTML = '<tr><td colspan="11" style="text-align: center;">Carregando histórico...</td></tr>';
                 socket.emit('history:getMonthData', selectedMonth);
             } else {
-                document.getElementById('history-leaderboard-container').innerHTML = '';
+                document.getElementById('leaderboard-tbody').innerHTML = `<tr><td colspan="11" style="text-align: center;">Selecione um mês para ver o histórico.</td></tr>`;
             }
         });
-        
         document.getElementById('leaderboard-tbody')?.addEventListener('click', (e) => {
             const row = e.target.closest('tr');
             if (row?.dataset.playerName) {
                 renderPersonalScore(row.dataset.playerName);
             }
         });
-        
         document.querySelector('.personal-score')?.addEventListener('click', (e) => {
             const dayCell = e.target.closest('.calendar-day.admin-clickable');
             if (dayCell) {
                 e.stopPropagation();
                 const playerName = dayCell.dataset.player;
                 const day = dayCell.dataset.date;
+              
                 const isAttended = dayCell.classList.toggle('attended');
                 dayCell.classList.toggle('not-attended', !isAttended);
                 if (!stagedWarzoneChanges[playerName]) {
                     stagedWarzoneChanges[playerName] = {};
                 }
                 stagedWarzoneChanges[playerName][day] = isAttended;
+    
                 updateWarzoneSummary(playerName);
                 return;
             }
@@ -653,6 +755,7 @@ function renderXpRanking() {
             if (e.target.id === 'view-calendar-btn') {
                 const playerName = e.target.dataset.player;
                 const calendarContentDiv = document.getElementById('wz-calendar-content');
+      
                 const summaryDiv = document.getElementById('wz-summary-container');
                 if (calendarContentDiv.style.display === 'none') {
                     calendarContentDiv.innerHTML = renderWarzoneCalendar(playerName);
@@ -684,7 +787,8 @@ function renderXpRanking() {
     function updateWarzoneSummary(playerName) {
         if (!playerName) return;
         const calendarContent = document.getElementById('wz-calendar-content');
-        if (!calendarContent || calendarContent.style.display === 'none') { return; }
+        if (!calendarContent || calendarContent.style.display === 'none') { return;
+        }
         const now = new Date();
         const monthYear = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
         const originalData = allPointsData.warzone?.[monthYear]?.[playerName] || {};
@@ -696,8 +800,10 @@ function renderXpRanking() {
             const day = i.toString();
             const originalStatus = originalData[day] || false;
             const finalStatus = stagedData[day] !== undefined ? stagedData[day] : originalStatus;
-            if (finalStatus) { currentDayCount++; }
-            if (finalStatus !== originalStatus) { hasChanges = true; }
+            if (finalStatus) { currentDayCount++;
+            }
+            if (finalStatus !== originalStatus) { hasChanges = true;
+            }
         }
         const daysCountEl = document.getElementById('wz-days-count');
         const saveBtn = document.getElementById('save-wz-changes-btn');
@@ -711,11 +817,11 @@ function renderXpRanking() {
             const isVisible = details.classList.toggle('visible');
             const icon = details.previousElementSibling.querySelector('i.fa-chevron-down, i.fa-chevron-up');
             if(icon) {
-                icon.className = isVisible ? 'fas fa-chevron-up' : 'fas fa-chevron-down';
+                icon.className = isVisible ?
+'fas fa-chevron-up' : 'fas fa-chevron-down';
             }
         }
     };
-
     window.handleEditEntry = function(e, player, category, entryId) {
         e.preventDefault();
         e.stopPropagation();
@@ -734,7 +840,6 @@ function renderXpRanking() {
         }
     };
 
-    // Inicialização
     if (window.appSocket) {
         initializeRankingPage(window.appSocket);
     } else {

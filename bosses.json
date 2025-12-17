@@ -1,0 +1,767 @@
+[
+  {
+    "name": "Undead Cavebear",
+    "chance": "Alta Chance",
+    "pct": 36,
+    "lastSeen": "3 dias atr&#xE1;s dias atrás",
+    "predictedDate": "Hoje",
+    "imageUrl": null,
+    "localImage": "boss_images/undead_cavebear.gif"
+  },
+  {
+    "name": "Arachir The Ancient One",
+    "chance": "Alta Chance",
+    "pct": 29,
+    "lastSeen": "8 dias atr&#xE1;s dias atrás",
+    "predictedDate": "Hoje",
+    "imageUrl": null,
+    "localImage": "boss_images/arachir_the_ancient_one.gif"
+  },
+  {
+    "name": "Man In The Cave",
+    "chance": "Alta Chance",
+    "pct": 21,
+    "lastSeen": "14 dias atr&#xE1;s dias atrás",
+    "predictedDate": "Hoje",
+    "imageUrl": null,
+    "localImage": "boss_images/man_in_the_cave.gif"
+  },
+  {
+    "name": "General Murius",
+    "chance": "Alta Chance",
+    "pct": 14,
+    "lastSeen": "6 dias atr&#xE1;s dias atrás",
+    "predictedDate": "Hoje",
+    "imageUrl": null,
+    "localImage": "boss_images/general_murius.gif"
+  },
+  {
+    "name": "Munster",
+    "chance": "Alta Chance",
+    "pct": 13,
+    "lastSeen": "2 dias atr&#xE1;s dias atrás",
+    "predictedDate": "Hoje",
+    "imageUrl": null,
+    "localImage": "boss_images/munster.gif"
+  },
+  {
+    "name": "The Frog Prince",
+    "chance": "Alta Chance",
+    "pct": 13,
+    "lastSeen": "16 dias atr&#xE1;s dias atrás",
+    "predictedDate": "Hoje",
+    "imageUrl": null,
+    "localImage": "boss_images/the_frog_prince.gif"
+  },
+  {
+    "name": "Big Boss Trolliver",
+    "chance": "Alta Chance",
+    "pct": 13,
+    "lastSeen": "4 dias atr&#xE1;s dias atrás",
+    "predictedDate": "Hoje",
+    "imageUrl": null,
+    "localImage": "boss_images/big_boss_trolliver.gif"
+  },
+  {
+    "name": "Countess Sorrow",
+    "chance": "Alta Chance",
+    "pct": 12,
+    "lastSeen": "18 dias atr&#xE1;s dias atrás",
+    "predictedDate": "Hoje",
+    "imageUrl": null,
+    "localImage": "boss_images/countess_sorrow.gif"
+  },
+  {
+    "name": "Fernfang",
+    "chance": "Alta Chance",
+    "pct": 12,
+    "lastSeen": "25 dias atr&#xE1;s dias atrás",
+    "predictedDate": "Hoje",
+    "imageUrl": null,
+    "localImage": "boss_images/fernfang.gif"
+  },
+  {
+    "name": "The Old Whopper",
+    "chance": "Alta Chance",
+    "pct": 12,
+    "lastSeen": "7 dias atr&#xE1;s dias atrás",
+    "predictedDate": "Hoje",
+    "imageUrl": null,
+    "localImage": "boss_images/the_old_whopper.gif"
+  },
+  {
+    "name": "The Plasmother",
+    "chance": "Alta Chance",
+    "pct": 11,
+    "lastSeen": "17 dias atr&#xE1;s dias atrás",
+    "predictedDate": "Hoje",
+    "imageUrl": null,
+    "localImage": "boss_images/the_plasmother.gif"
+  },
+  {
+    "name": "Xenia",
+    "chance": "Alta Chance",
+    "pct": 10,
+    "lastSeen": "11 dias atr&#xE1;s dias atrás",
+    "predictedDate": "Hoje",
+    "imageUrl": null,
+    "localImage": "boss_images/xenia.gif"
+  },
+  {
+    "name": "Tzumrah The Dazzler",
+    "chance": "Alta Chance",
+    "pct": 9,
+    "lastSeen": "25 dias atr&#xE1;s dias atrás",
+    "predictedDate": "Hoje",
+    "imageUrl": null,
+    "localImage": "boss_images/tzumrah_the_dazzler.gif"
+  },
+  {
+    "name": "Omrafir",
+    "chance": "Chance Média",
+    "pct": 6,
+    "lastSeen": "26 dias atr&#xE1;s dias atrás",
+    "predictedDate": "Hoje",
+    "imageUrl": null,
+    "localImage": "boss_images/omrafir.gif"
+  },
+  {
+    "name": "Yeti",
+    "chance": "Chance Média",
+    "pct": 5,
+    "lastSeen": "18 dias atr&#xE1;s dias atrás",
+    "predictedDate": "Hoje",
+    "imageUrl": null,
+    "localImage": "boss_images/yeti.gif"
+  },
+  {
+    "name": "The Pale Count",
+    "chance": "Chance Média",
+    "pct": 4,
+    "lastSeen": "16 dias atr&#xE1;s dias atrás",
+    "predictedDate": "Hoje",
+    "imageUrl": null,
+    "localImage": "boss_images/the_pale_count.gif"
+  },
+  {
+    "name": "Gravelord Oshuran",
+    "chance": "Chance Média",
+    "pct": 4,
+    "lastSeen": "7 dias atr&#xE1;s dias atrás",
+    "predictedDate": "Hoje",
+    "imageUrl": null,
+    "localImage": "boss_images/gravelord_oshuran.gif"
+  },
+  {
+    "name": "Dreadmaw",
+    "chance": "Baixa Chance",
+    "pct": 2,
+    "lastSeen": "10 dias atr&#xE1;s dias atrás",
+    "predictedDate": "2025-12-19",
+    "imageUrl": null,
+    "localImage": "boss_images/dreadmaw.gif"
+  },
+  {
+    "name": "Grandfather Tridian",
+    "chance": "Baixa Chance",
+    "pct": 2,
+    "lastSeen": "9 dias atr&#xE1;s dias atrás",
+    "predictedDate": "2025-12-21",
+    "imageUrl": null,
+    "localImage": "boss_images/grandfather_tridian.gif"
+  },
+  {
+    "name": "Teleskor",
+    "chance": "Baixa Chance",
+    "pct": 2,
+    "lastSeen": "13 dias atr&#xE1;s dias atrás",
+    "predictedDate": "2025-12-18",
+    "imageUrl": null,
+    "localImage": "boss_images/teleskor.gif"
+  },
+  {
+    "name": "Ferumbras",
+    "chance": "Baixa Chance",
+    "pct": 1,
+    "lastSeen": "1 dia atr&#xE1;s dias atrás",
+    "predictedDate": "2026-05-27",
+    "imageUrl": null,
+    "localImage": "boss_images/ferumbras.gif"
+  },
+  {
+    "name": "Shlorg",
+    "chance": "Baixa Chance",
+    "pct": 1,
+    "lastSeen": "1 dia atr&#xE1;s dias atrás",
+    "predictedDate": "2025-12-30",
+    "imageUrl": null,
+    "localImage": "boss_images/shlorg.gif"
+  },
+  {
+    "name": "Rottie The Rotworm",
+    "chance": "Baixa Chance",
+    "pct": 1,
+    "lastSeen": "23 dias atr&#xE1;s dias atrás",
+    "predictedDate": "2025-12-18",
+    "imageUrl": null,
+    "localImage": "boss_images/rottie_the_rotworm.gif"
+  },
+  {
+    "name": "Yaga The Crone",
+    "chance": "Baixa Chance",
+    "pct": 1,
+    "lastSeen": "14 dias atr&#xE1;s dias atrás",
+    "predictedDate": "2025-12-21",
+    "imageUrl": null,
+    "localImage": "boss_images/yaga_the_crone.gif"
+  },
+  {
+    "name": "Warlord Ruzad",
+    "chance": "Baixa Chance",
+    "pct": 1,
+    "lastSeen": "24 dias atr&#xE1;s dias atrás",
+    "predictedDate": "2025-12-22",
+    "imageUrl": null,
+    "localImage": "boss_images/warlord_ruzad.gif"
+  },
+  {
+    "name": "Dharalion",
+    "chance": "Sem Chance",
+    "pct": 0,
+    "lastSeen": "3 dias atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/dharalion.gif"
+  },
+  {
+    "name": "Dracola",
+    "chance": "Sem Chance",
+    "pct": 0,
+    "lastSeen": "56 dias atr&#xE1;s dias atrás",
+    "predictedDate": "2025-12-29",
+    "imageUrl": null,
+    "localImage": "boss_images/dracola.gif"
+  },
+  {
+    "name": "Gaz'haragoth",
+    "chance": "Sem Chance",
+    "pct": 0,
+    "lastSeen": "30 dias atr&#xE1;s dias atrás",
+    "predictedDate": "2025-12-29",
+    "imageUrl": null,
+    "localImage": "boss_images/gaz_haragoth.gif"
+  },
+  {
+    "name": "Ghazbaran",
+    "chance": "Sem Chance",
+    "pct": 0,
+    "lastSeen": "62 dias atr&#xE1;s dias atrás",
+    "predictedDate": "2026-03-27",
+    "imageUrl": null,
+    "localImage": "boss_images/ghazbaran.gif"
+  },
+  {
+    "name": "Massacre",
+    "chance": "Sem Chance",
+    "pct": 0,
+    "lastSeen": "6 dias atr&#xE1;s dias atrás",
+    "predictedDate": "2025-12-25",
+    "imageUrl": null,
+    "localImage": "boss_images/massacre.gif"
+  },
+  {
+    "name": "Mr. Punish",
+    "chance": "Sem Chance",
+    "pct": 0,
+    "lastSeen": "24 dias atr&#xE1;s dias atrás",
+    "predictedDate": "2025-12-28",
+    "imageUrl": null,
+    "localImage": "boss_images/mr_punish.gif"
+  },
+  {
+    "name": "Ocyakao",
+    "chance": "Sem Chance",
+    "pct": 0,
+    "lastSeen": "6 dias atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/ocyakao.gif"
+  },
+  {
+    "name": "Orshabaal",
+    "chance": "Sem Chance",
+    "pct": 0,
+    "lastSeen": "26 dias atr&#xE1;s dias atrás",
+    "predictedDate": "2026-04-30",
+    "imageUrl": null,
+    "localImage": "boss_images/orshabaal.gif"
+  },
+  {
+    "name": "Sir Valorcrest",
+    "chance": "Sem Chance",
+    "pct": 0,
+    "lastSeen": "4 dias atr&#xE1;s dias atrás",
+    "predictedDate": "2025-12-18",
+    "imageUrl": null,
+    "localImage": "boss_images/sir_valorcrest.gif"
+  },
+  {
+    "name": "The Handmaiden",
+    "chance": "Sem Chance",
+    "pct": 0,
+    "lastSeen": "11 dias atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/the_handmaiden.gif"
+  },
+  {
+    "name": "The Imperor",
+    "chance": "Sem Chance",
+    "pct": 0,
+    "lastSeen": "12 dias atr&#xE1;s dias atrás",
+    "predictedDate": "2025-12-19",
+    "imageUrl": null,
+    "localImage": "boss_images/the_imperor.gif"
+  },
+  {
+    "name": "The Welter",
+    "chance": "Sem Chance",
+    "pct": 0,
+    "lastSeen": "9 dias atr&#xE1;s dias atrás",
+    "predictedDate": "2025-12-25",
+    "imageUrl": null,
+    "localImage": "boss_images/the_welter.gif"
+  },
+  {
+    "name": "Zevelon Duskbringer",
+    "chance": "Sem Chance",
+    "pct": 0,
+    "lastSeen": "4 dias atr&#xE1;s dias atrás",
+    "predictedDate": "2025-12-19",
+    "imageUrl": null,
+    "localImage": "boss_images/zevelon_duskbringer.gif"
+  },
+  {
+    "name": "Zulazza the Corruptor",
+    "chance": "Sem Chance",
+    "pct": 0,
+    "lastSeen": "32 dias atr&#xE1;s dias atrás",
+    "predictedDate": "2025-12-18",
+    "imageUrl": null,
+    "localImage": "boss_images/zulazza_the_corruptor.gif"
+  },
+  {
+    "name": "Zushuka",
+    "chance": "Sem Chance",
+    "pct": 0,
+    "lastSeen": "3 dias atr&#xE1;s dias atrás",
+    "predictedDate": "2026-01-02",
+    "imageUrl": null,
+    "localImage": "boss_images/zushuka.gif"
+  },
+  {
+    "name": "Morgaroth",
+    "chance": "Sem Chance",
+    "pct": 0,
+    "lastSeen": "48 dias atr&#xE1;s dias atrás",
+    "predictedDate": "2026-04-16",
+    "imageUrl": null,
+    "localImage": "boss_images/morgaroth.gif"
+  },
+  {
+    "name": "Diblis the Fair",
+    "chance": "Sem Chance",
+    "pct": 0,
+    "lastSeen": "9 dias atr&#xE1;s dias atrás",
+    "predictedDate": "2025-12-18",
+    "imageUrl": null,
+    "localImage": "boss_images/diblis_the_fair.gif"
+  },
+  {
+    "name": "Hatebreeder",
+    "chance": "Sem Chance",
+    "pct": 0,
+    "lastSeen": "2 dias atr&#xE1;s dias atrás",
+    "predictedDate": "2025-12-21",
+    "imageUrl": null,
+    "localImage": "boss_images/hatebreeder.gif"
+  },
+  {
+    "name": "Captain Jones",
+    "chance": "Sem Chance",
+    "pct": 0,
+    "lastSeen": "2 dias atr&#xE1;s dias atrás",
+    "predictedDate": "2025-12-21",
+    "imageUrl": null,
+    "localImage": "boss_images/captain_jones.gif"
+  },
+  {
+    "name": "Hairman The Huge",
+    "chance": "Sem Chance",
+    "pct": 0,
+    "lastSeen": "4 dias atr&#xE1;s dias atrás",
+    "predictedDate": "2025-12-18",
+    "imageUrl": null,
+    "localImage": "boss_images/hairman_the_huge.gif"
+  },
+  {
+    "name": "Rukor Zad",
+    "chance": "Sem Chance",
+    "pct": 0,
+    "lastSeen": "3 dias atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/rukor_zad.gif"
+  },
+  {
+    "name": "Smuggler Baron Silvertoe",
+    "chance": "Sem Chance",
+    "pct": 0,
+    "lastSeen": "2 dias atr&#xE1;s dias atrás",
+    "predictedDate": "2025-12-24",
+    "imageUrl": null,
+    "localImage": "boss_images/smuggler_baron_silvertoe.gif"
+  },
+  {
+    "name": "The Big Bad One",
+    "chance": "Sem Chance",
+    "pct": 0,
+    "lastSeen": "2 dias atr&#xE1;s dias atrás",
+    "predictedDate": "2025-12-21",
+    "imageUrl": null,
+    "localImage": "boss_images/the_big_bad_one.gif"
+  },
+  {
+    "name": "High Templar Cobrass",
+    "chance": "Sem Chance",
+    "pct": 0,
+    "lastSeen": "28 dias atr&#xE1;s dias atrás",
+    "predictedDate": "2025-12-19",
+    "imageUrl": null,
+    "localImage": "boss_images/high_templar_cobrass.gif"
+  },
+  {
+    "name": "Barbaria",
+    "chance": "Sem Chance",
+    "pct": 0,
+    "lastSeen": "5 dias atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/barbaria.gif"
+  },
+  {
+    "name": "Zarabustor",
+    "chance": "Sem Chance",
+    "pct": 0,
+    "lastSeen": "57 dias atr&#xE1;s dias atrás",
+    "predictedDate": "2025-12-18",
+    "imageUrl": null,
+    "localImage": "boss_images/zarabustor.gif"
+  },
+  {
+    "name": "Morshabaal",
+    "chance": "Sem Chance",
+    "pct": 0,
+    "lastSeen": "68 dias atr&#xE1;s dias atrás",
+    "predictedDate": "2026-03-25",
+    "imageUrl": null,
+    "localImage": "boss_images/morshabaal.gif"
+  },
+  {
+    "name": "The Abomination",
+    "chance": "Sem Chance",
+    "pct": 0,
+    "lastSeen": "277 dias atr&#xE1;s dias atrás",
+    "predictedDate": "2026-02-05",
+    "imageUrl": null,
+    "localImage": "boss_images/the_abomination.gif"
+  },
+  {
+    "name": "Foreman Kneebiter",
+    "chance": "Sem Chance",
+    "pct": 0,
+    "lastSeen": "59 dias atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/foreman_kneebiter.gif"
+  },
+  {
+    "name": "The Evil Eye",
+    "chance": "Sem Chance",
+    "pct": 0,
+    "lastSeen": "3 dias atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/the_evil_eye.gif"
+  },
+  {
+    "name": "Robby the Reckless",
+    "chance": "Sem Previsão",
+    "pct": 0,
+    "lastSeen": "305 dias atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/robby_the_reckless.gif"
+  },
+  {
+    "name": "Furyosa",
+    "chance": "Sem Previsão",
+    "pct": 0,
+    "lastSeen": "232 dias atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/furyosa.gif"
+  },
+  {
+    "name": "Mahatheb",
+    "chance": "Sem Previsão",
+    "pct": 0,
+    "lastSeen": "90 dias atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/mahatheb.gif"
+  },
+  {
+    "name": "Mornenion",
+    "chance": "Baixa Chance",
+    "pct": 0,
+    "lastSeen": "69 dias atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/mornenion.gif"
+  },
+  {
+    "name": "Apprentice Sheng",
+    "chance": "Baixa Chance",
+    "pct": 0,
+    "lastSeen": "18 dias atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/apprentice_sheng.gif"
+  },
+  {
+    "name": "Midnight Panther",
+    "chance": "Baixa Chance",
+    "pct": 0,
+    "lastSeen": "13 dias atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/midnight_panther.gif"
+  },
+  {
+    "name": "Jesse the Wicked",
+    "chance": "Baixa Chance",
+    "pct": 0,
+    "lastSeen": "12 dias atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/jesse_the_wicked.gif"
+  },
+  {
+    "name": "Oodok Witchmaster",
+    "chance": "Baixa Chance",
+    "pct": 0,
+    "lastSeen": "11 dias atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/oodok_witchmaster.gif"
+  },
+  {
+    "name": "Groam",
+    "chance": "Sem Previsão",
+    "pct": 0,
+    "lastSeen": "10 dias atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/groam.gif"
+  },
+  {
+    "name": "Grand Mother Foulscale",
+    "chance": "Sem Previsão",
+    "pct": 0,
+    "lastSeen": "9 dias atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/grand_mother_foulscale.gif"
+  },
+  {
+    "name": "The Mean Masher",
+    "chance": "Baixa Chance",
+    "pct": 0,
+    "lastSeen": "9 dias atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/the_mean_masher.gif"
+  },
+  {
+    "name": "Battlemaster Zunzu",
+    "chance": "Sem Previsão",
+    "pct": 0,
+    "lastSeen": "8 dias atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/battlemaster_zunzu.gif"
+  },
+  {
+    "name": "Flamecaller Zazrak",
+    "chance": "Sem Previsão",
+    "pct": 0,
+    "lastSeen": "6 dias atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/flamecaller_zazrak.gif"
+  },
+  {
+    "name": "Elvira Hammerthrust",
+    "chance": "Baixa Chance",
+    "pct": 0,
+    "lastSeen": "5 dias atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/elvira_hammerthrust.gif"
+  },
+  {
+    "name": "White Pale",
+    "chance": "Sem Previsão",
+    "pct": 0,
+    "lastSeen": "4 dias atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/white_pale.gif"
+  },
+  {
+    "name": "Burster",
+    "chance": "Sem Previsão",
+    "pct": 0,
+    "lastSeen": "4 dias atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/burster.gif"
+  },
+  {
+    "name": "Fleabringer",
+    "chance": "Sem Previsão",
+    "pct": 0,
+    "lastSeen": "4 dias atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/fleabringer.gif"
+  },
+  {
+    "name": "Crustacea Gigantica",
+    "chance": "Sem Previsão",
+    "pct": 0,
+    "lastSeen": "4 dias atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/crustacea_gigantica.gif"
+  },
+  {
+    "name": "Hirintror",
+    "chance": "Sem Previsão",
+    "pct": 0,
+    "lastSeen": "3 dias atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/hirintror.gif"
+  },
+  {
+    "name": "Yakchal",
+    "chance": "Sem Previsão",
+    "pct": 0,
+    "lastSeen": "3 dias atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/yakchal.gif"
+  },
+  {
+    "name": "Rotworm Queen",
+    "chance": "Sem Previsão",
+    "pct": 0,
+    "lastSeen": "3 dias atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/rotworm_queen.gif"
+  },
+  {
+    "name": "Tyrn",
+    "chance": "Sem Previsão",
+    "pct": 0,
+    "lastSeen": "3 dias atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/tyrn.gif"
+  },
+  {
+    "name": "The Hungerer",
+    "chance": "Baixa Chance",
+    "pct": 0,
+    "lastSeen": "3 dias atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/the_hungerer.gif"
+  },
+  {
+    "name": "The Manhunter",
+    "chance": "Baixa Chance",
+    "pct": 0,
+    "lastSeen": "2 dias atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/the_manhunter.gif"
+  },
+  {
+    "name": "Cublarc The Plunderer",
+    "chance": "Sem Previsão",
+    "pct": 0,
+    "lastSeen": "2 dias atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/cublarc_the_plunderer.gif"
+  },
+  {
+    "name": "The Voice of Ruin",
+    "chance": "Sem Previsão",
+    "pct": 0,
+    "lastSeen": "2 dias atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/the_voice_of_ruin.gif"
+  },
+  {
+    "name": "Dire Penguin",
+    "chance": "Sem Previsão",
+    "pct": 0,
+    "lastSeen": "2 dias atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/dire_penguin.gif"
+  },
+  {
+    "name": "Arthom the Hunter",
+    "chance": "Sem Previsão",
+    "pct": 0,
+    "lastSeen": "1 dia atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/arthom_the_hunter.gif"
+  },
+  {
+    "name": "Dreadful Disruptor",
+    "chance": "Sem Previsão",
+    "pct": 0,
+    "lastSeen": "1 dia atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/dreadful_disruptor.gif"
+  },
+  {
+    "name": "Draptor",
+    "chance": "Sem Previsão",
+    "pct": 0,
+    "lastSeen": "1 dia atr&#xE1;s dias atrás",
+    "predictedDate": null,
+    "imageUrl": null,
+    "localImage": "boss_images/draptor.gif"
+  }
+]

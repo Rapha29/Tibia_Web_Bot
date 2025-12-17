@@ -1,233 +1,310 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Grupos para Bosses</title>
-  <link rel="stylesheet" href="style.css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer"/>
-</head>
-<body>
-
-<div class="header-container">
-  <h1><i class="fas fa-dragon text-danger "></i> Grupos para Bosses</h1>
-  <div>
-    <button id="createBossGroupBtn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createGroupModal"><i class="fas fa-plus"></i> Criar Grupo</button>
-  </div>
-</div>
-
-<div id="bossGroupsList" class="row row-cols-1 row-cols-lg-2 g-4 ">
-  <div class="col-12">
-    <div class="card_g">
-      <div class="card">Inquisition Quest - Hellgorak</div>
-      <div class="card-body">
-        <p><strong>Data:</strong> 10/07/2025 21:00</p>
-        <div class="dual-table-container">
-          <table class="table table-sm table-bordered">
-            <thead>
-              <tr><th colspan="2" class="text-center">Time 1</th></tr>
-              <tr><th>Vaga</th><th>Jogador</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Blocker</td><td>--</td></tr>
-              <tr><td>Shooter</td><td>--</td></tr>
-            </tbody>
-          </table>
-
-          <table class="table table-sm table-bordered">
-            <thead>
-              <tr><th colspan="2" class="text-center">Time 2</th></tr>
-              <tr><th>Vaga</th><th>Jogador</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Healer</td><td>--</td></tr>
-              <tr><td>Next</td><td>--</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="createBossGroupModal">
-  <div class="modal-content modal-lg">
-    <button type="button" class="modal-close-btn">&times;</button>
-    <h1>Criar Novo Grupo de Boss</h1>
-    <form id="createBossGroupForm">
-      <div class="modal-body">
-        <div class="form-group">
-          <label for="bossNameInput">Nome do Boss</label>
-          <input type="text" class="form-control" id="bossNameInput" required>
-        </div>
-        <div class="form-group">
-          <label for="eventTimeInput">Data e Hora</label>
-          <input type="datetime-local" class="form-control" id="eventTimeInput" required>
-        </div>
-        <hr>
-        <h6>Vagas da Party</h6>
-        <p class="text-muted small">Defina o nome e a quantidade de vagas para a sua party.</p>
-        <div id="slotsInputContainer">
-          <div class="input-group mb-2">
-            <input type="text" class="form-control" name="role_name" value="Blocker" required>
-            <input type="number" class="form-control" name="role_count" value="1" min="1">
-          </div>
-          <div class="input-group mb-2">
-            <input type="text" class="form-control" name="role_name" value="Healer" required>
-            <input type="number" class="form-control" name="role_count" value="1" min="1">
-          </div>
-          <div class="input-group mb-2">
-            <input type="text" class="form-control" name="role_name" value="Shooter" required>
-            <input type="number" class="form-control" name="role_count" value="2" min="1">
-          </div>
-          <div class="input-group mb-2">
-            <input type="text" class="form-control" name="role_name" value="Next" required>
-            <input type="number" class="form-control" name="role_count" value="2" min="1">
-          </div>
-        </div>
-        <button class="btn btn-sm btn-outline-secondary w-100" type="button" id="addSlotBtn">+ Adicionar outro tipo de vaga</button>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-primary">Criar Grupo</button>
-      </div>
-    </form>
-  </div>
-</div>
+<!-- bosses.html  -->
 
 <style>
-
-.card_g {
-  display: table-row;
+        .header-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px; /* Adiciona espaço abaixo do cabeçalho */
+    }
+    .boss-card-container { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-bottom: 30px; }
+    .boss-card { text-align: center; background-color: var(--panel-bg-color-darker); padding: 10px; border-radius: 5px; width: 100px; }
+    .boss-card img { width: 64px; height: 64px; object-fit: contain; }
+    .boss-card p { margin: 5px 0 0 0; font-size: 0.8em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    #boss-search-input { width: 100%; margin-bottom: 20px; }
+    .boss-category { margin-top: 20px; }
+    .boss-category h3 { border-bottom: 1px solid var(--border-color); padding-bottom: 5px; margin-bottom: 10px; color: var(--primary-color); }
+    .boss-list-item { display: flex; align-items: center; padding: 10px; border-bottom: 1px solid var(--border-color); gap: 15px; }
+    .boss-list-item:not(.found-today):hover { background-color: var(--panel-bg-color-hover); }
+    .boss-list-item img { width: 48px; height: 48px; }
+    .boss-list-info { flex-grow: 1; }
+    .boss-list-info p { margin: 0; }
+    .boss-list-info .boss-name { font-weight: bold; }
+    .boss-list-info .last-seen { font-size: 0.9em; color: var(--text-color-secondary); }
+    .last-check-info { font-size: 0.8em; color: var(--warning-color); font-style: italic; min-width: 180px; text-align: right; }
+    .check-btn { padding: 5px 10px; }
+    #check-ranking-table { width: 100%; margin-top: 30px; }
+    .boss-name {
+    font-weight: bold;
 }
-.card-body {
-  display: inline;
-    max-width: 100%;
-
-  padding: 0.75rem 1rem;
+.boss-percentage {
+    color: var(--warning-color);
+    font-size: 0.9em;
+    margin-left: 8px;
+    font-style: italic;
 }
+/* Container para os rankings */
+        .ranking-container {
+            display: flex; /* Alinha os itens filhos lado a lado */
+            gap: 30px;     /* Espaçamento entre as tabelas */
+            margin-top: 30px;
+        }
 
-.table td {
-  vertical-align: middle;
-}
-
-.table-sm td {
-  padding: 0.5rem;
-}
-
-.dual-table-container {
-  display: table-row;
-  justify-content: space-between;
-  gap: 4%;
-  flex-wrap: wrap;
-}
-
-.dual-table-container table {
-  width: 48%;
-  background-color: var(--panel-bg-color);
-  color: var(--text-color);
-  border: 1px solid var(--border-color);
-  border-radius: 0.5rem;
-}
-
-.dual-table-container th,
-.dual-table-container td {
-    max-width: 45%;
-
-  padding: 0.5rem;
-  text-align: left;
-}
-
-
-
-.modal-content {
-  border-radius: 1rem;
-  background-color: var(--panel-bg-color);
-  border: 1px solid var(--border-color);
-  color: var(--text-color);
-}
-
-.modal-body input[type="text"],
-.modal-body input[type="datetime-local"],
-.modal-body input[type="number"],
-.modal-body select {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  border: 1px solid var(--border-color);
-  border-radius: 0.5rem;
-  padding: 0.75rem;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.input-group {
-  display: flex;
-  gap: 5px;
-  margin-bottom: 0.5rem;
-}
-
-.input-group input {
-  flex: 1;
-}
-
-.modal-footer {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  padding-top: 20px;
-  border-top: 1px solid var(--border-color);
-  margin-top: 20px;
-}
-
-.modal-footer .btn-secondary {
-  background-color: var(--text-muted-color);
-  border: 1px solid var(--text-muted-color);
-  color: var(--bg-color);
-}
-.modal-footer .btn-secondary:hover {
-  background-color: #6a737d;
-  border-color: #6a737d;
-}
-
-.modal-footer .btn-primary {
-  background-color: var(--gold-accent);
-  border: 1px solid var(--gold-accent);
-  color: #111;
-}
-.modal-footer .btn-primary:hover {
-  background-color: var(--gold-accent-hover);
-  border-color: var(--gold-accent-hover);
-}
-
-.text-success { color: var(--success-color); }
-.text-danger { color: var(--danger-color); }
-.text-warning { color: var(--warning-color); }
-
-.plus-star {
-  color: var(--gold-accent);
-  cursor: help;
-  margin-right: 5px;
-  font-size: 0.9em;
-}
-
-
-.dual-table-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-@media (min-width: 768px) {
-  .dual-table-container {
-    flex-direction: row;
-  }
-
-  .dual-table-container table {
+        /* Cada coluna de ranking */
+.ranking-column {
     flex: 1;
-  }
+    min-width: 280px;
+    padding: 20px;               /* Adiciona espaçamento interno */
+    border: 1px solid #555;      /* Cria o contorno cinza */
+    border-radius: 8px;          /* Arredonda os cantos */
+    background-color: #2a2a2e;   /* Adiciona um fundo sutilmente diferente */
 }
 
+        /* Media Query para telas menores (responsividade) */
+        @media (max-width: 768px) {
+            .ranking-container {
+                flex-direction: column; /* Em telas pequenas, as colunas ficam uma embaixo da outra */
+            }
+        }
+            #boss-search-input {
+        width: 30%; /* Reduzido para 30% do container */
+        margin-bottom: 20px;
+        padding: 10px; /* Aumenta o tamanho interno (altura) */
+        font-size: 1em; /* Torna a fonte um pouco maior */
+        border: 1px solid var(--primary-color); /* Adiciona um destaque de borda */
+        box-shadow: 0 0 8px rgba(var(--primary-color-rgb), 0.5); /* Adiciona um brilho sutil */
+    }
+    .category-header-flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap; /* Permite que o botão quebre a linha em telas pequenas */
+    }
+    .action-btn-small {
+        padding: 4px 10px;
+        font-size: 0.8em;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .action-btn-small:hover {
+        background-color: var(--primary-color-darker);
+    }
+    .sem-previsao-container {
+        margin-top: 15px;
+        padding-top: 10px;
+        border-top: 1px dashed var(--border-color);
+    }
+    .sub-category-header {
+        font-size: 1.1em;
+        color: var(--text-color-secondary);
+        margin-bottom: 10px;
+    }
+    .hidden {
+        display: none;
+    }
+    .checkbox-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9em;
+    font-weight: normal;
+    color: var(--text-color-secondary);
+    cursor: pointer;
+}
+.checkbox-control input {
+    cursor: pointer;
+}
+/* Adicione esta nova regra */
+.boss-category.hide-wc-bosses .world-change-boss {
+    display: none;
+}
+.category-title {
+    font-size: 1.75em; /* Tamanho visual similar a um H2 */
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 2px 2px 5px rgba(255, 233, 35, 0.5); /* Sombra para destaque */
+    width: 100%; /* Garante que a centralização funcione bem no flex container */
+}
 </style>
 
-</body>
-</html>
+<div class="header-controls">
+    <h1>Sistema de Bosses Globais - Nemesis</h1>
+    <div>
+        <button id="open-tokens-btn" class="action-btn" style="margin-right: 10px; background-color: #6f42c1;">Tokens</button> <button id="toggle-rankings-btn" class="action-btn">Exibir/Ocultar Rankings</button>
+    </div>
+</div>
+
+<div id="tokens-modal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Tabela de Tokens</h2>
+            <button class="modal-close-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div id="tokens-list-container" style="max-height: 400px; overflow-y: auto; margin-bottom: 15px;">
+                </div>
+            <div id="tokens-admin-actions" style="display: none; text-align: right;">
+                <button id="save-tokens-btn" class="action-btn success-btn">Salvar Alterações</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="rankings-wrapper" class="ranking-container" style="display: none;">
+    <div class="ranking-column">
+        <h2>Ranking de Checks</h2>
+        <table id="check-ranking-table" class="table">
+            <thead>
+                <tr>
+                    <th>Posição</th>
+                    <th>Jogador</th>
+                    <th>Checks</th>
+                </tr>
+            </thead>
+            <tbody id="check-ranking-body">
+            </tbody>
+        </table>
+    </div>
+    <div class="ranking-column">
+        <h2>Ranking de Encontrados</h2>
+        <table id="found-ranking-table" class="table">
+            <thead>
+                <tr>
+                    <th>Posição</th>
+                    <th>Jogador</th>
+                    <th>Encontrados</th>
+                </tr>
+            </thead>
+            <tbody id="found-ranking-body">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<h2><label for="boss-search-input" style="display: block; margin-bottom: 5px; font-weight: bold;"><input type="text" id="boss-search-input" class="form-control" placeholder="Digite um boss para filtrar..."></label></h2>
+
+<h2 class=category-title>Bosses encontrados ontem</h2>
+<div id="killed-yesterday-container" class="boss-card-container">
+</div>
+
+<div id="boss-list-container">
+</div>
+
+
+
+<div id="boss-list-container">
+    </div>
+
+<script>
+    {
+        const tokensModal = document.getElementById('tokens-modal');
+        const openTokensBtn = document.getElementById('open-tokens-btn');
+        const tokensListContainer = document.getElementById('tokens-list-container');
+        const tokensAdminActions = document.getElementById('tokens-admin-actions');
+        const saveTokensBtn = document.getElementById('save-tokens-btn');
+
+        if (window.appSocket) {
+            window.appSocket.off('tokens:dataReceived');
+        }
+
+        if (openTokensBtn && tokensModal) {
+            const newBtn = openTokensBtn.cloneNode(true);
+            openTokensBtn.parentNode.replaceChild(newBtn, openTokensBtn);
+            
+            newBtn.addEventListener('click', () => {
+                tokensModal.classList.add('show');
+                window.appSocket.emit('tokens:getData');
+            });
+
+            const closeBtn = tokensModal.querySelector('.modal-close-btn');
+            if (closeBtn) {
+                const newClose = closeBtn.cloneNode(true);
+                closeBtn.parentNode.replaceChild(newClose, closeBtn);
+                newClose.addEventListener('click', () => tokensModal.classList.remove('show'));
+            }
+        }
+
+        window.appSocket.on('tokens:dataReceived', (data) => {
+            const container = document.getElementById('tokens-list-container');
+            if (!container) return;
+            
+            const bosses = data.bosses || [];
+            bosses.sort((a, b) => a.name.localeCompare(b.name));
+
+            const midIndex = Math.ceil(bosses.length / 2);
+            const leftColumn = bosses.slice(0, midIndex);
+            const rightColumn = bosses.slice(midIndex);
+
+            const css = `
+                <style>
+                    .tables-wrapper { display: flex; gap: 15px; width: 100%; }
+                    .table-column { flex: 1; }
+                    .table-compact { width: 100%; border-collapse: collapse; font-size: 0.85em; }
+                    .table-compact th { text-align: left; padding: 6px 8px; background-color: #2a2a2e; color: #ffc107; position: sticky; top: 0; z-index: 2; }
+                    .table-compact td { padding: 3px 8px; border-bottom: 1px solid #444; vertical-align: middle; }
+                    .table-compact tr:nth-child(even) { background-color: rgba(255, 255, 255, 0.03); }
+                    .table-compact tr:hover { background-color: rgba(255, 255, 255, 0.08); }
+                    
+                    .token-input-compact { 
+                        width: 50px; padding: 2px 5px; font-size: 1em; height: 24px; 
+                        background-color: #1a1a1d; border: 1px solid #555; color: white; border-radius: 3px; 
+                        -moz-appearance: textfield; /* Remove setas no Firefox */
+                        text-align: center;
+                    }
+                    /* Remove setas no Chrome, Safari, Edge, Opera */
+                    .token-input-compact::-webkit-outer-spin-button,
+                    .token-input-compact::-webkit-inner-spin-button {
+                        -webkit-appearance: none;
+                        margin: 0;
+                    }
+                    .token-input-compact:focus { border-color: #ffc107; outline: none; }
+                </style>
+            `;
+
+            const generateTable = (list) => {
+                let tableHtml = '<table class="table-compact"><thead><tr><th>Boss</th><th style="width: 60px; text-align: center;">Tokens</th></tr></thead><tbody>';
+                list.forEach(boss => {
+                    let tokenDisplay;
+                    if (window.isAdmin) {
+                        tokenDisplay = `<input type="number" class="token-input-compact token-input" data-boss="${boss.name}" value="${boss.tokens}" min="0">`;
+                    } else {
+                        tokenDisplay = `<span style="font-weight: bold; color: #ccc; display: block; text-align: center;">${boss.tokens}</span>`;
+                    }
+                    tableHtml += `<tr><td>${boss.name}</td><td>${tokenDisplay}</td></tr>`;
+                });
+                tableHtml += '</tbody></table>';
+                return tableHtml;
+            };
+
+            const html = `
+                ${css}
+                <div class="tables-wrapper">
+                    <div class="table-column">${generateTable(leftColumn)}</div>
+                    <div class="table-column">${generateTable(rightColumn)}</div>
+                </div>
+            `;
+
+            container.innerHTML = html;
+
+            const actionsDiv = document.getElementById('tokens-admin-actions');
+            if (actionsDiv) {
+                actionsDiv.style.display = window.isAdmin ? 'block' : 'none';
+            }
+        });
+
+        if (saveTokensBtn) {
+            const newSaveBtn = saveTokensBtn.cloneNode(true);
+            saveTokensBtn.parentNode.replaceChild(newSaveBtn, saveTokensBtn);
+
+            newSaveBtn.addEventListener('click', () => {
+                if (!window.isAdmin) return;
+
+                const inputs = document.querySelectorAll('.token-input');
+                const newTokensList = [];
+
+                inputs.forEach(input => {
+                    newTokensList.push({
+                        name: input.dataset.boss,
+                        tokens: parseInt(input.value, 10) || 0
+                    });
+                });
+
+                window.appSocket.emit('tokens:update', newTokensList);
+            });
+        }
+    }
+</script>
