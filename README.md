@@ -1,3 +1,7 @@
+## Tibia Web - Sistema de Claimed, Planilhado, Bosses, Ranking e Ferramentas.
+
+## **Crédito e Direitos Autorais** — Consta na página inicial deste sistema o devido crédito ao seu autor intelectual,  **Raphael Olimpio – Ra nyx** . O presente sistema é disponibilizado de forma  **gratuita** , sendo expressamente vedada a remoção, ocultação ou alteração do referido crédito autoral. A supressão indevida do crédito caracteriza violação aos direitos do autor, nos termos da  **Lei nº 9.610/1998 (Lei de Direitos Autorais)** , sujeitando o infrator às sanções legais cabíveis, incluindo  **indenização por perdas e danos, cessação do uso indevido da obra** , bem como às  **penalidades previstas no artigo 184 do Código Penal** , sem prejuízo das demais medidas judiciais aplicáveis.
+
 ## Tutorial Completo: WebBot - Preparação, Instalação e Uso
 
 Este tutorial guiará você desde a preparação do ambiente até a implantação e gerenciamento do seu WebBot, além de fornecer manuais para líderes e usuários.
@@ -70,75 +74,83 @@ Este ambiente é ideal para desenvolvimento e testes locais.
 * **`<span class="citation-345">ports.json</span>`** **: Este arquivo determina a porta e o nome do mundo (server) que o bot irá monitorar**. Crie-o na pasta raiz do projeto.
   **JSON**
 
-    ``     [        {          "world": "issobra",          "port": 3001        }      ]     ``
+  ``    [        {          "world": "issobra",          "port": 3001        }      ]    ``
 
-    *`"world`: Nome exato do mundo que o bot monitorará (ex: "issobra").
-     *`"port`: Porta em que o servidor web do bot será executado.
-
+  *`"world`: Nome exato do mundo que o bot monitorará (ex: "issobra").
+  *`"port`: Porta em que o servidor web do bot será executado.
 * **`set_guild.json`** : Define o nome da guilda para verificação de membros.
   **JSON**
 
-    ``     {        "guild": "Nome da Sua Guilda"      }     ``
-
+  ``    {        "guild": "Nome da Sua Guilda"      }    ``
 * **`set_world.json`** : (Este arquivo não foi citado explicitamente nas suas funções. Se o bot não o usa, pode ignorar). Se o bot usar para algo como World de origem, coloque:
   **JSON**
 
-    ``     {        "world": "NomeDoMundo"      }     ``
-
+  ``    {        "world": "NomeDoMundo"      }    ``
 * **Outros arquivos JSON vazios** : Se o `bot_logic.js` referencia arquivos como `clientaccount.json`, `fila.json`, `respawns.json`, `relations.json`, etc., certifique-se de que eles existam como arquivos JSON válidos, mesmo que vazios ( `{}` para objetos, `[]` para arrays, ou com um mínimo de dados de exemplo se souber a estrutura).
+
   * Exemplo para `clientaccount.json`:
-  **JSON**
+    **JSON**
 
   ```
   {}
   ```
 
-    * Exemplo para`fila.json`:
-       **JSON**
+  * Exemplo para `fila.json`:
+    **JSON**
 
-    ``       {}       ``
-     * Exemplo para `respawns.json`:
-       **JSON**
+  ``      {}      ``
 
-    ``       {          "Carlin": {            "A1": "Minotaur Cult",            "A2": "Dragon Lair"          },          "Edron": {            "E1": "Hero Fortress"          }        }       ``
-     * Exemplo para `relations.json`:
-       **JSON**
+  * Exemplo para `respawns.json`:
+    **JSON**
 
-    ``       {          "world": "issobra",          "source_allies": [],          "source_enemies": [],          "source_hunteds": [],          "players_allies": [],          "players_enemies": [],          "players_hunteds": [],          "last_sync": null        }       ``
-     * Exemplo para `planilhado_groups.json`:
-       **JSON**
+  ``      {          "Carlin": {            "A1": "Minotaur Cult",            "A2": "Dragon Lair"          },          "Edron": {            "E1": "Hero Fortress"          }        }      ``
 
-    ``       []       ``
-     * Exemplo para `planilhado_schedule.json`:
-       **JSON**
+  * Exemplo para `relations.json`:
+    **JSON**
 
-    ``       {}       ``
-     * Exemplo para `planilhado_double_schedule.json`:
-       **JSON**
+  ``      {          "world": "issobra",          "source_allies": [],          "source_enemies": [],          "source_hunteds": [],          "players_allies": [],          "players_enemies": [],          "players_hunteds": [],          "last_sync": null        }      ``
 
-    ``       {}       ``
-     * Exemplo para `respawn_rank_restrictions.json`:
-       **JSON**
+  * Exemplo para `planilhado_groups.json`:
+    **JSON**
 
-    ``       {}       ``
-     * Exemplo para `respawnTimes.json`:
-       **JSON**
+  ``      []      ``
 
-    ``       {          "default": 150        }       ``
-     * Exemplo para `webgroups.json`:
-       **JSON**
+  * Exemplo para `planilhado_schedule.json`:
+    **JSON**
 
-    ``       []       ``
-     * Exemplo para `cooldowns.json`:
-       **JSON**
+  ``      {}      ``
 
-    ``       {}       ``
-     * Exemplo para `underattack.json`: (Este arquivo é um log, então pode começar vazio ou ser criado na primeira escrita)
-       ``       (vazio ou com uma linha JSON)       ``
-     * Exemplo para `verification_codes.json`:
-       **JSON**
+  * Exemplo para `planilhado_double_schedule.json`:
+    **JSON**
 
-    ``       {}       ``
+  ``      {}      ``
+
+  * Exemplo para `respawn_rank_restrictions.json`:
+    **JSON**
+
+  ``      {}      ``
+
+  * Exemplo para `respawnTimes.json`:
+    **JSON**
+
+  ``      {          "default": 150        }      ``
+
+  * Exemplo para `webgroups.json`:
+    **JSON**
+
+  ``      []      ``
+
+  * Exemplo para `cooldowns.json`:
+    **JSON**
+
+  ``      {}      ``
+
+  * Exemplo para `underattack.json`: (Este arquivo é um log, então pode começar vazio ou ser criado na primeira escrita)
+    ``      (vazio ou com uma linha JSON)      ``
+  * Exemplo para `verification_codes.json`:
+    **JSON**
+
+  ``      {}      ``
 
 #### 2.4. Iniciar o WebBot (Modo de Teste)
 
@@ -175,8 +187,7 @@ Para produção, o PM2 é essencial para manter o aplicativo sempre online e ger
 * **NVM (Node Version Manager)** : É a forma recomendada de instalar Node.js, pois permite gerenciar múltiplas versões.
   **Bash**
 
-    ``     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash      source ~/.bashrc # ou ~/.zshrc se usar zsh      nvm install --lts # Instala a versão LTS mais recente      nvm use --lts      node -v # Verifique a instalação      npm -v # Verifique a instalação     ``
-
+  ``    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash      source ~/.bashrc # ou ~/.zshrc se usar zsh      nvm install --lts # Instala a versão LTS mais recente      nvm use --lts      node -v # Verifique a instalação      npm -v # Verifique a instalação    ``
 * Alternativa (direto do APT, menos flexível):
   **Bash**
 
