@@ -15,28 +15,13 @@ const OFFLINE_TIMEOUT = 30 * 1000; // 30 segundos
 // ROTAS DE PROXY
 // ======================
 const routes = {
-    'issobra.jowbot.com.br': 'http://localhost:3001',
-    'etebra.jowbot.com.br': 'http://localhost:3000',
-    'yubra.jowbot.com.br': 'http://localhost:3003',
-    'luzibra.jowbot.com.br': 'http://localhost:3005',
-    'ustebra.jowbot.com.br': 'http://localhost:3004',
-    'issobra.jowtibia.com.br': 'http://localhost:3001',
-    'etebra.jowtibia.com.br': 'http://localhost:3000',
-    'yubra.jowtibia.com.br': 'http://localhost:3003',
-    'luzibra.jowtibia.com.br': 'http://localhost:3005',
-    'ustebra.jowtibia.com.br': 'http://localhost:3004',
-    'bkhealth.claimed.com.br': 'http://localhost:5000',
-    'ironalliance.com.br': 'http://localhost:3006'
+    'issobra.com.br': 'http://localhost:3001',
 };
 
 // ======================
 // SITES ESTÁTICOS
 // ======================
 const staticSites = {
-    'npeletrica.com.br': '/home/npeletrica/index.html',
-    'www.npeletrica.com.br': '/home/npeletrica/index.html',
-    'fcmixconcreto.com.br': '/home/fcmix/index.html',
-    'www.fcmixconcreto.com.br': '/home/fcmix/index.html',
 };
 
 // ======================
