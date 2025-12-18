@@ -2,7 +2,7 @@
 
 **Crédito e Direitos Autorais**
 
-Consta na página inicial deste sistema o devido crédito ao seu autor intelectual,  **Raphael Olimpio – Ra nyx** . O presente sistema é disponibilizado de forma  **gratuita** , sendo **expressamente vedada** a sua comercialização, bem como a **remoção, ocultação, modificação ou qualquer forma de supressão do crédito autoral** aqui indicado.
+Consta na página inicial deste sistema o devido crédito ao seu autor intelectual,  **Raphael Olimpio – Ra nyx** . O presente sistema é disponibilizado de forma  **gratuita** , sendo **expressamente vedada** a sua comercialização, bem como a **remoção, ocultação, modificação ou qualquer forma de supressão do crédito autoral** aqui indicado, tendo validade no conteúto total, partes e arquitetura implantada.
 
 A retirada ou alteração indevida do crédito configura  **violação aos direitos morais e patrimoniais do autor** , nos termos da  **Lei nº 9.610/1998 (Lei de Direitos Autorais – Brasil)** , sujeitando o infrator às sanções legais cabíveis, incluindo, mas não se limitando a,  **indenização por perdas e danos** ,  **cessação imediata do uso indevido da obra** , além das penalidades previstas no  **artigo 184 do Código Penal Brasileiro** , sem prejuízo das demais medidas judiciais aplicáveis.
 
