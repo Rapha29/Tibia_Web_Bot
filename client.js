@@ -379,6 +379,32 @@ document.addEventListener('change', (e) => {
     }
 });
 
+function moveChatTo(targetId) {
+    const chatLog = document.getElementById('chat-log');
+    const commandForm = document.getElementById('command-form');
+    const target = document.getElementById(targetId);
+    
+    if (chatLog && commandForm && target) {
+        target.appendChild(chatLog);
+        target.appendChild(commandForm);
+    }
+}
+
+// Lógica de Inicialização e Persistência
+document.addEventListener('DOMContentLoaded', () => {
+    const overlay = document.getElementById('bot-exclusive-overlay');
+    const token = localStorage.getItem('sessionToken');
+
+    if (token) {
+        // Se já tem token, oculta overlay e mantém chat no lugar original
+        overlay.style.display = 'none';
+        moveChatTo('original-chat-container');
+    } else {
+        // Se não tem login, move chat para a overlay
+        overlay.style.display = 'flex';
+        moveChatTo('chat-placeholder');
+    }
+});
 
 document.addEventListener('DOMContentLoaded', () => {
     let isFirstConnect = true; // Variável de controle
@@ -1457,6 +1483,7 @@ window.appSocket.on('bosses:historyData', ({ bossName, history }) => {
         }
     });
 
+
     // 1. O temporizador, dentro do 'login:success'
     window.appSocket.on('login:success', (data) => {
         if (data.token) {
@@ -1476,7 +1503,27 @@ window.appSocket.on('bosses:historyData', ({ bossName, history }) => {
                 window.appSocket.emit('friends:getData');
             }
         }, 60000); // 60 segundos
+        
     });
+
+    window.appSocket.on('login:success', (data) => {
+    // 1. Grava o token para persistência após o reload
+    if (data.token) { 
+        localStorage.setItem('sessionToken', data.token); 
+    }
+
+    // 2. Mostra o botão de acesso na overlay
+    const accessArea = document.getElementById('access-area');
+    if (accessArea) {
+        accessArea.style.display = 'block'; // Torna o botão visível
+        
+        // Opcional: Rolar o chat para baixo para garantir que o usuário veja o botão
+        const chatLog = document.getElementById('chat-log');
+        if (chatLog) chatLog.scrollTop = chatLog.scrollHeight;
+    }
+
+    addLogMessage('Bot', `Login bem-sucedido! Bem-vindo, ${data.character.characterName}.`, 'success');
+});
 
     // 2. O listener que atualiza a navbar
    window.appSocket.on('friends:dataUpdated', (data) => {
@@ -1515,6 +1562,36 @@ window.appSocket.on('bosses:historyData', ({ bossName, history }) => {
         if (friendsPageButton && friendsPageButton.classList.contains('active') && typeof window.renderFriendsPageContent === 'function') {
             window.renderFriendsPageContent(data);
         }
+        // Função técnica para mover o chat entre containers
+function relocateChat(destinationId) {
+    const chatLog = document.getElementById('chat-log');
+    const commandForm = document.getElementById('command-form');
+    const target = document.getElementById(destinationId);
+    
+    if (chatLog && commandForm && target) {
+        target.appendChild(chatLog);
+        target.appendChild(commandForm);
+    }
+}
+
+// Lógica de Verificação Inicial (Executa ao carregar a página)
+document.addEventListener('DOMContentLoaded', () => {
+    const token = localStorage.getItem('sessionToken');
+    const overlay = document.getElementById('bot-exclusive-overlay');
+
+    if (token) {
+        // Usuário já possui sessão: mantém chat no lugar original e oculta overlay
+        overlay.style.display = 'none';
+        relocateChat('original-chat-container');
+    } else {
+        // Sem sessão: move o chat para a overlay e exibe o bloqueio
+        overlay.style.display = 'flex';
+        relocateChat('chat-placeholder');
+    }
+});
+
+
+
     });
 
     window.appSocket.on('user:status', (status) => {

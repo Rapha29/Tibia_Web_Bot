@@ -249,6 +249,22 @@
                    <button type="submit">Enviar</button> 
             </form>
         </div>
+
+        <div id="bot-exclusive-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #1a1a1d; z-index: 9999; display: flex; align-items: center; justify-content: center;">
+    <div id="overlay-content-wrapper" style="width: 90%; max-width: 600px; height: 85vh; background: #242526; border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; border: 2px solid #c3073f;">
+        <h2 style="color: white; text-align: center; padding: 15px; margin: 0; background: #c3073f;">AUTENTICAÇÃO NECESSÁRIA</h2>
+        
+        <div id="chat-placeholder" style="flex: 1; overflow: hidden; display: flex; flex-direction: column;">
+            </div>
+
+        <div id="access-area" style="padding: 20px; background: #1a1a1d; text-align: center; border-top: 1px solid #333; display: none;">
+            <button id="btn-access-system" onclick="window.location.reload()" style="width: 100%; padding: 15px; background: #00ff41; color: #000; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 1.1em;">
+                ACESSO LIBERADO - CLIQUE AQUI PARA ACESSAR
+            </button>
+        </div>
+    </div>
+</div>
+
     </div>
 
 <div id="boss-found-modal" class="modal-overlay">

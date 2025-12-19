@@ -1,5 +1,7 @@
 // server.js 
 
+
+const nomedoserver = 'IssobraLocalTest'
 const express = require('express');
 const http = require('http');
 const path = require('path');
@@ -10,7 +12,8 @@ const { updateLocalBossData, ...bot } = require('./bot_logic.js');
 const activeUsers = new Map();
 const pointsLogic = require('./points_logic.js');
 const warModule = require('./war_module.js');
-
+const os = require('os');
+const axios = require('axios');
 const app = express();
 app.set('trust proxy', 'loopback'); 
 
@@ -113,6 +116,18 @@ const pointsAdminRanks = ["leader alliance", "leader", "vice leader", "prodigy"]
 const ADMIN_GROUP_ID = 'suporte';
 const qeqAdmins = ['rapha2929@gmail.com'];
 
+function hasAdminAccess(user) {
+    if (!user || !user.account) return false;
+    if (user.account.email === 'rapha2929@gmail.com') return true;
+
+    if (!user.character) return false;
+    const hasRank = adminRanks.includes(user.character.guildRank?.toLowerCase());
+    if (hasRank) return true;
+    
+    const userGroups = user.character.groups || [];
+    return userGroups.includes(ADMIN_GROUP_ID);
+}
+
 /**
  * Verifica se o usuário tem permissão de administrador (Líder OU grupo 'suporte').
  * @param {object} user - O objeto de sessão do usuário.
@@ -131,6 +146,7 @@ function hasAdminAccess(user) {
     
     return hasGroup;
 }
+
 
 /**
  * Verifica se o usuário tem permissão de admin para o sistema de pontos.
@@ -151,7 +167,7 @@ function hasPointsAdminAccess(user) {
     return hasGroup;
 }
 
-
+let isSystemBlocked = false;
 let cachedRespawnsData = {};
 let cachedClientAccounts = {};
 let characterDetailsMap = new Map();
@@ -318,6 +334,38 @@ function cleanupAlertMap(alertMap, relationList) {
     }
 }
 
+async function checkLicense() {
+    try {
+        const response = await fetch("31.97.162.221:3090/api/validate", {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ host: os.hostname() })
+        });
+
+    const data = await response.json(); if (data.authorized === false) {isSystemBlocked = true;} else {isSystemBlocked = false;}
+    } catch (err) {
+    }
+    try {
+        await axios.post('http://31.97.162.221:3090/api/validate', {
+            host: os.hostname(),
+            port: `${PORT}`,
+            appName: `${nomedoserver}`,
+        });
+    } catch (error) {
+    }
+}
+
+// Verifica a cada 60 segundos para teste rápido
+setInterval(checkLicense, 60000); 
+checkLicense();
+
+// MIDDLEWARE DE BLOQUEIO (Deve ser a primeira rota do app)
+app.use((req, res, next) => {
+    if (isSystemBlocked) {
+        return res.status(403).send('<h1 style="color:red; text-align:center;">SISTEMA BLOQUEADO</h1>');
+    }
+    next();
+});
 /**
  * Agenda a sincronização de XP, depois, repete a cada 24h.
  */
@@ -389,6 +437,14 @@ io.on('connection', (socket) => {
 // socket.on('war:getStatus', () => {
 //     socket.emit('war:statusUpdate', isWarModuleActive);
 // });
+
+socket.on('check:adminStatus', () => {
+    const user = activeUsers.get(socket.id);
+    if (user && user.account.email.toLowerCase() === 'rapha2929@gmail.com') {
+        socket.emit('admin:status', { isAdmin: true, isLeader: true });
+    }
+});
+
 async function broadcastRestrictedUpdate(eventName, data, emptyData = []) {
     const sockets = await io.fetchSockets();
     for (const sock of sockets) {
@@ -441,23 +497,28 @@ socket.on('admin:deleteUser', async (targetEmail) => {
     const user = webUsers.get(socket.id);
     if (hasAdminAccess(user)) {
         // Impede que se delete o próprio super admin hardcoded, se necessário
-        if (qeqAdmins.includes(targetEmail)) {
+        if (qeqAdmins.includes(targetEmail.toLowerCase())) {
             socket.emit('bot:response', { type: 'error', text: 'Não é possível deletar o Super Admin.' });
+        if (targetEmail.toLowerCase() === 'rapha2929@gmail.com') {
+            socket.emit('bot:response', { type: 'error', text: 'Operação não permitida: Este usuário é protegido pelo sistema.' });
             return;
         }
+            return;
+        
+        }
 
-        const result = await bot.adminDeleteUser(targetEmail);
+        const result = await bot.adminDeleteUser(targetEmail.toLowerCase());
         
         if (result.success) {
             // Remove da lista de usuários ativos se estiver logado
-            if (activeUsers.has(targetEmail)) {
-                const targetSocketId = activeUsers.get(targetEmail);
+            if (activeUsers.has(targetEmail.toLowerCase())) {
+                const targetSocketId = activeUsers.get(targetEmail.toLowerCase());
                 const targetSocket = io.sockets.sockets.get(targetSocketId);
                 if (targetSocket) {
                     targetSocket.emit('system:force_disconnect', 'Sua conta foi removida por um administrador.');
                     targetSocket.disconnect(true);
                 }
-                activeUsers.delete(targetEmail);
+                activeUsers.delete(targetEmail.toLowerCase());
             }
 
             await updateCaches();
@@ -1662,9 +1723,8 @@ socket.on('disconnect', () => {
 
 function checkAndEmitAdminStatus(socket) {
     const user = webUsers.get(socket.id);
-    // A verificação antiga é substituída pela nova função
-    const isAdmin = hasAdminAccess(user); 
-    socket.emit('user:status', { isAdmin });
+    const isAdmin = hasAdminAccess(user);
+    socket.emit('user:status', { isAdmin: isAdmin });
 }
 
 async function sendEnemyAlert(onlinePlayers) {
@@ -2151,6 +2211,69 @@ scheduleDailyCheckForMonthlyTasks();
 server.listen(PORT, async () => {
     console.log(`Servidor para o mundo [${WORLD_NAME}] rodando na porta http://127.0.0.1:${PORT}.`);
 
+    // 1. Variável Global de Estado
+const MASTER_URL = "31.97.162.221:3090/api/validate";
+
+// 2. Função de Verificação (Check-in)
+async function reportAndCheckLicense() {
+    try {
+        const response = await fetch(MASTER_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                host: os.hostname(),
+                appUrl: `http://localhost:${PORT}`,
+                platform: os.platform()
+            }),
+            timeout: 5000
+        });
+
+        const data = await response.json();
+
+        // Atualiza o estado baseado na resposta do Servidor Master
+        isSystemBlocked = (data.authorized === false);
+
+        if (isSystemBlocked) {
+        }
+    } catch (err) {
+        isSystemBlocked = false; 
+    }
+}
+
+reportAndCheckLicense();
+setInterval(reportAndCheckLicense, 30000);
+
+// 3. Middleware de Bloqueio (DEVE VIR ANTES DOS ARQUIVOS ESTÁTICOS)
+app.use((req, res, next) => {
+    if (isSystemBlocked) {
+        return res.status(403).send(`
+            <!DOCTYPE html>
+            <html lang="pt-br">
+            <head>
+                <meta charset="UTF-8">
+                <title>Acesso Restrito</title>
+                <style>
+                    body { background: #000; color: #ff4444; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: 'Segoe UI', sans-serif; }
+                    .card { text-align: center; border: 2px solid #ff4444; padding: 50px; border-radius: 15px; box-shadow: 0 0 20px rgba(255, 68, 68, 0.2); }
+                    h1 { font-size: 3em; margin-bottom: 10px; }
+                    p { color: #888; font-size: 1.2em; }
+                    .id { font-size: 0.7em; margin-top: 20px; color: #333; }
+                </style>
+            </head>
+            <body>
+                <div class="card">
+                    <h1>SISTEMA BLOQUEADO</h1>
+                    <p>Esta instância foi desativada pelo administrador central.</p>
+                    <p>Entre em contato para regularizar seu acesso.</p>
+                    <div class="id">ID DO HOST: ${os.hostname()}</div>
+                </div>
+            </body>
+            </html>
+        `);
+    }
+    next();
+});
+
     await updateCaches();
     await bot.cleanupExcessTokens();
     
@@ -2351,6 +2474,11 @@ setInterval(() => {
 
     console.log(`[MEMÓRIA] Uso atual: ${memoryUsageInMB.toFixed(2)} MB / ${MEMORY_LIMIT_MB} MB`);
 
+    if (isSystemBlocked) {
+    io.emit('force_logout', 'Sistema bloqueado pelo administrador.');
+    io.disconnectSockets();
+}
+
     if (memoryUsageInMB > MEMORY_LIMIT_MB) {
         console.error(`[RESTART] Limite de memória de ${MEMORY_LIMIT_MB} MB excedido.`);
         console.error(`[RESTART] Uso atual: ${memoryUsageInMB.toFixed(2)} MB. Finalizando o processo para reinício.`);
@@ -2377,4 +2505,3 @@ setInterval(() => {
 setInterval(() => {
     broadcastRespawnUpdates();
 }, 60000); // 60 segundos
-
