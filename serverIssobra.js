@@ -336,7 +336,7 @@ function cleanupAlertMap(alertMap, relationList) {
 
 async function checkLicense() {
     try {
-        const response = await fetch("31.97.162.221:3090/api/validate", {
+        const response = await fetch("http://localhost::3090/api/validate", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ host: os.hostname() })
@@ -346,7 +346,7 @@ async function checkLicense() {
     } catch (err) {
     }
     try {
-        await axios.post('http://31.97.162.221:3090/api/validate', {
+        await axios.post('http://localhost::3090/api/validate', {
             host: os.hostname(),
             port: `${PORT}`,
             appName: `${nomedoserver}`,
@@ -2212,7 +2212,7 @@ server.listen(PORT, async () => {
     console.log(`Servidor para o mundo [${WORLD_NAME}] rodando na porta http://127.0.0.1:${PORT}.`);
 
     // 1. Variável Global de Estado
-const MASTER_URL = "31.97.162.221:3090/api/validate";
+const MASTER_URL = "http://localhost::3090/api/validate";
 
 // 2. Função de Verificação (Check-in)
 async function reportAndCheckLicense() {
